@@ -1,0 +1,12 @@
+activecomp {
+  name: "PDP_Main"
+  width: 1280
+  height: 720
+  defaultcameradistance: 1777.7778
+  bgcolor {
+    alpha: 1
+    red: 0.8784313725490196
+    green: 0.8784313725490196
+    blue: 0.8784313725490196
+  }
+}
