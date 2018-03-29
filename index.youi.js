@@ -6,16 +6,22 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  View
+  View,
+  Text,
+  Button
 } from 'react-native';
 import {
   ButtonRef,
   Composition,
   ImageRef,
+  ViewRef,
   TextRef,
   TimelineRef,
-  Fragment
+  Fragment,
+  Video
 } from 'react-native-youi';
+
+import VideoPlayer from './video.youi.js'
 
 export default class YiReactApp extends Component {
 
@@ -69,7 +75,10 @@ export default class YiReactApp extends Component {
 
   render() {
     let metadata = this.state.details[this.state.selected] ? <Metadata asset={this.state.details[this.state.selected]} /> : null;
-
+    if (true) {
+      return <VideoPlayer />;
+    }
+    else
     return (
       <View
         style={styles.container}
@@ -83,6 +92,20 @@ export default class YiReactApp extends Component {
               this.inTimeline = timeline;
             }}
           />
+
+          <ButtonRef
+            name="Btn-Previous"
+            text="Back"
+          />
+
+          <ButtonRef
+            name="Btn-Next"
+            onClick={() => {
+              console.log("clicked");
+            }}
+          />
+
+          {/* {video} */}
           {metadata}
         </Composition>
       </View>
