@@ -1,0 +1,102 @@
+activecomp {
+  name: "Player_Main"
+  width: 1280
+  height: 720
+  defaultcameradistance: 1777.7778
+  layer {
+    name: "Playback-Controls"
+    id: 1
+    sourceid: 634
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 0.66666603
+        y: 0.66666603
+        z: 1
+      }
+      position {
+        x: 640
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Buffering"
+    id: 2
+    sourceid: 599
+    transform {
+      anchorPoint {
+        x: 250
+        y: 250
+        z: 0
+      }
+      scale {
+        x: 0.66666603
+        y: 0.66666603
+        z: 1
+      }
+      position {
+        x: 640
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    properties {
+      key: "interactive"
+      value: "off"
+    }
+  }
+  bgcolor {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  childtemplates: "Player_Playback-Controls"
+  childtemplates: "Player_Buffering"
+}
+sources {
+  uid: 634
+  srctype: AE_COMP_SRC
+  name: "Player_Playback-Controls.layout"
+  width: 1920
+  height: 1080
+  copy_source: true
+}
+sources {
+  uid: 599
+  srctype: AE_COMP_SRC
+  name: "Player_Buffering.layout"
+  width: 500
+  height: 500
+  copy_source: true
+}

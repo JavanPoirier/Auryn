@@ -1,0 +1,291 @@
+activecomp {
+  name: "Player_Btn-PlayPause"
+  width: 125
+  height: 125
+  defaultcameradistance: 173.61111
+  layer {
+    name: "Btn-PlayPause-Unfocused.png"
+    id: 1360
+    sourceid: 2642
+    transform {
+      anchorPoint {
+        x: 55
+        y: 55
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 62.5
+        y: 62.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Red-Ring.png"
+    id: 1361
+    sourceid: 1426
+    transform {
+      anchorPoint {
+        x: 55
+        y: 55
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 50
+        y: 50
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 1365
+  }
+  layer {
+    name: "Btn-Red.png"
+    id: 1362
+    sourceid: 1427
+    transform {
+      anchorPoint {
+        x: 55
+        y: 55
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 50
+        y: 50
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 1365
+  }
+  layer {
+    name: "Btn-Pause.png"
+    id: 1363
+    sourceid: 1424
+    transform {
+      anchorPoint {
+        x: 18
+        y: 22
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 50
+        y: 50
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 1365
+  }
+  layer {
+    name: "Btn-Play.png"
+    id: 1364
+    sourceid: 1425
+    transform {
+      anchorPoint {
+        x: 20
+        y: 25
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 55
+        y: 50
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 1365
+  }
+  layer {
+    name: "Scaling"
+    id: 1365
+    sourceid: 1455
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 62.5
+        y: 62.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  classname: "CYIPushButtonView"
+  bgcolor {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  properties {
+    key: "componentType"
+    value: "button"
+  }
+  properties {
+    key: "componentSubtype"
+    value: "push"
+  }
+}
+sources {
+  uid: 2642
+  srctype: AE_IMAGE_SRC
+  name: "Btn-PlayPause-Unfocused.png"
+  width: 110
+  height: 110
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 1426
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Red-Ring.png"
+  width: 110
+  height: 110
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 1427
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Red.png"
+  width: 110
+  height: 110
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 1424
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Pause.png"
+  width: 36
+  height: 44
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 1425
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Play.png"
+  width: 40
+  height: 50
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 1455
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
+}

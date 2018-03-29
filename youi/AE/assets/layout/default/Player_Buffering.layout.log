@@ -1,0 +1,142 @@
+activecomp {
+  name: "Player_Buffering"
+  width: 500
+  height: 500
+  defaultcameradistance: 694.44446
+  layer {
+    name: "Icon-Loader-Dot.png"
+    id: 599
+    sourceid: 11188
+    transform {
+      anchorPoint {
+        x: 23
+        y: 23
+        z: 0
+      }
+      scale {
+        x: 2.5
+        y: 2.5
+        z: 1
+      }
+      position {
+        x: 255
+        y: 50
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    properties {
+      key: "interactive"
+      value: "off"
+    }
+  }
+  layer {
+    name: "Icon-Loader-Dot.png"
+    id: 600
+    sourceid: 11188
+    transform {
+      anchorPoint {
+        x: 23
+        y: 23
+        z: 0
+      }
+      scale {
+        x: 2.5
+        y: 2.5
+        z: 1
+      }
+      position {
+        x: 50
+        y: 50
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    properties {
+      key: "interactive"
+      value: "off"
+    }
+  }
+  layer {
+    name: "Icon-Loader-Dot.png"
+    id: 601
+    sourceid: 11188
+    transform {
+      anchorPoint {
+        x: 23
+        y: 23
+        z: 0
+      }
+      scale {
+        x: 2.5
+        y: 2.5
+        z: 1
+      }
+      position {
+        x: -155
+        y: 50
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    properties {
+      key: "interactive"
+      value: "off"
+    }
+  }
+  classname: "CYIActivityIndicatorView"
+  bgcolor {
+    alpha: 1
+    red: 1
+    green: 1
+    blue: 1
+  }
+  properties {
+    key: "componentType"
+    value: "loader"
+  }
+}
+sources {
+  uid: 11188
+  srctype: AE_IMAGE_SRC
+  name: "Icon-Loader-Dot.png"
+  width: 46
+  height: 46
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}

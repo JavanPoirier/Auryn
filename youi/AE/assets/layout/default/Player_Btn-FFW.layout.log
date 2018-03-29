@@ -1,0 +1,366 @@
+activecomp {
+  name: "Player_Btn-FFW"
+  width: 135
+  height: 44
+  defaultcameradistance: 187.5
+  layer {
+    name: "Dot-Large-2"
+    id: 2555
+    sourceid: 2549
+    transform {
+      anchorPoint {
+        x: 7.5
+        y: 8
+        z: 0
+      }
+      scale {
+        x: 0.5
+        y: 0.5
+        z: 1
+      }
+      position {
+        x: -21.875
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 2563
+  }
+  layer {
+    name: "Dot-Medium-2"
+    id: 2556
+    sourceid: 2549
+    transform {
+      anchorPoint {
+        x: 7.5
+        y: 8
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: -44
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 2563
+  }
+  layer {
+    name: "Dot-Small-2"
+    id: 2557
+    sourceid: 2549
+    transform {
+      anchorPoint {
+        x: 7.5
+        y: 8
+        z: 0
+      }
+      scale {
+        x: 1.5
+        y: 1.5
+        z: 1
+      }
+      position {
+        x: -88.375
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 2563
+  }
+  layer {
+    name: "ArrowFFW-Unfocused.png"
+    id: 2558
+    sourceid: 2551
+    transform {
+      anchorPoint {
+        x: 14.5
+        y: 22
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1.375
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 2563
+  }
+  layer {
+    name: "ArrowFFW-Focused.png"
+    id: 2559
+    sourceid: 2550
+    transform {
+      anchorPoint {
+        x: 14.5
+        y: 21.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1.375
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 2563
+  }
+  layer {
+    name: "Dot-Large"
+    id: 2560
+    sourceid: 2549
+    transform {
+      anchorPoint {
+        x: 7.5
+        y: 8
+        z: 0
+      }
+      scale {
+        x: 1.5
+        y: 1.5
+        z: 1
+      }
+      position {
+        x: -44.375
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 2563
+  }
+  layer {
+    name: "Dot-Medium"
+    id: 2561
+    sourceid: 2549
+    transform {
+      anchorPoint {
+        x: 7.5
+        y: 8
+        z: 0
+      }
+      scale {
+        x: 1.5
+        y: 1.5
+        z: 1
+      }
+      position {
+        x: -61.5
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 2563
+  }
+  layer {
+    name: "Dot-Small"
+    id: 2562
+    sourceid: 2549
+    transform {
+      anchorPoint {
+        x: 7.5
+        y: 8
+        z: 0
+      }
+      scale {
+        x: 1.5
+        y: 1.5
+        z: 1
+      }
+      position {
+        x: -88.375
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 2563
+  }
+  layer {
+    name: "Mover"
+    id: 2563
+    sourceid: 2578
+    transform {
+      anchorPoint {
+        x: 0
+        y: 0
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 48.625
+        y: 22
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  bgcolor {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+}
+sources {
+  uid: 2549
+  srctype: AE_IMAGE_SRC
+  name: "ArrowFFW-Dot.png"
+  width: 15
+  height: 16
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 2551
+  srctype: AE_IMAGE_SRC
+  name: "ArrowFFW-Unfocused.png"
+  width: 29
+  height: 44
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 2550
+  srctype: AE_IMAGE_SRC
+  name: "ArrowFFW-Focused.png"
+  width: 29
+  height: 43
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 2578
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
+}

@@ -1,0 +1,177 @@
+tracks {
+  binding: IS_VISIBLE
+  targetid: 1483
+  targetname: "Border"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 1484
+  targetname: "Preview_Thumbnail_Image"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: OPACITY
+  targetid: 1484
+  targetname: "Preview_Thumbnail_Image"
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 2
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 2.3666666
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 3.7333333
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 3.75
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  trackName: "Opacity"
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 1485
+  targetname: "placeholder-time"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: OPACITY
+  targetid: 1485
+  targetname: "placeholder-time"
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 2
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 2.3666666
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 3.7333333
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 3.75
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  trackName: "Opacity"
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 1486
+  targetname: "White Solid 4"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+markers {
+  starttime: 0
+  duration: 0.083333336
+  name: "ShowPopup"
+  tracksSelection {
+    targetid: 1483
+    binding: IS_VISIBLE
+  }
+  tracksSelection {
+    targetid: 1484
+    binding: IS_VISIBLE
+  }
+  tracksSelection {
+    targetid: 1484
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 1485
+    binding: IS_VISIBLE
+  }
+  tracksSelection {
+    targetid: 1485
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 1486
+    binding: IS_VISIBLE
+  }
+  alltracks: false
+  looping: false
+}
+markers {
+  starttime: 2
+  duration: 0.083333336
+  name: "HidePopup"
+  tracksSelection {
+    targetid: 1484
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 1485
+    binding: OPACITY
+  }
+  alltracks: false
+  looping: false
+}
+markers {
+  starttime: 3.7333333
+  duration: 0.016666668
+  name: "Highlight"
+  tracksSelection {
+    targetid: 1484
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 1485
+    binding: OPACITY
+  }
+  alltracks: false
+  looping: false
+}

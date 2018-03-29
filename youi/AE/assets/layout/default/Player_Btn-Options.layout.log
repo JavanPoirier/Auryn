@@ -1,0 +1,200 @@
+activecomp {
+  name: "Player_Btn-Options"
+  width: 100
+  height: 81
+  defaultcameradistance: 138.88889
+  layer {
+    name: "Btn-Back-Border.png"
+    id: 17490
+    sourceid: 2473
+    transform {
+      anchorPoint {
+        x: 40
+        y: 40
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: -0.25
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 17493
+  }
+  layer {
+    name: "Btn-Back-Border-Selected.png"
+    id: 17491
+    sourceid: 2500
+    transform {
+      anchorPoint {
+        x: 40
+        y: 40
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: -0.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 17493
+  }
+  layer {
+    name: "Btn-Back-Filled.png"
+    id: 17492
+    sourceid: 2502
+    transform {
+      anchorPoint {
+        x: 40
+        y: 40
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: -0.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 17493
+  }
+  layer {
+    name: "Scaler"
+    id: 17493
+    sourceid: 16177
+    transform {
+      anchorPoint {
+        x: 0
+        y: -0.25
+        z: 0
+      }
+      scale {
+        x: 0.9
+        y: 0.9
+        z: 1
+      }
+      position {
+        x: 50
+        y: 40.25
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  classname: "CYIPushButtonView"
+  bgcolor {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  properties {
+    key: "componentType"
+    value: "button"
+  }
+  properties {
+    key: "componentSubtype"
+    value: "push"
+  }
+}
+sources {
+  uid: 2473
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Back-Border.png"
+  width: 80
+  height: 80
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 2500
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Back-Border-Selected.png"
+  width: 80
+  height: 80
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 2502
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Back-Filled.png"
+  width: 80
+  height: 80
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 16177
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
+}

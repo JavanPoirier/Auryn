@@ -1,0 +1,55 @@
+activecomp {
+  name: "Player_Player-Scrubber"
+  width: 1632
+  height: 293
+  defaultcameradistance: 2266.6667
+  layer {
+    name: "Player-ScrollBar"
+    id: 1545
+    sourceid: 693
+    transform {
+      anchorPoint {
+        x: 696
+        y: 148.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 816
+        y: 146.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  bgcolor {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  childtemplates: "Player_Player-ScrollBar"
+}
+sources {
+  uid: 693
+  srctype: AE_COMP_SRC
+  name: "Player_Player-ScrollBar.layout"
+  width: 1392
+  height: 297
+  copy_source: true
+}

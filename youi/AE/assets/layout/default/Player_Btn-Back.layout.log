@@ -1,0 +1,589 @@
+activecomp {
+  name: "Player_Btn-Back"
+  width: 100
+  height: 81
+  defaultcameradistance: 138.88889
+  layer {
+    name: "Btn-Back-Border.png"
+    id: 16149
+    sourceid: 2473
+    transform {
+      anchorPoint {
+        x: 40
+        y: 40
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: -0.25
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "Btn-Back-Border-Selected.png"
+    id: 16150
+    sourceid: 2500
+    transform {
+      anchorPoint {
+        x: 40
+        y: 40
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: -0.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "Btn-Back-Filled.png"
+    id: 16151
+    sourceid: 2502
+    transform {
+      anchorPoint {
+        x: 40
+        y: 40
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: -0.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "Btn-Back-Arrow.png"
+    id: 16152
+    sourceid: 2472
+    transform {
+      anchorPoint {
+        x: 20
+        y: 15
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: -0.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "Scaler"
+    id: 16153
+    sourceid: 16177
+    transform {
+      anchorPoint {
+        x: 0
+        y: -0.25
+        z: 0
+      }
+      scale {
+        x: 0.9
+        y: 0.9
+        z: 1
+      }
+      position {
+        x: 50
+        y: 40.25
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 4"
+    id: 16154
+    sourceid: 16464
+    transform {
+      anchorPoint {
+        x: 0
+        y: 1.5
+        z: 0
+      }
+      scale {
+        x: 0
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: 4.3055553
+        y: 12.753472
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "White Solid 2"
+    id: 16155
+    sourceid: 16486
+    transform {
+      anchorPoint {
+        x: 0
+        y: 1.5
+        z: 0
+      }
+      scale {
+        x: 0
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: 10.972222
+        y: -3.9826388
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 180
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "White Solid 5"
+    id: 16156
+    sourceid: 16514
+    transform {
+      anchorPoint {
+        x: 0
+        y: 1.5
+        z: 0
+      }
+      scale {
+        x: 0
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: -18.611111
+        y: -3.0798612
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: -45
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "White Solid 3"
+    id: 16157
+    sourceid: 16506
+    transform {
+      anchorPoint {
+        x: 0
+        y: 1.5
+        z: 0
+      }
+      scale {
+        x: 0
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: -18.541666
+        y: -5.71875
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 45
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "Arrow-Piece.png"
+    id: 16158
+    sourceid: 16459
+    transform {
+      anchorPoint {
+        x: -0.4921875
+        y: -1
+        z: 0
+      }
+      scale {
+        x: 1.1111112
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: 10.00868
+        y: 4.4722223
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 24.374643
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "Arrow-Piece.png"
+    id: 16159
+    sourceid: 16459
+    transform {
+      anchorPoint {
+        x: -0.4921875
+        y: -1
+        z: 0
+      }
+      scale {
+        x: 1.1111112
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: 10.00868
+        y: 4.4722223
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 8.5511084
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "Arrow-Piece.png"
+    id: 16160
+    sourceid: 16459
+    transform {
+      anchorPoint {
+        x: -0.4921875
+        y: -1
+        z: 0
+      }
+      scale {
+        x: 1.1111112
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: 10.00868
+        y: 4.4722223
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 8.5511084
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "Arrow-Piece.png"
+    id: 16161
+    sourceid: 16459
+    transform {
+      anchorPoint {
+        x: -0.4921875
+        y: -1
+        z: 0
+      }
+      scale {
+        x: 1.1111112
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: 10.00868
+        y: 4.4722223
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 8.5511084
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  classname: "CYIPushButtonView"
+  bgcolor {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  properties {
+    key: "componentType"
+    value: "button"
+  }
+  properties {
+    key: "componentSubtype"
+    value: "push"
+  }
+}
+sources {
+  uid: 2473
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Back-Border.png"
+  width: 80
+  height: 80
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 2500
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Back-Border-Selected.png"
+  width: 80
+  height: 80
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 2502
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Back-Filled.png"
+  width: 80
+  height: 80
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 2472
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Back-Arrow.png"
+  width: 40
+  height: 30
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 16177
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
+}
+sources {
+  uid: 16464
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.94509804248809814
+    green: 0.94509804248809814
+    blue: 0.94509804248809814
+  }
+  width: 8
+  height: 3
+  copy_source: false
+}
+sources {
+  uid: 16486
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.94509804248809814
+    green: 0.94509804248809814
+    blue: 0.94509804248809814
+  }
+  width: 25
+  height: 3
+  copy_source: false
+}
+sources {
+  uid: 16514
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.94509804248809814
+    green: 0.94509804248809814
+    blue: 0.94509804248809814
+  }
+  width: 14
+  height: 3
+  copy_source: false
+}
+sources {
+  uid: 16506
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.94509804248809814
+    green: 0.94509804248809814
+    blue: 0.94509804248809814
+  }
+  width: 14
+  height: 3
+  copy_source: false
+}
+sources {
+  uid: 16459
+  srctype: AE_IMAGE_SRC
+  name: "Arrow-Piece.png"
+  width: 9
+  height: 9
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
