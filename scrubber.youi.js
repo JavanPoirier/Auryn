@@ -37,7 +37,7 @@ class Scrubber extends Component {
 
     render() {
         return(
-            <View style={{width: 920, height: 8, top: -250}}>
+            <View style={{width: 920, height: 8, top: -241}}>
                 <View style={{flex: 1, flexDirection: 'row', backgroundColor: 'gray'}}>
                 <Animated.View style={{ flex: this.state.thumbPos, flexDirection: 'column', height: 8, backgroundColor: '#DF1D46'}}/>
                 <TouchableHighlight

@@ -33,15 +33,17 @@ class VideoPlayer extends Component {
         playbackState: '',
         duration: 0,
         currentTime: 0,
+        formattedTime: "00:00",
         muted: true,
         paused: true
       };
     }
-    componentDidUnmount() {
+    componentWillUnmount() {
       this.setState({
         paused: true,
         videoSource: {}
       })
+
     }
     componentDidMount() {
       // this.setState({
@@ -53,7 +55,6 @@ class VideoPlayer extends Component {
     render() {
       return (
       <View style={styles.container}>
-
         <Video
                 style={styles.video}
                 ref={(ref) => {this.video=ref}}
@@ -68,11 +69,23 @@ class VideoPlayer extends Component {
                 onReady={() => this.setState({paused: false})}
                 onPlaying={() => console.log("onPlaying called.")}
                 onPaused={() => console.log("onPaused called.")}
-                onPlaybackComplete={() => console.log("onPlaybackComplete called.")}
+                onPlaybackComplete={() => {
+                  this.props.onBack()
+                  console.log("onPlaybackComplete called.")
+                }}
                 onFinalized={() => console.log("onFinalized called.")}
                 onCurrentTimeUpdated={(currentTime) => {
+                  var s = Math.floor(currentTime.nativeEvent.currentTime / 1000)
+                  var m = Math.floor(s / 60)
+                  var h = Math.floor(s / 3600)
+                  h = h < 1 ? '' : h + ':'
+                  m = m < 10 ? '0' + m : m;
+                  s = s < 10 ? '0' + s : s;
+
+                  var time = h + m + ':' + s;
                   this.setState({
-                    currentTime: currentTime.nativeEvent.currentTime
+                    currentTime: currentTime.nativeEvent.currentTime,
+                    formattedTime: time
                   })}
                 }
                 onDurationChanged={(duration) => {
@@ -95,6 +108,7 @@ class VideoPlayer extends Component {
               this.inTimeline = timeline;
               timeline.play();
               }}/>
+            <TextRef name="Placeholder-Time" text={this.state.formattedTime}/>
             <ViewRef name="PlayPause-Container">
               <TimelineRef name="In"
                 onLoad={(timeline) => {
@@ -138,7 +152,7 @@ class VideoPlayer extends Component {
               <ButtonRef
                 name="Btn-Back"
                 onClick={() => {
-                  this.props.onBack()
+                  this.video.seek(-1)
                 }}/>
               </ViewRef>
           </ViewRef>
