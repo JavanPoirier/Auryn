@@ -8,7 +8,8 @@ import {
   StyleSheet,
   View,
   Text,
-  Button
+  Button,
+  BackHandler
 } from 'react-native';
 import {
   ButtonRef,
@@ -30,6 +31,7 @@ export default class YiReactApp extends Component {
     this.state = {
       details: {},
       selected: 0,
+      playerScreen: false
     };
   }
 
@@ -75,8 +77,8 @@ export default class YiReactApp extends Component {
 
   render() {
     let metadata = this.state.details[this.state.selected] ? <Metadata asset={this.state.details[this.state.selected]} /> : null;
-    if (true) {
-      return <VideoPlayer />;
+    if (this.state.playerScreen) {
+      return <VideoPlayer onBack={() => this.setState({playerScreen: false})}/>;
     }
     else
     return (
@@ -102,6 +104,9 @@ export default class YiReactApp extends Component {
             name="Btn-Next"
             onClick={() => {
               console.log("clicked");
+              this.setState({
+                playerScreen: true
+              })
             }}
           />
 

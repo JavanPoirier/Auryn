@@ -5,6 +5,7 @@ import {
     View,
     Text,
     Button,
+    BackHandler
   } from 'react-native';
   import {
     ButtonRef,
@@ -36,7 +37,12 @@ class VideoPlayer extends Component {
         paused: true
       };
     }
-
+    componentDidUnmount() {
+      this.setState({
+        paused: true,
+        videoSource: {}
+      })
+    }
     componentDidMount() {
       // this.setState({
       //   this.inTimeline.play();
@@ -59,7 +65,7 @@ class VideoPlayer extends Component {
                 onBufferingEnded={() => console.log("onBufferingEnded called.")}
                 onErrorOccurred={() => console.log("onErrorOccurred called.")}
                 onPreparing={() => console.log("onPreparing called.") }
-                onReady={() => console.log("onReady called.")}
+                onReady={() => this.setState({paused: false})}
                 onPlaying={() => console.log("onPlaying called.")}
                 onPaused={() => console.log("onPaused called.")}
                 onPlaybackComplete={() => console.log("onPlaybackComplete called.")}
@@ -80,15 +86,8 @@ class VideoPlayer extends Component {
                     mediaState: playerState.nativeEvent.mediaState
                   })}
                 }
-                onAvailableAudioTracksChanged={() => console.log("onAvailableAudioTracksChanged called.")}
-                onAvailableClosedCaptionsTracksChanged={() => console.log("onAvailableClosedCaptionsTracksChanged called.")}
               />
-              <Text>{'Video Source: ' + this.state.videoSource.uri}</Text>
-              <Text>{'Stream Type: ' + this.state.videoSource.type}</Text>
-              <Text>{'Media State: ' + this.state.mediaState}</Text>
-              <Text>{'Playback State: ' + this.state.playbackState}</Text>
-              <Text>{'Duration: ' + this.state.duration}</Text>
-              <Text>{'Current Time: ' + this.state.currentTime}</Text>
+
         <Composition source="Player_Main">
           <ViewRef name="Playback-Controls">
             <TimelineRef name="In"
@@ -115,10 +114,14 @@ class VideoPlayer extends Component {
                   <TimelineRef name="Toggle-On"
                   onLoad={(timeline) => {
                     this.toggleOnTimeline=timeline;
+                    if (this.state.paused)
+                      timeline.play();
                   }}/>
                   <TimelineRef name="FocusIn"
                   onLoad={(timeline) => {
                     this.focusInTimeline=timeline;
+                    if (!this.state.paused)
+                      timeline.play();
                   }}/>
                   <TimelineRef name="Toggle-Off"
                   onLoad={(timeline) => {
@@ -126,6 +129,18 @@ class VideoPlayer extends Component {
                   }}/>
               </ButtonRef>
             </ViewRef>
+            <ViewRef name="Btn-Back-Container">
+              <TimelineRef name="In"
+                onLoad={(timeline) => {
+                this.inTimeline = timeline;
+                timeline.play();
+              }}/>
+              <ButtonRef
+                name="Btn-Back"
+                onClick={() => {
+                  this.props.onBack()
+                }}/>
+              </ViewRef>
           </ViewRef>
         </Composition>
 

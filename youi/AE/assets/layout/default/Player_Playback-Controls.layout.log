@@ -121,6 +121,40 @@ activecomp {
       isAllCaps: false
     }
   }
+  layer {
+    name: "Btn-Back-Container"
+    id: 637
+    sourceid: 17139
+    transform {
+      anchorPoint {
+        x: 105
+        y: 40.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1737
+        y: 120
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
   bgcolor {
     alpha: 1
     red: 0
@@ -128,6 +162,7 @@ activecomp {
     blue: 0
   }
   childtemplates: "Player_PlayPause-Container"
+  childtemplates: "Player_Btn-Back-Container"
 }
 sources {
   uid: 2648
@@ -154,4 +189,12 @@ sources {
   name: "ArialMT"
   copy_source: true
   file_name: "yi_Arial-Regular.ttf"
+}
+sources {
+  uid: 17139
+  srctype: AE_COMP_SRC
+  name: "Player_Btn-Back-Container.layout"
+  width: 210
+  height: 81
+  copy_source: true
 }

@@ -736,87 +736,6 @@ tracks {
   }
   trackName: "Opacity"
 }
-tracks {
-  binding: IS_VISIBLE
-  targetid: 17140
-  targetname: "Btn-Options"
-  keytimes {
-    datatype: AE_INT_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_HOLD
-    ivalue1: 1
-  }
-}
-tracks {
-  binding: POSITION
-  targetid: 17140
-  targetname: "Btn-Options"
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 160
-    fvalue2: 40.5
-    fvalue3: 0
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 0.8
-    inttype: AE_INTERP_LINEAR
-    sInTangentX: 18.333334
-    sInTangentY: -0
-    sInTangentZ: -0
-    sOutTangentX: -18.333334
-    sOutTangentY: 0
-    sOutTangentZ: 0
-    fvalue1: 160
-    fvalue2: 40.5
-    fvalue3: 0
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 1.1166667
-    inttype: AE_INTERP_LINEAR
-    sInTangentX: 18.333334
-    sInTangentY: -0
-    sInTangentZ: -0
-    sOutTangentX: 0
-    sOutTangentY: 0
-    sOutTangentZ: 0
-    fvalue1: 50
-    fvalue2: 40.5
-    fvalue3: 0
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 2.1666667
-    inttype: AE_INTERP_LINEAR
-    sInTangentX: 0
-    sInTangentY: 0
-    sInTangentZ: 0
-    sOutTangentX: 18.333334
-    sOutTangentY: 0
-    sOutTangentZ: 0
-    fvalue1: 50
-    fvalue2: 40.5
-    fvalue3: 0
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 2.4666667
-    inttype: AE_INTERP_LINEAR
-    sInTangentX: -18.333334
-    sInTangentY: -0
-    sInTangentZ: -0
-    sOutTangentX: 18.333334
-    sOutTangentY: 0
-    sOutTangentZ: 0
-    fvalue1: 160
-    fvalue2: 40.5
-    fvalue3: 0
-  }
-  trackName: "Position"
-}
 markers {
   starttime: 0.8
   duration: 0.533
@@ -824,10 +743,6 @@ markers {
   tracksSelection {
     targetid: 17139
     binding: OPACITY
-  }
-  tracksSelection {
-    targetid: 17140
-    binding: POSITION
   }
   alltracks: false
   looping: false
@@ -839,10 +754,6 @@ markers {
   tracksSelection {
     targetid: 17139
     binding: OPACITY
-  }
-  tracksSelection {
-    targetid: 17140
-    binding: POSITION
   }
   alltracks: false
   looping: false
