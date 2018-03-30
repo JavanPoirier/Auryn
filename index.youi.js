@@ -37,7 +37,7 @@ export default class YiReactApp extends Component {
 
   componentDidMount() {
     this.requestPopularMoviesAsync((results) => {
-      let id = results[1].id;
+      let id = results[0].id;
 
       this.requestMovieDetailsAsync(id, (asset) => {
         this.setState({
@@ -97,13 +97,23 @@ export default class YiReactApp extends Component {
 
           <ButtonRef
             name="Btn-Previous"
-            text="Back"
+            onClick={() => {
+
+            }}
           />
 
           <ButtonRef
             name="Btn-Next"
             onClick={() => {
-              console.log("clicked");
+              this.setState({
+                playerScreen: true
+              })
+            }}
+          />
+
+          <ButtonRef
+            name="Btn-Play"
+            onClick={() => {
               this.setState({
                 playerScreen: true
               })

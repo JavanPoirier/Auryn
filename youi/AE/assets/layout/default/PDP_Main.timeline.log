@@ -13346,6 +13346,42 @@ tracks {
     ivalue1: 1
   }
 }
+tracks {
+  binding: OPACITY
+  targetid: 65092
+  targetname: "controls"
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.6666666
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 2
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 2.4833333
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  trackName: "Opacity"
+}
 markers {
   starttime: 1
   duration: 0.75
@@ -13424,6 +13460,10 @@ markers {
   }
   tracksSelection {
     targetid: 65091
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 65092
     binding: OPACITY
   }
   alltracks: false
@@ -13507,6 +13547,10 @@ markers {
   }
   tracksSelection {
     targetid: 65091
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 65092
     binding: OPACITY
   }
   alltracks: false

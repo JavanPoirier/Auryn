@@ -599,8 +599,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 640
-        y: 658
+        x: 493.34113
+        y: 533
         z: 0
       }
       orientation {
@@ -611,11 +611,12 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 65084
   }
   bgcolor {
     alpha: 1
@@ -681,7 +682,7 @@ sources {
   srctype: AE_FONT_SRC
   name: "Montserrat-Light"
   copy_source: true
-  file_name: "yi_Montserrat-Light.ttf"
+  file_name: "yi_Montserrat-Light.otf"
 }
 sources {
   uid: 7
