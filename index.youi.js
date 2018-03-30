@@ -31,26 +31,46 @@ export default class YiReactApp extends Component {
     this.state = {
       details: {},
       selected: 0,
-      playerScreen: false
+      playerScreen: false,
+      animating: false
     };
+    this.model= []
   }
 
   componentDidMount() {
     this.requestPopularMoviesAsync((results) => {
-      let id = results[0].id;
 
-      this.requestMovieDetailsAsync(id, (asset) => {
+      this.model = results
+
+      this.setState({
+        selected: 0
+      })
+
+      this.requestMovieDetailsAsync((asset) => {
         this.setState({
-          selected: id,
-          details: {
-            ...this.state.details,
-            [id]: asset,
-          },
+          details: asset
+          ,
         });
-
+        this.setState({animating: true})
         this.inTimeline.play();
       });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevState.selected != this.state.selected) {
+      this.setState({animating: true})
+      this.requestMovieDetailsAsync((asset) => {
+        this.setState({
+          details: asset
+        });
+        this.outTimeline.play();
+      })
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !nextState.animating;
   }
 
   requestPopularMoviesAsync = (callback) => {
@@ -64,8 +84,8 @@ export default class YiReactApp extends Component {
       });
   }
 
-  requestMovieDetailsAsync = (assetID, callback) => {
-    return fetch("https://api.themoviedb.org/3/movie/" + assetID + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits")
+  requestMovieDetailsAsync = (callback) => {
+    return fetch("https://api.themoviedb.org/3/movie/" + this.model[this.state.selected].id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits")
       .then((response) => response.json())
       .then((responseJson) => {
         callback(responseJson);
@@ -76,7 +96,6 @@ export default class YiReactApp extends Component {
   }
 
   render() {
-    let metadata = this.state.details[this.state.selected] ? <Metadata asset={this.state.details[this.state.selected]} /> : null;
     if (this.state.playerScreen) {
       return <VideoPlayer onBack={() => this.setState({playerScreen: false})}/>;
     }
@@ -93,20 +112,44 @@ export default class YiReactApp extends Component {
             onLoad={(timeline) => {
               this.inTimeline = timeline;
             }}
+            onCompleted={() => {
+              this.setState({animating: false})
+            }}
+          />
+
+          <TimelineRef
+            name="Out"
+            onLoad={(timeline) => {
+              this.outTimeline = timeline;
+            }}
+            onCompleted={() => {
+              this.setState({animating: false})
+              this.inTimeline.play()
+            }}
           />
 
           <ButtonRef
             name="Btn-Previous"
             onClick={() => {
+              let prevIndex = this.state.selected - 1
+              if (prevIndex < 0)
+                prevIndex = this.model.length-1
 
+              this.setState({
+                selected: prevIndex
+              })
             }}
           />
 
           <ButtonRef
             name="Btn-Next"
             onClick={() => {
+              let nextIndex = this.state.selected + 1
+              if (nextIndex >= this.model.length)
+                nextIndex = 0
+
               this.setState({
-                playerScreen: true
+                selected: nextIndex
               })
             }}
           />
@@ -120,8 +163,7 @@ export default class YiReactApp extends Component {
             }}
           />
 
-          {/* {video} */}
-          {metadata}
+          <Metadata asset={this.state.details} />
         </Composition>
       </View>
     );
@@ -129,6 +171,10 @@ export default class YiReactApp extends Component {
 }
 
 export function Metadata(props) {
+  if (!props.asset.id)
+    return null
+
+
   let rating = props.asset.releases.countries.filter((release) => release["iso_3166_1"] === "US")[0].certification;
   let director = props.asset.credits.crew.filter((member) => member["job"] === "Director")[0].name;
   let stars = props.asset.credits.cast.slice(0, 3).map((member) => member["name"]).join(", ");
