@@ -152,6 +152,7 @@ class VideoPlayer extends Component {
               <ButtonRef
                 name="Btn-Back"
                 onClick={() => {
+                  this.props.onBack()
                   this.video.seek(-1)
                 }}/>
               </ViewRef>
@@ -169,10 +170,10 @@ class VideoPlayer extends Component {
     container: {
       flex: 1,
       justifyContent: 'center',
+      backgroundColor: 'black',
       alignItems: 'center',
     },
     video: {
-      flex: 1,
       position: 'absolute',
       color: 'white',
       fontSize: 20,

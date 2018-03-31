@@ -96,75 +96,72 @@ export default class YiReactApp extends Component {
   }
 
   render() {
-    if (this.state.playerScreen) {
-      return <VideoPlayer onBack={() => this.setState({playerScreen: false})}/>;
-    }
-    else
     return (
-      <View
-        style={styles.container}
-      >
-        <Composition
-          source="PDP_Main"
-        >
-          <TimelineRef
-            name="In"
-            onLoad={(timeline) => {
-              this.inTimeline = timeline;
-            }}
-            onCompleted={() => {
-              this.setState({animating: false})
-            }}
-          />
+      <View style={styles.container}>
+        <View style={{position: 'absolute'}}>
+          <Composition source="PDP_Main">
+            <TimelineRef
+              name="In"
+              onLoad={(timeline) => {
+                this.inTimeline = timeline;
+              }}
+              onCompleted={() => {
+                this.setState({animating: false})
+              }}
+            />
 
-          <TimelineRef
-            name="Out"
-            onLoad={(timeline) => {
-              this.outTimeline = timeline;
-            }}
-            onCompleted={() => {
-              this.setState({animating: false})
-              this.inTimeline.play()
-            }}
-          />
+            <TimelineRef
+              name="Out"
+              onLoad={(timeline) => {
+                this.outTimeline = timeline;
+              }}
+              onCompleted={() => {
+                this.setState({animating: false})
+                this.inTimeline.play()
+              }}
+            />
 
-          <ButtonRef
-            name="Btn-Previous"
-            onClick={() => {
-              let prevIndex = this.state.selected - 1
-              if (prevIndex < 0)
-                prevIndex = this.model.length-1
+            <ButtonRef
+              name="Btn-Previous"
+              onClick={() => {
+                let prevIndex = this.state.selected - 1
+                if (prevIndex < 0)
+                  prevIndex = this.model.length-1
 
-              this.setState({
-                selected: prevIndex
-              })
-            }}
-          />
+                this.setState({
+                  selected: prevIndex
+                })
+              }}
+            />
 
-          <ButtonRef
-            name="Btn-Next"
-            onClick={() => {
-              let nextIndex = this.state.selected + 1
-              if (nextIndex >= this.model.length)
-                nextIndex = 0
+            <ButtonRef
+              name="Btn-Next"
+              onClick={() => {
+                let nextIndex = this.state.selected + 1
+                if (nextIndex >= this.model.length)
+                  nextIndex = 0
 
-              this.setState({
-                selected: nextIndex
-              })
-            }}
-          />
+                this.setState({
+                  selected: nextIndex
+                })
+              }}
+            />
 
-          <ButtonRef
-            name="Btn-Play"
-            onClick={() => {
-              this.setState({
-                playerScreen: true
-              })
-            }}
-          />
+            <ButtonRef
+              name="Btn-Play"
+              onClick={() => {
+                this.setState({animating: true})
+                this.outTimeline.play();
+                this.setState({
+                  playerScreen: true
+                })
+              }}
+            />
 
-          <Metadata asset={this.state.details} />
-        </Composition>
+            <Metadata asset={this.state.details} />
+          </Composition>
+        </View>
+        { this.state.playerScreen && <VideoPlayer style={{background: 'black', position: 'absolute', top: 0, left: 0}} onBack={() => this.setState({playerScreen: false})}/>}
       </View>
     );
   }
