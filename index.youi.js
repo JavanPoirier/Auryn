@@ -117,7 +117,7 @@ export default class YiReactApp extends Component {
               }}
               onCompleted={() => {
                 this.setState({animating: false})
-                this.inTimeline.play()
+                setTimeout(this.inTimeline.play(), 10)
               }}
             />
 
@@ -161,7 +161,14 @@ export default class YiReactApp extends Component {
             <Metadata asset={this.state.details} />
           </Composition>
         </View>
-        { this.state.playerScreen && <VideoPlayer style={{background: 'black', position: 'absolute', top: 0, left: 0}} onBack={() => this.setState({playerScreen: false})}/>}
+        { this.state.playerScreen &&
+          <VideoPlayer
+            style={{background: 'black', position: 'absolute', top: 0, left: 0}}
+            onBack={() => {
+              this.inTimeline.play()
+              this.setState({playerScreen: false})
+              }
+            }/>}
       </View>
     );
   }
@@ -171,8 +178,9 @@ export function Metadata(props) {
   if (!props.asset.id)
     return null
 
-
-  let rating = props.asset.releases.countries.filter((release) => release["iso_3166_1"] === "US")[0].certification;
+  console.log(props.asset)
+  let rating = props.asset.releases.countries.filter((release) => release["iso_3166_1"] === "US");
+  if (rating.length > 0) rating = rating[0].certification;
   let director = props.asset.credits.crew.filter((member) => member["job"] === "Director")[0].name;
   let stars = props.asset.credits.cast.slice(0, 3).map((member) => member["name"]).join(", ");
   let posterSource = "https://image.tmdb.org/t/p/w500" + props.asset.poster_path;
