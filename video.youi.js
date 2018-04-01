@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     StyleSheet,
     View,
-    Text,
-    Button,
-    BackHandler
   } from 'react-native';
   import {
     ButtonRef,
     Composition,
-    ImageRef,
     TextRef,
     TimelineRef,
     Fragment,
     ViewRef,
     TouchableHighlight,
     Video,
-    Image
   } from 'react-native-youi';
-  import Scrubber from './scrubber.youi.js'
 
+  import Scrubber from './scrubber.youi.js'
+  import Timeline from './timeline.youi.js'
 class VideoPlayer extends Component {
     constructor(props) {
       super(props);
@@ -37,19 +32,6 @@ class VideoPlayer extends Component {
         muted: true,
         paused: true
       };
-    }
-    componentWillUnmount() {
-      this.setState({
-        paused: true,
-        videoSource: {}
-      })
-
-    }
-    componentDidMount() {
-      // this.setState({
-      //   this.inTimeline.play();
-      // })
-
     }
 
     render() {
@@ -70,7 +52,8 @@ class VideoPlayer extends Component {
                 onPlaying={() => console.log("onPlaying called.")}
                 onPaused={() => console.log("onPaused called.")}
                 onPlaybackComplete={() => {
-                  this.props.onBack()
+                  this.outTimeline.play()
+                  .then(() => { this.props.onBack() })
                   console.log("onPlaybackComplete called.")
                 }}
                 onFinalized={() => console.log("onFinalized called.")}
@@ -108,6 +91,9 @@ class VideoPlayer extends Component {
               this.inTimeline = timeline;
               timeline.play();
               }}/>
+
+            <Timeline name="Out" ref={(timeline)=> this.outTimeline = timeline}/>
+
             <TextRef name="Placeholder-Time" text={this.state.formattedTime}/>
             <ViewRef name="PlayPause-Container">
               <TimelineRef name="In"
@@ -152,7 +138,8 @@ class VideoPlayer extends Component {
               <ButtonRef
                 name="Btn-Back"
                 onClick={() => {
-                  this.props.onBack()
+                  this.outTimeline.play()
+                  .then(() => { this.props.onBack() })
                   this.video.seek(-1)
                 }}/>
               </ViewRef>

@@ -23,6 +23,7 @@ import {
 } from 'react-native-youi';
 
 import VideoPlayer from './video.youi.js'
+import Timeline from './timeline.youi.js'
 
 export default class YiReactApp extends Component {
 
@@ -34,50 +35,36 @@ export default class YiReactApp extends Component {
       playerScreen: false,
       animating: false
     };
-    this.model= []
+    this.model = []
   }
 
   componentDidMount() {
-    this.requestPopularMoviesAsync((results) => {
 
+    this.requestPopularMoviesAsync()
+    .then((results) => {
       this.model = results
-
-      this.setState({
-        selected: 0
-      })
-
-      this.requestMovieDetailsAsync((asset) => {
-        this.setState({
-          details: asset
-          ,
-        });
-        this.setState({animating: true})
-        this.inTimeline.play();
-      });
-    });
+      this.setState({ selected: 0})
+    })
+    .then(this.requestMovieDetailsAsync)
+    .then((asset) => { this.setState({ details: asset }) })
+    .then(this.inTimeline.play);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.selected != this.state.selected) {
-      this.setState({animating: true})
-      this.requestMovieDetailsAsync((asset) => {
-        this.setState({
-          details: asset
-        });
-        this.outTimeline.play();
+      Promise.all([this.outTimeline.play(), this.requestMovieDetailsAsync()])
+      .then(values => {
+        this.setState({ details: values[1] })
       })
+      .then(this.inTimeline.play);
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return !nextState.animating;
   }
 
   requestPopularMoviesAsync = (callback) => {
     return fetch("https://api.themoviedb.org/3/discover/movie?api_key=7f5e61b6cef8643d2442344b45842192")
       .then((response) => response.json())
       .then((responseJson) => {
-        callback(responseJson.results);
+        return responseJson.results;
       })
       .catch((error) => {
         console.error(error);
@@ -88,7 +75,7 @@ export default class YiReactApp extends Component {
     return fetch("https://api.themoviedb.org/3/movie/" + this.model[this.state.selected].id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits")
       .then((response) => response.json())
       .then((responseJson) => {
-        callback(responseJson);
+        return responseJson;
       })
       .catch((error) => {
         console.error(error);
@@ -100,26 +87,9 @@ export default class YiReactApp extends Component {
       <View style={styles.container}>
         <View style={{position: 'absolute'}}>
           <Composition source="PDP_Main">
-            <TimelineRef
-              name="In"
-              onLoad={(timeline) => {
-                this.inTimeline = timeline;
-              }}
-              onCompleted={() => {
-                this.setState({animating: false})
-              }}
-            />
 
-            <TimelineRef
-              name="Out"
-              onLoad={(timeline) => {
-                this.outTimeline = timeline;
-              }}
-              onCompleted={() => {
-                this.setState({animating: false})
-                setTimeout(this.inTimeline.play(), 10)
-              }}
-            />
+            <Timeline name="Out" ref={(timeline)=> this.outTimeline = timeline}/>
+            <Timeline name="In" ref={(timeline)=> this.inTimeline = timeline}/>
 
             <ButtonRef
               name="Btn-Previous"
@@ -141,19 +111,15 @@ export default class YiReactApp extends Component {
                 if (nextIndex >= this.model.length)
                   nextIndex = 0
 
-                this.setState({
-                  selected: nextIndex
-                })
+                this.setState({ selected: nextIndex })
               }}
             />
 
             <ButtonRef
               name="Btn-Play"
               onClick={() => {
-                this.setState({animating: true})
-                this.outTimeline.play();
-                this.setState({
-                  playerScreen: true
+                this.outTimeline.play().then(() => {
+                  this.setState({ playerScreen: true })
                 })
               }}
             />
@@ -178,7 +144,6 @@ export function Metadata(props) {
   if (!props.asset.id)
     return null
 
-  console.log(props.asset)
   let rating = props.asset.releases.countries.filter((release) => release["iso_3166_1"] === "US");
   if (rating.length > 0) rating = rating[0].certification;
   let director = props.asset.credits.crew.filter((member) => member["job"] === "Director")[0].name;
@@ -228,5 +193,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#d0d0d0'
   },
 });
+
 
 AppRegistry.registerComponent('YiReactApp', () => YiReactApp);
