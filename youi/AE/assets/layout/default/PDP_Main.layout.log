@@ -599,8 +599,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 493.34113
-        y: 533
+        x: 640
+        y: 618
         z: 0
       }
       orientation {
@@ -616,7 +616,6 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    parentid: 65084
   }
   bgcolor {
     alpha: 1

@@ -72,58 +72,8 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "<empty text layer>"
-    id: 65187
-    sourceid: -1
-    transform {
-      anchorPoint {
-        x: 0
-        y: 0
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 468
-        y: 516
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    textinfo {
-      justification: AE_TEXT_LEFT
-      fontSize: 30
-      fontColor {
-        alpha: 1
-        red: 0.18824000656604767
-        green: 0.18824000656604767
-        blue: 0.18824000656604767
-      }
-      fontName: "SportsFOXSportsUScore"
-      isPointText: true
-      isLabel: true
-      text: ""
-      multiline: false
-      isAllCaps: false
-    }
-  }
-  layer {
     name: "Btn-Previous"
-    id: 65188
+    id: 65187
     sourceid: 65154
     transform {
       anchorPoint {
@@ -180,13 +130,6 @@ sources {
   width: 300
   height: 100
   copy_source: true
-}
-sources {
-  uid: 3
-  srctype: AE_FONT_SRC
-  name: "SportsFOXSportsUScore"
-  copy_source: true
-  file_name: "yi_Sports FOX Sports UScore-Regular.otf"
 }
 sources {
   uid: 65154
