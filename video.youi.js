@@ -16,6 +16,8 @@ import {
 
   import Scrubber from './scrubber.youi.js'
   import Timeline from './timeline.youi.js'
+  import Button from './button.youi.js'
+
 class VideoPlayer extends Component {
     constructor(props) {
       super(props);
@@ -95,54 +97,24 @@ class VideoPlayer extends Component {
             <Timeline name="Out" ref={(timeline)=> this.outTimeline = timeline}/>
 
             <TextRef name="Placeholder-Time" text={this.state.formattedTime}/>
-            <ViewRef name="PlayPause-Container">
-              <TimelineRef name="In"
-                onLoad={(timeline) => {
-                this.inTimeline = timeline;
-                timeline.play();
-              }}/>
-              <ButtonRef
-                name="Btn-PlayPause"
-                onClick={() => {
-                  this.setState({paused: !this.state.paused})
-                  this.focusInTimeline.play();
-                  if (this.state.paused)
-                    this.toggleOnTimeline.play();
-                  else
-                  this.toggleOffTimeline.play();
-                }}>
-                  <TimelineRef name="Toggle-On"
-                  onLoad={(timeline) => {
-                    this.toggleOnTimeline=timeline;
-                    if (this.state.paused)
-                      timeline.play();
-                  }}/>
-                  <TimelineRef name="FocusIn"
-                  onLoad={(timeline) => {
-                    this.focusInTimeline=timeline;
-                    if (!this.state.paused)
-                      timeline.play();
-                  }}/>
-                  <TimelineRef name="Toggle-Off"
-                  onLoad={(timeline) => {
-                    this.toggleOffTimeline=timeline;
-                  }}/>
-              </ButtonRef>
-            </ViewRef>
-            <ViewRef name="Btn-Back-Container">
-              <TimelineRef name="In"
-                onLoad={(timeline) => {
-                this.inTimeline = timeline;
-                timeline.play();
-              }}/>
-              <ButtonRef
-                name="Btn-Back"
-                onClick={() => {
-                  this.outTimeline.play()
+
+            <Button
+              container="PlayPause-Container"
+              name="Btn-PlayPause"
+              toggle={true}
+              onClick={() => { this.setState({paused: !this.state.paused}) } }
+              />
+
+            <Button
+              container="Btn-Back-Container"
+              name="Btn-Back"
+              toggle={false}
+              onClick={() => {
+                this.outTimeline.play()
                   .then(() => { this.props.onBack() })
                   this.video.seek(-1)
-                }}/>
-              </ViewRef>
+              }}
+              />
           </ViewRef>
         </Composition>
 
@@ -162,8 +134,6 @@ class VideoPlayer extends Component {
     },
     video: {
       position: 'absolute',
-      color: 'white',
-      fontSize: 20,
       width: 1280,
       height: 720
     },

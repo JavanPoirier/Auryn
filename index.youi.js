@@ -8,8 +8,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
-  BackHandler
 } from 'react-native';
 import {
   ButtonRef,
@@ -24,7 +22,7 @@ import {
 
 import VideoPlayer from './video.youi.js'
 import Timeline from './timeline.youi.js'
-
+import Button from './button.youi.js'
 export default class YiReactApp extends Component {
 
   constructor() {
@@ -91,7 +89,7 @@ export default class YiReactApp extends Component {
             <Timeline name="Out" ref={(timeline)=> this.outTimeline = timeline}/>
             <Timeline name="In" ref={(timeline)=> this.inTimeline = timeline}/>
 
-            <ButtonRef
+            <Button
               name="Btn-Previous"
               onClick={() => {
                 let prevIndex = this.state.selected - 1
@@ -103,8 +101,31 @@ export default class YiReactApp extends Component {
                 })
               }}
             />
+            {/* <ButtonRef
+              name="Btn-Previous"
+              onClick={() => {
+                let prevIndex = this.state.selected - 1
+                if (prevIndex < 0)
+                  prevIndex = this.model.length-1
 
-            <ButtonRef
+                this.setState({
+                  selected: prevIndex
+                })
+              }}
+            /> */}
+
+            {/* <ButtonRef
+              name="Btn-Next"
+              onClick={() => {
+                let nextIndex = this.state.selected + 1
+                if (nextIndex >= this.model.length)
+                  nextIndex = 0
+
+                this.setState({ selected: nextIndex })
+              }}
+            /> */}
+
+            <Button
               name="Btn-Next"
               onClick={() => {
                 let nextIndex = this.state.selected + 1
