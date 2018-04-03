@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {
   Animated,
+  Fragment,
   Image,
   TouchableHighlight,
 } from 'react-native-youi';
