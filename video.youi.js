@@ -91,6 +91,7 @@ class VideoPlayer extends Component {
 
         <Composition source="Player_Main">
           <ViewRef name="Playback-Controls">
+            {/* <ViewRef name="Thumb" /> */}
             <TimelineRef name="In"
               onLoad={(timeline) => {
                 this.inTimeline = timeline;

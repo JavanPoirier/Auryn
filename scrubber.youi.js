@@ -18,7 +18,6 @@ class Scrubber extends Component {
     this.state = {
       thumbPos: (this.props.currentTime / this.props.duration)
     };
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,26 +28,24 @@ class Scrubber extends Component {
 
   render() {
     return (
-      <View style={{ width: 920, height: 8, top: -241 }}>
-        <View style={{ flex: 1, flexDirection: 'row', backgroundColor: 'gray' }}>
-          <Animated.View style={{ flex: this.state.thumbPos, flexDirection: 'column', height: 8, backgroundColor: '#DF1D46' }} />
-          <TouchableHighlight
-            style={styles.thumb}
-            underlayColor='#fff'>
+      <Fragment>
+        <View style={{ width: 920, height: 8, top: -241 }}>
+          <View style={{ flex: 1, flexDirection: 'row', backgroundColor: 'transparent' }}>
+            <View style={{ flex: this.state.thumbPos, flexDirection: 'column', height: 8, backgroundColor: '#DF1D46' }} />
             <Image source={{ uri: "res://drawable/default/Scrubber-Thumb.png" }}
-              style={styles.thumb} />
-          </TouchableHighlight>
+              style={[styles.thumb, { opacity: this.props.currentTime == 0 ? 0 : 1 }]} />
+          </View>
         </View>
-      </View>
+      </Fragment>
     )
   }
 }
 
 const styles = StyleSheet.create({
   thumb: {
-    width: 23,
-    height: 23,
-    top: -4
+    width: 24,
+    height: 24,
+    top: -8
   },
 })
 

@@ -1,26 +1,26 @@
 activecomp {
-  name: "Player_Player-ScrollBar"
+  name: "Player_Thumb"
   width: 1392
   height: 297
   defaultcameradistance: 1933.3334
   layer {
-    name: "Progress-Track"
-    id: 693
-    sourceid: 711
+    name: "Thumb"
+    id: 18691
+    sourceid: 1453
     transform {
       anchorPoint {
-        x: 690
-        y: 6
+        x: 15
+        y: 15
         z: 0
       }
       scale {
-        x: 1
-        y: 1
+        x: 1.2
+        y: 1.2
         z: 1
       }
       position {
-        x: 696
-        y: 258.5
+        x: 1.25
+        y: 257.5
         z: 0
       }
       orientation {
@@ -31,7 +31,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0.3
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
@@ -45,15 +45,13 @@ activecomp {
   }
 }
 sources {
-  uid: 711
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.94509804248809814
-    green: 0.94509804248809814
-    blue: 0.94509804248809814
-  }
-  width: 1380
-  height: 12
-  copy_source: false
+  uid: 1453
+  srctype: AE_IMAGE_SRC
+  name: "Scrubber-Thumb.png"
+  width: 30
+  height: 30
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
 }

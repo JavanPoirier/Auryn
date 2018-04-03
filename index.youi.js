@@ -28,7 +28,7 @@ export default class YiReactApp extends Component {
     this.state = {
       details: {},
       selected: 0,
-      playerScreen: false,
+      playerScreen: true,
       animating: false
     };
     this.model = []
