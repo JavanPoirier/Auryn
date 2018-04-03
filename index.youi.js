@@ -6,23 +6,21 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  View,
   Text,
+  View,
 } from 'react-native';
 import {
   ButtonRef,
   Composition,
-  ImageRef,
-  ViewRef,
-  TextRef,
-  TimelineRef,
   Fragment,
-  Video
+  ImageRef,
+  TextRef,
 } from 'react-native-youi';
 
 import VideoPlayer from './video.youi.js'
 import Timeline from './timeline.youi.js'
 import Button from './button.youi.js'
+
 export default class YiReactApp extends Component {
 
   constructor() {
@@ -39,22 +37,22 @@ export default class YiReactApp extends Component {
   componentDidMount() {
 
     this.requestPopularMoviesAsync()
-    .then((results) => {
-      this.model = results
-      this.setState({ selected: 0})
-    })
-    .then(this.requestMovieDetailsAsync)
-    .then((asset) => { this.setState({ details: asset }) })
-    .then(this.inTimeline.play);
+      .then((results) => {
+        this.model = results
+        this.setState({ selected: 0 })
+      })
+      .then(this.requestMovieDetailsAsync)
+      .then((asset) => { this.setState({ details: asset }) })
+      .then(this.inTimeline.play);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.selected != this.state.selected) {
       Promise.all([this.outTimeline.play(), this.requestMovieDetailsAsync()])
-      .then(values => {
-        this.setState({ details: values[1] })
-      })
-      .then(this.inTimeline.play);
+        .then(values => {
+          this.setState({ details: values[1] })
+        })
+        .then(this.inTimeline.play);
     }
   }
 
@@ -83,47 +81,24 @@ export default class YiReactApp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{position: 'absolute'}}>
+        <View style={{ position: 'absolute' }}>
           <Composition source="PDP_Main">
 
-            <Timeline name="Out" ref={(timeline)=> this.outTimeline = timeline}/>
-            <Timeline name="In" ref={(timeline)=> this.inTimeline = timeline}/>
+            <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
+            <Timeline name="In" ref={(timeline) => this.inTimeline = timeline} />
 
             <Button
               name="Btn-Previous"
               onClick={() => {
                 let prevIndex = this.state.selected - 1
                 if (prevIndex < 0)
-                  prevIndex = this.model.length-1
+                  prevIndex = this.model.length - 1
 
                 this.setState({
                   selected: prevIndex
                 })
               }}
             />
-            {/* <ButtonRef
-              name="Btn-Previous"
-              onClick={() => {
-                let prevIndex = this.state.selected - 1
-                if (prevIndex < 0)
-                  prevIndex = this.model.length-1
-
-                this.setState({
-                  selected: prevIndex
-                })
-              }}
-            /> */}
-
-            {/* <ButtonRef
-              name="Btn-Next"
-              onClick={() => {
-                let nextIndex = this.state.selected + 1
-                if (nextIndex >= this.model.length)
-                  nextIndex = 0
-
-                this.setState({ selected: nextIndex })
-              }}
-            /> */}
 
             <Button
               name="Btn-Next"
@@ -148,14 +123,14 @@ export default class YiReactApp extends Component {
             <Metadata asset={this.state.details} />
           </Composition>
         </View>
-        { this.state.playerScreen &&
+        {this.state.playerScreen &&
           <VideoPlayer
-            style={{background: 'black', position: 'absolute', top: 0, left: 0}}
+            style={{ background: 'black', position: 'absolute', top: 0, left: 0 }}
             onBack={() => {
               this.inTimeline.play()
-              this.setState({playerScreen: false})
-              }
-            }/>}
+              this.setState({ playerScreen: false })
+            }
+            } />}
       </View>
     );
   }
