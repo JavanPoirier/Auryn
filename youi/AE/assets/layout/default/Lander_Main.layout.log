@@ -4,8 +4,42 @@ activecomp {
   height: 720
   defaultcameradistance: 1777.7778
   layer {
-    name: "Scroller"
+    name: "BG"
     id: 65080
+    sourceid: 65490
+    transform {
+      anchorPoint {
+        x: 640
+        y: 360
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 640
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Scroller"
+    id: 65081
     sourceid: 65459
     transform {
       anchorPoint {
@@ -44,6 +78,19 @@ activecomp {
     blue: 0.14509803921568629
   }
   childtemplates: "Lander_Scroller"
+}
+sources {
+  uid: 65490
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.086274512112140656
+    green: 0.11372549086809158
+    blue: 0.14509804546833038
+  }
+  width: 1280
+  height: 720
+  copy_source: false
 }
 sources {
   uid: 65459

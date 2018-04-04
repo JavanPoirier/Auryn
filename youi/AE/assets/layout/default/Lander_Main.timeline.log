@@ -1,6 +1,17 @@
 tracks {
   binding: IS_VISIBLE
   targetid: 65080
+  targetname: "BG"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 65081
   targetname: "Scroller"
   keytimes {
     datatype: AE_INT_DATA
