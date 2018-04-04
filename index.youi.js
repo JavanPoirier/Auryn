@@ -15,6 +15,7 @@ import {
   Fragment,
   ImageRef,
   TextRef,
+  ViewRef,
 } from 'react-native-youi';
 
 import VideoPlayer from './video.youi.js'
@@ -134,6 +135,71 @@ export default class YiReactApp extends Component {
       </View>
     );
   }
+}
+
+export class Lander extends Component {
+  constructor() {
+    super();
+    this.state = {
+      assets: [],
+    };
+  }
+
+  requestPopularMoviesAsync = () => {
+    return fetch("https://api.themoviedb.org/3/discover/movie?api_key=7f5e61b6cef8643d2442344b45842192")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson.results;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  componentDidMount() {
+    this.requestPopularMoviesAsync()
+      .then((results) => {
+        this.setState({
+          assets: results
+        });
+      });
+  }
+
+  render() {
+    return (
+      <Composition source="Lander_Main">
+
+        <ViewRef name="Scroller">
+          <Timeline name="In" onLoad={(timeline) => timeline.play() } />
+          <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
+        </ViewRef>
+
+        {this.state.assets.length > 0 && <LanderList assets={this.state.assets} />}
+      </Composition>
+    );
+  }
+}
+
+export function LanderList(props) {
+  return (
+    Array(10).fill().map((_, i) =>
+      <LanderListItem
+        name={"Poster" + (i + 1)}
+        asset={props.assets[i]}
+        itemSelected={props.itemSelected}
+      />)
+  );
+}
+
+export function LanderListItem(props) {
+  return (
+    <ButtonRef
+      name={props.name}
+      onClick={() => this.props.itemSelected(props.asset.id)}
+    >
+      <ImageRef name="Container-Image" source={{ uri: "https://image.tmdb.org/t/p/w500" + props.asset.poster_path }} />
+    </ButtonRef>
+  );
 }
 
 export function Metadata(props) {
