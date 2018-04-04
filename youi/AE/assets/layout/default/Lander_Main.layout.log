@@ -4,159 +4,23 @@ activecomp {
   height: 720
   defaultcameradistance: 1777.7778
   layer {
-    name: "List-Asset"
+    name: "Scroller"
     id: 65080
-    sourceid: 65397
+    sourceid: 65459
     transform {
       anchorPoint {
-        x: 275
-        y: 400
+        x: 640
+        y: 360
         z: 0
       }
       scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 1082.5
-        y: 510
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65081
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 1082.5
-        y: 200
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65082
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 861.25
-        y: 510
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65083
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 861.25
-        y: 200
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65084
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
+        x: 1
+        y: 1
         z: 1
       }
       position {
         x: 640
-        y: 512
+        y: 360
         z: 0
       }
       orientation {
@@ -167,177 +31,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65085
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 640
-        y: 200
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65086
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 418.75
-        y: 510
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65087
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 418.75
-        y: 200
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65088
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 197.5
-        y: 510
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-Asset"
-    id: 65089
-    sourceid: 65397
-    transform {
-      anchorPoint {
-        x: 275
-        y: 400
-        z: 0
-      }
-      scale {
-        x: 0.4
-        y: 0.4
-        z: 1
-      }
-      position {
-        x: 197.5
-        y: 200
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
@@ -349,13 +43,13 @@ activecomp {
     green: 0.11372549019607843
     blue: 0.14509803921568629
   }
-  childtemplates: "Lander_List-Asset"
+  childtemplates: "Lander_Scroller"
 }
 sources {
-  uid: 65397
+  uid: 65459
   srctype: AE_COMP_SRC
-  name: "Lander_List-Asset.layout"
-  width: 550
-  height: 800
+  name: "Lander_Scroller.layout"
+  width: 1280
+  height: 720
   copy_source: true
 }

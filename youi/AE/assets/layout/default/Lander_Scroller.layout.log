@@ -1,0 +1,374 @@
+activecomp {
+  name: "Lander_Scroller"
+  width: 1280
+  height: 720
+  defaultcameradistance: 1777.7778
+  layer {
+    name: "Poster10"
+    id: 65459
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 3699
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster9"
+    id: 65460
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 3315.5
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster8"
+    id: 65461
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 2932
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster7"
+    id: 65462
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 2548.5
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster6"
+    id: 65463
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 2165
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster5"
+    id: 65464
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 1781.5
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster4"
+    id: 65465
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 1398
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster3"
+    id: 65466
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 1014.5
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster2"
+    id: 65467
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 631
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster1"
+    id: 65468
+    sourceid: 65397
+    transform {
+      anchorPoint {
+        x: 275
+        y: 400
+        z: 0
+      }
+      scale {
+        x: 0.7
+        y: 0.7
+        z: 1
+      }
+      position {
+        x: 247.5
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  classname: "CYIScrollingView"
+  bgcolor {
+    alpha: 1
+    red: 0.086274509803921567
+    green: 0.11372549019607843
+    blue: 0.14509803921568629
+  }
+  properties {
+    key: "componentSubtype"
+    value: "scrolling"
+  }
+  properties {
+    key: "horizontal-scroll"
+    value: "true"
+  }
+  properties {
+    key: "vertical-scroll"
+    value: "false"
+  }
+  childtemplates: "Lander_Poster"
+}
+sources {
+  uid: 65397
+  srctype: AE_COMP_SRC
+  name: "Lander_Poster.layout"
+  width: 550
+  height: 800
+  copy_source: true
+}
