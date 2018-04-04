@@ -57,7 +57,7 @@ export default class YiReactApp extends Component {
     }
   }
 
-  requestPopularMoviesAsync = (callback) => {
+  requestPopularMoviesAsync = () => {
     return fetch("https://api.themoviedb.org/3/discover/movie?api_key=7f5e61b6cef8643d2442344b45842192")
       .then((response) => response.json())
       .then((responseJson) => {
@@ -68,7 +68,7 @@ export default class YiReactApp extends Component {
       });
   }
 
-  requestMovieDetailsAsync = (callback) => {
+  requestMovieDetailsAsync = () => {
     return fetch("https://api.themoviedb.org/3/movie/" + this.model[this.state.selected].id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits")
       .then((response) => response.json())
       .then((responseJson) => {
