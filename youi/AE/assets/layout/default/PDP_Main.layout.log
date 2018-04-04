@@ -38,42 +38,8 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Asset-Gradient.png"
-    id: 65081
-    sourceid: 65126
-    transform {
-      anchorPoint {
-        x: 0.5
-        y: 247
-        z: 0
-      }
-      scale {
-        x: 1920
-        y: 0.3
-        z: 1
-      }
-      position {
-        x: 640
-        y: 645.9
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
     name: "gradient-bg.png"
-    id: 65082
+    id: 65081
     sourceid: 65323
     transform {
       anchorPoint {
@@ -106,23 +72,23 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "asset-shadow.png"
-    id: 65083
-    sourceid: 65325
+    name: "Btn-Play-Old"
+    id: 65082
+    sourceid: 65396
     transform {
       anchorPoint {
-        x: 191.5
-        y: 272
+        x: 250
+        y: 375
         z: 0
       }
       scale {
-        x: 1.1
-        y: 1.1
+        x: 1
+        y: 1
         z: 1
       }
       position {
-        x: 158.50003
-        y: 246
+        x: 314.15887
+        y: 413
         z: 0
       }
       orientation {
@@ -138,26 +104,127 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    parentid: 65084
   }
   layer {
-    name: "Image-2x3"
-    id: 65084
-    sourceid: 65099
+    name: "Poster4"
+    id: 65083
+    sourceid: 65396
     transform {
       anchorPoint {
-        x: 167.5
-        y: 238
+        x: 250
+        y: 375
         z: 0
       }
       scale {
-        x: 1
-        y: 1
+        x: 0.4
+        y: 0.4
         z: 1
       }
       position {
-        x: 314.15887
-        y: 363
+        x: 1122.1589
+        y: 565
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster3"
+    id: 65084
+    sourceid: 65396
+    transform {
+      anchorPoint {
+        x: 250
+        y: 375
+        z: 0
+      }
+      scale {
+        x: 0.4
+        y: 0.4
+        z: 1
+      }
+      position {
+        x: 952.15887
+        y: 565
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster2"
+    id: 65085
+    sourceid: 65396
+    transform {
+      anchorPoint {
+        x: 250
+        y: 375
+        z: 0
+      }
+      scale {
+        x: 0.4
+        y: 0.4
+        z: 1
+      }
+      position {
+        x: 782.15887
+        y: 565
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Poster1"
+    id: 65086
+    sourceid: 65396
+    transform {
+      anchorPoint {
+        x: 250
+        y: 375
+        z: 0
+      }
+      scale {
+        x: 0.4
+        y: 0.4
+        z: 1
+      }
+      position {
+        x: 612.15887
+        y: 565
         z: 0
       }
       orientation {
@@ -176,7 +243,7 @@ activecomp {
   }
   layer {
     name: "Body-Text"
-    id: 65085
+    id: 65087
     sourceid: -1
     transform {
       anchorPoint {
@@ -191,7 +258,7 @@ activecomp {
       }
       position {
         x: 850.923
-        y: 439.16931
+        y: 379.16931
         z: 0
       }
       orientation {
@@ -219,7 +286,7 @@ activecomp {
       fontName: "Montserrat-Light"
       isPointText: false
       boundsWidth: 589
-      boundsHeight: 193
+      boundsHeight: 153
       isLabel: true
       text: ""
       multiline: true
@@ -237,7 +304,7 @@ activecomp {
   }
   layer {
     name: "Stars"
-    id: 65086
+    id: 65088
     sourceid: -1
     transform {
       anchorPoint {
@@ -252,7 +319,7 @@ activecomp {
       }
       position {
         x: 904.40887
-        y: 384.4003
+        y: 324.4003
         z: 0
       }
       orientation {
@@ -298,7 +365,7 @@ activecomp {
   }
   layer {
     name: "Stars-Static"
-    id: 65087
+    id: 65089
     sourceid: -1
     transform {
       anchorPoint {
@@ -313,7 +380,7 @@ activecomp {
       }
       position {
         x: 849.40887
-        y: 384.4003
+        y: 324.4003
         z: 0
       }
       orientation {
@@ -350,7 +417,7 @@ activecomp {
   }
   layer {
     name: "Director"
-    id: 65088
+    id: 65090
     sourceid: -1
     transform {
       anchorPoint {
@@ -365,7 +432,7 @@ activecomp {
       }
       position {
         x: 927.40887
-        y: 359.4003
+        y: 299.4003
         z: 0
       }
       orientation {
@@ -411,7 +478,7 @@ activecomp {
   }
   layer {
     name: "Director-Static"
-    id: 65089
+    id: 65091
     sourceid: -1
     transform {
       anchorPoint {
@@ -426,7 +493,7 @@ activecomp {
       }
       position {
         x: 849.40887
-        y: 359.4003
+        y: 299.4003
         z: 0
       }
       orientation {
@@ -463,7 +530,7 @@ activecomp {
   }
   layer {
     name: "Details-Text"
-    id: 65090
+    id: 65092
     sourceid: -1
     transform {
       anchorPoint {
@@ -478,7 +545,7 @@ activecomp {
       }
       position {
         x: 849.40887
-        y: 324.4003
+        y: 264.4003
         z: 0
       }
       orientation {
@@ -524,7 +591,7 @@ activecomp {
   }
   layer {
     name: "Title-Text"
-    id: 65091
+    id: 65093
     sourceid: -1
     transform {
       anchorPoint {
@@ -539,7 +606,7 @@ activecomp {
       }
       position {
         x: 848.61981
-        y: 266.58551
+        y: 206.58549
         z: 0
       }
       orientation {
@@ -584,12 +651,12 @@ activecomp {
     }
   }
   layer {
-    name: "controls"
-    id: 65092
-    sourceid: 65185
+    name: "Btn-Back"
+    id: 65094
+    sourceid: 65441
     transform {
       anchorPoint {
-        x: 640
+        x: 50
         y: 50
         z: 0
       }
@@ -599,8 +666,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 640
-        y: 618
+        x: 68
+        y: 92
         z: 0
       }
       orientation {
@@ -624,8 +691,8 @@ activecomp {
     blue: 0.14509803921568629
   }
   childtemplates: "PDP_Image-16x9"
-  childtemplates: "PDP_Image-2x3"
-  childtemplates: "PDP_controls"
+  childtemplates: "PDP_Btn-Play-Old"
+  childtemplates: "PDP_Btn-Back"
 }
 sources {
   uid: 65112
@@ -633,17 +700,6 @@ sources {
   name: "PDP_Image-16x9.layout"
   width: 1280
   height: 720
-  copy_source: true
-}
-sources {
-  uid: 65126
-  srctype: AE_IMAGE_SRC
-  name: "Asset-Gradient.png"
-  width: 1
-  height: 494
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
   copy_source: true
 }
 sources {
@@ -658,50 +714,39 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 65325
-  srctype: AE_IMAGE_SRC
-  name: "asset-shadow.png"
-  width: 383
-  height: 544
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
-  copy_source: true
-}
-sources {
-  uid: 65099
+  uid: 65396
   srctype: AE_COMP_SRC
-  name: "PDP_Image-2x3.layout"
-  width: 335
-  height: 476
+  name: "PDP_Btn-Play-Old.layout"
+  width: 500
+  height: 750
   copy_source: true
 }
 sources {
-  uid: 6
+  uid: 4
   srctype: AE_FONT_SRC
   name: "Montserrat-Light"
   copy_source: true
   file_name: "yi_Montserrat-Light.otf"
 }
 sources {
-  uid: 7
+  uid: 5
   srctype: AE_FONT_SRC
   name: "Montserrat-Regular"
   copy_source: true
   file_name: "yi_Montserrat-Regular.otf"
 }
 sources {
-  uid: 8
+  uid: 6
   srctype: AE_FONT_SRC
   name: "Montserrat-Bold"
   copy_source: true
   file_name: "yi_Montserrat-Bold.otf"
 }
 sources {
-  uid: 65185
+  uid: 65441
   srctype: AE_COMP_SRC
-  name: "PDP_controls.layout"
-  width: 1280
+  name: "PDP_Btn-Back.layout"
+  width: 100
   height: 100
   copy_source: true
 }
