@@ -140,10 +140,16 @@ export function Metadata(props) {
   if (!props.asset.id)
     return null
 
-  let rating = props.asset.releases.countries.filter((release) => release["iso_3166_1"] === "US");
-  if (rating.length > 0) rating = rating[0].certification;
-  let director = props.asset.credits.crew.filter((member) => member["job"] === "Director")[0].name;
+  let releaseDate = props.asset.release_date.split("-")[0];
+  let rating = props.asset.releases.countries.find((release) => release["iso_3166_1"] === "US");
+  rating = rating && rating.certification ? "Rated " + rating.certification : null;
+  let runtime = props.asset.runtime ? props.asset.runtime + " mins" : null;
+  let details = [releaseDate, rating, runtime].filter((item) => item !== null).join(" | ");
+
+  let director = props.asset.credits.crew.find((member) => member["job"] === "Director");
+  director = director ? director.name : "";
   let stars = props.asset.credits.cast.slice(0, 3).map((member) => member["name"]).join(", ");
+
   let posterSource = "https://image.tmdb.org/t/p/w500" + props.asset.poster_path;
   let backdropSource = "https://image.tmdb.org/t/p/w1280" + props.asset.backdrop_path;
 
@@ -155,7 +161,7 @@ export function Metadata(props) {
       />
       <TextRef
         name="Details-Text"
-        text={props.asset.release_date.split("-")[0] + (rating ? " | Rated " + rating : "") + " | " + props.asset.runtime}
+        text={details}
       />
       <TextRef
         name="Director"
