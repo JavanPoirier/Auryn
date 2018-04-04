@@ -19,7 +19,7 @@ activecomp {
         z: 2.97
       }
       position {
-        x: 640
+        x: 1040
         y: 914.002
         z: 1462
       }
@@ -121,7 +121,7 @@ activecomp {
         z: 3.6151896
       }
       position {
-        x: 4176.36
+        x: 2701.4922
         y: 395.57
         z: 1555
       }
@@ -633,6 +633,10 @@ activecomp {
   properties {
     key: "vertical-scroll"
     value: "false"
+  }
+  properties {
+    key: "horizontal-overpull"
+    value: "100"
   }
   childtemplates: "Lander_Poster"
 }
