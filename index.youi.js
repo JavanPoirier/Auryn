@@ -174,7 +174,7 @@ export class Lander extends Component {
           <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
         </ViewRef>
 
-        {this.state.assets.length > 0 && <LanderList assets={this.state.assets} />}
+        {this.state.assets.length > 0 && <LanderList assets={this.state.assets} itemSelected={props.itemSelected} />}
       </Composition>
     );
   }
