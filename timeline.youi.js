@@ -11,13 +11,14 @@ class Timeline extends Component {
     super(props);
     this.resolve;
     this.ref;
+    this.onload = this.props.onLoad
   }
 
   render() {
     return (
       <TimelineRef
         name={this.props.name}
-        onLoad={(timeline) => { this.ref = timeline }}
+        onLoad={(timeline) => { this.ref = timeline; if (this.onload) this.onload(timeline)}}
         onCompleted={() => { this.resolve("onCompleted"); console.log(this.props.name + " timeline finished") }} />
     )
   }
