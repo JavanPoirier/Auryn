@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  Button,
-  Text,
+  Image,
   StyleSheet,
   View,
 } from 'react-native';
-import {
-  Fragment,
-  Image,
-} from 'react-native-youi';
 
 export default class Scrubber extends Component {
 
