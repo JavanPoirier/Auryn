@@ -28,7 +28,7 @@ class ListItem extends Component {
    return (
       <Fragment>
         <ButtonRef name={this.props.name} onClick={() => this.props.onClick()}>
-          <ImageRef name="Image-2x3" source={{ uri: "https://image.tmdb.org/t/p/w500" + this.props.asset.poster_path }} />
+          <ImageRef name={this.props.image} source={{ uri: "https://image.tmdb.org/t/p/w500" + this.props.asset.poster_path }} />
         </ButtonRef>
       </Fragment>
     )

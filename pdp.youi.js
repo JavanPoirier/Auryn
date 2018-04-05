@@ -38,19 +38,6 @@ class PDP extends Component {
     .then(this.inTimeline.play);
   }
 
-  componentWillUnmount() {
-    console.log("unmounting pdp " + this.props.id)
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState.selected != this.state.selected) {
-      Promise.all([this.outTimeline.play(), this.requestMovieDetailsAsync()])
-      .then(values => {
-        this.setState({ details: values[1] })
-      })
-      .then(this.inTimeline.play);
-    }
-  }
   requestMovieDetailsAsync = (callback) => {
     return fetch("https://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations&language=en")
     .then((response) => response.json())
@@ -68,9 +55,12 @@ class PDP extends Component {
         <ListItem
           key={this.state.details.recommendations.results[x].id}
           name={'Poster' + (x+1)}
+          image='Image-2x3'
           asset={this.state.details.recommendations.results[x]}
           onClick={() => {
-            Navigation.addScreen(<PDP key={this.state.details.recommendations.results[x].id} id={this.state.details.recommendations.results[x].id} />)
+            this.outTimeline.play().then(() => {
+              Navigation.addScreen(<PDP key={this.state.details.recommendations.results[x].id} id={this.state.details.recommendations.results[x].id} />)
+            })
           }}
           />)
       : null
