@@ -32,7 +32,7 @@ class Scrubber extends Component {
       <Fragment>
         <View style={{ width: 920, height: 8, top: -241 }}>
           <View style={{ flex: 1, flexDirection: 'row', backgroundColor: 'transparent' }}>
-            <View style={{ flex: this.state.thumbPos, flexDirection: 'column', height: 8, backgroundColor: '#DF1D46' }} />
+            <View style={{ flex: this.state.thumbPos, flexDirection: 'column', height: 8, backgroundColor: '#D5A23E' }} />
             <Image source={{ uri: "res://drawable/default/Scrubber-Thumb.png" }}
               style={[styles.thumb, { opacity: this.props.currentTime == 0 ? 0 : 1 }]} />
           </View>
