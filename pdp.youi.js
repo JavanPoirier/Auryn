@@ -147,7 +147,7 @@ export function Metadata(props) {
       />
       <ImageRef
         name="Image-16x9"
-        source={{ uri: posterSource }}
+        source={{ uri: backdropSource }}
       />
     </Fragment>
   );
