@@ -16,30 +16,31 @@ import {
 import VideoPlayer from './video.youi.js'
 import Timeline from './timeline.youi.js'
 import Button from './button.youi.js'
+import ListItem from './listitem.youi.js';
+import Navigation from './navigation.youi.js'
 
 class PDP extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      details: {},
       selected: 0,
       playerScreen: false,
       animating: false
     };
     this.model = []
+    console.log('creating pdp')
   }
 
   componentDidMount() {
 
-    this.requestPopularMoviesAsync()
-    .then((results) => {
-      this.model = results
-      this.setState({ selected: 0 })
-    })
-    .then(this.requestMovieDetailsAsync)
+    this.requestMovieDetailsAsync()
     .then((asset) => { this.setState({ details: asset }) })
     .then(this.inTimeline.play);
+  }
+
+  componentWillUnmount() {
+    console.log("unmounting pdp " + this.props.id)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -51,20 +52,8 @@ class PDP extends Component {
       .then(this.inTimeline.play);
     }
   }
-
-  requestPopularMoviesAsync = (callback) => {
-    return fetch("https://api.themoviedb.org/3/discover/movie?api_key=7f5e61b6cef8643d2442344b45842192")
-    .then((response) => response.json())
-    .then((responseJson) => {
-      return responseJson.results;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-
   requestMovieDetailsAsync = (callback) => {
-    return fetch("https://api.themoviedb.org/3/movie/" + this.model[this.state.selected].id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits")
+    return fetch("https://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations&language=en")
     .then((response) => response.json())
     .then((responseJson) => {
       return responseJson;
@@ -75,6 +64,17 @@ class PDP extends Component {
   }
 
   render() {
+    let recommendations = this.state.details ?
+      Array(4).fill().map((_, x) =>
+        <ListItem
+          key={this.state.details.recommendations.results[x].id}
+          name={'Poster' + (x+1)}
+          asset={this.state.details.recommendations.results[x]}
+          onClick={() => {
+            Navigation.addScreen(<PDP id={this.state.details.recommendations.results[x].id} />)
+          }}
+          />)
+      : null
     return (
       <View style={styles.container}>
       <View style={{ position: 'absolute' }}>
@@ -82,30 +82,6 @@ class PDP extends Component {
 
       <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
       <Timeline name="In" ref={(timeline) => this.inTimeline = timeline} />
-
-      <Button
-      name="Btn-Previous"
-      onClick={() => {
-        let prevIndex = this.state.selected - 1
-        if (prevIndex < 0)
-        prevIndex = this.model.length - 1
-
-        this.setState({
-          selected: prevIndex
-        })
-      }}
-      />
-
-      <Button
-      name="Btn-Next"
-      onClick={() => {
-        let nextIndex = this.state.selected + 1
-        if (nextIndex >= this.model.length)
-        nextIndex = 0
-
-        this.setState({ selected: nextIndex })
-      }}
-      />
 
       <ButtonRef
       name="Btn-Play"
@@ -116,7 +92,15 @@ class PDP extends Component {
       }}
       />
 
+      <Button
+        name='Btn-Back'
+        onClick={() => {
+          this.outTimeline.play().then(() => { Navigation.popScreen() })
+        }}/>
+
       <Metadata asset={this.state.details} />
+
+      {recommendations}
       </Composition>
       </View>
       {this.state.playerScreen &&
@@ -133,7 +117,7 @@ class PDP extends Component {
 }
 
 export function Metadata(props) {
-  if (!props.asset.id)
+  if (!props.asset)
     return null
 
   let releaseDate = props.asset.release_date.split("-")[0];
