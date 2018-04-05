@@ -5,8 +5,6 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  View,
 } from 'react-native';
 
 import Lander from './lander.youi.js'
@@ -31,20 +29,9 @@ export default class YiReactApp extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.state.screen}
-      </View>
+      this.state.screen
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
 
 AppRegistry.registerComponent('YiReactApp', () => YiReactApp);

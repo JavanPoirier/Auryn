@@ -20,5 +20,3 @@ export default class Navigation {
     return this.stack[this.stack.length - 1];
   }
 }
-
-Navigation.stack = [];
