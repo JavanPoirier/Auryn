@@ -19,7 +19,7 @@ class Timeline extends Component {
       <TimelineRef
         name={this.props.name}
         onLoad={(timeline) => { this.ref = timeline; if (this.onload) this.onload(timeline)}}
-        onCompleted={() => { this.resolve("onCompleted"); console.log(this.props.name + " timeline finished") }} />
+        onCompleted={() => { if (this.resolve) this.resolve("onCompleted"); console.log(this.props.name + " timeline finished") }} />
     )
   }
 
