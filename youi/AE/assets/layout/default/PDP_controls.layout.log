@@ -38,7 +38,7 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Btn-Play"
+    name: "Btn-Play-Older"
     id: 65186
     sourceid: 65380
     transform {
@@ -112,7 +112,7 @@ activecomp {
     blue: 0.8784313725490196
   }
   childtemplates: "PDP_Btn-Next"
-  childtemplates: "PDP_Btn-Play"
+  childtemplates: "PDP_Btn-Play-Older"
   childtemplates: "PDP_Btn-Previous"
 }
 sources {
@@ -126,7 +126,7 @@ sources {
 sources {
   uid: 65380
   srctype: AE_COMP_SRC
-  name: "PDP_Btn-Play.layout"
+  name: "PDP_Btn-Play-Older.layout"
   width: 300
   height: 100
   copy_source: true

@@ -1,11 +1,11 @@
 activecomp {
-  name: "PDP_Btn-Play"
+  name: "PDP_Btn-Poster"
   width: 500
   height: 750
   defaultcameradistance: 694.44446
   layer {
     name: "asset-shadow.png"
-    id: 65396
+    id: 65461
     sourceid: 65325
     transform {
       anchorPoint {
@@ -39,7 +39,7 @@ activecomp {
   }
   layer {
     name: "Image-2x3"
-    id: 65397
+    id: 65462
     sourceid: 65099
     transform {
       anchorPoint {
@@ -66,74 +66,6 @@ activecomp {
       rotationY: 0
       rotationZ: 0
       opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "Btn-Back-Border.png"
-    id: 65398
-    sourceid: 65475
-    transform {
-      anchorPoint {
-        x: 40
-        y: 40
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 250
-        y: 375
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "Btn-Play.png"
-    id: 65399
-    sourceid: 65459
-    transform {
-      anchorPoint {
-        x: 20
-        y: 25
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 258
-        y: 375
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -173,27 +105,5 @@ sources {
   name: "PDP_Image-2x3.layout"
   width: 335
   height: 476
-  copy_source: true
-}
-sources {
-  uid: 65475
-  srctype: AE_IMAGE_SRC
-  name: "Btn-Back-Border.png"
-  width: 80
-  height: 80
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
-  copy_source: true
-}
-sources {
-  uid: 65459
-  srctype: AE_IMAGE_SRC
-  name: "Btn-Play.png"
-  width: 40
-  height: 50
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
   copy_source: true
 }

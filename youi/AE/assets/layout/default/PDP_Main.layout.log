@@ -72,7 +72,7 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Btn-Play-Old"
+    name: "Btn-Play"
     id: 65082
     sourceid: 65396
     transform {
@@ -108,7 +108,7 @@ activecomp {
   layer {
     name: "Poster4"
     id: 65083
-    sourceid: 65396
+    sourceid: 65461
     transform {
       anchorPoint {
         x: 250
@@ -142,7 +142,7 @@ activecomp {
   layer {
     name: "Poster3"
     id: 65084
-    sourceid: 65396
+    sourceid: 65461
     transform {
       anchorPoint {
         x: 250
@@ -176,7 +176,7 @@ activecomp {
   layer {
     name: "Poster2"
     id: 65085
-    sourceid: 65396
+    sourceid: 65461
     transform {
       anchorPoint {
         x: 250
@@ -210,7 +210,7 @@ activecomp {
   layer {
     name: "Poster1"
     id: 65086
-    sourceid: 65396
+    sourceid: 65461
     transform {
       anchorPoint {
         x: 250
@@ -279,9 +279,9 @@ activecomp {
       fontSize: 20
       fontColor {
         alpha: 1
-        red: 0.83529412746429443
-        green: 0.63529413938522339
-        blue: 0.24313725531101227
+        red: 0.83528995513916016
+        green: 0.63528996706008911
+        blue: 0.24314001202583313
       }
       fontName: "Montserrat-Bold"
       isPointText: false
@@ -743,7 +743,8 @@ activecomp {
     blue: 0.14509803921568629
   }
   childtemplates: "PDP_Image-16x9"
-  childtemplates: "PDP_Btn-Play-Old"
+  childtemplates: "PDP_Btn-Play"
+  childtemplates: "PDP_Btn-Poster"
   childtemplates: "PDP_Btn-Back"
 }
 sources {
@@ -768,27 +769,35 @@ sources {
 sources {
   uid: 65396
   srctype: AE_COMP_SRC
-  name: "PDP_Btn-Play-Old.layout"
+  name: "PDP_Btn-Play.layout"
   width: 500
   height: 750
   copy_source: true
 }
 sources {
-  uid: 4
+  uid: 65461
+  srctype: AE_COMP_SRC
+  name: "PDP_Btn-Poster.layout"
+  width: 500
+  height: 750
+  copy_source: true
+}
+sources {
+  uid: 5
   srctype: AE_FONT_SRC
   name: "Montserrat-Bold"
   copy_source: true
   file_name: "yi_Montserrat-Bold.otf"
 }
 sources {
-  uid: 5
+  uid: 6
   srctype: AE_FONT_SRC
   name: "Montserrat-Light"
   copy_source: true
   file_name: "yi_Montserrat-Light.otf"
 }
 sources {
-  uid: 6
+  uid: 7
   srctype: AE_FONT_SRC
   name: "Montserrat-Regular"
   copy_source: true

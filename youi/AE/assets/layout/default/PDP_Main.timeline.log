@@ -1545,7 +1545,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 65082
-  targetname: "Btn-Play-Old"
+  targetname: "Btn-Play"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -1556,7 +1556,7 @@ tracks {
 tracks {
   binding: POSITION
   targetid: 65082
-  targetname: "Btn-Play-Old"
+  targetname: "Btn-Play"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
     timeOffset: 0
@@ -2394,7 +2394,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 65082
-  targetname: "Btn-Play-Old"
+  targetname: "Btn-Play"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
