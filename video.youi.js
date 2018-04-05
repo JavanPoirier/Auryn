@@ -123,7 +123,7 @@ class VideoPlayer extends Component {
                   .then(() => {
                     Navigation.popScreen()
                    })
-                this.video.seek(-1)
+                this.video.seek(this.state.duration)
               }}
             />
           </ViewRef>
