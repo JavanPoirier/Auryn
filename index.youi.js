@@ -30,8 +30,9 @@ export default class YiReactApp extends Component {
       screen: null
     }
     this.model = []
+
     Navigation.onScreenChanged = screen =>
-      this.setState({ screen: screen}
+      this.setState({ screen: screen }
       )
   }
 

@@ -55,7 +55,7 @@ class VideoPlayer extends Component {
           onPlaying={() => console.log("onPlaying called.")}
           onPaused={() => console.log("onPaused called.")}
           onPlaybackComplete={() => {
-            this.scrubber.setState({thumbOpacity: 0})
+            this.scrubber.setState({ thumbOpacity: 0 })
             this.outTimeline.play()
               .then(() => {
                 Navigation.popScreen()
@@ -118,18 +118,18 @@ class VideoPlayer extends Component {
               name="Btn-Back"
               toggle={false}
               onClick={() => {
-                this.scrubber.setState({thumbOpacity: 0})
+                this.scrubber.setState({ thumbOpacity: 0 })
                 this.outTimeline.play()
                   .then(() => {
                     Navigation.popScreen()
-                   })
+                  })
                 this.video.seek(this.state.duration)
               }}
             />
           </ViewRef>
         </Composition>
 
-        <Scrubber ref={(ref) => this.scrubber=ref} style={styles.scrubber} duration={this.state.duration} currentTime={this.state.currentTime} />
+        <Scrubber ref={(ref) => this.scrubber = ref} style={styles.scrubber} duration={this.state.duration} currentTime={this.state.currentTime} />
 
       </View>
     );

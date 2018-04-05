@@ -6,7 +6,7 @@ class Navigation {
   }
   static stack = []
 
-  static onScreenChanged = () => {}
+  static onScreenChanged = () => { }
 
   static addScreen(screen) {
     this.stack.push(screen)
@@ -20,7 +20,7 @@ class Navigation {
   }
 
   static getCurrentScreen() {
-    return this.stack[this.stack.length-1]
+    return this.stack[this.stack.length - 1]
   }
 }
 

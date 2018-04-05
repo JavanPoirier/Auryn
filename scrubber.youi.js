@@ -31,8 +31,8 @@ class Scrubber extends Component {
   render() {
     return (
       <Fragment>
-        <View style={[styles.container, {opacity: this.state.thumbOpacity }]}>
-          <View style={[{ flex: this.state.thumbPos}, styles.track]} />
+        <View style={[styles.container, { opacity: this.state.thumbOpacity }]}>
+          <View style={[{ flex: this.state.thumbPos }, styles.track]} />
           <Image source={{ uri: "res://drawable/default/Scrubber-Thumb.png" }}
             style={[styles.thumb, { opacity: this.props.currentTime == 0 ? 0 : 1 }]} />
         </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   container: {
     width: 920,
     height: 8,
-    top: -241 ,
+    top: -241,
     flex: 1,
     flexDirection: 'row',
     backgroundColor: 'transparent'
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: 8,
     backgroundColor:
-    '#D5A23E'
+      '#D5A23E'
   }
 })
 

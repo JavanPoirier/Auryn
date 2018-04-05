@@ -53,21 +53,21 @@ class Lander extends Component {
         <ListItem
           key={this.state.assets[i].id}
           asset={this.state.assets[i]}
-          name={'Poster' + (i+1)}
+          name={'Poster' + (i + 1)}
           image='Container-Image'
           onClick={() => {
             this.outTimeline.play().then(() => {
-              Navigation.addScreen(<PDP id={this.state.assets[i].id}/>)
+              Navigation.addScreen(<PDP id={this.state.assets[i].id} />)
             })
           }}
-          />)
+        />)
       : null
 
     return (
       <Composition source="Lander_Main">
 
         <ViewRef name="Scroller">
-          <Timeline name="In" onLoad={(timeline) => timeline.play() } />
+          <Timeline name="In" onLoad={(timeline) => timeline.play()} />
           <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
         </ViewRef>
 

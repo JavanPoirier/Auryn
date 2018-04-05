@@ -32,21 +32,20 @@ class PDP extends Component {
   }
 
   componentDidMount() {
-
     this.requestMovieDetailsAsync()
-    .then((asset) => { this.setState({ details: asset }) })
-    .then(this.inTimeline.play);
+      .then((asset) => { this.setState({ details: asset }) })
+      .then(this.inTimeline.play);
   }
 
   requestMovieDetailsAsync = (callback) => {
     return fetch("https://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations&language=en")
-    .then((response) => response.json())
-    .then((responseJson) => {
-      return responseJson;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -54,7 +53,7 @@ class PDP extends Component {
       Array(4).fill().map((_, x) =>
         <ListItem
           key={this.state.details.recommendations.results[x].id}
-          name={'Poster' + (x+1)}
+          name={'Poster' + (x + 1)}
           image='Image-2x3'
           asset={this.state.details.recommendations.results[x]}
           onClick={() => {
@@ -62,41 +61,41 @@ class PDP extends Component {
               Navigation.addScreen(<PDP key={this.state.details.recommendations.results[x].id} id={this.state.details.recommendations.results[x].id} />)
             })
           }}
-          />)
+        />)
       : null
     return (
       <View style={styles.container}>
-      <View style={{ position: 'absolute' }}>
-      <Composition source="PDP_Main">
+        <View style={{ position: 'absolute' }}>
+          <Composition source="PDP_Main">
 
-      <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
-      <Timeline name="In" ref={(timeline) => this.inTimeline = timeline} />
+            <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
+            <Timeline name="In" ref={(timeline) => this.inTimeline = timeline} />
 
-      <ButtonRef
-      name="Btn-Play"
-      onClick={() => {
-        this.outTimeline.play().then(() => {
-          Navigation.addScreen(<VideoPlayer
-            style={{ background: 'black', position: 'absolute', top: 0, left: 0 }}
-            onBack={() => {
-              this.inTimeline.play()
-            }
-          } />)
-        })
-      }}
-      />
+            <ButtonRef
+              name="Btn-Play"
+              onClick={() => {
+                this.outTimeline.play().then(() => {
+                  Navigation.addScreen(<VideoPlayer
+                    style={{ background: 'black', position: 'absolute', top: 0, left: 0 }}
+                    onBack={() => {
+                      this.inTimeline.play()
+                    }
+                    } />)
+                })
+              }}
+            />
 
-      <Button
-        name='Btn-Back'
-        onClick={() => {
-          this.outTimeline.play().then(() => { Navigation.popScreen() })
-        }}/>
+            <Button
+              name='Btn-Back'
+              onClick={() => {
+                this.outTimeline.play().then(() => { Navigation.popScreen() })
+              }} />
 
-      <Metadata asset={this.state.details} />
+            <Metadata asset={this.state.details} />
 
-      {recommendations}
-      </Composition>
-      </View>
+            {recommendations}
+          </Composition>
+        </View>
       </View>
     );
   }
