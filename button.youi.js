@@ -44,7 +44,7 @@ class Button extends Component {
       </Fragment>
     ) : null
     let button =
-      <Fragment>
+      <Fragment key={this.props.name}>
         <ButtonRef
           name={this.props.name}
           onClick={() => {
@@ -61,7 +61,7 @@ class Button extends Component {
         </ButtonRef>
       </Fragment>
     let container = this.props.container ? (
-      <ViewRef name={this.props.container}>
+      <ViewRef name={this.props.container} key={this.props.container} >
         <TimelineRef name="In"
           ref={(timeline) => { this.inTimeline = timeline }}
           onLoad={(t) => t.play()}
