@@ -19,8 +19,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 255
-        y: 50
+        x: 455
+        y: 250
         z: 0
       }
       orientation {
@@ -57,8 +57,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 50
-        y: 50
+        x: 250
+        y: 250
         z: 0
       }
       orientation {
@@ -95,8 +95,8 @@ activecomp {
         z: 1
       }
       position {
-        x: -155
-        y: 50
+        x: 45
+        y: 250
         z: 0
       }
       orientation {
