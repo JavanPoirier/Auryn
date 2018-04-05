@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import {
@@ -13,27 +10,27 @@ import {
   TextRef,
 } from 'react-native-youi';
 
-import VideoPlayer from './video.youi.js'
-import Timeline from './timeline.youi.js'
 import Button from './button.youi.js'
 import ListItem from './listitem.youi.js';
 import Navigation from './navigation.youi.js'
+import Timeline from './timeline.youi.js'
+import VideoPlayer from './video.youi.js'
 
-class PDP extends Component {
+export default class PDP extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selected: 0,
-      animating: false
     };
-    this.model = []
-    console.log('creating pdp')
   }
 
   componentDidMount() {
     this.requestMovieDetailsAsync()
-      .then((asset) => { this.setState({ details: asset }) })
+      .then((asset) => { 
+        this.setState({
+          details: asset,
+        }); 
+      })
       .then(this.inTimeline.play);
   }
 
@@ -50,53 +47,50 @@ class PDP extends Component {
 
   render() {
     let recommendations = this.state.details ?
-      Array(4).fill().map((_, x) =>
+      Array(4).fill().map((_, i) =>
         <ListItem
-          key={this.state.details.recommendations.results[x].id}
-          name={'Poster' + (x + 1)}
+          key={this.state.details.recommendations.results[i].id}
+          name={'Poster' + (i + 1)}
           image='Image-2x3'
-          asset={this.state.details.recommendations.results[x]}
+          asset={this.state.details.recommendations.results[i]}
           onClick={() => {
             this.outTimeline.play().then(() => {
-              Navigation.addScreen(<PDP key={this.state.details.recommendations.results[x].id} id={this.state.details.recommendations.results[x].id} />)
-            })
+              Navigation.addScreen(<PDP key={this.state.details.recommendations.results[i].id} id={this.state.details.recommendations.results[i].id} />);
+            });
           }}
         />)
-      : null
+      : null;
+
     return (
-      <View style={styles.container}>
-        <View style={{ position: 'absolute' }}>
-          <Composition source="PDP_Main">
+      <Composition source="PDP_Main">
 
-            <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
-            <Timeline name="In" ref={(timeline) => this.inTimeline = timeline} />
+        <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
+        <Timeline name="In" ref={(timeline) => this.inTimeline = timeline} />
 
-            <ButtonRef
-              name="Btn-Play"
-              onClick={() => {
-                this.outTimeline.play().then(() => {
-                  Navigation.addScreen(<VideoPlayer
-                    style={{ background: 'black', position: 'absolute', top: 0, left: 0 }}
-                    onBack={() => {
-                      this.inTimeline.play()
-                    }
-                    } />)
-                })
-              }}
-            />
+        <ButtonRef
+          name="Btn-Play"
+          onClick={() => {
+            this.outTimeline.play().then(() => {
+              Navigation.addScreen(
+                <VideoPlayer
+                  onBack={() => {
+                    this.inTimeline.play();
+                  }}
+                />);
+            });
+          }}
+        />
 
-            <Button
-              name='Btn-Back'
-              onClick={() => {
-                this.outTimeline.play().then(() => { Navigation.popScreen() })
-              }} />
+        <Button
+          name='Btn-Back'
+          onClick={() => {
+            this.outTimeline.play().then(() => { Navigation.popScreen(); });
+          }} />
 
-            <Metadata asset={this.state.details} />
+        <Metadata asset={this.state.details} />
 
-            {recommendations}
-          </Composition>
-        </View>
-      </View>
+        {recommendations}
+      </Composition>
     );
   }
 }
@@ -120,45 +114,13 @@ export function Metadata(props) {
 
   return (
     <Fragment>
-      <TextRef
-        name="Title-Text"
-        text={props.asset.title}
-      />
-      <TextRef
-        name="Details-Text"
-        text={details}
-      />
-      <TextRef
-        name="Director"
-        text={director}
-      />
-      <TextRef
-        name="Stars"
-        text={stars}
-      />
-      <TextRef
-        name="Body-Text"
-        text={props.asset.overview}
-      />
-      <ImageRef
-        name="Image-2x3"
-        source={{ uri: posterSource }}
-      />
-      <ImageRef
-        name="Image-16x9"
-        source={{ uri: backdropSource }}
-      />
+      <TextRef name="Title-Text" text={props.asset.title} />
+      <TextRef name="Details-Text" text={details} />
+      <TextRef name="Director" text={director} />
+      <TextRef name="Stars" text={stars} />
+      <TextRef name="Body-Text" text={props.asset.overview} />
+      <ImageRef name="Image-2x3" source={{ uri: posterSource }} />
+      <ImageRef name="Image-16x9" source={{ uri: backdropSource }} />
     </Fragment>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#d0d0d0'
-  },
-});
-
-export default PDP

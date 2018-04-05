@@ -7,18 +7,17 @@ import {
   View,
 } from 'react-native';
 import {
-  Animated,
   Fragment,
   Image,
-  TouchableHighlight,
 } from 'react-native-youi';
 
-class Scrubber extends Component {
+export default class Scrubber extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       thumbPos: (this.props.currentTime / this.props.duration),
-      thumbOpacity: 1
+      thumbOpacity: 1,
     };
   }
 
@@ -37,7 +36,7 @@ class Scrubber extends Component {
             style={[styles.thumb, { opacity: this.props.currentTime == 0 ? 0 : 1 }]} />
         </View>
       </Fragment>
-    )
+    );
   }
 }
 
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
   thumb: {
     width: 24,
     height: 24,
-    top: -8
+    top: -8,
   },
   container: {
     width: 920,
@@ -53,14 +52,11 @@ const styles = StyleSheet.create({
     top: -241,
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   track: {
     flexDirection: 'column',
     height: 8,
-    backgroundColor:
-      '#D5A23E'
-  }
-})
-
-export default Scrubber
+    backgroundColor: '#D5A23E',
+  },
+});

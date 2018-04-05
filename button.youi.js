@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import {
-  View,
-} from 'react-native';
-import {
   ButtonRef,
   Fragment,
-  TextRef,
   TimelineRef,
   ViewRef,
 } from 'react-native-youi';
 
-class Button extends Component {
+export default class Button extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       toggled: true
     }
@@ -21,10 +16,7 @@ class Button extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.state.toggled != prevState.toggled) {
-      if (this.state.toggled)
-        this.toggleOnTimeline.play();
-      else
-        this.toggleOffTimeline.play();
+      this.state.toggled ? this.toggleOnTimeline.play() : this.toggleOffTimeline.play();
     }
   }
 
@@ -42,15 +34,16 @@ class Button extends Component {
             this.toggleOffTimeline = timeline;
           }} />
       </Fragment>
-    ) : null
+    ) : null;
+
     let button =
       <Fragment key={this.props.name}>
         <ButtonRef
           name={this.props.name}
           onClick={() => {
-            this.props.onClick()
+            this.props.onClick();
             if (this.props.toggle) {
-              this.setState({ toggled: !this.state.toggled })
+              this.setState({ toggled: !this.state.toggled });
             }
             this.focusInTimeline.play();
           }}>
@@ -60,19 +53,17 @@ class Button extends Component {
           {toggleTimelines}
         </ButtonRef>
       </Fragment>
+
     let container = this.props.container ? (
       <ViewRef name={this.props.container} key={this.props.container} >
         <TimelineRef name="In"
           ref={(timeline) => { this.inTimeline = timeline }}
-          onLoad={(t) => t.play()}
+          onLoad={(timeline) => timeline.play()}
         />
         {button}
       </ViewRef>
-    ) : [button]
-    return (
-      [container]
-    )
+    ) : [button];
+
+    return ([container]);
   }
 }
-
-export default Button

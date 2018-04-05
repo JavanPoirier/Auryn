@@ -1,32 +1,23 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import {
-  ButtonRef,
   Composition,
-  Fragment,
-  ImageRef,
   ViewRef,
-  TextRef,
 } from 'react-native-youi';
 
-import Timeline from './timeline.youi.js'
-import Button from './button.youi.js'
+import ListItem from './listitem.youi.js';
 import Navigation from './navigation.youi.js'
 import PDP from './pdp.youi.js'
-import ListItem from './listitem.youi.js';
+import Timeline from './timeline.youi.js'
 
-class Lander extends Component {
+export default class Lander extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       assets: [],
     };
   }
+
   requestPopularMoviesAsync = () => {
     return fetch("https://api.themoviedb.org/3/discover/movie?api_key=7f5e61b6cef8643d2442344b45842192&language=en")
       .then((response) => response.json())
@@ -42,7 +33,7 @@ class Lander extends Component {
     this.requestPopularMoviesAsync()
       .then((results) => {
         this.setState({
-          assets: results
+          assets: results,
         });
       });
   }
@@ -57,11 +48,11 @@ class Lander extends Component {
           image='Container-Image'
           onClick={() => {
             this.outTimeline.play().then(() => {
-              Navigation.addScreen(<PDP id={this.state.assets[i].id} />)
-            })
+              Navigation.addScreen(<PDP id={this.state.assets[i].id} />);
+            });
           }}
         />)
-      : null
+      : null;
 
     return (
       <Composition source="Lander_Main">
@@ -76,5 +67,3 @@ class Lander extends Component {
     );
   }
 }
-
-export default Lander

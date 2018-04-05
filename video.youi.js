@@ -4,12 +4,8 @@ import {
   View,
 } from 'react-native';
 import {
-  ButtonRef,
   Composition,
-  Fragment,
   TextRef,
-  TimelineRef,
-  TouchableHighlight,
   Video,
   ViewRef,
 } from 'react-native-youi';
@@ -19,7 +15,8 @@ import Timeline from './timeline.youi.js'
 import Button from './button.youi.js'
 import Navigation from './navigation.youi.js'
 
-class VideoPlayer extends Component {
+export default class VideoPlayer extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,8 +24,6 @@ class VideoPlayer extends Component {
         uri: "http://amssamples.streaming.mediaservices.windows.net/3d7eaff9-39fa-442f-81cc-f2ea7db1797e/TearsOfSteelTeaser.ism/manifest(format=m3u8-aapl)",
         type: "HLS"
       },
-      mediaState: '',
-      playbackState: '',
       duration: 0,
       currentTime: 0,
       formattedTime: "00:00",
@@ -46,28 +41,19 @@ class VideoPlayer extends Component {
           paused={this.state.paused}
           source={this.state.videoSource}
           muted={this.state.muted}
-
-          onBufferingStarted={() => console.log("onBufferingStarted called.")}
-          onBufferingEnded={() => console.log("onBufferingEnded called.")}
-          onErrorOccurred={() => console.log("onErrorOccurred called.")}
-          onPreparing={() => console.log("onPreparing called.")}
           onReady={() => this.setState({ paused: false })}
-          onPlaying={() => console.log("onPlaying called.")}
-          onPaused={() => console.log("onPaused called.")}
           onPlaybackComplete={() => {
-            this.scrubber.setState({ thumbOpacity: 0 })
+            this.scrubber.setState({ thumbOpacity: 0 });
             this.outTimeline.play()
               .then(() => {
-                Navigation.popScreen()
-              })
-            console.log("onPlaybackComplete called.")
+                Navigation.popScreen();
+              });
           }}
-          onFinalized={() => console.log("onFinalized called.")}
           onCurrentTimeUpdated={(currentTime) => {
-            var s = Math.floor(currentTime.nativeEvent.currentTime / 1000)
-            var m = Math.floor(s / 60)
-            var h = Math.floor(s / 3600)
-            h = h < 1 ? '' : h + ':'
+            var s = Math.floor(currentTime.nativeEvent.currentTime / 1000);
+            var m = Math.floor(s / 60);
+            var h = Math.floor(s / 3600);
+            h = h < 1 ? '' : h + ':';
             m = m < 10 ? '0' + m : m;
             s = s < 10 ? '0' + s : s;
 
@@ -75,33 +61,19 @@ class VideoPlayer extends Component {
             this.setState({
               currentTime: currentTime.nativeEvent.currentTime,
               formattedTime: time
-            })
-          }
-          }
+            });
+          }}
           onDurationChanged={(duration) => {
             this.setState({
               duration: duration.nativeEvent.duration
-            })
-          }
-          }
-          onStateChanged={(playerState) => {
-            this.setState({
-              playbackState: playerState.nativeEvent.playbackState,
-              mediaState: playerState.nativeEvent.mediaState
-            })
-          }
-          }
+            });
+          }}
         />
 
         <Composition source="Player_Main">
           <ViewRef name="Playback-Controls">
-            {/* <ViewRef name="Thumb" /> */}
-            <TimelineRef name="In"
-              onLoad={(timeline) => {
-                this.inTimeline = timeline;
-                timeline.play();
-              }} />
 
+            <Timeline name="In" onLoad={(timeline) => { this.inTimeline = timeline; timeline.play(); }} />
             <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
 
             <TextRef name="Placeholder-Time" text={this.state.formattedTime} />
@@ -118,12 +90,12 @@ class VideoPlayer extends Component {
               name="Btn-Back"
               toggle={false}
               onClick={() => {
-                this.scrubber.setState({ thumbOpacity: 0 })
+                this.scrubber.setState({ thumbOpacity: 0 });
                 this.outTimeline.play()
                   .then(() => {
-                    Navigation.popScreen()
-                  })
-                this.video.seek(this.state.duration)
+                    Navigation.popScreen();
+                  });
+                this.video.seek(this.state.duration);
               }}
             />
           </ViewRef>
@@ -138,8 +110,6 @@ class VideoPlayer extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
     backgroundColor: 'black',
     alignItems: 'center',
   },
@@ -149,4 +119,3 @@ const styles = StyleSheet.create({
     height: 720
   },
 });
-export default VideoPlayer

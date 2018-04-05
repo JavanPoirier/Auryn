@@ -6,19 +6,9 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
-import {
-  ButtonRef,
-  Composition,
-  Fragment,
-  ImageRef,
-  TextRef,
-  ViewRef,
-} from 'react-native-youi';
 
-import PDP from './pdp.youi.js'
 import Lander from './lander.youi.js'
 import Navigation from './navigation.youi.js'
 
@@ -29,7 +19,6 @@ export default class YiReactApp extends Component {
     this.state = {
       screen: null
     }
-    this.model = []
 
     Navigation.onScreenChanged = screen =>
       this.setState({ screen: screen }
@@ -54,7 +43,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#d0d0d0'
   },
 });
 
