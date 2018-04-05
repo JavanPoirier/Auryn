@@ -87,8 +87,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 275
-        y: 400
+        x: 200
+        y: 300
         z: 0
       }
       orientation {
@@ -104,6 +104,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 65398
   }
   classname: "CYIPushButtonView"
   bgcolor {

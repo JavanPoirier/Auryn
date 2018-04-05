@@ -4,8 +4,42 @@ activecomp {
   height: 720
   defaultcameradistance: 1777.7778
   layer {
-    name: "Image-16x9"
+    name: "Background"
     id: 65080
+    sourceid: 65479
+    transform {
+      anchorPoint {
+        x: 640
+        y: 360
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 640
+        y: 360
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Image-16x9"
+    id: 65081
     sourceid: 65112
     transform {
       anchorPoint {
@@ -39,7 +73,7 @@ activecomp {
   }
   layer {
     name: "gradient-bg.png"
-    id: 65081
+    id: 65082
     sourceid: 65323
     transform {
       anchorPoint {
@@ -65,7 +99,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0.9
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -73,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Btn-Play"
-    id: 65082
+    id: 65083
     sourceid: 65396
     transform {
       anchorPoint {
@@ -107,7 +141,7 @@ activecomp {
   }
   layer {
     name: "Poster4"
-    id: 65083
+    id: 65084
     sourceid: 65461
     transform {
       anchorPoint {
@@ -141,7 +175,7 @@ activecomp {
   }
   layer {
     name: "Poster3"
-    id: 65084
+    id: 65085
     sourceid: 65461
     transform {
       anchorPoint {
@@ -175,7 +209,7 @@ activecomp {
   }
   layer {
     name: "Poster2"
-    id: 65085
+    id: 65086
     sourceid: 65461
     transform {
       anchorPoint {
@@ -209,7 +243,7 @@ activecomp {
   }
   layer {
     name: "Poster1"
-    id: 65086
+    id: 65087
     sourceid: 65461
     transform {
       anchorPoint {
@@ -243,7 +277,7 @@ activecomp {
   }
   layer {
     name: "MoreLikeThis"
-    id: 65087
+    id: 65088
     sourceid: -1
     transform {
       anchorPoint {
@@ -295,7 +329,7 @@ activecomp {
   }
   layer {
     name: "Body-Text"
-    id: 65088
+    id: 65089
     sourceid: -1
     transform {
       anchorPoint {
@@ -356,7 +390,7 @@ activecomp {
   }
   layer {
     name: "Stars"
-    id: 65089
+    id: 65090
     sourceid: -1
     transform {
       anchorPoint {
@@ -417,7 +451,7 @@ activecomp {
   }
   layer {
     name: "Stars-Static"
-    id: 65090
+    id: 65091
     sourceid: -1
     transform {
       anchorPoint {
@@ -469,7 +503,7 @@ activecomp {
   }
   layer {
     name: "Director"
-    id: 65091
+    id: 65092
     sourceid: -1
     transform {
       anchorPoint {
@@ -530,7 +564,7 @@ activecomp {
   }
   layer {
     name: "Director-Static"
-    id: 65092
+    id: 65093
     sourceid: -1
     transform {
       anchorPoint {
@@ -582,7 +616,7 @@ activecomp {
   }
   layer {
     name: "Details-Text"
-    id: 65093
+    id: 65094
     sourceid: -1
     transform {
       anchorPoint {
@@ -643,7 +677,7 @@ activecomp {
   }
   layer {
     name: "Title-Text"
-    id: 65094
+    id: 65095
     sourceid: -1
     transform {
       anchorPoint {
@@ -704,7 +738,7 @@ activecomp {
   }
   layer {
     name: "Btn-Back"
-    id: 65095
+    id: 65096
     sourceid: 65441
     transform {
       anchorPoint {
@@ -748,6 +782,19 @@ activecomp {
   childtemplates: "PDP_Btn-Back"
 }
 sources {
+  uid: 65479
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.086274512112140656
+    green: 0.11372549086809158
+    blue: 0.14509804546833038
+  }
+  width: 1280
+  height: 720
+  copy_source: false
+}
+sources {
   uid: 65112
   srctype: AE_COMP_SRC
   name: "PDP_Image-16x9.layout"
@@ -783,21 +830,21 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 5
+  uid: 6
   srctype: AE_FONT_SRC
   name: "Montserrat-Bold"
   copy_source: true
   file_name: "yi_Montserrat-Bold.otf"
 }
 sources {
-  uid: 6
+  uid: 7
   srctype: AE_FONT_SRC
   name: "Montserrat-Light"
   copy_source: true
   file_name: "yi_Montserrat-Light.otf"
 }
 sources {
-  uid: 7
+  uid: 8
   srctype: AE_FONT_SRC
   name: "Montserrat-Regular"
   copy_source: true
