@@ -25,7 +25,6 @@ class PDP extends Component {
     super(props);
     this.state = {
       selected: 0,
-      playerScreen: false,
       animating: false
     };
     this.model = []
@@ -71,7 +70,7 @@ class PDP extends Component {
           name={'Poster' + (x+1)}
           asset={this.state.details.recommendations.results[x]}
           onClick={() => {
-            Navigation.addScreen(<PDP id={this.state.details.recommendations.results[x].id} />)
+            Navigation.addScreen(<PDP key={this.state.details.recommendations.results[x].id} id={this.state.details.recommendations.results[x].id} />)
           }}
           />)
       : null
@@ -87,7 +86,12 @@ class PDP extends Component {
       name="Btn-Play"
       onClick={() => {
         this.outTimeline.play().then(() => {
-          this.setState({ playerScreen: true })
+          Navigation.addScreen(<VideoPlayer
+            style={{ background: 'black', position: 'absolute', top: 0, left: 0 }}
+            onBack={() => {
+              this.inTimeline.play()
+            }
+          } />)
         })
       }}
       />
@@ -103,14 +107,6 @@ class PDP extends Component {
       {recommendations}
       </Composition>
       </View>
-      {this.state.playerScreen &&
-        <VideoPlayer
-        style={{ background: 'black', position: 'absolute', top: 0, left: 0 }}
-        onBack={() => {
-          this.inTimeline.play()
-          this.setState({ playerScreen: false })
-        }
-      } />}
       </View>
     );
   }

@@ -17,25 +17,24 @@ class Scrubber extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      thumbPos: (this.props.currentTime / this.props.duration)
+      thumbPos: (this.props.currentTime / this.props.duration),
+      thumbOpacity: 1
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      thumbPos: (nextProps.currentTime / nextProps.duration)
+      thumbPos: (nextProps.currentTime / nextProps.duration),
     })
   }
 
   render() {
     return (
       <Fragment>
-        <View style={{ width: 920, height: 8, top: -241 }}>
-          <View style={{ flex: 1, flexDirection: 'row', backgroundColor: 'transparent' }}>
-            <View style={{ flex: this.state.thumbPos, flexDirection: 'column', height: 8, backgroundColor: '#D5A23E' }} />
-            <Image source={{ uri: "res://drawable/default/Scrubber-Thumb.png" }}
-              style={[styles.thumb, { opacity: this.props.currentTime == 0 ? 0 : 1 }]} />
-          </View>
+        <View style={[styles.container, {opacity: this.state.thumbOpacity }]}>
+          <View style={[{ flex: this.state.thumbPos}, styles.track]} />
+          <Image source={{ uri: "res://drawable/default/Scrubber-Thumb.png" }}
+            style={[styles.thumb, { opacity: this.props.currentTime == 0 ? 0 : 1 }]} />
         </View>
       </Fragment>
     )
@@ -48,6 +47,20 @@ const styles = StyleSheet.create({
     height: 24,
     top: -8
   },
+  container: {
+    width: 920,
+    height: 8,
+    top: -241 ,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'transparent'
+  },
+  track: {
+    flexDirection: 'column',
+    height: 8,
+    backgroundColor:
+    '#D5A23E'
+  }
 })
 
 export default Scrubber

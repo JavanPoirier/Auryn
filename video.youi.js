@@ -17,6 +17,7 @@ import {
 import Scrubber from './scrubber.youi.js'
 import Timeline from './timeline.youi.js'
 import Button from './button.youi.js'
+import Navigation from './navigation.youi.js'
 
 class VideoPlayer extends Component {
   constructor(props) {
@@ -54,8 +55,11 @@ class VideoPlayer extends Component {
           onPlaying={() => console.log("onPlaying called.")}
           onPaused={() => console.log("onPaused called.")}
           onPlaybackComplete={() => {
+            this.scrubber.setState({thumbOpacity: 0})
             this.outTimeline.play()
-              .then(() => { this.props.onBack() })
+              .then(() => {
+                Navigation.popScreen()
+              })
             console.log("onPlaybackComplete called.")
           }}
           onFinalized={() => console.log("onFinalized called.")}
@@ -114,15 +118,18 @@ class VideoPlayer extends Component {
               name="Btn-Back"
               toggle={false}
               onClick={() => {
+                this.scrubber.setState({thumbOpacity: 0})
                 this.outTimeline.play()
-                  .then(() => { this.props.onBack() })
+                  .then(() => {
+                    Navigation.popScreen()
+                   })
                 this.video.seek(-1)
               }}
             />
           </ViewRef>
         </Composition>
 
-        <Scrubber style={styles.scrubber} duration={this.state.duration} currentTime={this.state.currentTime} />
+        <Scrubber ref={(ref) => this.scrubber=ref} style={styles.scrubber} duration={this.state.duration} currentTime={this.state.currentTime} />
 
       </View>
     );
