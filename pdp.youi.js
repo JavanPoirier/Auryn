@@ -15,27 +15,31 @@ import ListItem from './listitem.youi.js';
 import Navigation from './navigation.youi.js'
 import Timeline from './timeline.youi.js'
 import VideoPlayer from './video.youi.js'
-
+import Youtube from 'youtube-stream-url'
 export default class PDP extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = { };
   }
 
   componentDidMount() {
     this.requestMovieDetailsAsync()
-      .then((asset) => { 
+      .then((asset) => {
         this.setState({
           details: asset,
-        }); 
+        });
+
+        if (asset.videos.results.length > 0) {
+          Youtube.getInfo({ url: 'https://www.youtube.com/watch?v=' + asset.videos.results[0].key })
+          .then(video => this.video = video);
+        }
       })
       .then(this.inTimeline.play);
   }
 
   requestMovieDetailsAsync = (callback) => {
-    return fetch("https://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations&language=en")
+    return fetch("https://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations,videos&language=en")
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson;
@@ -73,6 +77,7 @@ export default class PDP extends Component {
             this.outTimeline.play().then(() => {
               Navigation.addScreen(
                 <VideoPlayer
+                  video={this.video}
                   onBack={() => {
                     this.inTimeline.play();
                   }}

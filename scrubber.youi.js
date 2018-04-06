@@ -11,7 +11,7 @@ export default class Scrubber extends Component {
     super(props);
     this.state = {
       thumbPos: (this.props.currentTime / this.props.duration),
-      thumbOpacity: 1,
+      thumbOpacity: 0,
     };
   }
 
