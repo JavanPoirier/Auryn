@@ -20,8 +20,8 @@ export default class VideoPlayer extends Component {
   constructor(props) {
     super(props);
     var videoSource = {
-      uri: "https://r3---sn-ab5l6nzs.googlevideo.com/videoplayback?dur=181.603&initcwndbps=1106250&c=WEB&mime=video%2Fmp4&expire=1523033560&lmt=1521236703261807&key=yt6&requiressl=yes&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mn=sn-ab5l6nzs%2Csn-ab5sznlk&mm=31%2C29&source=youtube&ratebypass=yes&ipbits=0&ip=184.153.7.51&fvip=3&mt=1523011862&signature=5728F405C89C5903D6A64A4605BA925F0172BF8B.B9EEF9F60A975F6CBA0EBEED330D9D2CF776CEBC&ms=au%2Crdu&ei=eFHHWsbwIYm38wTg3a7ACg&id=o-AM5D2DVee3x-Fqo8QCgp1E7UvZG5d5httZRQJJ2U9YOK&pl=17&mv=m&itag=22",
-      type: "MP4"
+      uri: "http://www.streambox.fr/playlists/x31jrg1/x31jrg1.m3u8",
+      type: "HLS"
     }
 
     if (this.props.video && this.props.video.formats) {
