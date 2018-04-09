@@ -28,9 +28,7 @@ export default class YiReactApp extends Component {
   }
 
   render() {
-    return (
-      this.state.screen
-    );
+    return this.state.screen;
   }
 }
 

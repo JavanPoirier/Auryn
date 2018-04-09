@@ -43,7 +43,7 @@ export default class VideoPlayer extends Component {
       <View style={styles.container}>
         <Video
           style={styles.video}
-          ref={(ref) => { this.video = ref }}
+          ref={(ref) => { this.video = ref; }}
           paused={this.state.paused}
           source={this.state.videoSource}
           onReady={() => this.setState({ paused: false })}

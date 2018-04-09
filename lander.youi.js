@@ -51,8 +51,8 @@ export default class Lander extends Component {
               Navigation.addScreen(<PDP id={this.state.assets[i].id} />);
             });
           }}
-        />)
-      : null;
+        />
+      ) : null;
 
     return (
       <Composition source="Lander_Main">

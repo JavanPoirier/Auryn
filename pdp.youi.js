@@ -62,8 +62,8 @@ export default class PDP extends Component {
               Navigation.addScreen(<PDP key={this.state.details.recommendations.results[i].id} id={this.state.details.recommendations.results[i].id} />);
             });
           }}
-        />)
-      : null;
+        />
+      ) : null;
 
     return (
       <Composition source="PDP_Main">
