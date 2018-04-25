@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   ButtonRef,
-  Fragment,
   TimelineRef,
   ViewRef,
 } from 'react-native-youi';

@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   View,
 } from 'react-native';
 import {
   ButtonRef,
   Composition,
-  Fragment,
   ImageRef,
   TextRef,
 } from 'react-native-youi';
+import Youtube from 'youtube-stream-url'
 
 import Button from './button.youi.js'
 import ListItem from './listitem.youi.js';
 import Navigation from './navigation.youi.js'
 import Timeline from './timeline.youi.js'
 import VideoPlayer from './video.youi.js'
-import Youtube from 'youtube-stream-url'
+
 export default class PDP extends Component {
 
   constructor(props) {
@@ -92,7 +92,7 @@ export default class PDP extends Component {
             this.outTimeline.play().then(() => { Navigation.popScreen(); });
           }} />
 
-        <Metadata asset={this.state.details} />
+        <Metadata asset={this.state.details}/>
 
         {recommendations}
       </Composition>
@@ -100,7 +100,7 @@ export default class PDP extends Component {
   }
 }
 
-export function Metadata(props) {
+function Metadata(props) {
   if (!props.asset)
     return null
 
@@ -127,5 +127,5 @@ export function Metadata(props) {
       <ImageRef name="Image-2x3" source={{ uri: posterSource }} />
       <ImageRef name="Image-16x9" source={{ uri: backdropSource }} />
     </Fragment>
-  );
+    );
 }

@@ -55,7 +55,7 @@ export default class VideoPlayer extends Component {
               });
           }}
           onCurrentTimeUpdated={(currentTime) => {
-            var s = Math.floor(currentTime.nativeEvent.currentTime / 1000);
+            var s = Math.floor(currentTime.nativeEvent / 1000);
             var m = Math.floor(s / 60);
             var h = Math.floor(s / 3600);
             h = h < 1 ? '' : h + ':';
@@ -64,13 +64,13 @@ export default class VideoPlayer extends Component {
 
             var time = h + m + ':' + s;
             this.setState({
-              currentTime: currentTime.nativeEvent.currentTime,
+              currentTime: currentTime.nativeEvent,
               formattedTime: time
             });
           }}
           onDurationChanged={(duration) => {
             this.setState({
-              duration: duration.nativeEvent.duration
+              duration: duration.nativeEvent
             });
           }}
         />
