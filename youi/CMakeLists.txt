@@ -6,9 +6,11 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 option(YI_TREAT_WARNINGS_AS_ERRORS "Warnings will result in failure to compile when set to ON." ON)
 option(YI_CLEAN_ASSETS_FIRST "Indicate whether assets in the build directories should be cleaned before copying the source assets." OFF)
 option(YI_SCRIPT_ONLY "Specifies whether the application should use run from the JavaScript scripts instead of C++" OFF)
+option(YI_LOCAL_JS "If true, the JS files for this project will be bundled and included locally in the app assets, rather than needing to be fetched from a yarn server." OFF)
+option(YI_LOCAL_JS_DEV "If bundling JS locally, the 'react-native bundle' call will have the 'dev' flag set to the value of this option." OFF)
 
 set(YI_PROJECT_NAME "NABDemo") # The name of the project. When building for Android, this is passed from Android Studio.
-set(YI_PACKAGE_NAME "tv.youi.nabdeno") # The package name used for the project.")
+set(YI_PACKAGE_NAME "tv.youi.nabdemo") # The package name used for the project.")
 set(YI_DISPLAY_NAME "NAB Demo") # The name of the application displayed on the device.
 set(YI_EXCLUDED_ASSET_FILE_EXTENSIONS ".log,.aep" CACHE STRING "Comma-delimited list of file extensions whose files should be omitted during asset copying.")
 set(YI_YOUI_ENGINE_VERSION 4.6.0 CACHE STRING "Version required for the You.i Engine.")
@@ -33,11 +35,7 @@ else()
     get_filename_component(YouiEngine_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../" ABSOLUTE)
 endif()
 
-if(IS_DIRECTORY "${YouiEngine_DIR}/cmake/react")
-    set(YouiReact_DIR "${YouiEngine_DIR}")
-else()
-    get_filename_component(YouiReact_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../react-native-youiengine" ABSOLUTE)
-endif()
+set(react-native-youiengine_DIR "${YouiEngine_DIR}/react/react-native-youiengine")
 
 # The ordering of the paths within the CMAKE_MODULE_PATH variable is imporant, since having the project's 'cmake'
 # path first will tell CMake to first look under that folder when the short form 'include(Modules/<module>)' command is used
@@ -45,7 +43,7 @@ endif()
 #
 # If CMake finds a module under the project directory structure, it will load that file and stop looking in the CMAKE_MODULE_PATH.
 # This allows projects to customize modules as they need to, without requiring changes at the engine level.
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${YouiReact_DIR}/cmake ${YouiEngine_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${react-native-youiengine_DIR}/cmake ${YouiEngine_DIR}/cmake)
 
 if(NOT DEFINED YI_PLATFORM)
     message(FATAL_ERROR "The YI_PLATFORM variable was not given to the generator.")
@@ -156,7 +154,7 @@ if (NOT TARGET react-native-youiengine)
 
     find_package(react-native-youiengine
         HINTS
-            ${YouiReact_DIR}/dist
+            ${react-native-youiengine_DIR}
         REQUIRED
     )
 endif()
@@ -251,6 +249,7 @@ yi_configure_asset_copying(PROJECT_TARGET ${PROJECT_NAME}
     EXCLUDED_EXTENSIONS ${YI_EXCLUDED_ASSET_FILE_EXTENSIONS}
 )
 
+include(Modules/react/YiConfigureJsBundling)
 find_program (YARN_EXECUTABLE yarn)
 if (YARN_EXECUTABLE)
 
@@ -260,6 +259,8 @@ if (YARN_EXECUTABLE)
     add_custom_target(${PROJECT_NAME}_Yarn)
 
     add_custom_command(TARGET ${PROJECT_NAME}_Yarn
+        COMMAND ${YARN_EXECUTABLE} link # fails silently if already linked elsewhere, but unlink is a hard error, so link anyway just so the next step does not fail out
+        COMMAND ${YARN_EXECUTABLE} unlink react-native-youi
         COMMAND ${YARN_EXECUTABLE} link
         COMMAND ${YARN_EXECUTABLE} install
         WORKING_DIRECTORY "${_REACT_NATIVE_YOUI_DIR}"
@@ -269,6 +270,15 @@ if (YARN_EXECUTABLE)
         COMMAND ${YARN_EXECUTABLE} install
         COMMAND ${YARN_EXECUTABLE} link react-native-youi
         WORKING_DIRECTORY "${_NODE_DIR}"
+    )
+
+ yi_configure_js_bundling(PROJECT_TARGET ${PROJECT_NAME}
+        YARN_TARGET ${PROJECT_NAME}_Yarn
+        WORKING_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..
+        INPUT_FILES index.youi.js
+        OUTPUT_DIR ${YI_BASE_OUTPUT_DIRECTORY}/assets/jsbundles
+        PLATFORM ${YI_PLATFORM}
+        IS_DEV YI_LOCAL_JS_DEV
     )
 
     add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_Yarn)
