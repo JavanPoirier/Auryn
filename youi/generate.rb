@@ -9,7 +9,7 @@ class GenerateOptions
         options = OpenStruct.new
         options.platform = nil
         options.build_directory = nil
-        options.defines = {}
+        options.defines = { "YI_LOCAL_JS" => "0" }
 
         platformList = ["Android", "Ios", "Linux", "Osx", "Ps4", "Roku4201en", "Tizen-Nacl", "Tvos", "Uwp", "Vs2013"]
         configurationList = ["Debug","Release"]
@@ -108,6 +108,11 @@ class GenerateOptions
                 options.defines["YI_VERSION_NUMBER"] = version
             end
 
+            opts.on("-l", "--local",
+                "If included, JS bundles will be packaged locally, instead of fetched from a yarn server.") do
+                options.defines["YI_LOCAL_JS"] = "1"
+            end
+
             opts.on_tail("-h", "--help", "Show usage and options list") do
                 puts opts
                 exit 1
@@ -198,7 +203,7 @@ class GenerateOptions
         build_dir = File.absolute_path(build_dir)
 
         unless options.defines.has_key?("YI_PROJECT_NAME")
-            options.defines["YI_PROJECT_NAME"] = File.basename("#{__dir__}")
+            options.defines["YI_PROJECT_NAME"] = File.basename(File.expand_path("#{__dir__}/../"))
         end
 
         command = "cmake"
@@ -206,7 +211,8 @@ class GenerateOptions
         command << " -DYI_PROJECT_DIR=\"#{source_dir}\""
         command << " -DYI_OUTPUT_DIR=\"#{build_dir}\""
         command << " -DYI_JAVA_SOURCE_DIR=\"" << File.join("#{source_dir}", "build", "android") << "\""
-        
+        command << " -DYI_JNI_LIBS_DIRS=\"" << File.join(engine_dir, "react", "react-native-youiengine", "dist", "android", "jniLibs") << "\""
+
         cmake_defines = ""
         options.defines.each do |key,value|
             cmake_defines << " -D#{key}=\"#{value}\""
