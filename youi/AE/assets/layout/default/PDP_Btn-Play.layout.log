@@ -1,8 +1,8 @@
 activecomp {
   name: "PDP_Btn-Play"
-  width: 500
-  height: 750
-  defaultcameradistance: 694.44446
+  width: 720
+  height: 1080
+  defaultcameradistance: 1000
   layer {
     name: "asset-shadow.png"
     id: 65396
@@ -14,13 +14,13 @@ activecomp {
         z: 0
       }
       scale {
-        x: 1.26
-        y: 1.26
+        x: 1.96
+        y: 1.96
         z: 1
       }
       position {
-        x: 250
-        y: 375
+        x: 360
+        y: 540
         z: 0
       }
       orientation {
@@ -43,18 +43,18 @@ activecomp {
     sourceid: 65099
     transform {
       anchorPoint {
-        x: 167.5
-        y: 238
+        x: 266.5
+        y: 400
         z: 0
       }
       scale {
-        x: 1.26
-        y: 1.26
+        x: 1
+        y: 1
         z: 1
       }
       position {
-        x: 250
-        y: 375
+        x: 360
+        y: 540
         z: 0
       }
       orientation {
@@ -82,13 +82,13 @@ activecomp {
         z: 0
       }
       scale {
-        x: 0.8
-        y: 0.8
+        x: 1
+        y: 1
         z: 1
       }
       position {
-        x: 250
-        y: 375
+        x: 360
+        y: 540
         z: 0
       }
       orientation {
@@ -116,8 +116,8 @@ activecomp {
         z: 0
       }
       scale {
-        x: 0.8
-        y: 0.8
+        x: 1
+        y: 1
         z: 1
       }
       position {
@@ -156,8 +156,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 250
-        y: 375
+        x: 360
+        y: 540
         z: 0
       }
       orientation {
@@ -206,8 +206,8 @@ sources {
   uid: 65099
   srctype: AE_COMP_SRC
   name: "PDP_Image-2x3.layout"
-  width: 335
-  height: 476
+  width: 533
+  height: 800
   copy_source: true
 }
 sources {

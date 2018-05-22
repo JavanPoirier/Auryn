@@ -43,8 +43,8 @@ activecomp {
     sourceid: 65099
     transform {
       anchorPoint {
-        x: 167.5
-        y: 238
+        x: 266.5
+        y: 400
         z: 0
       }
       scale {
@@ -103,7 +103,7 @@ sources {
   uid: 65099
   srctype: AE_COMP_SRC
   name: "PDP_Image-2x3.layout"
-  width: 335
-  height: 476
+  width: 533
+  height: 800
   copy_source: true
 }

@@ -1,16 +1,16 @@
 activecomp {
   name: "Lander_Container-Image"
-  width: 400
-  height: 600
-  defaultcameradistance: 555.55554
+  width: 533
+  height: 800
+  defaultcameradistance: 740.27777
   layer {
     name: "ImageNode"
     id: 65411
     sourceid: 65409
     transform {
       anchorPoint {
-        x: 200
-        y: 300
+        x: 266.5
+        y: 400
         z: 0
       }
       scale {
@@ -19,8 +19,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 200
-        y: 300
+        x: 266.5
+        y: 400
         z: 0
       }
       orientation {
@@ -58,7 +58,7 @@ sources {
     green: 0.20784313976764679
     blue: 0.20784313976764679
   }
-  width: 400
-  height: 600
+  width: 533
+  height: 800
   copy_source: false
 }

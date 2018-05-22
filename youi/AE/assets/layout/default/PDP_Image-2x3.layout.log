@@ -1,16 +1,16 @@
 activecomp {
   name: "PDP_Image-2x3"
-  width: 335
-  height: 476
-  defaultcameradistance: 465.27777
+  width: 533
+  height: 800
+  defaultcameradistance: 740.27777
   layer {
     name: "ImageNode"
     id: 65099
     sourceid: 65097
     transform {
       anchorPoint {
-        x: 150
-        y: 225
+        x: 266.5
+        y: 400
         z: 0
       }
       scale {
@@ -19,8 +19,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 167
-        y: 225
+        x: 266
+        y: 400
         z: 0
       }
       orientation {
@@ -58,7 +58,7 @@ sources {
     green: 0.20784313976764679
     blue: 0.20784313976764679
   }
-  width: 300
-  height: 450
+  width: 533
+  height: 800
   copy_source: false
 }
