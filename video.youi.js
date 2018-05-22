@@ -1,14 +1,6 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-} from 'react-native';
-import {
-  Composition,
-  TextRef,
-  Video,
-  ViewRef,
-} from 'react-native-youi';
+import React, {Component} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Composition, TextRef, Video, ViewRef} from 'react-native-youi';
 
 import Scrubber from './scrubber.youi.js'
 import Timeline from './timeline.youi.js'
@@ -25,9 +17,16 @@ export default class VideoPlayer extends Component {
     }
 
     if (this.props.video && this.props.video.formats) {
-      let format = this.props.video.formats.find(format => format.type.indexOf('mp4') > 0 && format.quality == 'hd720')
+      let format = this
+        .props
+        .video
+        .formats
+        .find(format => format.type.indexOf('mp4') > 0 && format.quality == 'hd720')
       if (format) {
-        videoSource = { uri: format.url, type: 'MP4' }
+        videoSource = {
+          uri: format.url,
+          type: 'MP4'
+        }
       }
     }
 
@@ -43,76 +42,97 @@ export default class VideoPlayer extends Component {
       <View style={styles.container}>
         <Video
           style={styles.video}
-          ref={(ref) => { this.video = ref; }}
+          ref={(ref) => {
+          this.video = ref;
+        }}
           paused={this.state.paused}
           source={this.state.videoSource}
-          onReady={() => this.setState({ paused: false })}
+          onReady={() => this.setState({paused: false})}
           onPlaybackComplete={() => {
-            this.scrubber.setState({ thumbOpacity: 0 });
-            this.outTimeline.play()
-              .then(() => {
-                Navigation.popScreen();
-              });
-          }}
+          this
+            .scrubber
+            .setState({thumbOpacity: 0});
+          this
+            .outTimeline
+            .play()
+            .then(() => {
+              Navigation.popScreen();
+            });
+        }}
           onCurrentTimeUpdated={(currentTime) => {
-            var s = Math.floor(currentTime.nativeEvent / 1000);
-            var m = Math.floor(s / 60);
-            var h = Math.floor(s / 3600);
-            h = h < 1 ? '' : h + ':';
-            m = m < 10 ? '0' + m : m;
-            s = s < 10 ? '0' + s : s;
-
-            var time = h + m + ':' + s;
-            this.setState({
-              currentTime: currentTime.nativeEvent,
-              formattedTime: time
-            });
-          }}
+          var s = Math.floor(currentTime.nativeEvent / 1000);
+          var m = Math.floor(s / 60);
+          var h = Math.floor(s / 3600);
+          s = s % 60;
+          m = m % 60;
+          h = h < 1
+            ? ''
+            : h + ':';
+          m = m < 10
+            ? '0' + m
+            : m;
+          s = s < 10
+            ? '0' + s
+            : s;
+          var time = h + m + ':' + s;
+          this.setState({currentTime: currentTime.nativeEvent, formattedTime: time});
+        }}
           onDurationChanged={(duration) => {
-            this.setState({
-              duration: duration.nativeEvent
-            });
-          }}
-        />
+          this.setState({duration: duration.nativeEvent});
+        }}/>
 
         <Composition source="Player_Main">
           <ViewRef name="Playback-Controls">
 
-            <Timeline name="In"
+            <Timeline
+              name="In"
               ref={(timeline) => this.inTimeline = timeline}
               onLoad={() => {
-              this.inTimeline.play()
-              .then(() => this.scrubber.setState({ thumbOpacity: 1 }))
-              }}
-            />
-            <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
+              this
+                .inTimeline
+                .play()
+                .then(() => this.scrubber.setState({thumbOpacity: 1}))
+            }}/>
+            <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline}/>
 
-            <TextRef name="Placeholder-Time" text={this.state.formattedTime} />
+            <TextRef name="Placeholder-Time" text={this.state.formattedTime}/>
 
             <Button
               container="PlayPause-Container"
               name="Btn-PlayPause"
               toggle={true}
-              onClick={() => { this.setState({ paused: !this.state.paused }) }}
-            />
+              onClick={() => {
+              this.setState({
+                paused: !this.state.paused
+              })
+            }}/>
 
             <Button
               container="Btn-Back-Container"
               name="Btn-Back"
               toggle={false}
               onClick={() => {
-                this.scrubber.setState({ thumbOpacity: 0 });
-                this.outTimeline.play()
-                  .then(() => {
-                    Navigation.popScreen();
-                  });
-                this.video.seek(this.state.duration);
-              }}
-            />
+              this
+                .scrubber
+                .setState({thumbOpacity: 0});
+              this
+                .outTimeline
+                .play()
+                .then(() => {
+                  Navigation.popScreen();
+                });
+              this
+                .video
+                .seek(this.state.duration);
+            }}/>
           </ViewRef>
         </Composition>
 
-        <Scrubber ref={(ref) => this.scrubber = ref} style={styles.scrubber} duration={this.state.duration} currentTime={this.state.currentTime} />
+        <Scrubber
+          ref={(ref) => this.scrubber = ref}
+          style={styles.scrubber}
+          duration={this.state.duration}
+          currentTime={this.state.currentTime}/>
 
       </View>
     );
@@ -121,11 +141,11 @@ export default class VideoPlayer extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    alignItems: 'center'
   },
   video: {
     position: 'absolute',
-    width: 1280,
-    height: 720
-  },
+    width: 1920,
+    height: 1080
+  }
 });
