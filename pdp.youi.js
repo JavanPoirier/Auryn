@@ -52,6 +52,7 @@ export default class PDP extends Component {
   render() {
     let recommendations = this.state.details ?
       Array(4).fill().map((_, i) =>
+        this.state.details.recommendations.results.length > i ?
         <ListItem
           key={this.state.details.recommendations.results[i].id}
           name={'Poster' + (i + 1)}
@@ -62,7 +63,7 @@ export default class PDP extends Component {
               Navigation.addScreen(<PDP key={this.state.details.recommendations.results[i].id} id={this.state.details.recommendations.results[i].id} />);
             });
           }}
-        />
+        /> : null
       ) : null;
 
     return (
