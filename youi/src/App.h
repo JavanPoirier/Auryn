@@ -19,6 +19,7 @@ protected:
     virtual void UserUpdate() override;
 
 private:
+
 };
 
 #endif // _APP_H_

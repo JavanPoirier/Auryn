@@ -5,37 +5,69 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Pre-defined options
 option(YI_TREAT_WARNINGS_AS_ERRORS "Warnings will result in failure to compile when set to ON." ON)
 option(YI_CLEAN_ASSETS_FIRST "Indicate whether assets in the build directories should be cleaned before copying the source assets." OFF)
-option(YI_SCRIPT_ONLY "Specifies whether the application should use run from the JavaScript scripts instead of C++" OFF)
 option(YI_LOCAL_JS "If true, the JS files for this project will be bundled and included locally in the app assets, rather than needing to be fetched from a yarn server." OFF)
+option(YI_LOCAL_JS_INLINE "If bundling JS locally, the JS files for this project will be bundled and compiled inline with the source code." OFF)
 option(YI_LOCAL_JS_DEV "If bundling JS locally, the 'react-native bundle' call will have the 'dev' flag set to the value of this option." OFF)
+option(YI_LOCAL_JS_MINIFY "If bundling JS locally, the 'react-native bundle' call will have the 'minify' flag set to the value of this option." ON)
 
-set(YI_PROJECT_NAME "NABDemo") # The name of the project. When building for Android, this is passed from Android Studio.
-set(YI_PACKAGE_NAME "tv.youi.nabdemo") # The package name used for the project.")
-set(YI_DISPLAY_NAME "NAB Demo") # The name of the application displayed on the device.
-set(YI_EXCLUDED_ASSET_FILE_EXTENSIONS ".log,.aep" CACHE STRING "Comma-delimited list of file extensions whose files should be omitted during asset copying.")
-set(YI_YOUI_ENGINE_VERSION 4.6.0 CACHE STRING "Version required for the You.i Engine.")
-set(YI_REACT_NATIVE_VERSION 0.0.1 CACHE STRING "Version required for the You.i React Native library.")
-set(YI_MAJOR_VERSION 0 CACHE STRING "Major version number.")
-set(YI_MINOR_VERSION 0 CACHE STRING "Minor version number.")
-set(YI_PATCH_VERSION 1 CACHE STRING "Patch version number.")
-set(YI_VERSION_NUMBER "${YI_MAJOR_VERSION}.${YI_MINOR_VERSION}.${YI_PATCH_VERSION}.0" CACHE STRING "Build version of the application. This is the version that will be displayed to the end user in the store.")
+# The name of the project. When building for Android, this is passed from Android Studio.
+if(NOT YI_PROJECT_NAME)
+    set(YI_PROJECT_NAME "Auryn")
+endif()
+
+# The package name used for the project.
+if(NOT YI_PACKAGE_NAME)
+    set(YI_PACKAGE_NAME "tv.youi.auryn")
+endif()
+
+# The name of the application displayed on the device.
+if(NOT YI_DISPLAY_NAME)
+    set(YI_DISPLAY_NAME "Auryn")
+endif()
+
+set(YI_VERSION_NUMBER "1.0.0.0" CACHE STRING "Build version of the application. This is the version that will be displayed to the end user in the store.")
 set(YI_BUILD_NUMBER "${YI_VERSION_NUMBER}" CACHE STRING "Release version number that needs to be incremented for each store submission. For Apple platforms, this is the CFBundleVersion. For Android, this is the Version Code.")
+set(YI_YOUI_ENGINE_VERSION 5.0.0 CACHE STRING "Version required for the You.i Engine.")
+set(YI_YOUI_ENGINE_HOME "../" CACHE STRING "Youi Engine home search path")
+set(YI_EXCLUDED_ASSET_FILE_EXTENSIONS ".log,.aep" CACHE STRING "Comma-delimited list of file extensions whose files should be omitted during asset copying.")
+
+set(YI_REACT_NATIVE_VERSION 0.0.1 CACHE STRING "Version required for the You.i React Native library.")
+
+message(STATUS "----------------------------------------")
+message(STATUS "PROJECT SETTINGS")
+message(STATUS "----------------------------------------")
+message(STATUS "YI_TREAT_WARNINGS_AS_ERRORS = ${YI_TREAT_WARNINGS_AS_ERRORS}")
+message(STATUS "YI_CLEAN_ASSETS_FIRST = ${YI_CLEAN_ASSETS_FIRST}")
+message(STATUS "YI_LOCAL_JS = ${YI_LOCAL_JS}")
+message(STATUS "YI_LOCAL_JS_INLINE = ${YI_LOCAL_JS_INLINE}")
+message(STATUS "YI_LOCAL_JS_MINIFY = ${YI_LOCAL_JS_MINIFY}")
+message(STATUS "YI_LOCAL_JS_DEV = ${YI_LOCAL_JS_DEV}")
+message(STATUS "YI_PROJECT_NAME = ${YI_PROJECT_NAME}")
+message(STATUS "YI_PACKAGE_NAME = ${YI_PACKAGE_NAME}")
+message(STATUS "YI_DISPLAY_NAME = ${YI_DISPLAY_NAME}")
+message(STATUS "YI_VERSION_NUMBER = ${YI_VERSION_NUMBER}")
+message(STATUS "YI_YOUI_ENGINE_VERSION = ${YI_YOUI_ENGINE_VERSION}")
+message(STATUS "YI_YOUI_ENGINE_HOME = ${YI_YOUI_ENGINE_HOME}")
+message(STATUS "YI_REACT_NATIVE_VERSION = ${YI_REACT_NATIVE_VERSION}")
+message(STATUS "----------------------------------------")
 
 set(_STAGING_DIR "${CMAKE_CURRENT_BINARY_DIR}/Staging")
 set(_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
-# Default the CMAKE_BUILD_TYPE if not using a multi-configuration generator
-if (NOT DEFINED CMAKE_CONFIGURATION_TYPES AND NOT DEFINED CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Debug CACHE STRING "")
-endif()
+find_path(YouiEngine_DIR
+    YouiEngineConfigVersion.cmake
+    PATHS
+        ${CMAKE_CURRENT_SOURCE_DIR}/../..    # Used only by samples that are generated from within the packaged engine directory
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../.. # Used only by samples that are generated from within the packaged engine directory
+        ${YI_YOUI_ENGINE_HOME}
+        ENV YOUIENGINE_HOME
+)
 
-if (DEFINED ENV{YOUIENGINE_HOME})
-    get_filename_component(YouiEngine_DIR "$ENV{YOUIENGINE_HOME}" ABSOLUTE)
-else()
-    get_filename_component(YouiEngine_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../" ABSOLUTE)
-endif()
+mark_as_advanced(YouiEngine_DIR)
 
-set(react-native-youiengine_DIR "${YouiEngine_DIR}/react/react-native-youiengine")
+if (NOT YouiEngine_DIR)
+    message(FATAL_ERROR "Could not locate the You.i Engine directory. Please check your YOUIENGINE_HOME environment variable.")
+endif()
 
 # The ordering of the paths within the CMAKE_MODULE_PATH variable is imporant, since having the project's 'cmake'
 # path first will tell CMake to first look under that folder when the short form 'include(Modules/<module>)' command is used
@@ -43,24 +75,7 @@ set(react-native-youiengine_DIR "${YouiEngine_DIR}/react/react-native-youiengine
 #
 # If CMake finds a module under the project directory structure, it will load that file and stop looking in the CMAKE_MODULE_PATH.
 # This allows projects to customize modules as they need to, without requiring changes at the engine level.
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${react-native-youiengine_DIR}/cmake ${YouiEngine_DIR}/cmake)
-
-if(NOT DEFINED YI_PLATFORM)
-    message(FATAL_ERROR "The YI_PLATFORM variable was not given to the generator.")
-endif()
-
-include(Modules/YiCapitalizeString)
-yi_capitalize_string(SRC_STRING "${YI_PLATFORM}"
-    RESULT_VARIABLE _PLATFORM_CAPITALIZED
-    DELIMITERS "-;_"
-)
-
-string(TOUPPER "${YI_PLATFORM}" _PLATFORM_UPPER)
-string(TOLOWER "${YI_PLATFORM}" _PLATFORM_LOWER)
-include(Platform/Yi${_PLATFORM_CAPITALIZED} OPTIONAL RESULT_VARIABLE HAVE_YIPLATFORM_INCLUDE)
-if (NOT HAVE_YIPLATFORM_INCLUDE)
-    message( FATAL_ERROR "Unsupported platform specified: " ${_PLATFORM_CAPITALIZED})
-endif()
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${YouiEngine_DIR}/cmake)
 
 # The call to project() needs to happen after the Platform file has been included. This is because some
 # platforms set CMake specific variables that affect the choices made when a language is configured.
@@ -82,28 +97,56 @@ endif()
 # enable_language(C)
 project(${YI_PROJECT_NAME} LANGUAGES C CXX)
 
+if (NOT MSVC_IDE AND NOT XCODE AND NOT CMAKE_BUILD_TYPE)
+    message(FATAL_ERROR "CMAKE_BUILD_TYPE needs to be set for single configuration generators. Default builds are not allowed.")
+endif()
+
+if(NOT DEFINED YI_PLATFORM)
+    message(FATAL_ERROR "YI_PLATFORM must be known. Please specify a toolchain file.")
+endif()
+
+include(Modules/YiCapitalizeString)
+yi_capitalize_string(SRC_STRING "${YI_PLATFORM}"
+    RESULT_VARIABLE _PLATFORM_CAPITALIZED
+    DELIMITERS "-;_"
+)
+
+string(TOUPPER "${YI_PLATFORM}" _PLATFORM_UPPER)
+string(TOLOWER "${YI_PLATFORM}" _PLATFORM_LOWER)
+include(Platform/Yi${_PLATFORM_CAPITALIZED} OPTIONAL RESULT_VARIABLE HAVE_YIPLATFORM_INCLUDE)
+if (NOT HAVE_YIPLATFORM_INCLUDE)
+    message( FATAL_ERROR "Unsupported platform specified: " ${_PLATFORM_CAPITALIZED})
+endif()
+
 # By having the list of source files for the project outside of the CMakeLists.txt file a project can
 # use tools to auto-generate the contents of that file without having a lot of commits on the CMakeLists.txt
 # file. This also makes the CMakeLists.txt and SourceList.cmake files more portable to move between projects with
 # minimal effort.
 include("${CMAKE_CURRENT_SOURCE_DIR}/SourceList.cmake")
 
-if(NOT TARGET youiengine)
-    # Locating the You.i Engine is now done via the 'find_package' command. We first set the version of the engine that
-    # we want to look for, using the PACKAGE_FIND_VERSION variable that is used within the 'find_package' flow.
-    #
-    # Next, the call to 'find_package' passing the 'YouiEngine_DIR' path to the HINTS argument is made. This tells
-    # CMake to look within the 'YouiEngine_DIR' path for the You.i Engine. If found, the 'find_package' command will
-    # give back a 'youiengine' target that the project can link against. This target contains all of the third party
-    # libraries and their include directories, as well as the engine library, its include directories and any compiler
-    # definitions or options.
-    set(PACKAGE_FIND_VERSION ${YI_YOUI_ENGINE_VERSION})
+# Locating the You.i Engine is now done via the 'find_package' command. We first set the version of the engine that
+# we want to look for, using the PACKAGE_FIND_VERSION variable that is used within the 'find_package' flow.
+#
+# Next, the call to 'find_package' passing the 'YouiEngine_DIR' path to the HINTS argument is made. This tells
+# CMake to look within the 'YouiEngine_DIR' path for the You.i Engine. If found, the 'find_package' command will
+# give back a 'youiengine' target that the project can link against. This target contains all of the third party
+# libraries and their include directories, as well as the engine library, its include directories and any compiler
+# definitions or options.
 
-    find_package(YouiEngine
-        HINTS
-            ${YouiEngine_DIR}
-        REQUIRED
-    )
+if(ANDROID AND IS_DIRECTORY ${YouiEngine_DIR}/core)
+    add_subdirectory(${YouiEngine_DIR}/core ${CMAKE_CURRENT_BINARY_DIR}/core)
+    add_subdirectory(${YouiEngine_DIR}/react/react-native-youiengine ${CMAKE_CURRENT_BINARY_DIR}/react-native-youiengine)
+else()
+    if(NOT YouiEngine_FOUND)
+        find_package(YouiEngine
+            ${YI_YOUI_ENGINE_VERSION}
+            COMPONENTS
+                react
+            HINTS
+                ${YouiEngine_DIR}
+            REQUIRED
+        )
+    endif()
 endif()
 
 include(Modules/YiPlatformSourceFiles)
@@ -114,15 +157,9 @@ set(YI_PROJECT_CODE_FILES
     ${PLATFORM_SOURCE_FILES_${_PLATFORM_UPPER}_${YI_RENDER_TYPE}}
     ${PLATFORM_SOURCE_HEADERS_${_PLATFORM_UPPER}}
     ${PLATFORM_SOURCE_HEADERS_${_PLATFORM_UPPER}_${YI_RENDER_TYPE}}
+    ${YI_PROJECT_SOURCE}
+    ${YI_PROJECT_HEADERS}
 )
-
-if(NOT YI_SCRIPT_ONLY)
-    set(YI_PROJECT_CODE_FILES
-        ${YI_PROJECT_SOURCE}
-        ${YI_PROJECT_HEADERS}
-        ${YI_PROJECT_CODE_FILES}
-    )
-endif()
 
 # Not all platforms will need to perform some kind of initialization. Because this is optional,
 # we first check to see if the command actually exists. If not, we can safely ignore it.
@@ -148,17 +185,6 @@ yi_add_executable(TARGET ${PROJECT_NAME}
     EXTRA_FILES ${YI_PLATFORM_RESOURCES_${_PLATFORM_UPPER}}
 )
 
-if (NOT TARGET react-native-youiengine)
-    # Add react-native-youiengine
-    set(PACKAGE_FIND_VERSION ${YI_REACT_NATIVE_VERSION})
-
-    find_package(react-native-youiengine
-        HINTS
-            ${react-native-youiengine_DIR}
-        REQUIRED
-    )
-endif()
-
 # NOTE: This is only valid for Visual Studio-based generators
 set_directory_properties(PROPERTIES
     VS_STARTUP_PROJECT ${PROJECT_NAME}
@@ -170,15 +196,10 @@ target_include_directories(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME}
-    PUBLIC
-        react-native-youiengine
-        youiengine
+    PRIVATE
+        youi::react
+        youi::engine
 )
-
-include(Modules/${_PLATFORM_LOWER}/YiLinkExternalLibraries OPTIONAL RESULT_VARIABLE _EXTERNAL_LIBS_PATH)
-if(NOT _EXTERNAL_LIBS_PATH MATCHES NOTFOUND)
-    yi_link_external_libraries(TARGET ${PROJECT_NAME})
-endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     RESOURCE "${YI_PLATFORM_RESOURCES_${_PLATFORM_UPPER}}"
@@ -210,25 +231,32 @@ yi_configure_instrumented_build(TARGET ${PROJECT_NAME})
 
 # === START OF COMPILER SETUP =================================================
 
-target_compile_definitions(${PROJECT_NAME}
-    PRIVATE $<$<BOOL:${YI_SCRIPT_ONLY}>:YI_SCRIPT_ONLY_APP>
-)
+include(Modules/YiConfigureWarningsAsErrors)
+yi_configure_warnings_as_errors(TARGET ${PROJECT_NAME})
 
-if(MSVC)
-    target_compile_options(${PROJECT_NAME}
-        PRIVATE $<$<BOOL:${YI_TREAT_WARNINGS_AS_ERRORS}>:/WX>
-    )
-else()
-    target_compile_options(${PROJECT_NAME}
-        PRIVATE -Wall
-            -Wextra
-            -Wno-float-equal
-            -Wpointer-arith
-            -Wwrite-strings
-            -Wunused-variable
-            -Wno-unused-parameter # for JSExecutor header
-        PRIVATE -Wno-unused-result -Wno-unused-function
-        PRIVATE $<$<BOOL:${YI_TREAT_WARNINGS_AS_ERRORS}>:-Werror>
+if (NOT MSVC)
+    # With Wall enabled on MSVC we get warnings in system includes that we don't want.
+    # We will use the default warning level instead of MSVC.
+    check_cxx_compiler_flag("-Wall" SUPPORTS_WALL_FLAG)
+    check_cxx_compiler_flag("-Wextra" SUPPORTS_WEXTRA_FLAG)
+    check_cxx_compiler_flag("-Wno-float-equal" SUPPORTS_WNO_FLOAT_EQUAL_FLAG)
+    check_cxx_compiler_flag("-Wpointer-arith" SUPPORTS_WPOINTER_ARITH_FLAG)
+    check_cxx_compiler_flag("-Wwrite-strings" SUPPORTS_WWRITE_STRINGS_FLAG)
+    check_cxx_compiler_flag("-Wunused-variable" SUPPORTS_WUNUSED_VARIABLE_FLAG)
+    check_cxx_compiler_flag("-Wno-unused-parameter" SUPPORTS_WNO_UNUSED_PARAMETER_FLAG)
+    check_cxx_compiler_flag("-Wno-unused-result" SUPPORTS_WNO_UNUSED_RESULT_FLAG)
+    check_cxx_compiler_flag("-Wno-unused-function" SUPPORTS_WNO_UNUSED_FUNCTION_FLAG)
+    target_compile_options(${YI_PROJECT_NAME}
+        PRIVATE
+            $<$<BOOL:${SUPPORTS_WALL_FLAG}>:-Wall>
+            $<$<BOOL:${SUPPORTS_WEXTRA_FLAG}>:-Wextra>
+            $<$<BOOL:${SUPPORTS_WNO_FLOAT_EQUAL_FLAG}>:-Wno-float-equal>
+            $<$<BOOL:${SUPPORTS_WPOINTER_ARITH_FLAG}>:-Wpointer-arith>
+            $<$<BOOL:${SUPPORTS_WWRITE_STRINGS_FLAG}>:-Wwrite-strings>
+            $<$<BOOL:${SUPPORTS_WUNUSED_VARIABLE_FLAG}>:-Wunused-variable>
+            $<$<BOOL:${SUPPORTS_WNO_UNUSED_PARAMETER_FLAG}>:-Wno-unused-parameter> # for JSExecutor header
+            $<$<BOOL:${SUPPORTS_WNO_UNUSED_RESULT_FLAG}>:-Wno-unused-result>
+            $<$<BOOL:${SUPPORTS_WNO_UNUSED_FUNCTION_FLAG}>:-Wno-unused-function>
     )
 endif()
 
@@ -249,55 +277,56 @@ yi_configure_asset_copying(PROJECT_TARGET ${PROJECT_NAME}
     EXCLUDED_EXTENSIONS ${YI_EXCLUDED_ASSET_FILE_EXTENSIONS}
 )
 
+if (YI_LOCAL_JS)
+    target_compile_definitions(${PROJECT_NAME}
+        PRIVATE YI_LOCAL_JS_APP
+    )
+endif()
+
+if (YI_LOCAL_JS_INLINE)
+    target_compile_definitions(${PROJECT_NAME}
+        PRIVATE YI_INLINE_JS_APP
+    )
+endif()
+
 include(Modules/react/YiConfigureJsBundling)
 find_program (YARN_EXECUTABLE yarn)
 if (YARN_EXECUTABLE)
 
+    # The yarn command causes batch scripts to terminate early. Prefixing with 'call' prevents this.
+    if(CMAKE_GENERATOR MATCHES "Visual Studio" OR CMAKE_GENERATOR MATCHES "NMake")
+        set(_YARN_COMMAND_PREFIX "call")
+    endif()
     get_filename_component(_NODE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
     get_filename_component(_REACT_NATIVE_YOUI_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../react-native-youi" ABSOLUTE)
 
     add_custom_target(${PROJECT_NAME}_Yarn)
 
-    add_custom_command(TARGET ${PROJECT_NAME}_Yarn
-        COMMAND ${YARN_EXECUTABLE} link # fails silently if already linked elsewhere, but unlink is a hard error, so link anyway just so the next step does not fail out
-        COMMAND ${YARN_EXECUTABLE} unlink react-native-youi
-        COMMAND ${YARN_EXECUTABLE} link
-        COMMAND ${YARN_EXECUTABLE} install
-        WORKING_DIRECTORY "${_REACT_NATIVE_YOUI_DIR}"
-    )
+    if (YI_LOCAL_JS_INLINE)
+        set(js_bundle_output_dir ${_SRC_DIR}/InlineJSBundleGenerated)
+    else()
+        set(js_bundle_output_dir ${YI_BASE_OUTPUT_DIRECTORY}/assets/jsbundles)
+    endif()
 
-    add_custom_command(TARGET ${PROJECT_NAME}_Yarn
-        COMMAND ${YARN_EXECUTABLE} install
-        COMMAND ${YARN_EXECUTABLE} link react-native-youi
-        WORKING_DIRECTORY "${_NODE_DIR}"
-    )
-
- yi_configure_js_bundling(PROJECT_TARGET ${PROJECT_NAME}
+    yi_configure_js_bundling(PROJECT_TARGET ${PROJECT_NAME}
         YARN_TARGET ${PROJECT_NAME}_Yarn
         WORKING_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..
         INPUT_FILES index.youi.js
-        OUTPUT_DIR ${YI_BASE_OUTPUT_DIRECTORY}/assets/jsbundles
+        OUTPUT_DIR ${js_bundle_output_dir}
         PLATFORM ${YI_PLATFORM}
-        IS_DEV YI_LOCAL_JS_DEV
+        IS_DEV ${YI_LOCAL_JS_DEV}
+        MINIFY ${YI_LOCAL_JS_MINIFY}
+        INLINE ${YI_LOCAL_JS_INLINE}
+        ASSETS_DEST ${YI_BASE_OUTPUT_DIRECTORY}
     )
 
     add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_Yarn)
 
     unset(_NODE_DIR)
     unset(_REACT_NATIVE_YOUI_DIR)
+    unset(_YARN_COMMAND_PREFIX)
 
 endif()
-
-# Package node module
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/package.json.in
-    ${CMAKE_CURRENT_SOURCE_DIR}/../package.json
-    @ONLY
-)
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/app.json.in
-    ${CMAKE_CURRENT_SOURCE_DIR}/../app.json
-    @ONLY
-)
 
 # === END OF ASSET COPYING ====================================================
 
@@ -316,6 +345,3 @@ if (COMMAND yi_configure_packaging_for_platform)
 endif()
 
 # === END OF PROJECT PACKAGING ================================================
-
-include(Modules/YiCodeSanitizer)
-yi_sanitize_code(PROJECT_TARGET ${PROJECT_NAME})

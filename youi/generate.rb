@@ -9,7 +9,7 @@ class GenerateOptions
         options = OpenStruct.new
         options.platform = nil
         options.build_directory = nil
-        options.defines = { "YI_LOCAL_JS" => "0" }
+        options.defines = { "YI_LOCAL_JS" => "0", "YI_LOCAL_JS_INLINE" => "0" }
 
         platformList = ["Android", "Ios", "Linux", "Osx", "Ps4", "Roku4201en", "Tizen-Nacl", "Tvos", "Uwp", "Vs2013"]
         configurationList = ["Debug","Release"]
@@ -60,7 +60,7 @@ class GenerateOptions
                 "  - Ninja (default if installed)",
                 "  - Unix Makefiles (default without ninja)",
                 "UWP:",
-                "  - Visual Studio 14 Win64 [2015] (default)",
+                "  - Visual Studio 15 Win64 [2017] (default)",
                 "VS2013:",
                 "  - Visual Studio 12 Win64 [2013] (default)",
                 "  - Visual Studio 14 Win64 [2015]",
@@ -112,6 +112,12 @@ class GenerateOptions
                 "If included, JS bundles will be packaged locally, instead of fetched from a yarn server.") do
                 options.defines["YI_LOCAL_JS"] = "1"
             end
+                
+            opts.on("-i", "--inline",
+                "If included, JS bundles will be compiled directly into source code, instead of fetched from a yarn server.") do
+                options.defines["YI_LOCAL_JS"] = "1"
+                options.defines["YI_LOCAL_JS_INLINE"] = "1"
+            end
 
             opts.on_tail("-h", "--help", "Show usage and options list") do
                 puts opts
@@ -155,32 +161,52 @@ class GenerateOptions
         return nil
     end
 
+    def self.sort_versions(vers)
+        versions = []
+        vers.each { |v|
+            begin
+                t = Gem::Version::new(v)
+                versions.push(v)
+            rescue
+                # skip
+            end
+        }
+        versions = versions.sort_by { |v| Gem::Version.new(v) }.reverse
+    end
+
     def self.get_engine_dir()
+
         engine_dir = ""
-        unless ENV.has_key?("YOUIENGINE_HOME")
-            engine_dir = find_engine_dir_in_list([
-                File.join(__dir__, ".."),
-                File.join(__dir__, "..", ".."),
-                File.join(__dir__, "..", "..", ".."),
-                File.join(__dir__, "..", "..", "..", "..")
-            ])
+        engine_dir = find_engine_dir_in_list([
+            File.expand_path(__dir__),
+            File.join(__dir__, ".."),
+            File.join(__dir__, "..", ".."),
+            File.join(__dir__, "..", "..", ".."),
+            File.join(__dir__, "..", "..", "..", "..")
+        ])
 
-            unless engine_dir != nil
-                puts "ERROR: Could not locate an installation of You.i Engine. Please add the"
-                puts "YOUIENGINE_HOME variable to your environment and point it to the installation"
-                puts "of You.i Engine you would like to use."
-                abort
-            end
-        else
-            engine_dir = find_engine_dir_in_list([ ENV["YOUIENGINE_HOME"] ])
-
-            unless engine_dir != nil
-                puts "ERROR: Could not locate the installation of You.i Engine at '#{ENV["YOUIENGINE_HOME"]}'. Ensure that"
-                puts "the path provided in the YOUIENGINE_HOME environment variable is correct."
-                abort
-            end
+        if engine_dir != nil
+            puts "WARNING: Found in engine directory. Will use this SDK, but please do out of SDK build!"
+            return File.absolute_path(engine_dir)
         end
 
+        # List dirs in $HOME/youiengine
+        # Sort them in array
+        # if a version is specified, then use it,
+        # otherwise use the latest found...
+        # otherwise error out.
+
+        install_dir = File.join(ENV['HOME'], "youiengine")
+        versions = Dir.entries(install_dir)
+        versions = sort_versions(versions).map! {|v| File.join(install_dir, v)}
+        engine_dir = find_engine_dir_in_list(versions)
+
+        unless engine_dir != nil
+            puts "ERROR: Could not locate an installation of You.i Engine. Please add the"
+            puts "YOUIENGINE_HOME variable to your environment and point it to the installation"
+            puts "of You.i Engine you would like to use."
+            abort
+        end
         return File.absolute_path(engine_dir)
     end
 
@@ -208,10 +234,7 @@ class GenerateOptions
 
         command = "cmake"
         command << " -DYouiEngine_DIR=\"#{engine_dir}\""
-        command << " -DYI_PROJECT_DIR=\"#{source_dir}\""
         command << " -DYI_OUTPUT_DIR=\"#{build_dir}\""
-        command << " -DYI_JAVA_SOURCE_DIR=\"" << File.join("#{source_dir}", "build", "android") << "\""
-        command << " -DYI_JNI_LIBS_DIRS=\"" << File.join(engine_dir, "react", "react-native-youiengine", "dist", "android", "jniLibs") << "\""
 
         cmake_defines = ""
         options.defines.each do |key,value|
@@ -242,7 +265,7 @@ class GenerateOptions
             when /ios|tvos/i
                 options.generator = "Xcode"
             when /UWP/i
-                options.generator = "Visual Studio 14 Win64"
+                options.generator = "Visual Studio 15 Win64"
             when /vs2013/i
                 options.generator = "Visual Studio 12 Win64"
             when /ps4/i
@@ -279,6 +302,8 @@ class GenerateOptions
                 options.defines["CMAKE_BUILD_TYPE"] = "Debug"
             end
         end
+
+        options.defines["YI_YOUI_ENGINE_HOME"] = engine_dir
 
         source_dir = "#{__dir__}"
         build_dir = File.join("#{source_dir}", "build", "#{options.platform.downcase}")
