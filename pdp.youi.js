@@ -31,7 +31,7 @@ export default class PDP extends Component {
         });
 
         if (asset.videos.results.length > 0) {
-          Youtube.getInfo({ url: 'https://www.youtube.com/watch?v=' + asset.videos.results[0].key })
+          Youtube.getInfo({ url: 'http://www.youtube.com/watch?v=' + asset.videos.results[0].key })
           .then(video => this.video = video);
         }
       })
@@ -39,7 +39,7 @@ export default class PDP extends Component {
   }
 
   requestMovieDetailsAsync = (callback) => {
-    return fetch("https://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations,videos&language=en")
+    return fetch("http://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations,videos&language=en")
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson;
@@ -115,8 +115,8 @@ function Metadata(props) {
   director = director ? director.name : "";
   let stars = props.asset.credits.cast.slice(0, 3).map((member) => member["name"]).join(", ");
 
-  let posterSource = "https://image.tmdb.org/t/p/w500" + props.asset.poster_path;
-  let backdropSource = "https://image.tmdb.org/t/p/w1280" + props.asset.backdrop_path;
+  let posterSource = "http://image.tmdb.org/t/p/w500" + props.asset.poster_path;
+  let backdropSource = "http://image.tmdb.org/t/p/w1280" + props.asset.backdrop_path;
 
   return (
     <Fragment>
