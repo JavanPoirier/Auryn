@@ -16,13 +16,13 @@ if(YI_LOCAL_JS)
     set(USE_BUNDLED_ASSETS_DEST "YI_BUNDLED_ASSETS_DEST=${YI_BUNDLED_ASSETS_DEST}")
 endif()
 
-yi_define_module(RNTemplateApp
+yi_define_module(Auryn
     TYPE APPLICATION
     PROJECT_DIR ${_PROJECT_DIR}
     VARIABLES
-        "YI_PROJECT_NAME=RNTemplateApp"
-        "YI_PACKAGE_NAME=tv.youi.rntemplateapp"
-        "YI_DISPLAY_NAME=\"RN Template Project\""
+        "YI_PROJECT_NAME=Auryn"
+        "YI_PACKAGE_NAME=tv.youi.auryn"
+        "YI_DISPLAY_NAME=\"Auryn\""
         "YI_BUILD_NUMBER=1"
         "YI_VERSION_NUMBER=1.0.0"
         "YI_API_LEVEL=21"
