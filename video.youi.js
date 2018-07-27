@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Composition, TextRef, Video, ViewRef } from 'react-native-youi';
+import { Composition, TextRef, Video, ViewRef, VideoRef } from 'react-native-youi';
 
 import Scrubber from './scrubber.youi.js'
 import Timeline from './timeline.youi.js'
@@ -39,38 +39,39 @@ export default class VideoPlayer extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Video
-          style={styles.video}
-          ref={(ref) => {
-            this.video = ref;
-          }}
-          paused={this.state.paused}
-          source={this.state.videoSource}
-          onReady={() => this.setState({ paused: false })}
-          onPlaybackComplete={() => {
-            this.scrubber.setState({ thumbOpacity: 0 });
-            this.outTimeline.play()
-              .then(() => Navigation.popScreen());
-          }}
-          onCurrentTimeUpdated={currentTime => {
-            var s = Math.floor(currentTime.nativeEvent / 1000);
-            var m = Math.floor(s / 60);
-            var h = Math.floor(s / 3600);
-            s = s % 60;
-            m = m % 60;
-            h = h < 1 ? '' : h + ':';
-            m = m < 10 ? '0' + m : m;
-            s = s < 10 ? '0' + s : s;
-            var time = h + m + ':' + s;
-            this.setState({ currentTime: currentTime.nativeEvent, formattedTime: time });
-          }}
-          onDurationChanged={duration => {
-            this.setState({ duration: duration.nativeEvent });
-          }}
-        />
+      <View>
+
 
         <Composition source="Player_Main">
+          <VideoRef
+            name="Video-Surface-View"
+            ref={(ref) => {
+              this.video = ref;
+            }}
+            paused={this.state.paused}
+            source={this.state.videoSource}
+            onReady={() => this.video.play()}
+            onPlaybackComplete={() => {
+              this.scrubber.setState({ thumbOpacity: 0 });
+              this.outTimeline.play()
+                .then(() => Navigation.popScreen());
+            }}
+            onCurrentTimeUpdated={currentTime => {
+              var s = Math.floor(currentTime.nativeEvent / 1000);
+              var m = Math.floor(s / 60);
+              var h = Math.floor(s / 3600);
+              s = s % 60;
+              m = m % 60;
+              h = h < 1 ? '' : h + ':';
+              m = m < 10 ? '0' + m : m;
+              s = s < 10 ? '0' + s : s;
+              var time = h + m + ':' + s;
+              this.setState({ currentTime: currentTime.nativeEvent, formattedTime: time });
+            }}
+            onDurationChanged={duration => {
+              this.setState({ duration: duration.nativeEvent });
+            }}
+          />
           <ViewRef name="Playback-Controls">
 
             <Timeline
@@ -93,6 +94,10 @@ export default class VideoPlayer extends Component {
                 this.setState({
                   paused: !this.state.paused
                 })
+                if (this.state.paused)
+                  this.video.pause();
+                else
+                  this.video.play();
               }}
             />
 
@@ -102,13 +107,15 @@ export default class VideoPlayer extends Component {
               toggle={false}
               onClick={() => {
                 this.scrubber.setState({ thumbOpacity: 0 });
+                this.video.pause();
 
                 this.outTimeline.play()
                   .then(() => {
                     Navigation.popScreen();
                   });
 
-                this.video.seek(this.state.duration);
+                // this.video.seek(this.state.duration);
+
               }}
             />
           </ViewRef>
@@ -130,7 +137,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center'
   },
-  video: {
+  scrubber: {
     position: 'absolute',
     width: 1920,
     height: 1080

@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: 1380,
     height: 12,
-    top: -361.5
+    top: 718,
+    left: 270
   },
   track: {
     backgroundColor: '#D5A23E'
