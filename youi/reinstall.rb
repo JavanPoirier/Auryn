@@ -10,11 +10,11 @@ class ReinstallOptions
         options.config = "Debug"
         options.build_directory = nil
         options.target = nil
-        options.app_name = "EmptySample"
+        options.app_name = "youi"
         options.start = false
-        options.package = "tv.youi.EmptySample"
+        options.package = nil
         options.uninstall_first = false
-        
+
         configurationList = ["Debug","Release"]
 
         options_parser = OptionParser.new do |opts|
@@ -42,7 +42,7 @@ class ReinstallOptions
                 end
             end
 
-            opts.on("-s", "--start", 
+            opts.on("-s", "--start",
                 "Attempts to auto-start the application on the device after it has been installed.",
                 "  (For iOS builds, the application will be launched with the LLDB debugger.)",
                 "  (For Android builds, the application will be launched through an intent.)") do
@@ -51,7 +51,9 @@ class ReinstallOptions
 
             opts.on("-p", "--package_name PACKAGE", String,
                 "The name of the package used by the application.",
-                "  (Only used on iOS platform during uninstallation. If omitted, defaults to 'tv.youi.<project_name>'.)") do |package|
+                "  (Used by the iOS, tvOS and Tizen-NaCl platforms.)",
+                "  (On iOS/tvOS if omitted, defaults to 'tv.youi.<project_name>'.)",
+                "  (On Tizen-NaCl if omitted, defaults to '<Package ID>.<Project Name Lower>'.)") do |package|
                 options.package = package
             end
 
@@ -67,10 +69,17 @@ class ReinstallOptions
                 options.uninstall_first = true
             end
 
+            opts.on("-t", "--target TARGET_DEVICE",
+                "Specifies the device that the app will be installed on.",
+                "  (Only used for Tizen-NaCl this is the device serial which is the first column when running the 'sdb devices' command.)",
+                "  (Defaults to the first connected device.)") do |target_device|
+                options.target = target_device
+            end
+
             opts.on_tail("-h", "--help", "Show usage and options list") do
                 puts opts
                 exit 1
-            end            
+            end
         end
 
         if args.count == 0
@@ -100,7 +109,7 @@ class ReinstallOptions
             gradle_suffix = ".bat"
         else
             gradle_prefix = "./"
-            gradle_suffix = ""    
+            gradle_suffix = ""
         end
 
         gradle_filename = File.join(options.build_directory, "project", "#{gradle_prefix}gradlew#{gradle_suffix}")
@@ -109,7 +118,7 @@ class ReinstallOptions
             options.gradle_filename = gradle_filename
             options.gradle_prefix = gradle_prefix
             options.gradle_suffix = gradle_suffix
-            
+
             ReinstallOptions.reinstall_android(options)
         else
             cache_file = File.join(options.build_directory, "CMakeCache.txt")
@@ -119,18 +128,30 @@ class ReinstallOptions
                 abort
             end
 
-            cache_contents = File.read(cache_file)
-            unless cache_contents.match(/^(YI_PLATFORM:)[A-Z]+(=ios)$/i)
-                puts "ERROR: Only iOS and Android can use the reinstall.rb script."
-                abort
-            end
-
             script_path = File.join(__dir__, "build.rb")
             unless system("ruby \"#{script_path}\" -b #{options.build_directory} -c #{options.config}")
                 abort
             end
 
-            ReinstallOptions.reinstall_ios(options)
+            cache_contents = File.read(cache_file)
+            cmake_platform = ReinstallOptions.get_variable_from_cmake_cache_contents(cache_contents, "YI_PLATFORM")
+            if cmake_platform.nil?
+                puts "YI_PLATFORM variable not found in CMakeCache. Was a platform specified when generating?"
+                abort
+            end
+
+            if cmake_platform.casecmp("ios") == 0
+                options.os = "iphoneos"
+                ReinstallOptions.reinstall_ios_tvos(options)
+            elsif cmake_platform.casecmp("tvos") == 0
+                options.os = "appletvos"
+                ReinstallOptions.reinstall_ios_tvos(options)
+            elsif cmake_platform.casecmp("tizen-nacl") == 0
+                ReinstallOptions.reinstall_tizen_nacl(options, cache_contents)
+            else
+              puts "ERROR: Only iOS, tvOS and Android can use the reinstall.rb script."
+              abort
+            end
         end
     end
 
@@ -158,8 +179,12 @@ class ReinstallOptions
         }
     end
 
-    def self.reinstall_ios(options)
-        base_path = File.join(options.build_directory, "#{options.config}-iphoneos")
+    def self.reinstall_ios_tvos(options)
+        if options.package.nil?
+            options.package = "tv.youi.youi"
+        end
+
+        base_path = File.join(options.build_directory, "#{options.config}-#{options.os}")
         bundle_pathname = File.join(base_path, "#{options.app_name}.app")
 
         unless Dir.exist?(bundle_pathname)
@@ -217,6 +242,124 @@ class ReinstallOptions
             abort
         end
     end
+
+    def self.reinstall_tizen_nacl(options, cache_contents)
+        tizen_sdk_home = ENV["TIZEN_SDK_HOME"]
+        if tizen_sdk_home.nil?
+            puts "TIZEN_SDK_HOME environment variable not found. Ensure that TIZEN_SDK_HOME is set to the path to Tizen Studio before running this script."
+            abort
+        end
+
+        tizen_cli_command = File.join(tizen_sdk_home, "tools", "ide", "bin", "tizen")
+        unless File.exist?(tizen_cli_command)
+            # We might be on Windows
+            tizen_cli_command = File.join(tizen_sdk_home, "tools", "ide", "bin", "tizen.bat")
+        end
+
+        unless File.exist?(tizen_cli_command)
+            puts "Tizen Studio CLI command not found. Ensure that Tizen Studio is installed at '#{tizen_sdk_home}' and that the Native and Web CLI have been installed via the Tizen Studio Package Manager."
+            abort
+        end
+        
+        tizen_sdb_command = File.join(tizen_sdk_home, "tools", "sdb")
+        unless File.exist?(tizen_sdb_command)
+            # We might be on Windows
+            tizen_sdb_command = File.join(tizen_sdk_home, "tools", "sdb.exe")
+        end
+
+        unless File.exist?(tizen_sdb_command)
+            puts "Tizen Studio sdb command not found. Ensure that Tizen Studio is installed at '#{tizen_sdk_home}'."
+            abort
+        end
+
+        cmake_project_name = ReinstallOptions.get_variable_from_cmake_cache_contents(cache_contents, "CMAKE_PROJECT_NAME")
+        if cmake_project_name.nil?
+            puts "Could not obtain cmake_project_name from CMakeCache. Ensure project is generated properly or specify the --package_name argument."
+            abort
+        end
+        cmake_project_name_lower = cmake_project_name.downcase
+
+        yi_output_filename = ReinstallOptions.get_variable_from_cmake_cache_contents(cache_contents, "YI_OUTPUT_FILENAME")
+        if yi_output_filename.nil?
+            yi_output_filename = cmake_project_name
+        end
+
+        path_to_app_wgt = File.join(options.build_directory, "#{yi_output_filename}-#{options.config}@#{options.config}.wgt")
+        unless File.exist?(path_to_app_wgt)
+            puts "Could not find packaged wgt at expeccted location '#{path_to_app_wgt}'. Did the build and package succeed?"
+            abort
+        end
+
+        app_package_id = ReinstallOptions.get_variable_from_cmake_cache_contents(cache_contents, "YI_PACKAGE_ID")
+        if app_package_id.nil?
+            puts "Could not obtain YI_PACKAGE_ID from CMakeCache. Ensure YI_PACKAGE_ID was specified in CMake or specify the --package_name argument."
+            abort
+        end
+
+        # sdb returns the following format:
+        # List of devices attached
+        # emulator-26101          device          t-1111-1
+        device_listing = `#{tizen_sdb_command} devices`
+        device_serials = nil
+        if device_listing_scan = device_listing.scan(/^(\S+)\s+(\S+)\s+(\S+)$/m)
+            device_serials = device_listing_scan.flatten
+        end
+
+        if device_serials.nil?
+            puts "No devices connected. Ensure at least one device is connected before running this script. Use '#{tizen_sdb_command} connect <ip address>' to connect a device."
+            abort
+        end
+
+        if options.target.nil?
+            # Target not set default to the first connected device.
+            options.target = device_serials[0]
+        end
+
+        unless device_serials.include?(options.target)
+            puts "Specified target device #{options.target} is not connected. Use '#{tizen_sdb_command} connect <ip address>' to connect a device."
+            abort()
+        end
+
+        if options.package.nil?
+            options.package = "#{app_package_id}.#{cmake_project_name_lower}"
+        end
+
+        match = options.package.match(/[a-zA-Z]+\.[a-z]+/)
+        if match.nil?
+            puts "Invalid package name specified for Tizen-NaCl. Expecting something of the form: 'FmHXPQSBwZ.sampleapp'"
+            abort
+        end
+
+        if options.uninstall_first
+            puts "-----------------------------------------------------------"
+            puts "Uninstalling #{options.package} from #{options.target}"
+            puts "-----------------------------------------------------------"
+            system("#{tizen_cli_command} uninstall -p #{options.package} -s #{options.target}")
+        end
+
+        puts "-------------------------------------------------------"
+        puts "Installing #{options.package} on #{options.target}"
+        puts "-------------------------------------------------------"
+        system("#{tizen_cli_command} install -n #{path_to_app_wgt} -s #{options.target}")
+
+        if options.start
+            # Note: We try to run regardless of the install result because for some reason the command returns failure when the install was a success.
+            puts "-------------------------------------------------------"
+            puts "Launching #{options.package} on #{options.target}"
+            puts "------------------------------------------------------"
+            system("#{tizen_cli_command} run -p #{options.package} -s #{options.target}")
+        end
+    end
+
+    def self.get_variable_from_cmake_cache_contents(cache_contents, variable_name)
+        if match = cache_contents.match(/^#{variable_name}:[A-Z]+=(\S*)/i)
+            variable_value = match.captures
+            return variable_value[0]
+        else
+            return nil 
+        end
+    end
+
 end
 
 options = ReinstallOptions.parse(ARGV)

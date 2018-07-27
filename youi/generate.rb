@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # © You i Labs Inc. 2000-2017. All rights reserved.
 
+require 'fileutils'
 require 'optparse'
 require 'ostruct'
 
@@ -9,9 +10,17 @@ class GenerateOptions
         options = OpenStruct.new
         options.platform = nil
         options.build_directory = nil
-        options.defines = { "YI_LOCAL_JS" => "0", "YI_LOCAL_JS_INLINE" => "0" }
+        options.defines = {}
+        options.url_scheme = nil
+        options.use_jsbundle = false
+        options.inline_jsbundle = false
+        options.dev_jsbundle = false
+        options.minify_jsbundle = false
+        options.jsbundle_directories = []
+        options.jsbundle_files = []
+        options.jsbundle_working_directory = nil
 
-        platformList = ["Android", "Ios", "Linux", "Osx", "Ps4", "Roku4201en", "Tizen-Nacl", "Tvos", "Uwp", "Vs2013"]
+        platformList = ["Android", "Ios", "Linux", "Osx", "Ps4", "Roku4", "Roku4201en", "Tizen-Nacl", "Tvos", "Uwp", "Vs2017"]
         configurationList = ["Debug","Release"]
 
         unless File.exist?(File.join("#{__dir__}", "CMakeLists.txt"))
@@ -28,14 +37,13 @@ class GenerateOptions
             opts.on("-p", "--platform PLATFORM", String,
                 "(REQUIRED) The name of the platform to generate the project for.",
                 "  Supported platforms: #{platformList}") do |platform|
-                if platformList.any? { |s| s.casecmp(platform)==0 }
-                    options.platform = platform
-                    options.defines["YI_PLATFORM:INTERNAL"] = platform
-                else
+                unless platformList.any? { |s| s.casecmp(platform)==0 }
                     puts "ERROR: \"#{platform}\" is an invalid platform."
                     puts opts
                     exit 1
                 end
+
+                options.platform = platform
             end
 
             opts.on("-g", "--generator GENERATOR", String,
@@ -56,15 +64,13 @@ class GenerateOptions
                 "Tizen-NaCl:",
                 "  - Eclipse CDT4 - Ninja (default if installed)",
                 "  - Eclipse CDT4 - Unix Makefiles (default without ninja)",
-                "Roku4201EN:",
+                "Roku4201EN/Roku4:",
                 "  - Ninja (default if installed)",
                 "  - Unix Makefiles (default without ninja)",
                 "UWP:",
                 "  - Visual Studio 15 Win64 [2017] (default)",
-                "VS2013:",
-                "  - Visual Studio 12 Win64 [2013] (default)",
-                "  - Visual Studio 14 Win64 [2015]",
-                "  - Visual Studio 15 Win64 [2017]",
+                "VS2017:",
+                "  - Visual Studio 15 Win64 [2017] (default)",
                 "Linux/OSX:",
                 "  - Any generator supported by CMake. See cmake --help for details.",
                 "  - OSX Default: Xcode",
@@ -102,22 +108,50 @@ class GenerateOptions
                 end
             end
 
+            opts.on("--url_scheme URL_SCHEME", String,
+                "If included, the app will be able to be launched with deep links using this scheme.") do |url_scheme|
+                options.url_scheme = url_scheme
+            end
+
             opts.on("-v", "--version major.minor.patch.tweak", String,
                 "The version number of the project",
                 "  (Uses the format 'major[.minor[.patch[.tweak]]]')") do |version|
                 options.defines["YI_VERSION_NUMBER"] = version
             end
 
-            opts.on("-l", "--local",
+            opts.on("--dev",
+                "If included, the js file will be bundled with the dev flag enabled. Requires either the '--local' or '--inline' option to be set.") do
+                options.dev_jsbundle = true
+            end
+
+            opts.on("--minify",
+                "If included, the js file will be bundled with the minify flag enabled. Requires either the '--local' or '--inline' option to be set.") do
+                options.minify_jsbundle = true
+            end
+
+            opts.on("--local",
                 "If included, JS bundles will be packaged locally, instead of fetched from a yarn server.") do
-                options.defines["YI_LOCAL_JS"] = "1"
+                options.use_jsbundle = true
             end
-                
-            opts.on("-i", "--inline",
+
+            opts.on("--inline",
                 "If included, JS bundles will be compiled directly into source code, instead of fetched from a yarn server.") do
-                options.defines["YI_LOCAL_JS"] = "1"
-                options.defines["YI_LOCAL_JS_INLINE"] = "1"
+                options.use_jsbundle = true
+                options.inline_jsbundle = true
             end
+
+            opts.on("--files file,file,file", Array,
+                "If included, adds the given JS files to the JS bundle.") do |files|
+                options.jsbundle_files = files
+                options.jsbundle_files.uniq!
+            end
+
+            opts.on("--directories directory,directory,directory", Array,
+                "If included, adds the JS files of the listed directories to the JS bundle.") do |directories|
+                options.jsbundle_directories = directories
+                options.jsbundle_directories.uniq!
+            end
+
 
             opts.on_tail("-h", "--help", "Show usage and options list") do
                 puts opts
@@ -135,6 +169,83 @@ class GenerateOptions
             mandatory = [:platform]
             missing = mandatory.select { |param| options[param].nil? }
             raise OptionParser::MissingArgument, missing.join(', ') unless missing.empty?
+
+            if options.generator.nil?
+                case options.platform
+                when /android/i
+                    options.generator = "AndroidStudio"
+                when /osx/i
+                    options.generator = "Xcode"
+                when /ios|tvos/i
+                    options.generator = "Xcode"
+                when /UWP/i
+                    options.generator = "Visual Studio 15 Win64"
+                when /vs2017/i
+                    options.generator = "Visual Studio 15 Win64"
+                when /ps4/i
+                    options.generator = "Visual Studio 14"
+                when /linux/i
+                    options.generator = "Unix Makefiles"
+                when /Tizen-NaCl/i
+                    ninja = system('ninja', [:out, :err] => File::NULL)
+                    make = system('make', [:out, :err] => File::NULL)
+                    if ninja != nil
+                        options.generator = "Eclipse CDT4 - Ninja"
+                    elsif make != nil
+                        options.generator = "Eclipse CDT4 - Unix Makefiles"
+                    else
+                        puts "Could not find ninja or unix make. One of these generators must be installed to generate for Tizen-NaCl."
+                        exit 1
+                    end
+                when /roku4201en|roku4/i
+                    ninja = system('ninja', [:out, :err] => File::NULL)
+                    make = system('make', [:out, :err] => File::NULL)
+                    if ninja != nil
+                        options.generator = "Ninja"
+                    elsif make != nil
+                        options.generator = "Unix Makefiles"
+                    else
+                        puts "Could not find ninja or unix make. One of these generators must be installed to generate for Roku4201EN or Roku4."
+                        exit 1
+                    end
+                end
+            end
+
+            unless options.generator.match(/(Visual Studio)|Xcode|AndroidStudio/)
+                unless options.defines.has_key?("CMAKE_BUILD_TYPE")
+                    options.defines["CMAKE_BUILD_TYPE"] = "Debug"
+                end
+            end
+
+            if (options.url_scheme)
+                 options.defines["YI_BUNDLE_URL_SCHEME"] = "#{options.url_scheme}"
+            end
+
+            options.defines["YI_YOUIENGINE_HOME"] = GenerateOptions.get_engine_dir()
+
+            unless options.build_directory
+                options.build_directory = File.expand_path(File.join(__dir__, "build", "#{options.platform.downcase}"))
+
+                unless options.generator.match(/(Visual Studio)|Xcode/)
+                    options.build_directory = File.join(options.build_directory, "#{options.defines["CMAKE_BUILD_TYPE"]}")
+                end
+            end
+
+            if options.inline_jsbundle
+                options.defines["YI_LOCAL_JS_INLINE"] = "ON"
+            end
+
+            if options.use_jsbundle
+                options.jsbundle_working_directory = File.expand_path(File.join(__dir__, ".."))
+
+                options.defines["YI_LOCAL_JS"] = "ON"
+                options.defines["YI_BUNDLED_ASSETS_DEST"] = File.expand_path(File.join(options.build_directory, "Staging", "generated", "bundled_assets"))
+
+                unless options.jsbundle_files.length > 0 || options.jsbundle_directories.length > 0
+                    puts "ERROR: The --files or --directories argument is missing. Add one of these to specify the files/directories to include within the JS bundle."
+                    abort
+                end
+            end
 
             return options
         rescue OptionParser::ParseError => e
@@ -154,6 +265,12 @@ class GenerateOptions
         dirs.each { |d|
             config_filepath = File.absolute_path(File.join(d, "YouiEngineConfig.cmake"))
             if File.exist?(config_filepath)
+                return d
+            end
+
+            # When in the engine repository, the YouiEngineConfig.cmake file doesn't exist at the root folder.
+            # It's necessary to check for an alternative file.
+            if File.exist?(File.absolute_path(File.join(d, "core", "CMakeLists.txt")))
                 return d
             end
         }
@@ -199,12 +316,18 @@ class GenerateOptions
         install_dir = File.join(ENV['HOME'], "youiengine")
         versions = Dir.entries(install_dir)
         versions = sort_versions(versions).map! {|v| File.join(install_dir, v)}
+
+        if ENV['YOUIENGINE_HOME'] != nil && File.exist?(ENV['YOUIENGINE_HOME'])
+            puts "YOUIENGINE_HOME environment variable set. Check as highest priority SDK."
+            versions.insert(0, ENV['YOUIENGINE_HOME'])
+        end
+
         engine_dir = find_engine_dir_in_list(versions)
 
         unless engine_dir != nil
-            puts "ERROR: Could not locate an installation of You.i Engine. Please add the"
-            puts "YOUIENGINE_HOME variable to your environment and point it to the installation"
-            puts "of You.i Engine you would like to use."
+            puts "ERROR: Could not locate an installation of You.i Engine. Please install via youi-tv"
+            puts "command line app, and try again, or add the YOUIENGINE_HOME variable to your"
+            puts "environment and point it to the installation of You.i Engine you would like to use."
             abort
         end
         return File.absolute_path(engine_dir)
@@ -227,15 +350,9 @@ class GenerateOptions
             build_dir = options.build_directory
         end
         build_dir = File.absolute_path(build_dir)
-
-        unless options.defines.has_key?("YI_PROJECT_NAME")
-            options.defines["YI_PROJECT_NAME"] = File.basename(File.expand_path("#{__dir__}/../"))
-        end
-
         command = "cmake"
-        command << " -DYouiEngine_DIR=\"#{engine_dir}\""
         command << " -DYI_OUTPUT_DIR=\"#{build_dir}\""
-
+        
         cmake_defines = ""
         options.defines.each do |key,value|
             cmake_defines << " -D#{key}=\"#{value}\""
@@ -258,71 +375,10 @@ class GenerateOptions
             command = "cmake "
         end
 
-        if options.generator.nil?
-            case options.platform
-            when /osx/i
-                options.generator = "Xcode"
-            when /ios|tvos/i
-                options.generator = "Xcode"
-            when /UWP/i
-                options.generator = "Visual Studio 15 Win64"
-            when /vs2013/i
-                options.generator = "Visual Studio 12 Win64"
-            when /ps4/i
-                options.generator = "Visual Studio 14"
-            when /linux/i
-                options.generator = "Unix Makefiles"
-            when /Tizen-NaCl/i
-                ninja = system('ninja', [:out, :err] => File::NULL)
-                make = system('make', [:out, :err] => File::NULL)
-                if ninja != nil
-                    options.generator = "Eclipse CDT4 - Ninja"
-                elsif make != nil
-                    options.generator = "Eclipse CDT4 - Unix Makefiles"
-                else
-                    puts "Could not find ninja or unix make. One of these generators must be installed to generate for Tizen-NaCl."
-                    exit 1
-                end
-            when /roku4201en/i
-                ninja = system('ninja', [:out, :err] => File::NULL)
-                make = system('make', [:out, :err] => File::NULL)
-                if ninja != nil
-                    options.generator = "Ninja"
-                elsif make != nil
-                    options.generator = "Unix Makefiles"
-                else
-                    puts "Could not find ninja or unix make. One of these generators must be installed to generate for Roku4201EN."
-                    exit 1
-                end
-            end
-        end
-
-        unless options.generator.match(/(Visual Studio)|Xcode/)
-            unless options.defines.has_key?("CMAKE_BUILD_TYPE")
-                options.defines["CMAKE_BUILD_TYPE"] = "Debug"
-            end
-        end
-
-        options.defines["YI_YOUI_ENGINE_HOME"] = engine_dir
-
-        source_dir = "#{__dir__}"
-        build_dir = File.join("#{source_dir}", "build", "#{options.platform.downcase}")
-
-        if !options.build_directory.nil?
-            build_dir = options.build_directory
-        elsif !options.generator.match(/(Visual Studio)|Xcode/)
-            build_dir = File.join(build_dir, "#{options.defines["CMAKE_BUILD_TYPE"]}")
-        end
-        build_dir = File.absolute_path(build_dir)
-
-        command << "\"-B#{build_dir}\" \"-H#{source_dir}\""
+        command << "\"-B#{options.build_directory}\" \"-H#{__dir__}\""
 
         unless options.generator.nil?
             command << " -G \"#{options.generator}\""
-        end
-
-        if options.platform.match(/vs2013/i)
-            command << " -T v120"
         end
 
         unless options.defines.has_key?("CMAKE_TOOLCHAIN_FILE")
@@ -353,9 +409,69 @@ class GenerateOptions
 
         return command
     end
+
+    def self.generate_bundle(options)
+        unless options.use_jsbundle || options.inline_jsbundle
+            return
+        end
+
+        output_dir = File.expand_path(File.join(options.build_directory, "Staging", "generated", "jsbundles"))
+        FileUtils.rmdir(output_dir)
+
+        engine_dir = get_engine_dir()
+        command = "ruby \"#{engine_dir}/tools/workflow/bundlejs.rb\" --working_directory \"#{options.jsbundle_working_directory}\" --platform \"#{options.platform.downcase}\""
+
+        input_files = ""
+        options.jsbundle_files.each_index do |index|
+            input_files << options.jsbundle_files[index]
+
+            if index < options.jsbundle_files.length - 1
+                input_files << ";"
+            end
+        end
+
+        if input_files.length > 0
+            command << " --input_files \"#{input_files}\""
+        end
+
+        input_directories = ""
+        options.jsbundle_directories.each_index do |index|
+            input_directories << options.jsbundle_directories[index]
+
+            if index < options.jsbundle_directories.length - 1
+                input_directories << ";"
+            end
+        end
+
+        if input_directories.length > 0
+            command << " --input_directories \"#{input_directories}\""
+        end
+
+        if options.defines.has_key?("CMAKE_BUILD_TYPE")
+            if options.defines["CMAKE_BUILD_TYPE"].match(/Debug/i)
+                command << " --dev"
+            end
+        end
+
+        output_dir = File.expand_path(File.join(options.build_directory, "Staging", "generated", "jsbundles"))
+        if options.inline_jsbundle
+            command << " --minify"
+            command << " --inline"
+
+            output_dir = File.expand_path(File.join(output_dir, "InlineJSBundleGenerated"))
+        end
+
+        command << " --output \"#{output_dir}\""
+        command << " --assets_dest \"#{options.defines["YI_BUNDLED_ASSETS_DEST"]}\""
+
+        unless system(command)
+            abort
+        end
+    end
 end
 
 options = GenerateOptions.parse(ARGV)
+GenerateOptions.generate_bundle(options)
 command = GenerateOptions.create_command(options)
 
 puts "#=============================================="

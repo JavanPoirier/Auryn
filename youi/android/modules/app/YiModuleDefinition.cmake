@@ -8,18 +8,26 @@ if(YI_LOCAL_JS)
     if(YI_LOCAL_JS_INLINE)
         set(USE_JS_INLINE "YI_LOCAL_JS_INLINE=ON")
     endif()
+
+    if(NOT YI_BUNDLED_ASSETS_DEST)
+        message(FATAL_ERROR "Local JS bundles are being used but the YI_BUNDLED_ASSETS_DEST variable was not passed in.")
+    endif()
+
+    set(USE_BUNDLED_ASSETS_DEST "YI_BUNDLED_ASSETS_DEST=${YI_BUNDLED_ASSETS_DEST}")
 endif()
 
-yi_define_module(Auryn
+yi_define_module(RNTemplateApp
     TYPE APPLICATION
     PROJECT_DIR ${_PROJECT_DIR}
     VARIABLES
-        "YI_PROJECT_NAME=Auryn"
-        "YI_PACKAGE_NAME=tv.youi.auryn"
+        "YI_PROJECT_NAME=RNTemplateApp"
+        "YI_PACKAGE_NAME=tv.youi.rntemplateapp"
+        "YI_DISPLAY_NAME=\"RN Template Project\""
         "YI_BUILD_NUMBER=1"
         "YI_VERSION_NUMBER=1.0.0"
         "YI_API_LEVEL=21"
         "YI_TARGET_SDK_API_LEVEL=27"
         ${USE_LOCAL_JS}
         ${USE_JS_INLINE}
+        ${USE_BUNDLED_ASSETS_DEST}
 )

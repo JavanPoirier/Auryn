@@ -119,6 +119,28 @@ class BuildOptions
         return command
     end
 
+    def self.find_engine_dir_in_list(dirs)
+        if dirs == nil || dirs.length == 0
+            puts "ERROR: A non-empty list of directories must be passed to 'find_engine_dir_in_list'."
+            abort
+        end
+
+        dirs.each { |d|
+            config_filepath = File.absolute_path(File.join(d, "YouiEngineConfig.cmake"))
+            if File.exist?(config_filepath)
+                return d
+            end
+
+            # When in the engine repository, the YouiEngineConfig.cmake file doesn't exist at the root folder.
+            # It's necessary to check for an alternative file.
+            if File.exist?(File.absolute_path(File.join(d, "core", "CMakeLists.txt")))
+                return d
+            end
+        }
+
+        return nil
+    end
+
     def self.create_cmake_command(options)
         # Parse the CMakeCache.txt file and inspect the 'YI_PLATFORM' variable.
         # If the line matches the regex '^(YI_PLATFORM:)[A-Z]+(=ps4)', then
@@ -135,19 +157,14 @@ class BuildOptions
         if cache_contents.match(/^(YI_PLATFORM:)[A-Z]+(=ps4)/i)
             # PS4 uses the built-in version of CMake, so we need to reference that
             # version instead of the standard one installed on the host machine.
-            unless ENV.has_key?("YOUIENGINE_HOME")
-                puts "Building for PS4 requires the custom build of CMake that ships with You.i Engine."
-                puts "Set the 'YOUIENGINE_HOME' environment variable to point to your installation of the"
-                puts "You.i Engine."
-                abort
-            else
-                engine_dir = ENV["YOUIENGINE_HOME"]
-                if !File.exist?(File.join(engine_dir, "YouiEngineConfig.cmake"))
-                    puts "Could not locate the installation of You.i Engine at #{engine_dir}. Ensure that"
-                    puts "the path provided in the YOUIENGINE_HOME environment variable is correct."
-                    abort
-                end
-            end
+
+            engine_dir = find_engine_dir_in_list([
+                File.expand_path(__dir__),
+                File.join(__dir__, ".."),
+                File.join(__dir__, "..", ".."),
+                File.join(__dir__, "..", "..", ".."),
+                File.join(__dir__, "..", "..", "..", "..")
+            ])
 
             command = "\"#{File.absolute_path(File.join(engine_dir, "tools", "build", "cmake", "bin", "cmake.exe"))}\""
         else
