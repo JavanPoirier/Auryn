@@ -842,7 +842,7 @@ sources {
   srctype: AE_FONT_SRC
   name: "Montserrat-Light"
   copy_source: true
-  file_name: "yi_Montserrat-Light.ttf"
+  file_name: "yi_Montserrat-Light.otf"
   style_name: "Light"
 }
 sources {

@@ -13,9 +13,9 @@
 #define APP_HEIGHT (1080)
 #endif
 
-CYIApp *AppFactory::Create()
+std::unique_ptr<CYIApp> AppFactory::Create()
 {
-    return new App();
+    return std::make_unique<App>();
 }
 
 int AppFactory::GetWindowWidth()
