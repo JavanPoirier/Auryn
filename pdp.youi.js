@@ -20,57 +20,52 @@ export default class PDP extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {};
   }
 
   componentDidMount() {
     this.requestMovieDetailsAsync()
-      .then((asset) => {
+      .then(asset => {
         this.setState({
           details: asset,
         });
 
         if (asset.videos.results.length > 0) {
           Youtube.getInfo({ url: 'http://www.youtube.com/watch?v=' + asset.videos.results[0].key })
-          .then(video => this.video = video);
+            .then(video => this.video = video);
         }
       })
       .then(this.inTimeline.play);
   }
 
-  requestMovieDetailsAsync = (callback) => {
+  requestMovieDetailsAsync = () => {
     return fetch("http://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations,videos&language=en")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      .then(response => response.json())
+      .catch(error => console.error(error));
   }
 
   render() {
     let recommendations = this.state.details ?
       Array(4).fill().map((_, i) =>
         this.state.details.recommendations.results.length > i ?
-        <ListItem
-          key={this.state.details.recommendations.results[i].id}
-          name={'Poster' + (i + 1)}
-          image='Image-2x3'
-          asset={this.state.details.recommendations.results[i]}
-          onClick={() => {
-            this.outTimeline.play().then(() => {
-              Navigation.addScreen(<PDP key={this.state.details.recommendations.results[i].id} id={this.state.details.recommendations.results[i].id} />);
-            });
-          }}
-        /> : null
+          <ListItem
+            key={this.state.details.recommendations.results[i].id}
+            name={'Poster' + (i + 1)}
+            image='Image-2x3'
+            asset={this.state.details.recommendations.results[i]}
+            onClick={() => {
+              this.outTimeline.play().then(() => {
+                Navigation.addScreen(<PDP key={this.state.details.recommendations.results[i].id} id={this.state.details.recommendations.results[i].id} />);
+              });
+            }}
+          /> : null
       ) : null;
 
     return (
       <Composition source="PDP_Main">
 
-        <Timeline name="Out" ref={(timeline) => this.outTimeline = timeline} />
-        <Timeline name="In" ref={(timeline) => this.inTimeline = timeline} />
+        <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
+        <Timeline name="In" ref={timeline => this.inTimeline = timeline} />
 
         <ButtonRef
           name="Btn-Play"
@@ -79,9 +74,7 @@ export default class PDP extends Component {
               Navigation.addScreen(
                 <VideoPlayer
                   video={this.video}
-                  onBack={() => {
-                    this.inTimeline.play();
-                  }}
+                  onBack={() => this.inTimeline.play()}
                 />);
             });
           }}
@@ -90,10 +83,10 @@ export default class PDP extends Component {
         <Button
           name='Btn-Back'
           onClick={() => {
-            this.outTimeline.play().then(() => { Navigation.popScreen(); });
+            this.outTimeline.play().then(() => Navigation.popScreen());
           }} />
 
-        <Metadata asset={this.state.details}/>
+        <Metadata asset={this.state.details} />
 
         {recommendations}
       </Composition>
@@ -128,5 +121,5 @@ function Metadata(props) {
       <ImageRef name="Image-2x3" source={{ uri: posterSource }} />
       <ImageRef name="Image-16x9" source={{ uri: backdropSource }} />
     </Fragment>
-    );
+  );
 }

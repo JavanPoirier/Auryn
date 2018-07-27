@@ -1,16 +1,11 @@
-import React, {Component} from 'react';
-import {BackHandler} from 'react-native-youi'
-
 export default class Navigation {
 
   static stack = [];
 
-  static onScreenChanged = () => {}
+  static onScreenChanged = () => { }
 
   static addScreen(screen) {
-    this
-      .stack
-      .push(screen);
+    this.stack.push(screen);
     this.onScreenChanged(screen);
   }
 
@@ -19,9 +14,7 @@ export default class Navigation {
   }
 
   static popScreen() {
-    this
-      .stack
-      .pop();
+    this.stack.pop();
     this.onScreenChanged(this.getCurrentScreen());
     return this.getCurrentScreen();
   }
