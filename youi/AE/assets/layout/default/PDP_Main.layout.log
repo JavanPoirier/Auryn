@@ -835,13 +835,15 @@ sources {
   name: "Montserrat-Bold"
   copy_source: true
   file_name: "yi_Montserrat-Bold.otf"
+  style_name: "Bold"
 }
 sources {
   uid: 7
   srctype: AE_FONT_SRC
   name: "Montserrat-Light"
   copy_source: true
-  file_name: "yi_Montserrat-Light.otf"
+  file_name: "yi_Montserrat-Light.ttf"
+  style_name: "Light"
 }
 sources {
   uid: 8
@@ -849,6 +851,7 @@ sources {
   name: "Montserrat-Regular"
   copy_source: true
   file_name: "yi_Montserrat-Regular.otf"
+  style_name: "Regular"
 }
 sources {
   uid: 65441

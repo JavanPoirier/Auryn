@@ -224,6 +224,7 @@ sources {
   name: "ArialMT"
   copy_source: true
   file_name: "yi_Arial-Regular.ttf"
+  style_name: "Regular"
 }
 sources {
   uid: 1545

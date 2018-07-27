@@ -172,4 +172,5 @@ sources {
   name: "Montserrat-Regular"
   copy_source: true
   file_name: "yi_Montserrat-Regular.otf"
+  style_name: "Regular"
 }
