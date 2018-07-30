@@ -8,7 +8,7 @@ option(YI_BUILD_CLOUD_SERVER "Build the application as a cloud server (for cloud
 
 set(YI_PROJECT_NAME "Auryn") # The name of the project. When building for Android, this is passed from Android Studio.
 set(YI_PACKAGE_NAME "tv.youi.auryn") # The package name used for the project.")
-set(YI_DISPLAY_NAME "React-Native Template") # The name of the application displayed on the device.
+set(YI_DISPLAY_NAME "Auryn") # The name of the application displayed on the device.
 set(YI_ASSET_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/AE")
 set(YI_EXCLUDED_ASSET_FILE_EXTENSIONS ".log,.aep" CACHE STRING "Comma-delimited list of file extensions whose files should be omitted during asset copying.")
 set(YI_YOUI_ENGINE_VERSION 4.999.0 CACHE STRING "Version required for the You.i Engine.")
