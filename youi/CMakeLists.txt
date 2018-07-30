@@ -8,7 +8,7 @@ option(YI_BUILD_CLOUD_SERVER "Build the application as a cloud server (for cloud
 
 set(YI_PROJECT_NAME "Auryn") # The name of the project. When building for Android, this is passed from Android Studio.
 set(YI_PACKAGE_NAME "tv.youi.auryn") # The package name used for the project.")
-set(YI_DISPLAY_NAME "Auryn") # The name of the application displayed on the device.
+set(YI_DISPLAY_NAME "React-Native Template") # The name of the application displayed on the device.
 set(YI_ASSET_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/AE")
 set(YI_EXCLUDED_ASSET_FILE_EXTENSIONS ".log,.aep" CACHE STRING "Comma-delimited list of file extensions whose files should be omitted during asset copying.")
 set(YI_YOUI_ENGINE_VERSION 4.999.0 CACHE STRING "Version required for the You.i Engine.")
@@ -22,15 +22,13 @@ set(UWP_BUNDLE_URL_SCHEME "<Extensions>\n\t\t\t\t<uap:Extension Category=\"windo
 set(_STAGING_DIR "${CMAKE_CURRENT_BINARY_DIR}/Staging")
 set(_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
+# This is used solely for projects that are built within the You.i Engine repository and can be removed for commercial projects.
+include(${YouiEngine_DIR}/cmake/Hunter/YiInitializeHunter.cmake OPTIONAL)
+project(${YI_PROJECT_NAME} LANGUAGES C CXX)
+
 if(NOT (CMAKE_GENERATOR MATCHES "Visual Studio" OR CMAKE_GENERATOR MATCHES Xcode) AND NOT CMAKE_BUILD_TYPE)
     message(FATAL_ERROR "CMAKE_BUILD_TYPE needs to be set for single configuration generators. Default builds are not allowed.")
 endif()
-
-find_path(YouiEngine_DIR
-    YouiEngineConfigVersion.cmake
-    PATHS
-        ${YI_YOUIENGINE_HOME} # Passed by generate.rb script with the path to the package / repo.
-)
 
 # The ordering of the paths within the CMAKE_MODULE_PATH variable is imporant, since having the project's 'cmake'
 # path first will tell CMake to first look under that folder when the short form 'include(Modules/<module>)' command is used
@@ -52,8 +50,6 @@ if(YI_BUILD_CLOUD_SERVER)
     list(INSERT CMAKE_MODULE_PATH 0 ${YI_CLOUD_CMAKE_DIR})
 endif()
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
-project(${YI_PROJECT_NAME} LANGUAGES C CXX)
 
 if(NOT DEFINED YI_PLATFORM)
     message(FATAL_ERROR "The YI_PLATFORM variable was not given to the generator.")

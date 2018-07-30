@@ -12,6 +12,8 @@ class GenerateOptions
         options.build_directory = nil
         options.defines = {}
         options.url_scheme = nil
+
+        options.engine_hint = nil
         options.use_jsbundle = false
         options.inline_jsbundle = false
         options.dev_jsbundle = false
@@ -113,10 +115,9 @@ class GenerateOptions
                 options.url_scheme = url_scheme
             end
 
-            opts.on("-v", "--version major.minor.patch.tweak", String,
-                "The version number of the project",
-                "  (Uses the format 'major[.minor[.patch[.tweak]]]')") do |version|
-                options.defines["YI_VERSION_NUMBER"] = version
+            opts.on("--youi_version ENGINE_HINT", String,
+                "Can be set to a path (/path/to/5.0.0) or semantic version (5.0.0), and this project will generate against that version") do |engine_hint|
+                options.engine_hint = engine_hint
             end
 
             opts.on("--dev",
@@ -221,8 +222,6 @@ class GenerateOptions
                  options.defines["YI_BUNDLE_URL_SCHEME"] = "#{options.url_scheme}"
             end
 
-            options.defines["YI_YOUIENGINE_HOME"] = GenerateOptions.get_engine_dir()
-
             unless options.build_directory
                 options.build_directory = File.expand_path(File.join(__dir__, "build", "#{options.platform.downcase}"))
 
@@ -291,7 +290,8 @@ class GenerateOptions
         versions = versions.sort_by { |v| Gem::Version.new(v) }.reverse
     end
 
-    def self.get_engine_dir()
+    def self.get_engine_dir(options)
+        install_dir = File.join(ENV['HOME'], "youiengine")
 
         engine_dir = ""
         engine_dir = find_engine_dir_in_list([
@@ -301,33 +301,31 @@ class GenerateOptions
             File.join(__dir__, "..", "..", ".."),
             File.join(__dir__, "..", "..", "..", "..")
         ])
-
         if engine_dir != nil
             puts "WARNING: Found in engine directory. Will use this SDK, but please do out of SDK build!"
             return File.absolute_path(engine_dir)
         end
 
-        # List dirs in $HOME/youiengine
-        # Sort them in array
-        # if a version is specified, then use it,
-        # otherwise use the latest found...
-        # otherwise error out.
-
-        install_dir = File.join(ENV['HOME'], "youiengine")
-        versions = Dir.entries(install_dir)
-        versions = sort_versions(versions).map! {|v| File.join(install_dir, v)}
-
-        if ENV['YOUIENGINE_HOME'] != nil && File.exist?(ENV['YOUIENGINE_HOME'])
-            puts "YOUIENGINE_HOME environment variable set. Check as highest priority SDK."
-            versions.insert(0, ENV['YOUIENGINE_HOME'])
+        if options.engine_hint != nil
+            engine_dir = find_engine_dir_in_list([File.join(install_dir, options.engine_hint), options.engine_hint])
+            if engine_dir != nil
+                puts "Found engine directory #{engine_dir}"
+                return File.absolute_path(engine_dir)
+            else
+                puts "ERROR: Passed youi_engine variable #{options.engine_hint}, but could not find valid You.i Engine install"
+                puts "Ensure that you have that version installed in $HOME/youiengine/, or the provided path is correct."
+                abort
+            end
         end
 
+        versions = Dir.entries(install_dir)
+        versions = sort_versions(versions).map! {|v| File.join(install_dir, v)}
         engine_dir = find_engine_dir_in_list(versions)
 
         unless engine_dir != nil
             puts "ERROR: Could not locate an installation of You.i Engine. Please install via youi-tv"
-            puts "command line app, and try again, or add the YOUIENGINE_HOME variable to your"
-            puts "environment and point it to the installation of You.i Engine you would like to use."
+            puts "command line app, and try again, or pass the path to the installed SDK with the"
+            puts "generate.rb option --youi_version=[arg]"
             abort
         end
         return File.absolute_path(engine_dir)
@@ -343,7 +341,7 @@ class GenerateOptions
     end
 
     def self.create_android_command(options)
-        engine_dir = GenerateOptions.get_engine_dir()
+        engine_dir = GenerateOptions.get_engine_dir(options)
         source_dir = "#{__dir__}"
         build_dir = File.join("#{source_dir}", "build", "#{options.platform.downcase}")
         if !options.build_directory.nil?
@@ -364,7 +362,7 @@ class GenerateOptions
     end
 
     def self.create_cmake_command(options)
-        engine_dir = GenerateOptions.get_engine_dir()
+        engine_dir = GenerateOptions.get_engine_dir(options)
 
         case options.platform
         when /ps4/i
@@ -418,7 +416,7 @@ class GenerateOptions
         output_dir = File.expand_path(File.join(options.build_directory, "Staging", "generated", "jsbundles"))
         FileUtils.rmdir(output_dir)
 
-        engine_dir = get_engine_dir()
+        engine_dir = get_engine_dir(options)
         command = "ruby \"#{engine_dir}/tools/workflow/bundlejs.rb\" --working_directory \"#{options.jsbundle_working_directory}\" --platform \"#{options.platform.downcase}\""
 
         input_files = ""
