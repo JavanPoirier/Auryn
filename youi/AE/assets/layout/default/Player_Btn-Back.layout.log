@@ -178,7 +178,7 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 4"
+    name: "ArrowSegment4"
     id: 16154
     sourceid: 16464
     transform {
@@ -213,7 +213,7 @@ activecomp {
     parentid: 16153
   }
   layer {
-    name: "White Solid 2"
+    name: "ArrowSegment3"
     id: 16155
     sourceid: 16486
     transform {
@@ -248,43 +248,8 @@ activecomp {
     parentid: 16153
   }
   layer {
-    name: "White Solid 5"
+    name: "ArrowSegment2"
     id: 16156
-    sourceid: 16514
-    transform {
-      anchorPoint {
-        x: 0
-        y: 1.5
-        z: 0
-      }
-      scale {
-        x: 0
-        y: 1.1111112
-        z: 1
-      }
-      position {
-        x: -18.611111
-        y: -3.0798612
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: -45
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    parentid: 16153
-  }
-  layer {
-    name: "White Solid 3"
-    id: 16157
     sourceid: 16506
     transform {
       anchorPoint {
@@ -310,6 +275,41 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 45
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 16153
+  }
+  layer {
+    name: "ArrowSegment1"
+    id: 16157
+    sourceid: 16514
+    transform {
+      anchorPoint {
+        x: 0
+        y: 1.5
+        z: 0
+      }
+      scale {
+        x: 0
+        y: 1.1111112
+        z: 1
+      }
+      position {
+        x: -18.611111
+        y: -3.0798612
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: -45
       opacity: 1
     }
     acceptsshadows: true
@@ -551,7 +551,7 @@ sources {
   copy_source: false
 }
 sources {
-  uid: 16514
+  uid: 16506
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
@@ -564,7 +564,7 @@ sources {
   copy_source: false
 }
 sources {
-  uid: 16506
+  uid: 16514
   srctype: AE_SOLID_SRC
   color {
     alpha: 1

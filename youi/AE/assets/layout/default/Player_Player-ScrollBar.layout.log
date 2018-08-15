@@ -4,8 +4,42 @@ activecomp {
   height: 297
   defaultcameradistance: 1933.3334
   layer {
-    name: "Progress-Track-Tip-Right"
+    name: "Progress-Track-Tip-Left"
     id: 693
+    sourceid: 1448
+    transform {
+      anchorPoint {
+        x: 3
+        y: 6
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 3
+        y: 258.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 180
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Progress-Track-Tip-Right"
+    id: 694
     sourceid: 1448
     transform {
       anchorPoint {
@@ -39,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Progress-Track"
-    id: 694
+    id: 695
     sourceid: 711
     transform {
       anchorPoint {
@@ -73,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Progress-Bar-Tip-Left"
-    id: 695
+    id: 696
     sourceid: 1447
     transform {
       anchorPoint {
@@ -99,7 +133,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
@@ -107,7 +141,7 @@ activecomp {
   }
   layer {
     name: "Progress-Bar-Tip-Right"
-    id: 696
+    id: 697
     sourceid: 1447
     transform {
       anchorPoint {
@@ -141,7 +175,7 @@ activecomp {
   }
   layer {
     name: "Progress-Bar"
-    id: 697
+    id: 698
     sourceid: 707
     transform {
       anchorPoint {
@@ -196,9 +230,9 @@ sources {
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.94509804248809814
-    green: 0.94509804248809814
-    blue: 0.94509804248809814
+    red: 0.94509810209274292
+    green: 0.94509810209274292
+    blue: 0.94509810209274292
   }
   width: 1380
   height: 12
@@ -220,9 +254,9 @@ sources {
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.83529412746429443
+    red: 0.92941182851791382
     green: 0.63529413938522339
-    blue: 0.24313725531101227
+    blue: 0.21960785984992981
   }
   width: 1380
   height: 12

@@ -38,9 +38,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "PlayPause-Container"
+    name: "Btn-PlayPause"
     id: 635
-    sourceid: 17234
+    sourceid: 1360
     transform {
       anchorPoint {
         x: 62.5
@@ -122,13 +122,13 @@ activecomp {
     }
   }
   layer {
-    name: "Player-Scrubber"
+    name: "Player-ScrollBar"
     id: 637
-    sourceid: 1545
+    sourceid: 693
     transform {
       anchorPoint {
-        x: 816
-        y: 146.5
+        x: 696
+        y: 148.5
         z: 0
       }
       scale {
@@ -156,12 +156,12 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Btn-Back-Container"
+    name: "Btn-Back"
     id: 638
-    sourceid: 17139
+    sourceid: 16149
     transform {
       anchorPoint {
-        x: 105
+        x: 50
         y: 40.5
         z: 0
       }
@@ -171,8 +171,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 1737
-        y: 120
+        x: 1791
+        y: 119
         z: 0
       }
       orientation {
@@ -195,9 +195,9 @@ activecomp {
     green: 0
     blue: 0
   }
-  childtemplates: "Player_PlayPause-Container"
-  childtemplates: "Player_Player-Scrubber"
-  childtemplates: "Player_Btn-Back-Container"
+  childtemplates: "Player_Btn-PlayPause"
+  childtemplates: "Player_Player-ScrollBar"
+  childtemplates: "Player_Btn-Back"
 }
 sources {
   uid: 2648
@@ -211,9 +211,9 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 17234
+  uid: 1360
   srctype: AE_COMP_SRC
-  name: "Player_PlayPause-Container.layout"
+  name: "Player_Btn-PlayPause.layout"
   width: 125
   height: 125
   copy_source: true
@@ -227,18 +227,18 @@ sources {
   style_name: "Regular"
 }
 sources {
-  uid: 1545
+  uid: 693
   srctype: AE_COMP_SRC
-  name: "Player_Player-Scrubber.layout"
-  width: 1632
-  height: 293
+  name: "Player_Player-ScrollBar.layout"
+  width: 1392
+  height: 297
   copy_source: true
 }
 sources {
-  uid: 17139
+  uid: 16149
   srctype: AE_COMP_SRC
-  name: "Player_Btn-Back-Container.layout"
-  width: 210
+  name: "Player_Btn-Back.layout"
+  width: 100
   height: 81
   copy_source: true
 }

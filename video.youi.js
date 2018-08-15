@@ -87,7 +87,6 @@ export default class VideoPlayer extends Component {
             <TextRef name="Placeholder-Time" text={this.state.formattedTime} />
 
             <Button
-              container="PlayPause-Container"
               name="Btn-PlayPause"
               toggle={true}
               onClick={() => {
@@ -102,7 +101,6 @@ export default class VideoPlayer extends Component {
             />
 
             <Button
-              container="Btn-Back-Container"
               name="Btn-Back"
               toggle={false}
               onClick={() => {

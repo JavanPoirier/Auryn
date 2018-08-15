@@ -1,7 +1,7 @@
 tracks {
   binding: IS_VISIBLE
   targetid: 693
-  targetname: "Progress-Track-Tip-Right"
+  targetname: "Progress-Track-Tip-Left"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -12,7 +12,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 694
-  targetname: "Progress-Track"
+  targetname: "Progress-Track-Tip-Right"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -23,6 +23,17 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 695
+  targetname: "Progress-Track"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 696
   targetname: "Progress-Bar-Tip-Left"
   keytimes {
     datatype: AE_INT_DATA
@@ -33,13 +44,19 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 695
+  targetid: 696
   targetname: "Progress-Bar-Tip-Left"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
     inttype: AE_INTERP_LINEAR
-    fvalue1: 0
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 0.61666667
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
   }
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -49,7 +66,7 @@ tracks {
   }
   keytimes {
     datatype: AE_FLOAT_DATA
-    timeOffset: 0.66770828
+    timeOffset: 0.66666663
     inttype: AE_INTERP_LINEAR
     fvalue1: 1
   }
@@ -63,7 +80,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 696
+  targetid: 697
   targetname: "Progress-Bar-Tip-Right"
   keytimes {
     datatype: AE_INT_DATA
@@ -74,7 +91,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 696
+  targetid: 697
   targetname: "Progress-Bar-Tip-Right"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -104,7 +121,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 697
+  targetid: 698
   targetname: "Progress-Bar"
   keytimes {
     datatype: AE_INT_DATA
@@ -115,7 +132,7 @@ tracks {
 }
 tracks {
   binding: SCALE
-  targetid: 697
+  targetid: 698
   targetname: "Progress-Bar"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
@@ -164,34 +181,18 @@ markers {
   duration: 1.6666666
   name: "ScrollStart"
   tracksSelection {
-    targetid: 695
-    binding: OPACITY
-  }
-  tracksSelection {
     targetid: 696
     binding: OPACITY
   }
   tracksSelection {
     targetid: 697
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 698
     binding: SCALE
   }
   alltracks: false
   id: 28
-  looping: false
-}
-markers {
-  starttime: 4.65
-  duration: 0.33333334
-  name: "ScrollHide"
-  alltracks: false
-  id: 30
-  looping: false
-}
-markers {
-  starttime: 5.65
-  duration: 0.33333334
-  name: "ScrollShow"
-  alltracks: false
-  id: 29
   looping: false
 }
