@@ -20,9 +20,8 @@ export default class Scrubber extends Component {
   render() {
     return (
       <View style={[
-        styles.container, {
-          opacity: this.state.thumbOpacity
-        }
+        styles.container,
+        { opacity: this.state.thumbOpacity }
       ]}>
         <View style={[
           styles.track, {
@@ -32,9 +31,8 @@ export default class Scrubber extends Component {
         <Image
           source={{ uri: "res://drawable/default/Scrubber-Thumb.png" }}
           style={[
-            styles.thumb, {
-              opacity: this.props.currentTime === 0 ? 0 : 1
-            }
+            styles.thumb,
+            { opacity: this.props.currentTime === 0 ? 0 : 1 }
           ]} />
       </View>
     );

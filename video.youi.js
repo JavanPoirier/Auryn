@@ -77,10 +77,10 @@ export default class VideoPlayer extends Component {
             <Timeline
               name="In"
               ref={timeline => this.inTimeline = timeline}
-              onLoad={() => {
+              onLoad={() =>
                 this.inTimeline.play()
                   .then(() => this.scrubber.setState({ thumbOpacity: 1 }))
-              }}
+              }
             />
             <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
 
@@ -111,9 +111,6 @@ export default class VideoPlayer extends Component {
                   .then(() => {
                     Navigation.popScreen();
                   });
-
-                // this.video.seek(this.state.duration);
-
               }}
             />
           </ViewRef>
