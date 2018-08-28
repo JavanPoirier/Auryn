@@ -4,7 +4,6 @@ import { Composition, TextRef, ViewRef, VideoRef } from '@youi/react-native-youi
 
 import { Scrubber, Timeline, Button } from '../components'
 
-import Navigation from '../navigation.youi.js'
 
 export default class VideoPlayer extends Component {
 
@@ -14,12 +13,9 @@ export default class VideoPlayer extends Component {
       uri: "http://www.streambox.fr/playlists/x31jrg1/x31jrg1.m3u8",
       type: "HLS"
     }
-
-    if (this.props.video && this.props.video.formats) {
-      let format = this
-        .props
-        .video
-        .formats
+    let video = this.props.navigation.getParam('video')
+    if (video && video.formats) {
+      let format = video.formats
         .find(format => format.type.indexOf('mp4') > 0 && format.quality === 'hd720');
       if (format) {
         videoSource = {
@@ -51,7 +47,9 @@ export default class VideoPlayer extends Component {
             onPlaybackComplete={() => {
               this.scrubber.setState({ thumbOpacity: 0 });
               this.outTimeline.play()
-                .then(() => Navigation.popScreen());
+                .then(() => {
+                  this.props.navigation.goBack(null);
+                });
             }}
             onCurrentTimeUpdated={currentTime => {
               var s = Math.floor(currentTime.nativeEvent / 1000);
@@ -127,7 +125,9 @@ export default class VideoPlayer extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'black',
+    flex: 1,
   },
   scrubber: {
     position: 'absolute',

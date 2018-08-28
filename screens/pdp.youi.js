@@ -5,11 +5,10 @@ import {
   ImageRef,
   TextRef,
 } from '@youi/react-native-youi';
-import Youtube from 'youtube-stream-url'
 
+import Youtube from 'youtube-stream-url'
 import { ListItem, Timeline, Button } from '../components'
-import Navigation from '../navigation.youi.js'
-import { Player } from '../screens'
+import { NavigationActions } from 'react-navigation';
 
 export default class PDP extends Component {
 
@@ -19,6 +18,7 @@ export default class PDP extends Component {
   }
 
   componentDidMount() {
+    this.props.navigation.addListener('willFocus', () => this.inTimeline.play())
     this.requestMovieDetailsAsync()
       .then(asset => {
         this.setState({
@@ -34,7 +34,7 @@ export default class PDP extends Component {
   }
 
   requestMovieDetailsAsync = () => {
-    return fetch("http://api.themoviedb.org/3/movie/" + this.props.id + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations,videos&language=en")
+    return fetch("http://api.themoviedb.org/3/movie/" + this.props.navigation.getParam('id') + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations,videos&language=en")
       .then(response => response.json())
       .catch(error => console.error(error));
   }
@@ -50,7 +50,12 @@ export default class PDP extends Component {
             asset={this.state.details.recommendations.results[i]}
             onClick={() => {
               this.outTimeline.play().then(() => {
-                Navigation.addScreen(<PDP key={this.state.details.recommendations.results[i].id} id={this.state.details.recommendations.results[i].id} />);
+                let navigateAction = NavigationActions.navigate({
+                  routeName: 'PDP',
+                  params: { id: this.state.details.recommendations.results[i].id},
+                  key: this.state.details.recommendations.results[i].id
+                })
+                this.props.navigation.dispatch(navigateAction)
               });
             }}
           /> : null
@@ -66,11 +71,11 @@ export default class PDP extends Component {
           name="Btn-Play"
           onClick={() => {
             this.outTimeline.play().then(() => {
-              Navigation.addScreen(
-                <Player
-                  video={this.video}
-                  onBack={() => this.inTimeline.play()}
-                />);
+              let navigateAction = NavigationActions.navigate({
+                routeName: 'Player',
+                params: { video: this.video, onBack: () => this.inTimeline.play()},
+              })
+              this.props.navigation.dispatch(navigateAction)
             });
           }}
         />
@@ -78,7 +83,10 @@ export default class PDP extends Component {
         <Button
           name='Btn-Back'
           onClick={() => {
-            this.outTimeline.play().then(() => Navigation.popScreen());
+            this.outTimeline.play().then(() => {
+              this.props.navigation.goBack(null);
+              // this.props.navigation.dispatch(backAction)
+            });
           }} />
 
         <Metadata asset={this.state.details} />

@@ -5,8 +5,7 @@ import {
 } from '@youi/react-native-youi';
 
 import { ListItem, Timeline } from '../components'
-import Navigation from '../navigation.youi.js'
-import { PDP } from '../screens'
+import { NavigationActions } from 'react-navigation';
 
 export default class Lander extends Component {
 
@@ -25,6 +24,7 @@ export default class Lander extends Component {
   }
 
   componentDidMount() {
+    this.props.navigation.addListener('didFocus', () => this.inTimeline.play())
     this.requestPopularMoviesAsync()
       .then(results => {
         this.setState({
@@ -43,7 +43,14 @@ export default class Lander extends Component {
           image='Container-Image'
           onClick={() => {
             this.outTimeline.play()
-              .then(() => Navigation.addScreen(<PDP id={this.state.assets[i].id} />));
+              .then(() => {
+                let navigateAction = NavigationActions.navigate({
+                  routeName: 'PDP',
+                  params: { id: this.state.assets[i].id },
+                  key: this.state.assets[i].id
+                })
+                this.props.navigation.dispatch(navigateAction)
+              });
           }}
         />
       ) : null;
@@ -52,7 +59,10 @@ export default class Lander extends Component {
       <Composition source="Lander_Main">
 
         <ViewRef name="Scroller">
-          <Timeline name="In" onLoad={timeline => timeline.play()} />
+          <Timeline name="In"
+            ref={timeline => this.inTimeline = timeline}
+            onLoad={timeline => timeline.play()}
+          />
           <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
         </ViewRef>
 
