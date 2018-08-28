@@ -4,8 +4,42 @@ activecomp {
   height: 1080
   defaultcameradistance: 2666.6667
   layer {
-    name: "Video-Surface-View"
+    name: "Background"
     id: 1
+    sourceid: 18712
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Video-Surface-View"
+    id: 2
     sourceid: 581
     transform {
       anchorPoint {
@@ -39,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Playback-Controls"
-    id: 2
+    id: 3
     sourceid: 634
     transform {
       anchorPoint {
@@ -73,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Buffering"
-    id: 3
+    id: 4
     sourceid: 599
     transform {
       anchorPoint {
@@ -118,6 +152,19 @@ activecomp {
   childtemplates: "Player_Video-Surface-View"
   childtemplates: "Player_Playback-Controls"
   childtemplates: "Player_Buffering"
+}
+sources {
+  uid: 18712
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  width: 1920
+  height: 1080
+  copy_source: false
 }
 sources {
   uid: 581
