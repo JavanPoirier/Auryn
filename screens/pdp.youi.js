@@ -1,20 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import {
-  View,
-} from 'react-native';
-import {
   ButtonRef,
   Composition,
   ImageRef,
   TextRef,
-} from 'react-native-youi';
+} from '@youi/react-native-youi';
 import Youtube from 'youtube-stream-url'
 
-import Button from './button.youi.js'
-import ListItem from './listitem.youi.js';
-import Navigation from './navigation.youi.js'
-import Timeline from './timeline.youi.js'
-import VideoPlayer from './video.youi.js'
+import { ListItem, Timeline, Button } from '../components'
+import Navigation from '../navigation.youi.js'
+import { Player } from '../screens'
 
 export default class PDP extends Component {
 
@@ -72,7 +67,7 @@ export default class PDP extends Component {
           onClick={() => {
             this.outTimeline.play().then(() => {
               Navigation.addScreen(
-                <VideoPlayer
+                <Player
                   video={this.video}
                   onBack={() => this.inTimeline.play()}
                 />);

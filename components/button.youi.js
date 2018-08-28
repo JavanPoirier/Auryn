@@ -3,7 +3,7 @@ import {
   ButtonRef,
   TimelineRef,
   ViewRef,
-} from 'react-native-youi';
+} from '@youi/react-native-youi';
 
 export default class Button extends Component {
   constructor(props) {

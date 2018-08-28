@@ -5,9 +5,9 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import Lander from './lander.youi.js';
+import Lander from './screens/lander.youi.js';
 import Navigation from './navigation.youi.js';
-import { BackHandler } from 'react-native-youi';
+import { BackHandler } from '@youi/react-native-youi';
 
 export default class YiReactApp extends Component {
 

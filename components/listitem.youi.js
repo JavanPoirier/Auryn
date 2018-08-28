@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ButtonRef,
   ImageRef,
-} from 'react-native-youi';
+} from '@youi/react-native-youi';
 
 export default ListItem = props => (
   <ButtonRef name={props.name} onClick={() => props.onClick()}>

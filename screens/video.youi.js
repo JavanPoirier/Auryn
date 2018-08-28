@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Composition, TextRef, Video, ViewRef, VideoRef } from 'react-native-youi';
+import { Composition, TextRef, ViewRef, VideoRef } from '@youi/react-native-youi';
 
-import Scrubber from './scrubber.youi.js'
-import Timeline from './timeline.youi.js'
-import Button from './button.youi.js'
-import Navigation from './navigation.youi.js'
+import { Scrubber, Timeline, Button } from '../components'
+
+import Navigation from '../navigation.youi.js'
 
 export default class VideoPlayer extends Component {
 
@@ -40,8 +39,6 @@ export default class VideoPlayer extends Component {
   render() {
     return (
       <View>
-
-
         <Composition source="Player_Main">
           <VideoRef
             name="Video-Surface-View"

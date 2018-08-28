@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import {
   Composition,
   ViewRef,
-} from 'react-native-youi';
+} from '@youi/react-native-youi';
 
-import ListItem from './listitem.youi.js';
-import Navigation from './navigation.youi.js'
-import PDP from './pdp.youi.js'
-import Timeline from './timeline.youi.js'
+import { ListItem, Timeline } from '../components'
+import Navigation from '../navigation.youi.js'
+import { PDP } from '../screens'
 
 export default class Lander extends Component {
 

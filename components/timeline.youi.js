@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TimelineRef } from 'react-native-youi';
+import { TimelineRef } from '@youi/react-native-youi';
 
 export default class Timeline extends Component {
   render = () => (
