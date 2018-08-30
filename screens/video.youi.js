@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Composition, TextRef, ViewRef, VideoRef } from '@youi/react-native-youi';
+import { Composition, TextRef, ViewRef, VideoRef, BackHandler } from '@youi/react-native-youi';
 
 import { Scrubber, Timeline, Button } from '../components'
 
@@ -30,6 +30,17 @@ export default class VideoPlayer extends Component {
       formattedTime: "00:00",
       paused: true
     };
+
+    BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
+  }
+
+  navigateBack = () => {
+    this.scrubber.setState({ thumbOpacity: 0 });
+    this.video.pause();
+    this.outTimeline.play()
+    .then(() => {
+      this.props.navigation.goBack(null);
+    });
   }
 
   render() {
@@ -44,13 +55,7 @@ export default class VideoPlayer extends Component {
             paused={this.state.paused}
             source={this.state.videoSource}
             onReady={() => this.video.play()}
-            onPlaybackComplete={() => {
-              this.scrubber.setState({ thumbOpacity: 0 });
-              this.outTimeline.play()
-                .then(() => {
-                  this.props.navigation.goBack(null);
-                });
-            }}
+            onPlaybackComplete={() => this.navigateBack}
             onCurrentTimeUpdated={currentTime => {
               var s = Math.floor(currentTime.nativeEvent / 1000);
               var m = Math.floor(s / 60);
@@ -98,15 +103,7 @@ export default class VideoPlayer extends Component {
             <Button
               name="Btn-Back"
               toggle={false}
-              onClick={() => {
-                this.scrubber.setState({ thumbOpacity: 0 });
-                this.video.pause();
-
-                this.outTimeline.play()
-                  .then(() => {
-                    Navigation.popScreen();
-                  });
-              }}
+              onClick={() => this.navigateBack}
             />
           </ViewRef>
         </Composition>

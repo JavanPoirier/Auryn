@@ -24,7 +24,7 @@ export default class Lander extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', () => this.inTimeline.play())
+    this.props.navigation.addListener('didFocus', this.inTimeline.play)
     this.requestPopularMoviesAsync()
       .then(results => {
         this.setState({

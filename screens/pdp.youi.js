@@ -4,6 +4,7 @@ import {
   Composition,
   ImageRef,
   TextRef,
+  BackHandler
 } from '@youi/react-native-youi';
 
 import Youtube from 'youtube-stream-url'
@@ -17,8 +18,21 @@ export default class PDP extends Component {
     this.state = {};
   }
 
+  navigateBack = () => {
+    this.outTimeline.play().then(() => {
+      this.props.navigation.goBack(null);
+    });
+  }
+
   componentDidMount() {
-    this.props.navigation.addListener('willFocus', () => this.inTimeline.play())
+    this.props.navigation.addListener('willBlur', () => {
+      BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
+    })
+
+    this.props.navigation.addListener('willFocus', () => {
+      BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
+      this.inTimeline.play()
+    })
     this.requestMovieDetailsAsync()
       .then(asset => {
         this.setState({
@@ -83,10 +97,7 @@ export default class PDP extends Component {
         <Button
           name='Btn-Back'
           onClick={() => {
-            this.outTimeline.play().then(() => {
-              this.props.navigation.goBack(null);
-              // this.props.navigation.dispatch(backAction)
-            });
+            this.navigateBack();
           }} />
 
         <Metadata asset={this.state.details} />

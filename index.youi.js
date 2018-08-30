@@ -38,10 +38,6 @@ export default class YiReactApp extends Component {
 
   constructor() {
     super();
-    BackHandler.addEventListener("onBackButtonPressed", () => {
-      let backAction = NavigationActions.back();
-      this.stackNavigation.dispatch(backAction);
-    });
   }
 
   render() {
