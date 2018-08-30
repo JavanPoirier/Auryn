@@ -1,12 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  ButtonRef,
-  Composition,
-  ImageRef,
-  TextRef,
-  BackHandler
-} from '@youi/react-native-youi';
-
+import { ButtonRef, Composition, ImageRef, TextRef, BackHandler, FocusManager } from '@youi/react-native-youi';
 import Youtube from 'youtube-stream-url'
 import { ListItem, Timeline, Button } from '../components'
 import { NavigationActions } from 'react-navigation';
@@ -15,7 +8,9 @@ export default class PDP extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      focusable: true
+    };
   }
 
   navigateBack = () => {
@@ -27,10 +22,12 @@ export default class PDP extends Component {
   componentDidMount() {
     this.props.navigation.addListener('willBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
+      this.setState({focusable: false})
     })
 
     this.props.navigation.addListener('willFocus', () => {
       BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
+      this.setState({focusable: true});
       this.inTimeline.play()
     })
     this.requestMovieDetailsAsync()
@@ -61,6 +58,7 @@ export default class PDP extends Component {
             key={this.state.details.recommendations.results[i].id}
             name={'Poster' + (i + 1)}
             image='Image-2x3'
+            focusable={this.state.focusable}
             asset={this.state.details.recommendations.results[i]}
             onClick={() => {
               this.outTimeline.play().then(() => {
@@ -82,6 +80,9 @@ export default class PDP extends Component {
         <Timeline name="In" ref={timeline => this.inTimeline = timeline} />
 
         <ButtonRef
+          focusable={this.state.focusable}
+          ref={ref => this.mainButton = ref}
+          onLoad={() => FocusManager.focus(this.mainButton)}
           name="Btn-Play"
           onClick={() => {
             this.outTimeline.play().then(() => {
@@ -96,6 +97,7 @@ export default class PDP extends Component {
 
         <Button
           name='Btn-Back'
+          focusable={this.state.focusable}
           onClick={() => {
             this.navigateBack();
           }} />

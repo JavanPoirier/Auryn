@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import {
-  Composition,
-  ViewRef,
-} from '@youi/react-native-youi';
-
+import { Composition, ViewRef, FocusManager } from '@youi/react-native-youi';
 import { ListItem, Timeline } from '../components'
 import { NavigationActions } from 'react-navigation';
 
 export default class Lander extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       assets: [],
+      focusable: true,
     };
   }
 
@@ -24,7 +20,13 @@ export default class Lander extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', this.inTimeline.play)
+    this.props.navigation.addListener('didFocus', () => {
+      this.setState({focusable: true});
+      this.inTimeline.play();
+    })
+    this.props.navigation.addListener('didBlur', () => {
+      this.setState({focusable: false})
+    })
     this.requestPopularMoviesAsync()
       .then(results => {
         this.setState({
@@ -39,7 +41,9 @@ export default class Lander extends Component {
         <ListItem
           key={this.state.assets[i].id}
           asset={this.state.assets[i]}
+          onLoad={ref => { if (i == 0) FocusManager.focus(ref)}}
           name={'Poster' + (i + 1)}
+          focusable={this.state.focusable}
           image='Container-Image'
           onClick={() => {
             this.outTimeline.play()

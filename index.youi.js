@@ -1,13 +1,11 @@
 /**
- * NAB Demo
+ * Auryn
  */
 
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, View } from 'react-native';
-
+import { AppRegistry, StyleSheet, View } from '@youi/react-native-youi';
 import { Lander, PDP, Player } from './screens';
-import { createStackNavigator, NavigationActions } from 'react-navigation';
-import { BackHandler } from '@youi/react-native-youi';
+import { createStackNavigator } from 'react-navigation';
 
 const Stack = createStackNavigator(
   {

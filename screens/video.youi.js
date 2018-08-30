@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Composition, TextRef, ViewRef, VideoRef, BackHandler } from '@youi/react-native-youi';
+import { Composition, TextRef, ViewRef, VideoRef, BackHandler, FocusManager } from '@youi/react-native-youi';
 
 import { Scrubber, Timeline, Button } from '../components'
 
@@ -28,6 +28,7 @@ export default class VideoPlayer extends Component {
     this.state = {
       videoSource: videoSource,
       formattedTime: "00:00",
+      focusable: true,
       paused: true
     };
 
@@ -35,7 +36,7 @@ export default class VideoPlayer extends Component {
   }
 
   navigateBack = () => {
-    this.scrubber.setState({ thumbOpacity: 0 });
+    this.scrubber.setState({ thumbOpacity: 0, focusable: false });
     this.video.pause();
     this.outTimeline.play()
     .then(() => {
@@ -89,6 +90,7 @@ export default class VideoPlayer extends Component {
             <Button
               name="Btn-PlayPause"
               toggle={true}
+              onLoad={ref => { FocusManager.focus(ref)}}
               onClick={() => {
                 this.setState({
                   paused: !this.state.paused
@@ -103,7 +105,7 @@ export default class VideoPlayer extends Component {
             <Button
               name="Btn-Back"
               toggle={false}
-              onClick={() => this.navigateBack}
+              onClick={this.navigateBack}
             />
           </ViewRef>
         </Composition>

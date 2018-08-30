@@ -1,9 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  ButtonRef,
-  TimelineRef,
-  ViewRef,
-} from '@youi/react-native-youi';
+import { ButtonRef, TimelineRef, ViewRef } from '@youi/react-native-youi';
 
 export default class Button extends Component {
   constructor(props) {
@@ -38,6 +34,8 @@ export default class Button extends Component {
       <Fragment key={this.props.name}>
         <ButtonRef
           name={this.props.name}
+          onLoad={this.props.onLoad}
+          focusable={this.props.focusable}
           onClick={() => {
             this.props.onClick();
             if (this.props.toggle) {
