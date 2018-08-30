@@ -23,6 +23,9 @@ const Stack = createStackNavigator(
   },
   {
     headerMode: 'none',
+    cardStyle: {
+      backgroundColor: '#000',
+    },
     transitionConfig: () => ({
       transitionSpec: {},
       screenInterpolator: () => {
