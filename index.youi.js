@@ -6,18 +6,14 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, View } from '@youi/react-native-youi';
 import { Lander, PDP, Player } from './screens';
 import { createStackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const Stack = createStackNavigator(
   {
-    Lander: {
-      screen: Lander
-    },
-    PDP: {
-      screen: PDP
-    },
-    Player: {
-      screen: Player
-    }
+    Lander: { screen: Lander },
+    PDP: { screen: PDP },
+    Player: { screen: Player }
   },
   {
     headerMode: 'none',
@@ -40,11 +36,13 @@ export default class YiReactApp extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Stack
-          ref={ref => this.stackNavigation = ref}
-        />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Stack
+            ref={ref => this.stackNavigation = ref}
+          />
+        </View>
+      </Provider>
     )
   }
 }

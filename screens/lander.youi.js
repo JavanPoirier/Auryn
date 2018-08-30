@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, FocusManager } from '@youi/react-native-youi';
-import { ListItem, Timeline } from '../components'
+import { Composition, ViewRef, FocusManager, } from '@youi/react-native-youi';
+import { ListItem, Timeline } from '../components';
 import { NavigationActions } from 'react-navigation';
+import { connect } from "react-redux";
+import { fetchMovies } from '../actions/moviesActions'
 
+@connect((store) => {
+  return {
+    movies: store.moviesReducer.movies.results,
+    moviesFetched: store.moviesReducer.fetched
+  }
+})
 export default class Lander extends Component {
   constructor(props) {
     super(props);
@@ -12,14 +20,9 @@ export default class Lander extends Component {
     };
   }
 
-  requestPopularMoviesAsync = () => {
-    return fetch("http://api.themoviedb.org/3/discover/movie?api_key=7f5e61b6cef8643d2442344b45842192&language=en")
-      .then(response => response.json())
-      .then(responseJson => responseJson.results)
-      .catch(error => console.error(error));
-  }
-
   componentDidMount() {
+    this.props.dispatch(fetchMovies())
+
     this.props.navigation.addListener('didFocus', () => {
       this.setState({focusable: true});
       this.inTimeline.play();
@@ -27,20 +30,15 @@ export default class Lander extends Component {
     this.props.navigation.addListener('didBlur', () => {
       this.setState({focusable: false})
     })
-    this.requestPopularMoviesAsync()
-      .then(results => {
-        this.setState({
-          assets: results,
-        });
-      });
   }
 
   render() {
-    let movies = this.state.assets.length > 0 ?
-      Array(10).fill().map((_, i) =>
-        <ListItem
-          key={this.state.assets[i].id}
-          asset={this.state.assets[i]}
+    const { movies } = this.props
+    let listItems = movies.length > 0 ?
+      Array(10).fill().map((_, i) => {
+        return(<ListItem
+          key={movies[i].id}
+          asset={movies[i]}
           onLoad={ref => { if (i == 0) FocusManager.focus(ref)}}
           name={'Poster' + (i + 1)}
           focusable={this.state.focusable}
@@ -50,13 +48,15 @@ export default class Lander extends Component {
               .then(() => {
                 let navigateAction = NavigationActions.navigate({
                   routeName: 'PDP',
-                  params: { id: this.state.assets[i].id },
-                  key: this.state.assets[i].id
+                  params: { id: movies[i].id },
+                  key: movies[i].id
                 })
                 this.props.navigation.dispatch(navigateAction)
               });
           }}
-        />
+        />)
+      }
+
       ) : null;
 
     return (
@@ -70,7 +70,7 @@ export default class Lander extends Component {
           <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
         </ViewRef>
 
-        {movies}
+        {listItems}
 
       </Composition>
     );
