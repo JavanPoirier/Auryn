@@ -4,29 +4,9 @@
 
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, View } from '@youi/react-native-youi';
-import { Lander, PDP, Player } from './screens';
-import { createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import store from './store';
-
-const Stack = createStackNavigator(
-  {
-    Lander: { screen: Lander },
-    PDP: { screen: PDP },
-    Player: { screen: Player }
-  },
-  {
-    headerMode: 'none',
-    cardStyle: {
-      backgroundColor: '#000',
-    },
-    transitionConfig: () => ({
-      transitionSpec: {},
-      screenInterpolator: () => {
-      }
-    })
-  }
-);
+import Stack from './navigation'
 
 export default class YiReactApp extends Component {
 
@@ -38,9 +18,7 @@ export default class YiReactApp extends Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <Stack
-            ref={ref => this.stackNavigation = ref}
-          />
+          <Stack />
         </View>
       </Provider>
     )

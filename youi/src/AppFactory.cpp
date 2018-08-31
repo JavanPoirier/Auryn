@@ -9,8 +9,8 @@
 #define APP_WIDTH (1920)
 #define APP_HEIGHT (1080)
 #else
-#define APP_WIDTH (1280)
-#define APP_HEIGHT (720)
+#define APP_WIDTH (1920)
+#define APP_HEIGHT (1080)
 #endif
 
 std::unique_ptr<CYIApp> AppFactory::Create()
