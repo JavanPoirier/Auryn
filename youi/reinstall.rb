@@ -14,6 +14,7 @@ class ReinstallOptions
         options.start = false
         options.package = nil
         options.uninstall_first = false
+        options.flavor = nil
 
         configurationList = ["Debug","Release"]
 
@@ -62,6 +63,14 @@ class ReinstallOptions
                 "  (This argument is only required when using out of source builds on the iOS platform.)",
                 "  (If omitted, defaults to the name of the folder this script exists in. This is usually the name of the project itself.)") do |app_name|
                 options.app_name = app_name
+            end
+
+            opts.on("--flavor PRODUCT_FLAVOR",
+                "The name of the Product Flavor to build and install to a connected device.", String,
+                "  (Used by Android platforms.)",
+                "  (Tells the build process to build the APK for a specific Product Flavor.)",
+                "  (When the application has been configured to use Product Flavors, this argument is required.)") do |flavor|
+                options.flavor = flavor
             end
 
             opts.on("-u", "--uninstall_first",
@@ -157,14 +166,20 @@ class ReinstallOptions
 
     def self.reinstall_android(options)
         Dir.chdir(options.build_directory) {
+            unless options.flavor
+                action_suffix = options.config
+            else
+                action_suffix = options.flavor.capitalize + options.config
+            end
+
             if options.uninstall_first
-                command = "#{options.gradle_prefix}gradlew#{options.gradle_suffix} uninstall#{options.config}"
+                command = "#{options.gradle_prefix}gradlew#{options.gradle_suffix} uninstall#{action_suffix}"
                 if system(command) == false
                     abort
                 end
             end
 
-            command = "#{options.gradle_prefix}gradlew#{options.gradle_suffix} install#{options.config}"
+            command = "#{options.gradle_prefix}gradlew#{options.gradle_suffix} install#{action_suffix}"
 
             if system(command) == false
                 abort

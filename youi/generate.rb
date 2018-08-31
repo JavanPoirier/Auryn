@@ -4,6 +4,7 @@
 require 'fileutils'
 require 'optparse'
 require 'ostruct'
+require 'json'
 
 class GenerateOptions
     def self.parse(args)
@@ -16,13 +17,14 @@ class GenerateOptions
         options.engine_hint = nil
         options.use_jsbundle = false
         options.inline_jsbundle = false
+        options.iterate_jsbundle = false
         options.dev_jsbundle = false
         options.minify_jsbundle = false
-        options.jsbundle_directories = []
-        options.jsbundle_files = []
+        options.jsbundle_directory = []
+        options.jsbundle_file = []
         options.jsbundle_working_directory = nil
 
-        platformList = ["Android", "Ios", "Linux", "Osx", "Ps4", "Roku4", "Roku4201en", "Tizen-Nacl", "Tvos", "Uwp", "Vs2017"]
+        platformList = ["Android", "Ios", "Linux", "Osx", "Ps4", "Roku2", "Roku4", "Tizen-Nacl", "Tvos", "Uwp", "Vs2017"]
         configurationList = ["Debug","Release"]
 
         unless File.exist?(File.join("#{__dir__}", "CMakeLists.txt"))
@@ -66,7 +68,7 @@ class GenerateOptions
                 "Tizen-NaCl:",
                 "  - Eclipse CDT4 - Ninja (default if installed)",
                 "  - Eclipse CDT4 - Unix Makefiles (default without ninja)",
-                "Roku4201EN/Roku4:",
+                "Roku2/Roku4:",
                 "  - Ninja (default if installed)",
                 "  - Unix Makefiles (default without ninja)",
                 "UWP:",
@@ -141,16 +143,21 @@ class GenerateOptions
                 options.inline_jsbundle = true
             end
 
-            opts.on("--files file,file,file", Array,
-                "If included, adds the given JS files to the JS bundle.") do |files|
-                options.jsbundle_files = files
-                options.jsbundle_files.uniq!
+            opts.on("--iterate",
+                "If included, Only JS bundles that need to be updated by changes to their source JS file will be re-bundled.",
+                "  (If omitted, all JS bundles will be deleted before creating all required bundles.)",
+                "  (A change to a JS file that is a dependency of the source JS file will not cause the file to be re-bundled.)") do
+                options.iterate_jsbundle = true
             end
 
-            opts.on("--directories directory,directory,directory", Array,
-                "If included, adds the JS files of the listed directories to the JS bundle.") do |directories|
-                options.jsbundle_directories = directories
-                options.jsbundle_directories.uniq!
+            opts.on("--file file", String,
+                "The entry point for the application, for JS bundling.") do |file|
+                options.jsbundle_file = file
+            end
+
+            opts.on("--directory directory", String,
+                "If included, adds the JS files of the listed directory, and create a bundle for each one.") do |directory|
+                options.jsbundle_directory = directory
             end
 
 
@@ -198,7 +205,7 @@ class GenerateOptions
                         puts "Could not find ninja or unix make. One of these generators must be installed to generate for Tizen-NaCl."
                         exit 1
                     end
-                when /roku4201en|roku4/i
+                when /roku2|roku4/i
                     ninja = system('ninja', [:out, :err] => File::NULL)
                     make = system('make', [:out, :err] => File::NULL)
                     if ninja != nil
@@ -206,7 +213,7 @@ class GenerateOptions
                     elsif make != nil
                         options.generator = "Unix Makefiles"
                     else
-                        puts "Could not find ninja or unix make. One of these generators must be installed to generate for Roku4201EN or Roku4."
+                        puts "Could not find ninja or unix make. One of these generators must be installed to generate for Roku2 or Roku4."
                         exit 1
                     end
                 end
@@ -240,8 +247,8 @@ class GenerateOptions
                 options.defines["YI_LOCAL_JS"] = "ON"
                 options.defines["YI_BUNDLED_ASSETS_DEST"] = File.expand_path(File.join(options.build_directory, "Staging", "generated", "bundled_assets"))
 
-                unless options.jsbundle_files.length > 0 || options.jsbundle_directories.length > 0
-                    puts "ERROR: The --files or --directories argument is missing. Add one of these to specify the files/directories to include within the JS bundle."
+                unless options.jsbundle_file.length > 0 || options.jsbundle_directory.length > 0
+                    puts "ERROR: The --file or --directory argument is missing. Add one of these to specify the file/directory to include within the JS bundle."
                     abort
                 end
             end
@@ -314,6 +321,35 @@ class GenerateOptions
             else
                 puts "ERROR: Passed youi_engine variable #{options.engine_hint}, but could not find valid You.i Engine install"
                 puts "Ensure that you have that version installed in $HOME/youiengine/, or the provided path is correct."
+                abort
+            end
+        end
+
+        # For react projects, check for package.json one directory down to read engine version
+        packageJson = File.expand_path(File.join(__dir__, "..", "package.json"))
+        if File.exist?(File.absolute_path(packageJson))
+            file = File.read(packageJson)
+            pkgHash = JSON.parse(file)
+
+            if pkgHash['dependencies'].key?('@youi/react-native-youi')
+                depVersion = pkgHash['dependencies']['@youi/react-native-youi']
+
+                engine_dir = find_engine_dir_in_list([File.join(install_dir, depVersion)])
+                if engine_dir != nil
+                    puts "Found engine directory #{engine_dir} based on version from package.json"
+                    return File.absolute_path(engine_dir)
+                else
+                    puts "ERROR: Parsed @youi/react-native-youi version #{depVersion}, but could not find valid You.i Engine install"
+                    puts "Ensure that you have that version installed in $HOME/youiengine/, or the provided path is correct. If you"
+                    puts "know what you are doing you can force a different engine version by passing the --youi_engine argument."
+                    puts "\nInstall the required version with \n\tyoui-tv install #{depVersion}\n"
+                    abort
+                end
+            else
+                puts "ERROR: Found package.json, but could not find @youi/react-native-youi dependency."
+                puts "Ensure that you have upgraded your current application to the latest You.i Engine version. If you"
+                puts "know what you are doing you can force a different engine version by passing the --youi_engine argument."
+                puts "\nInstall the latest version with \n\tyoui-tv install\n"
                 abort
             end
         end
@@ -413,36 +449,13 @@ class GenerateOptions
             return
         end
 
-        output_dir = File.expand_path(File.join(options.build_directory, "Staging", "generated", "jsbundles"))
-        FileUtils.rmdir(output_dir)
-
         engine_dir = get_engine_dir(options)
         command = "ruby \"#{engine_dir}/tools/workflow/bundlejs.rb\" --working_directory \"#{options.jsbundle_working_directory}\" --platform \"#{options.platform.downcase}\""
 
-        input_files = ""
-        options.jsbundle_files.each_index do |index|
-            input_files << options.jsbundle_files[index]
-
-            if index < options.jsbundle_files.length - 1
-                input_files << ";"
-            end
-        end
-
-        if input_files.length > 0
-            command << " --input_files \"#{input_files}\""
-        end
-
-        input_directories = ""
-        options.jsbundle_directories.each_index do |index|
-            input_directories << options.jsbundle_directories[index]
-
-            if index < options.jsbundle_directories.length - 1
-                input_directories << ";"
-            end
-        end
-
-        if input_directories.length > 0
-            command << " --input_directories \"#{input_directories}\""
+        if options.jsbundle_file.length > 0
+            command << " --input_files \"#{options.jsbundle_file}\""
+        elsif options.jsbundle_directory.length > 0
+            command << " --input_directories \"#{options.jsbundle_directory}\""
         end
 
         if options.defines.has_key?("CMAKE_BUILD_TYPE")
@@ -455,12 +468,17 @@ class GenerateOptions
         if options.inline_jsbundle
             command << " --minify"
             command << " --inline"
-
             output_dir = File.expand_path(File.join(output_dir, "InlineJSBundleGenerated"))
         end
 
         command << " --output \"#{output_dir}\""
         command << " --assets_dest \"#{options.defines["YI_BUNDLED_ASSETS_DEST"]}\""
+
+        unless options.iterate_jsbundle
+            if File.directory?(output_dir)
+                FileUtils.rmtree(output_dir)
+            end
+        end
 
         unless system(command)
             abort
