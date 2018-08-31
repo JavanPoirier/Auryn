@@ -1,5 +1,5 @@
 export default function moviesReducer(state={
-  movies: {results: []},
+  movies: {},
   fetching: false,
   fetched: false,
   error: null

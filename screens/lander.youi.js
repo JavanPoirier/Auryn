@@ -8,7 +8,7 @@ import { fetchMovies } from '../actions/moviesActions'
 @connect((store) => {
   return {
     movies: store.moviesReducer.movies.results,
-    moviesFetched: store.moviesReducer.fetched
+    fetched: store.moviesReducer.fetched
   }
 })
 export default class Lander extends Component {
@@ -33,8 +33,8 @@ export default class Lander extends Component {
   }
 
   render() {
-    const { movies } = this.props
-    let listItems = movies.length > 0 ?
+    const { movies, fetched } = this.props
+    let listItems = fetched ?
       Array(10).fill().map((_, i) => {
         return(<ListItem
           key={movies[i].id}
