@@ -7,9 +7,16 @@
 		"test": "jest"
 	},
 	"dependencies": {
-    "@youi/react-native-youi": "5.0.0",
+		"@youi/react-native-youi": "5.0.0",
 		"react": "16.3.0",
-		"react-native": "0.55.0"
+		"react-native": "0.55.0",
+		"react-navigation": "^2.12.1",
+		"react-redux": "^5.0.7",
+		"redux": "^4.0.0",
+		"redux-logger": "^3.0.6",
+		"redux-promise-middleware": "^5.1.1",
+		"redux-thunk": "^2.3.0",
+		"youtube-stream-url": "^1.0.1"
 	},
 	"devDependencies": {
 		"babel-jest": "21.0.2",

@@ -3,13 +3,13 @@ import { ButtonRef, Composition, ImageRef, TextRef, BackHandler, FocusManager } 
 import Youtube from 'youtube-stream-url'
 import { ListItem, Timeline, Button } from '../components'
 import { NavigationActions } from 'react-navigation';
-import { fetchRecommendations } from '../actions/moviesActions';
+import { fetchPDPfromCache, fetchPDP } from '../actions/moviesActions';
 import { connect } from "react-redux";
 
 @connect((store) => {
   return {
-    asset: store.recommendationsReducer.asset,
-    fetched: store.recommendationsReducer.fetched
+    asset: store.pdpReducer.asset,
+    fetched: store.pdpReducer.fetched
   }
 })
 export default class PDP extends Component {
@@ -28,7 +28,7 @@ export default class PDP extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchRecommendations(this.props.navigation.getParam('id')));
+    this.props.dispatch(fetchPDP(this.props.navigation.getParam('id')));
 
     this.props.navigation.addListener('willBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
@@ -38,6 +38,7 @@ export default class PDP extends Component {
     this.props.navigation.addListener('willFocus', () => {
       BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
       this.setState({focusable: true});
+      this.props.dispatch(fetchPDPfromCache(this.props.navigation.getParam('id')));
       this.inTimeline.play()
     })
   }
@@ -45,7 +46,6 @@ export default class PDP extends Component {
   render() {
     const { asset, fetched } = this.props
     let metadata = Metadata(asset)
-    console.log(metadata)
     let listItems = fetched ?
       Array(4).fill().map((_, i) =>
       asset.recommendations.results.length > i ?

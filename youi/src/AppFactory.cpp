@@ -1,5 +1,4 @@
-// © You i Labs Inc. 2000-2017. All rights reserved.
-#include "AppFactory.h"
+	
 #include "App.h"
 
 #define APP_NAME "Video Player"
