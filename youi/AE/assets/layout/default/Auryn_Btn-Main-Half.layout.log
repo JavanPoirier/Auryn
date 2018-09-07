@@ -38,7 +38,7 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Image-Dynamic-Half"
+    name: "Image-Dynamic"
     id: 28
     sourceid: 144
     transform {

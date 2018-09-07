@@ -12,7 +12,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 28
-  targetname: "Image-Dynamic-Half"
+  targetname: "Image-Dynamic"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -23,7 +23,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 28
-  targetname: "Image-Dynamic-Half"
+  targetname: "Image-Dynamic"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0

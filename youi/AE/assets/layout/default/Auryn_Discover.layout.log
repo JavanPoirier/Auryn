@@ -344,9 +344,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Btn-Main-Half"
+    name: "Container-Btn-Main-Half"
     id: 25
-    sourceid: 27
+    sourceid: 814
     transform {
       anchorPoint {
         x: 267
@@ -378,9 +378,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Btn-Main-Full"
+    name: "Container-Btn-Main-Full"
     id: 26
-    sourceid: 128
+    sourceid: 802
     transform {
       anchorPoint {
         x: 533.5
@@ -424,6 +424,8 @@ activecomp {
   }
   childtemplates: "Auryn_Btn-Main-Half"
   childtemplates: "Auryn_Btn-Main-Full"
+  childtemplates: "Auryn_Container-Btn-Main-Half"
+  childtemplates: "Auryn_Container-Btn-Main-Full"
 }
 sources {
   uid: 27
@@ -437,6 +439,22 @@ sources {
   uid: 128
   srctype: AE_COMP_SRC
   name: "Auryn_Btn-Main-Full.layout"
+  width: 1067
+  height: 600
+  copy_source: true
+}
+sources {
+  uid: 814
+  srctype: AE_COMP_SRC
+  name: "Auryn_Container-Btn-Main-Half.layout"
+  width: 534
+  height: 300
+  copy_source: true
+}
+sources {
+  uid: 802
+  srctype: AE_COMP_SRC
+  name: "Auryn_Container-Btn-Main-Full.layout"
   width: 1067
   height: 600
   copy_source: true
