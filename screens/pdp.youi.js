@@ -81,7 +81,7 @@ export default class PDP extends Component {
           name="Btn-Play"
           onClick={() => {
             this.outTimeline.play().then(() => {
-              let navigateAction = NavigationActions.navigate({
+              let navigateAction = NavigationActions.push({
                 routeName: 'Player',
                 params: { video: this.video, onBack: () => this.inTimeline.play()},
               })
