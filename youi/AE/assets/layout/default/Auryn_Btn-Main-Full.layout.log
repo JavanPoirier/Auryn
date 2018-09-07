@@ -344,7 +344,7 @@ activecomp {
     key: "componentType"
     value: "button"
   }
-  childtemplates: "Auryn_Image-Dynamic"
+  childtemplates: "Auryn_Image-Dynamic-Full"
 }
 sources {
   uid: 378
@@ -362,7 +362,7 @@ sources {
 sources {
   uid: 52
   srctype: AE_COMP_SRC
-  name: "Auryn_Image-Dynamic.layout"
+  name: "Auryn_Image-Dynamic-Full.layout"
   width: 1067
   height: 600
   copy_source: true
