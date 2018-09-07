@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, FocusManager, } from '@youi/react-native-youi';
-import { ListItem, Timeline } from '../components';
+import { Composition, ViewRef, FocusManager, ListRef, } from '@youi/react-native-youi';
+import { ListItem, Timeline, DiscoverContainer } from '../components';
 import { NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
 import { tmdbDiscover } from '../actions/tmdbActions'
@@ -28,9 +28,17 @@ export default class Lander extends Component {
     })
   }
 
+  unflatten = (array) => {
+    let returnArr = [];
+    for (let index = 0; index < array.length; index+=3) {
+      if (index >= array.length-3) break;
+      returnArr.push(array.slice(index,index+3))
+    }
+    return returnArr;
+  }
+
   render() {
     const { discover } = this.props
-    console.log(discover)
     return (
       <Composition source="Auryn_Lander">
         <Timeline name="LanderIn"
@@ -38,6 +46,12 @@ export default class Lander extends Component {
           onLoad={timeline => timeline.play()}
         />
         <Timeline name="LanderOut" ref={timeline => this.outTimeline = timeline} />
+        <ListRef
+          name="Discover"
+          data={this.unflatten(discover)}
+          renderItem={({item, index}) => <DiscoverContainer data={item} index={index}/>}
+          horizontal={true}
+        />
       </Composition>
     );
   }
