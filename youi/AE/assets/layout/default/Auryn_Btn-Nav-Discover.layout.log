@@ -1,0 +1,235 @@
+activecomp {
+  name: "Auryn_Btn-Nav-Discover"
+  width: 200
+  height: 60
+  defaultcameradistance: 277.77777
+  layer {
+    name: "White Solid 10"
+    id: 521
+    sourceid: 537
+    transform {
+      anchorPoint {
+        x: 100
+        y: 30
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 100
+        y: 30
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Black Solid 8"
+    id: 522
+    sourceid: 534
+    transform {
+      anchorPoint {
+        x: 100
+        y: 30
+        z: 0
+      }
+      scale {
+        x: 0.98
+        y: 0.94
+        z: 1
+      }
+      position {
+        x: 100
+        y: 30
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "DISCOVER"
+    id: 523
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 100
+        y: 21.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 99.159828
+        y: 40.958118
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_CENTER
+      fontSize: 28
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Black"
+      isPointText: false
+      boundsWidth: 200
+      boundsHeight: 33
+      isLabel: true
+      text: "DISCOVER"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "DISCOVER 2"
+    id: 524
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 100
+        y: 21.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 99.159828
+        y: 40.958118
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_CENTER
+      fontSize: 28
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Medium"
+      isPointText: false
+      boundsWidth: 200
+      boundsHeight: 33
+      isLabel: true
+      text: "DISCOVER"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  classname: "CYIToggleButtonView"
+  bgcolor {
+    alpha: 1
+    red: 0.086274509803921567
+    green: 0.11372549019607843
+    blue: 0.14509803921568629
+  }
+  properties {
+    key: "componentSubtype"
+    value: "toggle"
+  }
+  properties {
+    key: "componentType"
+    value: "button"
+  }
+}
+sources {
+  uid: 537
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 1
+    green: 1
+    blue: 1
+  }
+  width: 200
+  height: 60
+  copy_source: false
+}
+sources {
+  uid: 534
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  width: 200
+  height: 60
+  copy_source: false
+}
+sources {
+  uid: 3
+  srctype: AE_FONT_SRC
+  name: "Raleway-Black"
+  copy_source: true
+  file_name: "yi_Raleway-Black.otf"
+  style_name: "Black"
+}
+sources {
+  uid: 4
+  srctype: AE_FONT_SRC
+  name: "Raleway-Medium"
+  copy_source: true
+  file_name: "yi_Raleway-Medium.otf"
+  style_name: "Medium"
+}

@@ -1,0 +1,443 @@
+activecomp {
+  name: "Auryn_Discover"
+  width: 1920
+  height: 900
+  defaultcameradistance: 2666.6667
+  layer {
+    name: "Btn-Main-Half"
+    id: 15
+    sourceid: 27
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 3468
+        y: 150
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Half"
+    id: 16
+    sourceid: 27
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 4001.25
+        y: 150
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Full"
+    id: 17
+    sourceid: 128
+    transform {
+      anchorPoint {
+        x: 533.5
+        y: 300
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 3734.75
+        y: 600
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Half"
+    id: 18
+    sourceid: 27
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 2401
+        y: 750
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Half"
+    id: 19
+    sourceid: 27
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 2934.25
+        y: 750
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Full"
+    id: 20
+    sourceid: 128
+    transform {
+      anchorPoint {
+        x: 533.5
+        y: 300
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 2667.75
+        y: 300
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Half"
+    id: 21
+    sourceid: 27
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1333.75
+        y: 150
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Half"
+    id: 22
+    sourceid: 27
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1867
+        y: 150
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Full"
+    id: 23
+    sourceid: 128
+    transform {
+      anchorPoint {
+        x: 533.5
+        y: 300
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1600.5
+        y: 600
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Half"
+    id: 24
+    sourceid: 27
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 266.75
+        y: 750
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Half"
+    id: 25
+    sourceid: 27
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 800
+        y: 750
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Main-Full"
+    id: 26
+    sourceid: 128
+    transform {
+      anchorPoint {
+        x: 533.5
+        y: 300
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 533.5
+        y: 300
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  classname: "CYIScrollingView"
+  bgcolor {
+    alpha: 1
+    red: 0.086274509803921567
+    green: 0.11372549019607843
+    blue: 0.14509803921568629
+  }
+  properties {
+    key: "componentSubtype"
+    value: "scrolling"
+  }
+  childtemplates: "Auryn_Btn-Main-Half"
+  childtemplates: "Auryn_Btn-Main-Full"
+}
+sources {
+  uid: 27
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Main-Half.layout"
+  width: 534
+  height: 300
+  copy_source: true
+}
+sources {
+  uid: 128
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Main-Full.layout"
+  width: 1067
+  height: 600
+  copy_source: true
+}

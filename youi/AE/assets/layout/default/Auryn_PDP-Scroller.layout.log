@@ -1,0 +1,270 @@
+activecomp {
+  name: "Auryn_PDP-Scroller"
+  width: 1920
+  height: 1080
+  defaultcameradistance: 2666.6667
+  layer {
+    name: "Image-Dynamic-Background"
+    id: 389
+    sourceid: 322
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 2.35
+        y: 2.35
+        z: 2.35
+      }
+      position {
+        x: 960
+        y: 661.75
+        z: 3000
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0.2
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-2x3-Full"
+    id: 390
+    sourceid: 266
+    transform {
+      anchorPoint {
+        x: 200
+        y: 350
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 334
+        y: 350
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Layout-PDP-Meta"
+    id: 391
+    sourceid: 342
+    transform {
+      anchorPoint {
+        x: 600
+        y: 300
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1184
+        y: 402
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "List-PDP"
+    id: 392
+    sourceid: 360
+    transform {
+      anchorPoint {
+        x: 960
+        y: 200
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 1110
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Text-ListTitle"
+    id: 393
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 248.5
+        y: 40.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 379.26
+        y: 876.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 42
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Bold"
+      isPointText: false
+      boundsWidth: 1367
+      boundsHeight: 60
+      isLabel: true
+      text: ""
+      multiline: true
+      ellipsis: true
+      isAllCaps: false
+    }
+    properties {
+      key: "margin-top"
+      value: "20"
+    }
+    properties {
+      key: "text-placeholder"
+      value: "true"
+    }
+    properties {
+      key: "text-overflow"
+      value: "ellipsis"
+    }
+  }
+  classname: "CYIScrollingView"
+  bgcolor {
+    alpha: 1
+    red: 0.086274509803921567
+    green: 0.11372549019607843
+    blue: 0.14509803921568629
+  }
+  properties {
+    key: "componentSubtype"
+    value: "scrolling"
+  }
+  properties {
+    key: "horizontal-scroll"
+    value: "false"
+  }
+  properties {
+    key: "vertical-scroll"
+    value: "true"
+  }
+  childtemplates: "Auryn_Image-Dynamic-Background"
+  childtemplates: "Auryn_Btn-2x3-Full"
+  childtemplates: "Auryn_Layout-PDP-Meta"
+  childtemplates: "Auryn_List-PDP"
+}
+sources {
+  uid: 322
+  srctype: AE_COMP_SRC
+  name: "Auryn_Image-Dynamic-Background.layout"
+  width: 1920
+  height: 1080
+  copy_source: true
+}
+sources {
+  uid: 266
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-2x3-Full.layout"
+  width: 400
+  height: 700
+  copy_source: true
+}
+sources {
+  uid: 342
+  srctype: AE_COMP_SRC
+  name: "Auryn_Layout-PDP-Meta.layout"
+  width: 1200
+  height: 600
+  copy_source: true
+}
+sources {
+  uid: 360
+  srctype: AE_COMP_SRC
+  name: "Auryn_List-PDP.layout"
+  width: 1920
+  height: 400
+  copy_source: true
+}
+sources {
+  uid: 5
+  srctype: AE_FONT_SRC
+  name: "Raleway-Bold"
+  copy_source: true
+  file_name: "yi_Raleway-Bold.otf"
+  style_name: "Bold"
+}

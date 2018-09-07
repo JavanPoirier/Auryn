@@ -1,0 +1,210 @@
+activecomp {
+  name: "Auryn_Lander"
+  width: 1920
+  height: 1080
+  defaultcameradistance: 2666.6667
+  layer {
+    name: "Stack-Bottom"
+    id: 64
+    sourceid: 657
+    transform {
+      anchorPoint {
+        x: 960
+        y: 450
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: 90
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 67
+  }
+  layer {
+    name: "Stack-Active"
+    id: 65
+    sourceid: 657
+    transform {
+      anchorPoint {
+        x: 960
+        y: 450
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: 990
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 67
+  }
+  layer {
+    name: "Stack-Top"
+    id: 66
+    sourceid: 657
+    transform {
+      anchorPoint {
+        x: 960
+        y: 450
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: -810
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 67
+  }
+  layer {
+    name: "Mover"
+    id: 67
+    sourceid: 655
+    transform {
+      anchorPoint {
+        x: 0
+        y: 0
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 740
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Nav"
+    id: 68
+    sourceid: 78
+    transform {
+      anchorPoint {
+        x: 960
+        y: 90
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: -110
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  bgcolor {
+    alpha: 1
+    red: 0.086274509803921567
+    green: 0.11372549019607843
+    blue: 0.14509803921568629
+  }
+  childtemplates: "Auryn_Lander-ContentStack"
+  childtemplates: "Auryn_Nav"
+}
+sources {
+  uid: 657
+  srctype: AE_COMP_SRC
+  name: "Auryn_Lander-ContentStack.layout"
+  width: 1920
+  height: 900
+  copy_source: true
+}
+sources {
+  uid: 655
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
+}
+sources {
+  uid: 78
+  srctype: AE_COMP_SRC
+  name: "Auryn_Nav.layout"
+  width: 1920
+  height: 180
+  copy_source: true
+}

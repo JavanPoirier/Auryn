@@ -1,0 +1,464 @@
+activecomp {
+  name: "Auryn_Profile"
+  width: 1920
+  height: 900
+  defaultcameradistance: 2666.6667
+  layer {
+    name: "Account Info"
+    id: 712
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 440
+        y: 60
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 539.72
+        y: 260.28012
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 60
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Bold"
+      isPointText: false
+      boundsWidth: 880
+      boundsHeight: 68
+      isLabel: true
+      text: "Account Info"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "Settings"
+    id: 713
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 440
+        y: 60
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 539.72
+        y: 648.28015
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 60
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Bold"
+      isPointText: false
+      boundsWidth: 880
+      boundsHeight: 68
+      isLabel: true
+      text: "Settings"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "White Solid 12"
+    id: 714
+    sourceid: 727
+    transform {
+      anchorPoint {
+        x: 400
+        y: 100
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 0.28
+        z: 1
+      }
+      position {
+        x: 496
+        y: 342
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 12"
+    id: 715
+    sourceid: 727
+    transform {
+      anchorPoint {
+        x: 400
+        y: 100
+        z: 0
+      }
+      scale {
+        x: 0.895
+        y: 0.28
+        z: 1
+      }
+      position {
+        x: 458
+        y: 712
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 12"
+    id: 716
+    sourceid: 727
+    transform {
+      anchorPoint {
+        x: 400
+        y: 100
+        z: 0
+      }
+      scale {
+        x: 0.065
+        y: 0.28
+        z: 1
+      }
+      position {
+        x: 1146
+        y: 712
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 12"
+    id: 717
+    sourceid: 727
+    transform {
+      anchorPoint {
+        x: 400
+        y: 100
+        z: 0
+      }
+      scale {
+        x: 0.065
+        y: 0.28
+        z: 1
+      }
+      position {
+        x: 1210
+        y: 712
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 12"
+    id: 718
+    sourceid: 727
+    transform {
+      anchorPoint {
+        x: 400
+        y: 100
+        z: 0
+      }
+      scale {
+        x: 0.065
+        y: 0.28
+        z: 1
+      }
+      position {
+        x: 1274
+        y: 712
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 12"
+    id: 719
+    sourceid: 727
+    transform {
+      anchorPoint {
+        x: 400
+        y: 100
+        z: 0
+      }
+      scale {
+        x: 0.765
+        y: 0.28
+        z: 1
+      }
+      position {
+        x: 406
+        y: 426
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 13"
+    id: 720
+    sourceid: 732
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1172
+        y: 356
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 13"
+    id: 721
+    sourceid: 732
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1291
+        y: 356
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 13"
+    id: 722
+    sourceid: 732
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1410
+        y: 356
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  bgcolor {
+    alpha: 1
+    red: 0.086274509803921567
+    green: 0.11372549019607843
+    blue: 0.14509803921568629
+  }
+  properties {
+    key: "gravity"
+    value: "left"
+  }
+  properties {
+    key: "rows"
+    value: "2"
+  }
+}
+sources {
+  uid: 1
+  srctype: AE_FONT_SRC
+  name: "Raleway-Bold"
+  copy_source: true
+  file_name: "yi_Raleway-Bold.otf"
+  style_name: "Bold"
+}
+sources {
+  uid: 727
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.88235294818878174
+    green: 0.88235294818878174
+    blue: 0.88235294818878174
+  }
+  width: 800
+  height: 200
+  copy_source: false
+}
+sources {
+  uid: 732
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.88235294818878174
+    green: 0.88235294818878174
+    blue: 0.88235294818878174
+  }
+  width: 100
+  height: 100
+  copy_source: false
+}

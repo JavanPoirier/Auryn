@@ -1,0 +1,46 @@
+tracks {
+  binding: IS_VISIBLE
+  targetid: 212
+  targetname: "White Solid 7"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: ROTATION_Z
+  targetid: 212
+  targetname: "White Solid 7"
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 2
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 90
+  }
+  trackName: "Rotation"
+}
+markers {
+  starttime: 1
+  duration: 1
+  name: "Loop"
+  tracksSelection {
+    targetid: 212
+    binding: ROTATION_Z
+  }
+  alltracks: false
+  looping: false
+}
