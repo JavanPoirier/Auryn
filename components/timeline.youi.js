@@ -6,7 +6,16 @@ export default class Timeline extends Component {
     <TimelineRef
       name={this.props.name}
       onLoad={(timeline) => { this.ref = timeline; if (this.props.onLoad) this.props.onLoad(timeline); }}
-      onCompleted={() => { if (this.resolve) this.resolve("onCompleted"); }}
+      loop={this.props.loop || this.props.name.toLowerCase() == 'loop'}
+      onCompleted={() => {
+        if (this.resolve && !this.props.loop) {
+          this.resolve("onCompleted");
+        }
+
+        if (this.props.loop) {
+          this.timeline.play();
+        }
+      }}
     />
   );
 

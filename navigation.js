@@ -1,8 +1,9 @@
-import { Lander, PDP, Player } from './screens';
+import { Lander, PDP, Player, Splash } from './screens';
 import { createStackNavigator } from 'react-navigation';
 
 const Stack = createStackNavigator(
   {
+    Splash: { screen: Splash },
     Lander: { screen: Lander },
     PDP: { screen: PDP },
     Player: { screen: Player }

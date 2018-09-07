@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import moviesReducer from './moviesReducer'
+import tmdbReducer from './tmdbReducer'
 import pdpReducer from './pdpReducer'
 
 export default combineReducers({
-  moviesReducer,
+  tmdbReducer,
   pdpReducer,
 })
