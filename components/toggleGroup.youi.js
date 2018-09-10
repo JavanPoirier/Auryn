@@ -13,16 +13,11 @@ export default class ToggleGroup extends React.Component {
   }
 
   onToggle(index) {
-    var newToggles = this.state.toggles.slice();
-    for (let i = 0; i < newToggles.length; i++) {
-      newToggles[i] = i == index;
-    }
+    let toggles = new Array(this.props.names.length).fill(false)
+    toggles[index] = true;
     this.setState({
-      toggles: newToggles
+      toggles: toggles
     })
-  }
-
-  componentDidMount() {
   }
 
   render() {

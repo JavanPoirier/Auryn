@@ -17,11 +17,10 @@ export default class ToggleButton extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.toggled !== prevProps.toggled) {
-      if (this.props.toggled)
-        this.toggleOnTimeline.play()
-      else
-        this.toggleOffTimeline.play()
+    if (this.props.toggled != prevProps.toggled) {
+      this.setState({
+        toggled: this.props.toggled
+      },this.toggleOnTimeline.play)
     }
   }
 
@@ -31,23 +30,18 @@ export default class ToggleButton extends Component {
         name={this.props.name}
         ref={ref => this.ref = ref}
         onPress={() => {
+          if (this.state.toggled) return;
           this.props.onToggle(this.props.index);
           this.setState({
             toggled: !this.state.toggled
-          })
-          if (this.state.toggled) {
-            this.toggleOffTimeline.play()
-          } else {
-            this.toggleOnTimeline.play()
-          }
+          },this.toggleOnTimeline.play)
         }}
       >
-        <TimelineRef name="Toggle-On" ref={ref => this.toggleOnTimeline = ref} onLoad={() => {
+        <TimelineRef name="Toggle-On" direction={this.state.toggled ? "forward" : "reverse"} ref={ref => this.toggleOnTimeline = ref} onLoad={() => {
           if (this.state.toggled) {
             this.toggleOnTimeline.play();
           }
         }}/>
-        <TimelineRef name="Toggle-Off" ref={ref => this.toggleOffTimeline = ref} />
 
       </ButtonRef>
     )
