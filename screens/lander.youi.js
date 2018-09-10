@@ -60,6 +60,7 @@ export default class Lander extends Component {
           data={this.unflatten(discover)}
           renderItem={({item, index}) => <DiscoverContainer data={item} index={index}/>}
           horizontal={true}
+          key={(item) => item.id}
         />
       </Composition>
     );

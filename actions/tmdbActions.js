@@ -34,7 +34,7 @@ export function tmdbMovieDetails(id) {
   return (dispatch) => {
     dispatch({
       type: 'TMDB_MOVIE_DETAILS',
-      payload: fetch("http://api.themoviedb.org/3/movie/" + id + "?append_to_response=releases,credits,recommendations,videos&" + apiKeyParam)
+      payload: fetch("http://api.themoviedb.org/3/movie/" + id + "?append_to_response=similar,videos&" + apiKeyParam)
                 .then(response => response.json())
     });
   }
@@ -44,7 +44,7 @@ export function tmdbTvDetails(id) {
   return (dispatch) => {
     dispatch({
       type: 'TMDB_TV_DETAILS',
-      payload: fetch("http://api.themoviedb.org/3/tv/" + id + "?append_to_response=releases,credits,recommendations,videos&" + apiKeyParam)
+      payload: fetch("http://api.themoviedb.org/3/tv/" + id + "?append_to_response=similar,videos&" + apiKeyParam)
                 .then(response => response.json())
     });
   }
