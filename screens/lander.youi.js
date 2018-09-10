@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Composition, ViewRef, FocusManager, ListRef, } from '@youi/react-native-youi';
 import { ListItem, Timeline, DiscoverContainer, ToggleGroup } from '../components';
-import { NavigationActions } from 'react-navigation';
+import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
 import { tmdbDiscover } from '../actions/tmdbActions'
 
@@ -10,12 +10,9 @@ import { tmdbDiscover } from '../actions/tmdbActions'
     discover: store.tmdbReducer.discover.data
   }
 })
-export default class Lander extends Component {
+class Lander extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      focusable: true,
-    };
     this.menuGroup = [
       'Btn-Nav-Discover',
       'Btn-Nav-Movies',
@@ -45,11 +42,20 @@ export default class Lander extends Component {
     return returnArr;
   }
 
+  onPressItem = (item) => {
+    let navigateAction = NavigationActions.navigate({
+      routeName: 'PDP',
+      params: { id: item.id },
+      key: item.id
+    })
+    this.props.navigation.dispatch(navigateAction)
+  }
+
   render() {
     const { discover } = this.props
     return (
       <Composition source="Auryn_Lander">
-        {/* <ToggleGroup names={this.menuGroup} /> */}
+        <ToggleGroup names={this.menuGroup} />
         <Timeline name="LanderIn"
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
@@ -60,9 +66,12 @@ export default class Lander extends Component {
           data={this.unflatten(discover)}
           renderItem={({item, index}) => <DiscoverContainer data={item} index={index}/>}
           horizontal={true}
+          onPressItem={this.onPressItem}
           key={(item) => item.id}
         />
       </Composition>
     );
   }
 }
+
+export default withNavigationFocus(Lander);

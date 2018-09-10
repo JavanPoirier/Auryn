@@ -1,13 +1,44 @@
 import React, { Component, Fragment } from 'react';
+import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { View, ButtonRef, Composition, ImageRef, TextRef, BackHandler, FocusManager, ViewRef } from '@youi/react-native-youi';
 import { connect } from "react-redux";
+import { tmdbMovieDetails, tmdbTvDetails } from '../actions/tmdbActions'
 @connect((store) => {
   return {
     asset: store.tmdbReducer.details.data,
     fetched: store.tmdbReducer.details.fetched,
   }
 })
-export default class PDP extends Component {
+class PDP extends Component {
+
+  constructor(props) {
+    super(props);
+    BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
+  }
+
+  navigateBack = () => {
+    this.outTimeline.play().then(() => {
+      this.props.navigation.goBack(null);
+    });
+  }
+
+  onPressItem = (item) => {
+    let navigateAction = NavigationActions.navigate({
+      routeName: 'PDP',
+      params: { id: item.id },
+      key: item.id
+    })
+    this.props.navigation.dispatch(navigateAction)
+  }
+
+  componentDidMount() {
+    let type = this.props.navigation.getParams('type');
+    let id = this.props.navigation.getParams('id');
+    if (type == "movie")
+      this.props.dispatch(tmdbMovieDetails(id));
+    if (type == "tv")
+      this.props.dispatch(tmdbTvDetails(id));
+  }
 
   renderItem = (item) => {
     return (
@@ -31,12 +62,19 @@ export default class PDP extends Component {
     }
     return (
       <Composition source="Auryn_PDP">
+        <Timeline name="PDPIn"
+          ref={timeline => this.inTimeline = timeline}
+          onLoad={timeline => timeline.play()}
+        />
+        <Timeline name="PDPOut" ref={timeline => this.outTimeline = timeline} />
         <ViewRef name="PDP-Scroller">
           <ListRef
             name="List-PDP"
             data={asset.similar.results}
             renderItem={this.renderItem}
+            onPressItem={this.onPressItem}
             key={(item) => item.id}
+            horizontal={true}
           />
           <ButtonRef name="Btn-2x3-Full">
             <ImageRef
@@ -58,3 +96,5 @@ export default class PDP extends Component {
     );
   }
 }
+
+export default withNavigationFocus(PDP);
