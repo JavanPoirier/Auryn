@@ -37,16 +37,21 @@ class Lander extends Component {
     let returnArr = [];
     for (let index = 0; index < array.length; index+=3) {
       if (index >= array.length-3) break;
-      returnArr.push(array.slice(index,index+3))
+      returnArr.push(
+        {
+          key: index,
+          data: array.slice(index,index+3)
+        })
     }
     return returnArr;
   }
 
-  onPressItem = (item) => {
+  onPressItem = (id) => {
+    console.log(id)
     let navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
-      params: { id: item.id },
-      key: item.id
+      params: { id: id, type: 'movie' },
+      key: id
     })
     this.props.navigation.dispatch(navigateAction)
   }
@@ -64,10 +69,8 @@ class Lander extends Component {
         <ListRef
           name="Discover"
           data={this.unflatten(discover)}
-          renderItem={({item, index}) => <DiscoverContainer data={item} index={index}/>}
+          renderItem={({item, index}) => <DiscoverContainer onPressItem={this.onPressItem} data={item.data} index={index}/>}
           horizontal={true}
-          onPressItem={this.onPressItem}
-          key={(item) => item.id}
         />
       </Composition>
     );

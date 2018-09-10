@@ -7,20 +7,20 @@ export default DiscoverContainer = (props) => {
     return (
       <View>
         <View style={{flexDirection: "row"}}>
-          <DiscoverButton type="Half" data={props.data[0]}/>
-          <DiscoverButton type="Half" data={props.data[1]}/>
+          <DiscoverButton onPress={props.onPressItem} type="Half" data={props.data[0]}/>
+          <DiscoverButton onPress={props.onPressItem} type="Half" data={props.data[1]}/>
         </View>
-        <DiscoverButton type="Full" data={props.data[2]}/>
+        <DiscoverButton onPress={props.onPressItem} type="Full" data={props.data[2]}/>
       </View>
     );
   }
   else {
     return (
       <View>
-        <DiscoverButton type="Full" data={props.data[0]}/>
+        <DiscoverButton onPress={props.onPressItem} type="Full" data={props.data[0]}/>
         <View style={{flexDirection: "row"}}>
-          <DiscoverButton type="Half" data={props.data[1]}/>
-          <DiscoverButton type="Half" data={props.data[2]}/>
+          <DiscoverButton onPress={props.onPressItem} type="Half" data={props.data[1]}/>
+          <DiscoverButton onPress={props.onPressItem} type="Half" data={props.data[2]}/>
         </View>
       </View>
     );

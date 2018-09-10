@@ -18,7 +18,7 @@ export default function tmdbReducer(state={
     error: null
   },
   details: {
-    data: [],
+    data: {},
     fetching: false,
     fetched: false,
     error: null
@@ -54,7 +54,7 @@ export default function tmdbReducer(state={
 
     case 'TMDB_TV_DETAILS_FULFILLED':
     case 'TMDB_MOVIE_DETAILS_FULFILLED':
-      return {...state, details: {data: action.payload.results, fetching: false, fetched: true}}
+      return {...state, details: {data: action.payload, fetching: false, fetched: true}}
     case 'TMDB_TV_DETAILS_REJECTED':
     case 'TMDB_MOVIE_DETAILS_REJECTED':
       return {...state, details: {fetching: false, error: action.payload}}
