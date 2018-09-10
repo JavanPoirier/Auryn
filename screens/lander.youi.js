@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Composition, ViewRef, FocusManager, ListRef, } from '@youi/react-native-youi';
-import { ListItem, Timeline, DiscoverContainer } from '../components';
+import { ListItem, Timeline, DiscoverContainer, ToggleGroup } from '../components';
 import { NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
 import { tmdbDiscover } from '../actions/tmdbActions'
@@ -16,6 +16,14 @@ export default class Lander extends Component {
     this.state = {
       focusable: true,
     };
+    this.menuGroup = [
+      'Btn-Nav-Discover',
+      'Btn-Nav-Movies',
+      'Btn-Nav-Shows',
+      'Btn-Nav-Live',
+      'Btn-Nav-Search',
+      'Btn-Nav-Profile',
+    ]
   }
 
   componentDidMount() {
@@ -41,6 +49,7 @@ export default class Lander extends Component {
     const { discover } = this.props
     return (
       <Composition source="Auryn_Lander">
+        {/* <ToggleGroup names={this.menuGroup} /> */}
         <Timeline name="LanderIn"
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
