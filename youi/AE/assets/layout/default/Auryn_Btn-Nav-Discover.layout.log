@@ -175,7 +175,7 @@ activecomp {
       isAllCaps: false
     }
   }
-  classname: "CYIToggleButtonView"
+  classname: "CYIPushButtonView"
   bgcolor {
     alpha: 1
     red: 0.086274509803921567
@@ -184,7 +184,7 @@ activecomp {
   }
   properties {
     key: "componentSubtype"
-    value: "toggle"
+    value: "push"
   }
   properties {
     key: "componentType"
