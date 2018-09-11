@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { View, ButtonRef, Composition, ImageRef, TextRef, BackHandler, FocusManager, ViewRef, ListRef} from '@youi/react-native-youi';
 import { connect } from "react-redux";
-import { Timeline } from "../components"
+import Youtube from 'youtube-stream-url'
+import { Timeline, Video } from "../components"
 import { tmdbMovieDetails, tmdbTvDetails } from '../actions/tmdbActions'
 @connect((store) => {
   return {
@@ -15,8 +16,22 @@ class PDP extends Component {
   constructor(props) {
     super(props);
     BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
+    this.state = {
+      "youtubeVideo": undefined
+    }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.asset != prevProps.asset) {
+      console.log('ASSET', this.props.asset)
+      if (this.props.asset.videos.results.length > 0) {
+        Youtube.getInfo({ url: 'http://www.youtube.com/watch?v=' + this.props.asset.videos.results[0].key })
+        .then(video => {
+          this.setState({"youtubeVideo": video})
+        });
+      }
+    }
+  }
   navigateBack = () => {
     this.outTimeline.play().then(() => {
       this.props.navigation.goBack(null);
@@ -59,6 +74,13 @@ class PDP extends Component {
     )
   }
 
+  playVideo = () => {
+    this.videoInTimeline.play()
+    .then(() => {
+      this.videoPlayer.play();
+    })
+  }
+
   render() {
     const { asset, fetched } = this.props
     if (!fetched) {
@@ -66,6 +88,11 @@ class PDP extends Component {
     }
     return (
       <Composition source="Auryn_PDP">
+
+        <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
+        <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
+        <Video source={this.state.youtubeVideo} ref={ref => this.videoPlayer = ref}/>
+
         <Timeline name="PDPIn"
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
@@ -79,7 +106,10 @@ class PDP extends Component {
             keyExtractor={(item) => item.id}
             horizontal={true}
           />
-          <ButtonRef name="Btn-2x3-Full">
+          <ButtonRef
+            name="Btn-2x3-Full"
+            onPress={this.playVideo}
+          >
             <ImageRef
               name="Image-Dynamic-2x3"
               source={{uri: "http://image.tmdb.org/t/p/w500" + asset.poster_path}}

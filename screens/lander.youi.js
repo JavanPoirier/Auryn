@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, FocusManager, ListRef, } from '@youi/react-native-youi';
+import { Composition, ViewRef, FocusManager, ListRef, TimelineRef } from '@youi/react-native-youi';
 import { ListItem, Timeline, DiscoverContainer, ToggleGroup } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
@@ -65,7 +65,7 @@ class Lander extends Component {
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
-        <Timeline name="LanderOut" ref={timeline => this.outTimeline = timeline} />
+        <TimelineRef name="LanderOut" ref={timeline => this.outTimeline = timeline} />
         <ListRef
           name="Discover"
           data={this.unflatten(discover)}

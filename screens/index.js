@@ -1,7 +1,7 @@
 import Splash   from './splash.youi'
 import Lander   from './lander.youi'
 import PDP      from './pdp.youi'
-import Player   from './video.youi'
+import Player   from '../components/video.youi'
 import Search   from './search.youi'
 
 export {
