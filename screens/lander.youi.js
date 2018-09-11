@@ -22,7 +22,9 @@ class Lander extends Component {
       'Btn-Nav-Profile',
     ]
   }
-
+  componentDidUpdate(prevProps) {
+    console.log('FOCUS', this.props.isFocused)
+  }
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       this.setState({focusable: true});
@@ -60,7 +62,7 @@ class Lander extends Component {
     const { discover } = this.props
     return (
       <Composition source="Auryn_Lander">
-        <ToggleGroup names={this.menuGroup} />
+        <ToggleGroup focusable={this.props.isFocused} names={this.menuGroup} />
         <Timeline name="LanderIn"
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
@@ -69,7 +71,7 @@ class Lander extends Component {
         <ListRef
           name="Discover"
           data={this.unflatten(discover)}
-          renderItem={({item, index}) => <DiscoverContainer onPressItem={this.onPressItem} data={item.data} index={index}/>}
+          renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
           horizontal={true}
         />
       </Composition>

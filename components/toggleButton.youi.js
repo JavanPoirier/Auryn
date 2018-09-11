@@ -27,6 +27,7 @@ export default class ToggleButton extends Component {
   render() {
     return (
       <ButtonRef
+        focusable={this.props.focusable}
         name={this.props.name}
         ref={ref => this.ref = ref}
         onPress={() => {
