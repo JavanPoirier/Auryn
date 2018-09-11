@@ -72,8 +72,42 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 1"
+    name: "Gradient-Player.png"
     id: 130
+    sourceid: 891
+    transform {
+      anchorPoint {
+        x: 0.5
+        y: 548
+        z: 0
+      }
+      scale {
+        x: 1067
+        y: 0.35
+        z: 1
+      }
+      position {
+        x: 533.5
+        y: 600
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Red Solid 14"
+    id: 131
     sourceid: 95
     transform {
       anchorPoint {
@@ -106,9 +140,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 1"
-    id: 131
-    sourceid: 95
+    name: "Red Solid 13"
+    id: 132
+    sourceid: 930
     transform {
       anchorPoint {
         x: 533.5
@@ -140,8 +174,8 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 2"
-    id: 132
+    name: "Red Solid 12"
+    id: 133
     sourceid: 101
     transform {
       anchorPoint {
@@ -174,9 +208,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 2"
-    id: 133
-    sourceid: 101
+    name: "Red Solid 11"
+    id: 134
+    sourceid: 928
     transform {
       anchorPoint {
         x: 2
@@ -209,7 +243,7 @@ activecomp {
   }
   layer {
     name: "Text-Title"
-    id: 134
+    id: 135
     sourceid: -1
     transform {
       anchorPoint {
@@ -270,7 +304,7 @@ activecomp {
   }
   layer {
     name: "Text-Details"
-    id: 135
+    id: 136
     sourceid: -1
     transform {
       anchorPoint {
@@ -368,13 +402,37 @@ sources {
   copy_source: true
 }
 sources {
+  uid: 891
+  srctype: AE_IMAGE_SRC
+  name: "Gradient-Player.png"
+  width: 1
+  height: 548
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
   uid: 95
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.93333333730697632
-    green: 0.93333333730697632
-    blue: 0.93333333730697632
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
+  }
+  width: 1067
+  height: 4
+  copy_source: false
+}
+sources {
+  uid: 930
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
   }
   width: 1067
   height: 4
@@ -385,27 +443,40 @@ sources {
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.93333333730697632
-    green: 0.93333333730697632
-    blue: 0.93333333730697632
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
   }
   width: 4
   height: 600
   copy_source: false
 }
 sources {
-  uid: 5
+  uid: 928
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
+  }
+  width: 4
+  height: 600
+  copy_source: false
+}
+sources {
+  uid: 8
   srctype: AE_FONT_SRC
   name: "Raleway-Black"
   copy_source: true
-  file_name: "yi_Raleway-Black.otf"
+  file_name: "yi_Raleway-Black.ttf"
   style_name: "Black"
 }
 sources {
-  uid: 6
+  uid: 9
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Medium.otf"
+  file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
 }

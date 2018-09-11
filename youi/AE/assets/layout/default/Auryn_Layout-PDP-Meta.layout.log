@@ -20,7 +20,7 @@ activecomp {
       }
       position {
         x: 253.26
-        y: 472.5
+        y: 514.5
         z: 0
       }
       orientation {
@@ -81,7 +81,7 @@ activecomp {
       }
       position {
         x: 253.26
-        y: 432.5
+        y: 474.5
         z: 0
       }
       orientation {
@@ -137,7 +137,7 @@ activecomp {
       }
       position {
         x: 253.26
-        y: 222.5
+        y: 264.5
         z: 0
       }
       orientation {
@@ -198,7 +198,7 @@ activecomp {
       }
       position {
         x: 253.26
-        y: 182.5
+        y: 224.5
         z: 0
       }
       orientation {
@@ -272,7 +272,7 @@ activecomp {
     castsshadows: false
     textinfo {
       justification: AE_TEXT_LEFT
-      fontSize: 48
+      fontSize: 60
       fontColor {
         alpha: 1
         red: 1
@@ -287,7 +287,7 @@ activecomp {
       text: ""
       multiline: true
       ellipsis: true
-      isAllCaps: false
+      isAllCaps: true
     }
     properties {
       key: "text-placeholder"
@@ -322,7 +322,7 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Medium.otf"
+  file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
 }
 sources {
@@ -330,7 +330,7 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
-  file_name: "yi_Raleway-Bold.otf"
+  file_name: "yi_Raleway-Bold.ttf"
   style_name: "Bold"
 }
 sources {
@@ -338,6 +338,6 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Black"
   copy_source: true
-  file_name: "yi_Raleway-Black.otf"
+  file_name: "yi_Raleway-Black.ttf"
   style_name: "Black"
 }

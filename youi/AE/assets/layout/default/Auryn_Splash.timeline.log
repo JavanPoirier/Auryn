@@ -1,7 +1,7 @@
 tracks {
   binding: IS_VISIBLE
   targetid: 187
-  targetname: "Dark Gray Solid 3"
+  targetname: "Background-Gradient.png"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -12,7 +12,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 187
-  targetname: "Dark Gray Solid 3"
+  targetname: "Background-Gradient.png"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0

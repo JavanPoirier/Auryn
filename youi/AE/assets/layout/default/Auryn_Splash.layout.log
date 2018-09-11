@@ -4,9 +4,9 @@ activecomp {
   height: 1080
   defaultcameradistance: 2666.6667
   layer {
-    name: "Dark Gray Solid 3"
+    name: "Background-Gradient.png"
     id: 187
-    sourceid: 185
+    sourceid: 831
     transform {
       anchorPoint {
         x: 960
@@ -53,8 +53,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 960
-        y: 540
+        x: 130
+        y: 950
         z: 0
       }
       orientation {
@@ -80,17 +80,15 @@ activecomp {
   childtemplates: "Auryn_Loader"
 }
 sources {
-  uid: 185
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.21960784494876862
-    green: 0.21960784494876862
-    blue: 0.21960784494876862
-  }
+  uid: 831
+  srctype: AE_IMAGE_SRC
+  name: "Background-Gradient.png"
   width: 1920
   height: 1080
-  copy_source: false
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
 }
 sources {
   uid: 212

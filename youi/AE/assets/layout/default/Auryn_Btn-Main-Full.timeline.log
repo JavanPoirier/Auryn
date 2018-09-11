@@ -110,105 +110,18 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 130
-  targetname: "White Solid 1"
+  targetname: "Gradient-Player.png"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
     inttype: AE_INTERP_HOLD
     ivalue1: 1
   }
-}
-tracks {
-  binding: OPACITY
-  targetid: 130
-  targetname: "White Solid 1"
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.01666
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.027894624
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.03332
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.10362528
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.0499799
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.21526213
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.0666399
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.35087535
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.0832999
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.49853516
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.0999599
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.64631164
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.1166198
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.78227508
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.1332798
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.89449561
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.1499398
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 0.97104341
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_DATA
-    timeOffset: 1.1666666
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 1
-  }
-  trackName: "Opacity"
 }
 tracks {
   binding: IS_VISIBLE
   targetid: 131
-  targetname: "White Solid 1"
+  targetname: "Red Solid 14"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -219,7 +132,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 131
-  targetname: "White Solid 1"
+  targetname: "Red Solid 14"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
@@ -306,7 +219,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 132
-  targetname: "White Solid 2"
+  targetname: "Red Solid 13"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -317,7 +230,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 132
-  targetname: "White Solid 2"
+  targetname: "Red Solid 13"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
@@ -404,7 +317,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 133
-  targetname: "White Solid 2"
+  targetname: "Red Solid 12"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -415,7 +328,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 133
-  targetname: "White Solid 2"
+  targetname: "Red Solid 12"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
@@ -502,6 +415,104 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 134
+  targetname: "Red Solid 11"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: OPACITY
+  targetid: 134
+  targetname: "Red Solid 11"
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.01666
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.027894624
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.03332
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.10362528
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.0499799
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.21526213
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.0666399
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.35087535
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.0832999
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.49853516
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.0999599
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.64631164
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.1166198
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.78227508
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.1332798
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.89449561
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.1499398
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.97104341
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 1.1666666
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  trackName: "Opacity"
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 135
   targetname: "Text-Title"
   keytimes {
     datatype: AE_INT_DATA
@@ -512,7 +523,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 134
+  targetid: 135
   targetname: "Text-Title"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -599,7 +610,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 135
+  targetid: 136
   targetname: "Text-Details"
   keytimes {
     datatype: AE_INT_DATA
@@ -610,7 +621,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 135
+  targetid: 136
   targetname: "Text-Details"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -704,10 +715,6 @@ markers {
     binding: OPACITY
   }
   tracksSelection {
-    targetid: 130
-    binding: OPACITY
-  }
-  tracksSelection {
     targetid: 131
     binding: OPACITY
   }
@@ -725,6 +732,10 @@ markers {
   }
   tracksSelection {
     targetid: 135
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 136
     binding: OPACITY
   }
   alltracks: false

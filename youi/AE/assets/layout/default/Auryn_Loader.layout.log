@@ -4,7 +4,7 @@ activecomp {
   height: 100
   defaultcameradistance: 138.88889
   layer {
-    name: "White Solid 7"
+    name: "Deep Royal Blue Solid 1"
     id: 212
     sourceid: 248
     transform {
@@ -49,9 +49,9 @@ sources {
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.94509804248809814
-    green: 0.94509804248809814
-    blue: 0.94509804248809814
+    red: 0.058823529630899429
+    green: 0.20784313976764679
+    blue: 0.43921568989753723
   }
   width: 60
   height: 60

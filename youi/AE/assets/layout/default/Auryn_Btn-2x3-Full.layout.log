@@ -72,9 +72,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 8"
+    name: "Red Solid 6"
     id: 268
-    sourceid: 299
+    sourceid: 922
     transform {
       anchorPoint {
         x: 200
@@ -106,9 +106,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 9"
+    name: "Red Solid 5"
     id: 269
-    sourceid: 301
+    sourceid: 920
     transform {
       anchorPoint {
         x: 200
@@ -140,9 +140,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 2"
+    name: "Red Solid 4"
     id: 270
-    sourceid: 101
+    sourceid: 918
     transform {
       anchorPoint {
         x: 2
@@ -174,9 +174,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 2"
+    name: "Red Solid 3"
     id: 271
-    sourceid: 101
+    sourceid: 916
     transform {
       anchorPoint {
         x: 2
@@ -246,39 +246,52 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 299
+  uid: 922
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.93333333730697632
-    green: 0.93333333730697632
-    blue: 0.93333333730697632
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
   }
   width: 400
   height: 4
   copy_source: false
 }
 sources {
-  uid: 301
+  uid: 920
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.93333333730697632
-    green: 0.93333333730697632
-    blue: 0.93333333730697632
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
   }
   width: 400
   height: 4
   copy_source: false
 }
 sources {
-  uid: 101
+  uid: 918
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.93333333730697632
-    green: 0.93333333730697632
-    blue: 0.93333333730697632
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
+  }
+  width: 4
+  height: 600
+  copy_source: false
+}
+sources {
+  uid: 916
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
   }
   width: 4
   height: 600

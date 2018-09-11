@@ -12,7 +12,7 @@ const Stack = createStackNavigator(
   {
     headerMode: 'none',
     cardStyle: {
-      backgroundColor: 'transparent',
+      backgroundColor: '#0f3570',
     },
     transitionConfig: () => ({
       transitionSpec: {},

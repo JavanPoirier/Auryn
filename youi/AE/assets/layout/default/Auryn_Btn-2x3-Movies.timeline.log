@@ -110,7 +110,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 504
-  targetname: "White Solid 8"
+  targetname: "Red Solid 10"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -121,7 +121,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 504
-  targetname: "White Solid 8"
+  targetname: "Red Solid 10"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
@@ -208,7 +208,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 505
-  targetname: "White Solid 9"
+  targetname: "Red Solid 9"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -219,7 +219,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 505
-  targetname: "White Solid 9"
+  targetname: "Red Solid 9"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
@@ -306,7 +306,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 506
-  targetname: "White Solid 2"
+  targetname: "Red Solid 8"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -317,7 +317,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 506
-  targetname: "White Solid 2"
+  targetname: "Red Solid 8"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
@@ -404,7 +404,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 507
-  targetname: "White Solid 2"
+  targetname: "Red Solid 7"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -415,7 +415,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 507
-  targetname: "White Solid 2"
+  targetname: "Red Solid 7"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0

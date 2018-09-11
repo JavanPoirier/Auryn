@@ -265,6 +265,6 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
-  file_name: "yi_Raleway-Bold.otf"
+  file_name: "yi_Raleway-Bold.ttf"
   style_name: "Bold"
 }

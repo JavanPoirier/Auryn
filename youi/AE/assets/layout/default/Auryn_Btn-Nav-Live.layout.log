@@ -4,9 +4,9 @@ activecomp {
   height: 60
   defaultcameradistance: 277.77777
   layer {
-    name: "White Solid 10"
+    name: "Red Solid 1"
     id: 570
-    sourceid: 537
+    sourceid: 898
     transform {
       anchorPoint {
         x: 100
@@ -38,13 +38,13 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Black Solid 8"
+    name: "Deep Royal Blue Solid 8"
     id: 571
-    sourceid: 534
+    sourceid: 933
     transform {
       anchorPoint {
-        x: 100
-        y: 30
+        x: 99
+        y: 29
         z: 0
       }
       scale {
@@ -192,29 +192,29 @@ activecomp {
   }
 }
 sources {
-  uid: 537
+  uid: 898
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 1
-    green: 1
-    blue: 1
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
   }
   width: 200
   height: 60
   copy_source: false
 }
 sources {
-  uid: 534
+  uid: 933
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0
-    green: 0
-    blue: 0
+    red: 0.058823529630899429
+    green: 0.20784313976764679
+    blue: 0.43921568989753723
   }
-  width: 200
-  height: 60
+  width: 198
+  height: 58
   copy_source: false
 }
 sources {
@@ -222,7 +222,7 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Black"
   copy_source: true
-  file_name: "yi_Raleway-Black.otf"
+  file_name: "yi_Raleway-Black.ttf"
   style_name: "Black"
 }
 sources {
@@ -230,6 +230,6 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Medium.otf"
+  file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
 }

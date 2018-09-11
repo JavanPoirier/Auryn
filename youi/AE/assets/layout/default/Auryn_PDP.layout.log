@@ -38,9 +38,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Dark Gray Solid 2"
+    name: "Background-Gradient.png"
     id: 254
-    sourceid: 93
+    sourceid: 831
     transform {
       anchorPoint {
         x: 960
@@ -209,24 +209,22 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 93
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.21881100535392761
-    green: 0.21881100535392761
-    blue: 0.21881100535392761
-  }
+  uid: 831
+  srctype: AE_IMAGE_SRC
+  name: "Background-Gradient.png"
   width: 1920
   height: 1080
-  copy_source: false
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
 }
 sources {
   uid: 3
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
-  file_name: "yi_Raleway-Bold.otf"
+  file_name: "yi_Raleway-Bold.ttf"
   style_name: "Bold"
 }
 sources {

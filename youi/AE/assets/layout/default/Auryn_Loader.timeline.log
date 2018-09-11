@@ -1,7 +1,7 @@
 tracks {
   binding: IS_VISIBLE
   targetid: 212
-  targetname: "White Solid 7"
+  targetname: "Deep Royal Blue Solid 1"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -12,7 +12,7 @@ tracks {
 tracks {
   binding: ROTATION_Z
   targetid: 212
-  targetname: "White Solid 7"
+  targetname: "Deep Royal Blue Solid 1"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0

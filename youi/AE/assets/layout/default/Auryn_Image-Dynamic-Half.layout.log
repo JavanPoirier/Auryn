@@ -54,9 +54,9 @@ sources {
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0
-    green: 0
-    blue: 0
+    red: 0.058823529630899429
+    green: 0.20784313976764679
+    blue: 0.43921568989753723
   }
   width: 534
   height: 300

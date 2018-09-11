@@ -4,42 +4,8 @@ activecomp {
   height: 180
   defaultcameradistance: 2666.6667
   layer {
-    name: "Dark Gray Solid 1"
-    id: 78
-    sourceid: 76
-    transform {
-      anchorPoint {
-        x: 960
-        y: 90
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 960
-        y: 90
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
     name: "Btn-Nav-Profile"
-    id: 79
+    id: 78
     sourceid: 604
     transform {
       anchorPoint {
@@ -73,7 +39,7 @@ activecomp {
   }
   layer {
     name: "Btn-Nav-Search"
-    id: 80
+    id: 79
     sourceid: 585
     transform {
       anchorPoint {
@@ -107,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Btn-Nav-Live"
-    id: 81
+    id: 80
     sourceid: 570
     transform {
       anchorPoint {
@@ -141,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Btn-Nav-Shows"
-    id: 82
+    id: 81
     sourceid: 555
     transform {
       anchorPoint {
@@ -175,7 +141,7 @@ activecomp {
   }
   layer {
     name: "Btn-Nav-Movies"
-    id: 83
+    id: 82
     sourceid: 539
     transform {
       anchorPoint {
@@ -209,7 +175,7 @@ activecomp {
   }
   layer {
     name: "Btn-Nav-Discover"
-    id: 84
+    id: 83
     sourceid: 521
     transform {
       anchorPoint {
@@ -253,19 +219,6 @@ activecomp {
   childtemplates: "Auryn_Btn-Nav-Shows"
   childtemplates: "Auryn_Btn-Nav-Movies"
   childtemplates: "Auryn_Btn-Nav-Discover"
-}
-sources {
-  uid: 76
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.2188112735748291
-    green: 0.2188112735748291
-    blue: 0.2188112735748291
-  }
-  width: 1920
-  height: 180
-  copy_source: false
 }
 sources {
   uid: 604
