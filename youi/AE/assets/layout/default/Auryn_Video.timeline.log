@@ -12,7 +12,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 307
-  targetname: "Player-Controls"
+  targetname: "Template-PlayerControls.png"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -23,7 +23,7 @@ tracks {
 tracks {
   binding: POSITION
   targetid: 307
-  targetname: "Player-Controls"
+  targetname: "Template-PlayerControls.png"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
     timeOffset: 0
@@ -1419,7 +1419,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 307
-  targetname: "Player-Controls"
+  targetname: "Template-PlayerControls.png"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0

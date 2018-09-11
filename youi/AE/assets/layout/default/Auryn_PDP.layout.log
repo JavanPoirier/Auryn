@@ -72,60 +72,8 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Video Playback"
-    id: 255
-    sourceid: -1
-    transform {
-      anchorPoint {
-        x: 393
-        y: 39
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 959.87396
-        y: 558.86121
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    textinfo {
-      justification: AE_TEXT_CENTER
-      fontSize: 60
-      fontColor {
-        alpha: 1
-        red: 1
-        green: 1
-        blue: 1
-      }
-      fontName: "Raleway-Bold"
-      isPointText: false
-      boundsWidth: 786
-      boundsHeight: 78
-      isLabel: true
-      text: "Video Playback"
-      multiline: true
-      isAllCaps: false
-    }
-  }
-  layer {
     name: "PDP-Scroller"
-    id: 256
+    id: 255
     sourceid: 389
     transform {
       anchorPoint {
@@ -159,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Fader"
-    id: 257
+    id: 256
     sourceid: 421
     transform {
       anchorPoint {
@@ -218,14 +166,6 @@ sources {
   fps: 0
   loops: 1
   copy_source: true
-}
-sources {
-  uid: 3
-  srctype: AE_FONT_SRC
-  name: "Raleway-Bold"
-  copy_source: true
-  file_name: "yi_Raleway-Bold.ttf"
-  style_name: "Bold"
 }
 sources {
   uid: 389

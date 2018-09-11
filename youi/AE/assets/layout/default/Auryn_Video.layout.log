@@ -38,9 +38,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Player-Controls"
+    name: "Template-PlayerControls.png"
     id: 307
-    sourceid: 876
+    sourceid: 862
     transform {
       anchorPoint {
         x: 960
@@ -78,7 +78,6 @@ activecomp {
     blue: 0.14509803921568629
   }
   childtemplates: "Auryn_VideoSurface"
-  childtemplates: "Auryn_Player-Controls"
 }
 sources {
   uid: 423
@@ -89,10 +88,13 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 876
-  srctype: AE_COMP_SRC
-  name: "Auryn_Player-Controls.layout"
+  uid: 862
+  srctype: AE_IMAGE_SRC
+  name: "Template-PlayerControls.png"
   width: 1920
   height: 606
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
   copy_source: true
 }
