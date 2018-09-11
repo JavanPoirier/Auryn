@@ -79,9 +79,9 @@ export default class Video extends Component {
           }}
         />
         <Timeline name="Show" onLoad={t => t.play()}/>
-        <ViewRef name="Player-Controls">
+        {/* <ViewRef name="Player-Controls">
 
-        </ViewRef>
+        </ViewRef> */}
 
       {/* <Scrubber
         ref={ref => this.scrubber = ref}
