@@ -1,0 +1,410 @@
+activecomp {
+  name: "Auryn_Btn-Profile1"
+  width: 250
+  height: 400
+  defaultcameradistance: 347.22223
+  layer {
+    name: "White Solid 14"
+    id: 259618
+    sourceid: 259638
+    transform {
+      anchorPoint {
+        x: 125
+        y: 125
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 125
+        y: 125
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Magenta-Red Solid 2"
+    id: 259619
+    sourceid: 259632
+    transform {
+      anchorPoint {
+        x: 121
+        y: 121
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 125
+        y: 125
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Profile-Smile.png"
+    id: 259620
+    sourceid: 259634
+    transform {
+      anchorPoint {
+        x: 56.5
+        y: 21.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 96
+        y: 142
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Profile-Eye.png"
+    id: 259621
+    sourceid: 259633
+    transform {
+      anchorPoint {
+        x: 21
+        y: 21
+        z: 0
+      }
+      scale {
+        x: 0.6
+        y: 0.6
+        z: 1
+      }
+      position {
+        x: 54
+        y: 81
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Profile-Eye.png"
+    id: 259622
+    sourceid: 259633
+    transform {
+      anchorPoint {
+        x: 21
+        y: 21
+        z: 0
+      }
+      scale {
+        x: 0.8
+        y: 0.8
+        z: 1
+      }
+      position {
+        x: 182
+        y: 81
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Magenta-Red Solid 3"
+    id: 259623
+    sourceid: 259642
+    transform {
+      anchorPoint {
+        x: 25
+        y: 25
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 55
+        y: 39
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Name"
+    id: 259624
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 123
+        y: 21
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 123
+        y: 285
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_CENTER
+      fontSize: 32
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Bold"
+      isPointText: false
+      boundsWidth: 249
+      boundsHeight: 42
+      isLabel: true
+      text: ""
+      multiline: true
+      isAllCaps: false
+    }
+    properties {
+      key: "text-placeholder"
+      value: "true"
+    }
+  }
+  layer {
+    name: "Active User"
+    id: 259625
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 123
+        y: 21
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 123
+        y: 328
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_CENTER
+      fontSize: 24
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Medium"
+      isPointText: false
+      boundsWidth: 249
+      boundsHeight: 25
+      isLabel: true
+      text: "Active User"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  classname: "CYIPushButtonView"
+  bgcolor {
+    alpha: 1
+    red: 0.086274509803921567
+    green: 0.11372549019607843
+    blue: 0.14509803921568629
+  }
+  properties {
+    key: "componentSubtype"
+    value: "push"
+  }
+  properties {
+    key: "componentType"
+    value: "button"
+  }
+}
+sources {
+  uid: 259638
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 1
+    green: 1
+    blue: 1
+  }
+  width: 250
+  height: 250
+  copy_source: false
+}
+sources {
+  uid: 259632
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.91286766529083252
+    green: 0.032904054969549179
+    blue: 0.33563414216041565
+  }
+  width: 242
+  height: 242
+  copy_source: false
+}
+sources {
+  uid: 259634
+  srctype: AE_IMAGE_SRC
+  name: "Profile-Smile.png"
+  width: 113
+  height: 43
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 259633
+  srctype: AE_IMAGE_SRC
+  name: "Profile-Eye.png"
+  width: 42
+  height: 42
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 259642
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.91372549533843994
+    green: 0.0313725508749485
+    blue: 0.33725491166114807
+  }
+  width: 50
+  height: 50
+  copy_source: false
+}
+sources {
+  uid: 6
+  srctype: AE_FONT_SRC
+  name: "Raleway-Bold"
+  copy_source: true
+  file_name: "yi_Raleway-Bold.ttf"
+  style_name: "Bold"
+}
+sources {
+  uid: 7
+  srctype: AE_FONT_SRC
+  name: "Raleway-Medium"
+  copy_source: true
+  file_name: "yi_Raleway-Medium.ttf"
+  style_name: "Medium"
+}

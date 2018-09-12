@@ -72,23 +72,23 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "LIVE 2"
+    name: "Dark Royal Blue Solid 2"
     id: 572
-    sourceid: -1
+    sourceid: 259778
     transform {
       anchorPoint {
-        x: 100
-        y: 21.5
+        x: 99
+        y: 29
         z: 0
       }
       scale {
-        x: 1
-        y: 1
+        x: 0.98
+        y: 0.94
         z: 1
       }
       position {
-        x: 99.159828
-        y: 40.958118
+        x: 100
+        y: 30
         z: 0
       }
       orientation {
@@ -104,24 +104,6 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    textinfo {
-      justification: AE_TEXT_CENTER
-      fontSize: 28
-      fontColor {
-        alpha: 1
-        red: 1
-        green: 1
-        blue: 1
-      }
-      fontName: "Raleway-Black"
-      isPointText: false
-      boundsWidth: 200
-      boundsHeight: 33
-      isLabel: true
-      text: "LIVE"
-      multiline: true
-      isAllCaps: false
-    }
   }
   layer {
     name: "LIVE"
@@ -161,11 +143,63 @@ activecomp {
       fontSize: 28
       fontColor {
         alpha: 1
+        red: 0.90588235855102539
+        green: 0.20000000298023224
+        blue: 0.23529411852359772
+      }
+      fontName: "Raleway-Medium"
+      isPointText: false
+      boundsWidth: 200
+      boundsHeight: 33
+      isLabel: true
+      text: "LIVE"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "LIVE 2"
+    id: 574
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 100
+        y: 21.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 99.159828
+        y: 55.958118
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_CENTER
+      fontSize: 28
+      fontColor {
+        alpha: 1
         red: 1
         green: 1
         blue: 1
       }
-      fontName: "Raleway-Medium"
+      fontName: "Raleway-Black"
       isPointText: false
       boundsWidth: 200
       boundsHeight: 33
@@ -218,12 +252,17 @@ sources {
   copy_source: false
 }
 sources {
-  uid: 3
-  srctype: AE_FONT_SRC
-  name: "Raleway-Black"
-  copy_source: true
-  file_name: "yi_Raleway-Black.ttf"
-  style_name: "Black"
+  uid: 259778
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.11764705926179886
+    green: 0.18431372940540314
+    blue: 0.21176470816135406
+  }
+  width: 198
+  height: 58
+  copy_source: false
 }
 sources {
   uid: 4
@@ -232,4 +271,12 @@ sources {
   copy_source: true
   file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
+}
+sources {
+  uid: 5
+  srctype: AE_FONT_SRC
+  name: "Raleway-Black"
+  copy_source: true
+  file_name: "yi_Raleway-Black.ttf"
+  style_name: "Black"
 }

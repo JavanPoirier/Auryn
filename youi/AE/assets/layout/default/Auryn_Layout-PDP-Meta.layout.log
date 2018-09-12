@@ -31,7 +31,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -92,7 +92,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -148,7 +148,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -209,7 +209,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -265,21 +265,21 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
     textinfo {
       justification: AE_TEXT_LEFT
-      fontSize: 60
+      fontSize: 72
       fontColor {
         alpha: 1
         red: 1
         green: 1
         blue: 1
       }
-      fontName: "Raleway-Black"
+      fontName: "Raleway-Bold"
       isPointText: false
       boundsWidth: 1137
       boundsHeight: 180
@@ -287,7 +287,7 @@ activecomp {
       text: ""
       multiline: true
       ellipsis: true
-      isAllCaps: true
+      isAllCaps: false
     }
     properties {
       key: "text-placeholder"
@@ -332,12 +332,4 @@ sources {
   copy_source: true
   file_name: "yi_Raleway-Bold.ttf"
   style_name: "Bold"
-}
-sources {
-  uid: 3
-  srctype: AE_FONT_SRC
-  name: "Raleway-Black"
-  copy_source: true
-  file_name: "yi_Raleway-Black.ttf"
-  style_name: "Black"
 }

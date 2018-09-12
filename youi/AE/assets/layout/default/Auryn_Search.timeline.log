@@ -1,17 +1,6 @@
 tracks {
   binding: IS_VISIBLE
   targetid: 743
-  targetname: "What are you looking for?"
-  keytimes {
-    datatype: AE_INT_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_HOLD
-    ivalue1: 1
-  }
-}
-tracks {
-  binding: IS_VISIBLE
-  targetid: 744
   targetname: "Popular Searches"
   keytimes {
     datatype: AE_INT_DATA
@@ -22,8 +11,19 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
+  targetid: 744
+  targetname: "TextInput"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: IS_VISIBLE
   targetid: 745
-  targetname: "White Solid 12"
+  targetname: "List-PDP"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -34,7 +34,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 746
-  targetname: "List-PDP"
+  targetname: "Btn-Search"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0

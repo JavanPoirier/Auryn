@@ -193,7 +193,7 @@ activecomp {
       }
       position {
         x: 960
-        y: -110
+        y: 90
         z: 0
       }
       orientation {

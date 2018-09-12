@@ -72,8 +72,42 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "DISCOVER"
+    name: "Dark Royal Blue Solid 2"
     id: 523
+    sourceid: 259778
+    transform {
+      anchorPoint {
+        x: 99
+        y: 29
+        z: 0
+      }
+      scale {
+        x: 0.98
+        y: 0.94
+        z: 1
+      }
+      position {
+        x: 100
+        y: 30
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "DISCOVER"
+    id: 524
     sourceid: -1
     transform {
       anchorPoint {
@@ -88,7 +122,7 @@ activecomp {
       }
       position {
         x: 99.159828
-        y: 40.958118
+        y: 55.958118
         z: 0
       }
       orientation {
@@ -125,7 +159,7 @@ activecomp {
   }
   layer {
     name: "DISCOVER 2"
-    id: 524
+    id: 525
     sourceid: -1
     transform {
       anchorPoint {
@@ -161,9 +195,9 @@ activecomp {
       fontSize: 28
       fontColor {
         alpha: 1
-        red: 1
-        green: 1
-        blue: 1
+        red: 0.90588235855102539
+        green: 0.20000000298023224
+        blue: 0.23529411852359772
       }
       fontName: "Raleway-Medium"
       isPointText: false
@@ -218,7 +252,20 @@ sources {
   copy_source: false
 }
 sources {
-  uid: 3
+  uid: 259778
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.11764705926179886
+    green: 0.18431372940540314
+    blue: 0.21176470816135406
+  }
+  width: 198
+  height: 58
+  copy_source: false
+}
+sources {
+  uid: 4
   srctype: AE_FONT_SRC
   name: "Raleway-Black"
   copy_source: true
@@ -226,7 +273,7 @@ sources {
   style_name: "Black"
 }
 sources {
-  uid: 4
+  uid: 5
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true

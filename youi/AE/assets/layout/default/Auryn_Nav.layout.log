@@ -19,8 +19,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 1792
-        y: 110
+        x: 1806
+        y: -56
         z: 0
       }
       orientation {
@@ -53,8 +53,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 1728
-        y: 110
+        x: 1742
+        y: -56
         z: 0
       }
       orientation {
@@ -88,7 +88,7 @@ activecomp {
       }
       position {
         x: 1267
-        y: 110
+        y: -56
         z: 0
       }
       orientation {
@@ -122,7 +122,7 @@ activecomp {
       }
       position {
         x: 1062
-        y: 110
+        y: -56
         z: 0
       }
       orientation {
@@ -156,7 +156,7 @@ activecomp {
       }
       position {
         x: 857
-        y: 110
+        y: -56
         z: 0
       }
       orientation {
@@ -190,7 +190,41 @@ activecomp {
       }
       position {
         x: 652
-        y: 110
+        y: -56
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Logo-TMDB.png"
+    id: 84
+    sourceid: 987
+    transform {
+      anchorPoint {
+        x: 40
+        y: 35.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 144
+        y: -56
         z: 0
       }
       orientation {
@@ -212,6 +246,10 @@ activecomp {
     red: 0.086274509803921567
     green: 0.11372549019607843
     blue: 0.14509803921568629
+  }
+  properties {
+    key: "clip"
+    value: "true"
   }
   childtemplates: "Auryn_Btn-Nav-Profile"
   childtemplates: "Auryn_Btn-Nav-Search"
@@ -266,5 +304,16 @@ sources {
   name: "Auryn_Btn-Nav-Discover.layout"
   width: 200
   height: 60
+  copy_source: true
+}
+sources {
+  uid: 987
+  srctype: AE_IMAGE_SRC
+  name: "Logo-TMDB.png"
+  width: 80
+  height: 71
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
   copy_source: true
 }

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
-import { View, ButtonRef, Composition, ImageRef, TextRef, BackHandler, FocusManager, ViewRef, ListRef} from '@youi/react-native-youi';
+import { View, TimelineRef, ButtonRef, Composition, ImageRef, TextRef, BackHandler, FocusManager, ViewRef, ListRef} from '@youi/react-native-youi';
 import { connect } from "react-redux";
 import Youtube from 'youtube-stream-url'
 import { Timeline, Video } from "../components"
@@ -97,6 +97,8 @@ class PDP extends Component {
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
+
+
         <Timeline name="PDPOut" ref={timeline => this.outTimeline = timeline} />
         <ViewRef name="PDP-Scroller">
           <ListRef
@@ -122,7 +124,8 @@ class PDP extends Component {
           <ViewRef name="Layout-PDP-Meta">
             <TextRef name="Text-Title" text={asset.title} />
             <TextRef name="Text-Overview" text={asset.overview} />
-            <TextRef name="Text-Featured" text="I don't know" />
+            <TextRef name="Text-Featured" text="Director: Darth Solo  |  Starring: John Wick, Catherine Freda, Marco Frank" />
+            <TimelineRef name="In2" ref={(timeline) => this.in2Timeline = timeline} onLoad={(ref) => {ref.play()}} />
           </ViewRef>
         </ViewRef>
       </Composition>

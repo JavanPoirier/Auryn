@@ -4,13 +4,13 @@ activecomp {
   height: 900
   defaultcameradistance: 2666.6667
   layer {
-    name: "Account Info"
+    name: "Btn-Profile3"
     id: 712
-    sourceid: -1
+    sourceid: 259687
     transform {
       anchorPoint {
-        x: 440
-        y: 60
+        x: 125
+        y: 200
         z: 0
       }
       scale {
@@ -19,8 +19,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 539.72
-        y: 260.28012
+        x: 1256
+        y: 510
         z: 0
       }
       orientation {
@@ -36,28 +36,78 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    textinfo {
-      justification: AE_TEXT_LEFT
-      fontSize: 60
-      fontColor {
-        alpha: 1
-        red: 1
-        green: 1
-        blue: 1
-      }
-      fontName: "Raleway-Bold"
-      isPointText: false
-      boundsWidth: 880
-      boundsHeight: 68
-      isLabel: true
-      text: "Account Info"
-      multiline: true
-      isAllCaps: false
-    }
   }
   layer {
-    name: "Settings"
+    name: "Btn-Profile2"
     id: 713
+    sourceid: 259648
+    transform {
+      anchorPoint {
+        x: 125
+        y: 200
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 510
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Profile1"
+    id: 714
+    sourceid: 259618
+    transform {
+      anchorPoint {
+        x: 125
+        y: 200
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 654
+        y: 510
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Title"
+    id: 715
     sourceid: -1
     transform {
       anchorPoint {
@@ -72,7 +122,7 @@ activecomp {
       }
       position {
         x: 539.72
-        y: 648.28015
+        y: 220.28012
         z: 0
       }
       orientation {
@@ -89,7 +139,7 @@ activecomp {
     acceptslights: true
     castsshadows: false
     textinfo {
-      justification: AE_TEXT_LEFT
+      justification: AE_TEXT_CENTER
       fontSize: 60
       fontColor {
         alpha: 1
@@ -99,226 +149,22 @@ activecomp {
       }
       fontName: "Raleway-Bold"
       isPointText: false
-      boundsWidth: 880
+      boundsWidth: 1722
       boundsHeight: 68
       isLabel: true
-      text: "Settings"
+      text: "Who\342\200\231s Watching?"
       multiline: true
       isAllCaps: false
     }
   }
   layer {
-    name: "White Solid 12"
-    id: 714
-    sourceid: 727
-    transform {
-      anchorPoint {
-        x: 400
-        y: 100
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 0.28
-        z: 1
-      }
-      position {
-        x: 496
-        y: 342
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "White Solid 12"
-    id: 715
-    sourceid: 727
-    transform {
-      anchorPoint {
-        x: 400
-        y: 100
-        z: 0
-      }
-      scale {
-        x: 0.895
-        y: 0.28
-        z: 1
-      }
-      position {
-        x: 458
-        y: 712
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "White Solid 12"
+    name: "Message"
     id: 716
-    sourceid: 727
+    sourceid: -1
     transform {
       anchorPoint {
-        x: 400
-        y: 100
-        z: 0
-      }
-      scale {
-        x: 0.065
-        y: 0.28
-        z: 1
-      }
-      position {
-        x: 1146
-        y: 712
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "White Solid 12"
-    id: 717
-    sourceid: 727
-    transform {
-      anchorPoint {
-        x: 400
-        y: 100
-        z: 0
-      }
-      scale {
-        x: 0.065
-        y: 0.28
-        z: 1
-      }
-      position {
-        x: 1210
-        y: 712
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "White Solid 12"
-    id: 718
-    sourceid: 727
-    transform {
-      anchorPoint {
-        x: 400
-        y: 100
-        z: 0
-      }
-      scale {
-        x: 0.065
-        y: 0.28
-        z: 1
-      }
-      position {
-        x: 1274
-        y: 712
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "White Solid 12"
-    id: 719
-    sourceid: 727
-    transform {
-      anchorPoint {
-        x: 400
-        y: 100
-        z: 0
-      }
-      scale {
-        x: 0.765
-        y: 0.28
-        z: 1
-      }
-      position {
-        x: 406
-        y: 426
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "White Solid 13"
-    id: 720
-    sourceid: 732
-    transform {
-      anchorPoint {
-        x: 50
-        y: 50
+        x: 440
+        y: 60
         z: 0
       }
       scale {
@@ -327,8 +173,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 1172
-        y: 356
+        x: 539.72
+        y: 850.28015
         z: 0
       }
       orientation {
@@ -344,74 +190,24 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-  }
-  layer {
-    name: "White Solid 13"
-    id: 721
-    sourceid: 732
-    transform {
-      anchorPoint {
-        x: 50
-        y: 50
-        z: 0
+    textinfo {
+      justification: AE_TEXT_CENTER
+      fontSize: 24
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
       }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 1291
-        y: 356
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
+      fontName: "Raleway-Medium"
+      isPointText: false
+      boundsWidth: 1722
+      boundsHeight: 48
+      isLabel: true
+      text: "Manage account settings at TheMovieDB.org/MyAccount"
+      multiline: true
+      isAllCaps: false
     }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "White Solid 13"
-    id: 722
-    sourceid: 732
-    transform {
-      anchorPoint {
-        x: 50
-        y: 50
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 1410
-        y: 356
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
   }
   bgcolor {
     alpha: 1
@@ -427,9 +223,36 @@ activecomp {
     key: "rows"
     value: "2"
   }
+  childtemplates: "Auryn_Btn-Profile3"
+  childtemplates: "Auryn_Btn-Profile2"
+  childtemplates: "Auryn_Btn-Profile1"
 }
 sources {
-  uid: 1
+  uid: 259687
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Profile3.layout"
+  width: 250
+  height: 400
+  copy_source: true
+}
+sources {
+  uid: 259648
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Profile2.layout"
+  width: 250
+  height: 400
+  copy_source: true
+}
+sources {
+  uid: 259618
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Profile1.layout"
+  width: 250
+  height: 400
+  copy_source: true
+}
+sources {
+  uid: 4
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
@@ -437,28 +260,10 @@ sources {
   style_name: "Bold"
 }
 sources {
-  uid: 727
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.88235294818878174
-    green: 0.88235294818878174
-    blue: 0.88235294818878174
-  }
-  width: 800
-  height: 200
-  copy_source: false
-}
-sources {
-  uid: 732
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.88235294818878174
-    green: 0.88235294818878174
-    blue: 0.88235294818878174
-  }
-  width: 100
-  height: 100
-  copy_source: false
+  uid: 5
+  srctype: AE_FONT_SRC
+  name: "Raleway-Medium"
+  copy_source: true
+  file_name: "yi_Raleway-Medium.ttf"
+  style_name: "Medium"
 }

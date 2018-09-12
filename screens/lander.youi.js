@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, FocusManager, ListRef, TimelineRef } from '@youi/react-native-youi';
+import { Composition, ViewRef, FocusManager, ListRef, TimelineRef} from '@youi/react-native-youi';
 import { ListItem, Timeline, DiscoverContainer, ToggleGroup } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
@@ -74,9 +74,15 @@ class Lander extends Component {
           renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
           horizontal={true}
         />
+          <ViewRef name="Nav">
+            <TimelineRef name="In" ref={(timeline) => this.inTimeline = timeline} onLoad={(ref) => {ref.play()}} />
+            <TimelineRef name="Out" ref={(timeline) => this.outTimeline = timeline} />
+          </ViewRef>
       </Composition>
     );
   }
 }
+
+
 
 export default withNavigationFocus(Lander);

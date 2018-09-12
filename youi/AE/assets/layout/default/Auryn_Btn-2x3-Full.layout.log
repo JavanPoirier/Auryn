@@ -207,6 +207,74 @@ activecomp {
     acceptslights: true
     castsshadows: false
   }
+  layer {
+    name: "Btn-PlayPause-Unfocused.png"
+    id: 272
+    sourceid: 957
+    transform {
+      anchorPoint {
+        x: 55
+        y: 55
+        z: 0
+      }
+      scale {
+        x: 0.4
+        y: 0.4
+        z: 1
+      }
+      position {
+        x: 200
+        y: 403
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Play.png"
+    id: 273
+    sourceid: 943
+    transform {
+      anchorPoint {
+        x: 15
+        y: 25
+        z: 0
+      }
+      scale {
+        x: 0.6
+        y: 0.6
+        z: 1
+      }
+      position {
+        x: 201
+        y: 403
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
   classname: "CYIPushButtonView"
   bgcolor {
     alpha: 1
@@ -296,4 +364,26 @@ sources {
   width: 4
   height: 600
   copy_source: false
+}
+sources {
+  uid: 957
+  srctype: AE_IMAGE_SRC
+  name: "Btn-PlayPause-Unfocused.png"
+  width: 110
+  height: 110
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 943
+  srctype: AE_IMAGE_SRC
+  name: "Btn-Play.png"
+  width: 40
+  height: 50
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
 }

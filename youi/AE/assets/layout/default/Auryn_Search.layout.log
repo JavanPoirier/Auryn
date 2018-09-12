@@ -4,7 +4,7 @@ activecomp {
   height: 900
   defaultcameradistance: 2666.6667
   layer {
-    name: "What are you looking for?"
+    name: "Popular Searches"
     id: 743
     sourceid: -1
     transform {
@@ -19,59 +19,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 539.72
-        y: 220.28012
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    textinfo {
-      justification: AE_TEXT_LEFT
-      fontSize: 60
-      fontColor {
-        alpha: 1
-        red: 1
-        green: 1
-        blue: 1
-      }
-      fontName: "Raleway-Bold"
-      isPointText: false
-      boundsWidth: 880
-      boundsHeight: 68
-      isLabel: true
-      text: "What are you looking for?"
-      multiline: true
-      isAllCaps: false
-    }
-  }
-  layer {
-    name: "Popular Searches"
-    id: 744
-    sourceid: -1
-    transform {
-      anchorPoint {
-        x: 440
-        y: 60
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 539.72
+        x: 537.72
         y: 488.28012
         z: 0
       }
@@ -90,7 +38,7 @@ activecomp {
     castsshadows: false
     textinfo {
       justification: AE_TEXT_LEFT
-      fontSize: 48
+      fontSize: 36
       fontColor {
         alpha: 1
         red: 1
@@ -108,23 +56,23 @@ activecomp {
     }
   }
   layer {
-    name: "White Solid 12"
-    id: 745
-    sourceid: 727
+    name: "TextInput"
+    id: 744
+    sourceid: 1023
     transform {
       anchorPoint {
-        x: 400
-        y: 100
+        x: 512
+        y: 37
         z: 0
       }
       scale {
-        x: 2.15
-        y: 0.28
+        x: 1
+        y: 1
         z: 1
       }
       position {
-        x: 960
-        y: 302
+        x: 840
+        y: 220
         z: 0
       }
       orientation {
@@ -143,7 +91,7 @@ activecomp {
   }
   layer {
     name: "List-PDP"
-    id: 746
+    id: 745
     sourceid: 360
     transform {
       anchorPoint {
@@ -175,6 +123,40 @@ activecomp {
     acceptslights: true
     castsshadows: false
   }
+  layer {
+    name: "Btn-Search"
+    id: 746
+    sourceid: 259598
+    transform {
+      anchorPoint {
+        x: 100
+        y: 37
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1466
+        y: 220
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
   bgcolor {
     alpha: 1
     red: 0.086274509803921567
@@ -189,18 +171,12 @@ activecomp {
     key: "rows"
     value: "2"
   }
+  childtemplates: "Auryn_TextInput"
   childtemplates: "Auryn_List-PDP"
+  childtemplates: "Auryn_Btn-Search"
 }
 sources {
   uid: 1
-  srctype: AE_FONT_SRC
-  name: "Raleway-Bold"
-  copy_source: true
-  file_name: "yi_Raleway-Bold.ttf"
-  style_name: "Bold"
-}
-sources {
-  uid: 2
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
@@ -208,17 +184,12 @@ sources {
   style_name: "Medium"
 }
 sources {
-  uid: 727
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.88235294818878174
-    green: 0.88235294818878174
-    blue: 0.88235294818878174
-  }
-  width: 800
-  height: 200
-  copy_source: false
+  uid: 1023
+  srctype: AE_COMP_SRC
+  name: "Auryn_TextInput.layout"
+  width: 1024
+  height: 74
+  copy_source: true
 }
 sources {
   uid: 360
@@ -226,5 +197,13 @@ sources {
   name: "Auryn_List-PDP.layout"
   width: 1920
   height: 400
+  copy_source: true
+}
+sources {
+  uid: 259598
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Search.layout"
+  width: 200
+  height: 74
   copy_source: true
 }

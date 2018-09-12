@@ -72,23 +72,23 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: ":-D 2"
+    name: "Dark Royal Blue Solid 3"
     id: 606
-    sourceid: -1
+    sourceid: 259785
     transform {
       anchorPoint {
-        x: 100
-        y: 21.5
+        x: 29
+        y: 29
         z: 0
       }
       scale {
-        x: 1
-        y: 1
+        x: 0.94
+        y: 0.94
         z: 1
       }
       position {
-        x: 29.159828
-        y: 40.958118
+        x: 30
+        y: 30
         z: 0
       }
       orientation {
@@ -104,33 +104,15 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    textinfo {
-      justification: AE_TEXT_CENTER
-      fontSize: 28
-      fontColor {
-        alpha: 1
-        red: 1
-        green: 1
-        blue: 1
-      }
-      fontName: "Raleway-Black"
-      isPointText: false
-      boundsWidth: 200
-      boundsHeight: 33
-      isLabel: true
-      text: ":-D"
-      multiline: true
-      isAllCaps: false
-    }
   }
   layer {
-    name: ":-D"
+    name: "Icon-Profile-Active.png"
     id: 607
-    sourceid: -1
+    sourceid: 979
     transform {
       anchorPoint {
-        x: 100
-        y: 21.5
+        x: 15
+        y: 19.5
         z: 0
       }
       scale {
@@ -139,8 +121,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 29.159828
-        y: 40.958118
+        x: 30.034828
+        y: 30.95812
         z: 0
       }
       orientation {
@@ -156,24 +138,40 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    textinfo {
-      justification: AE_TEXT_CENTER
-      fontSize: 28
-      fontColor {
-        alpha: 1
-        red: 1
-        green: 1
-        blue: 1
+  }
+  layer {
+    name: "Icon-Profile.png"
+    id: 608
+    sourceid: 965
+    transform {
+      anchorPoint {
+        x: 15
+        y: 19.5
+        z: 0
       }
-      fontName: "Raleway-Medium"
-      isPointText: false
-      boundsWidth: 200
-      boundsHeight: 33
-      isLabel: true
-      text: ":-D"
-      multiline: true
-      isAllCaps: false
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 30.034828
+        y: 45.958118
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
     }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
   }
   classname: "CYIPushButtonView"
   bgcolor {
@@ -218,18 +216,37 @@ sources {
   copy_source: false
 }
 sources {
-  uid: 3
-  srctype: AE_FONT_SRC
-  name: "Raleway-Black"
-  copy_source: true
-  file_name: "yi_Raleway-Black.ttf"
-  style_name: "Black"
+  uid: 259785
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.11764705926179886
+    green: 0.18431372940540314
+    blue: 0.21176470816135406
+  }
+  width: 58
+  height: 58
+  copy_source: false
 }
 sources {
-  uid: 4
-  srctype: AE_FONT_SRC
-  name: "Raleway-Medium"
+  uid: 979
+  srctype: AE_IMAGE_SRC
+  name: "Icon-Profile-Active.png"
+  width: 30
+  height: 39
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
   copy_source: true
-  file_name: "yi_Raleway-Medium.ttf"
-  style_name: "Medium"
+}
+sources {
+  uid: 965
+  srctype: AE_IMAGE_SRC
+  name: "Icon-Profile.png"
+  width: 30
+  height: 39
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
 }
