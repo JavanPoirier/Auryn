@@ -76,10 +76,8 @@ export default class Search extends Component {
             this.setState({query: t})
           }}
         />
-        <ButtonRef
-          name="Btn-Search"
-          onPress={this.search}
-        />
+        
+
 
         <ListRef
             name="List-PDP"
