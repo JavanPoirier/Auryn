@@ -31,7 +31,41 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Template-PlayerControls.png"
+    id: 254
+    sourceid: 862
+    transform {
+      anchorPoint {
+        x: 960
+        y: 303
+        z: 0
+      }
+      scale {
+        x: 0.8
+        y: 0.8
+        z: 1
+      }
+      position {
+        x: 960
+        y: 777
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -39,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Background-Gradient.png"
-    id: 254
+    id: 255
     sourceid: 831
     transform {
       anchorPoint {
@@ -65,7 +99,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -73,7 +107,7 @@ activecomp {
   }
   layer {
     name: "PDP-Scroller"
-    id: 255
+    id: 256
     sourceid: 389
     transform {
       anchorPoint {
@@ -88,7 +122,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 640
+        y: 540
         z: 0
       }
       orientation {
@@ -99,7 +133,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
@@ -107,7 +141,7 @@ activecomp {
   }
   layer {
     name: "Fader"
-    id: 256
+    id: 257
     sourceid: 421
     transform {
       anchorPoint {
@@ -154,6 +188,17 @@ sources {
   name: "Auryn_Video.layout"
   width: 1920
   height: 1080
+  copy_source: true
+}
+sources {
+  uid: 862
+  srctype: AE_IMAGE_SRC
+  name: "Template-PlayerControls.png"
+  width: 1920
+  height: 606
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
   copy_source: true
 }
 sources {

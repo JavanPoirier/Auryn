@@ -33,6 +33,8 @@ class PDP extends Component {
     }
   }
   navigateBack = () => {
+
+  this.contentoutTimeline.play()
     this.outTimeline.play().then(() => {
       this.props.navigation.goBack(null);
     });
@@ -108,6 +110,10 @@ class PDP extends Component {
             keyExtractor={(item) => item.id}
             horizontal={true}
           />
+
+          <TimelineRef name="ContentIn" ref={(timeline) => this.contentinTimeline = timeline} onLoad={(ref) => {ref.play()}} />
+          <TimelineRef name="ContentOut" ref={(timeline) => this.contentoutTimeline = timeline} />
+
           <ButtonRef
             name="Btn-2x3-Full"
             onPress={this.playVideo}
@@ -127,6 +133,9 @@ class PDP extends Component {
             <TextRef name="Text-Featured" text="Director: Darth Solo  |  Starring: John Wick, Catherine Freda, Marco Frank" />
             <TimelineRef name="In2" ref={(timeline) => this.in2Timeline = timeline} onLoad={(ref) => {ref.play()}} />
           </ViewRef>
+
+
+
         </ViewRef>
       </Composition>
     );

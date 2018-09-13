@@ -20,7 +20,7 @@ activecomp {
       }
       position {
         x: 253.26
-        y: 514.5
+        y: 578.5
         z: 0
       }
       orientation {
@@ -55,6 +55,7 @@ activecomp {
       ellipsis: true
       isAllCaps: false
     }
+    classname: "CYISDFAtlasTextSceneNode"
     properties {
       key: "text-placeholder"
       value: "true"
@@ -81,7 +82,7 @@ activecomp {
       }
       position {
         x: 253.26
-        y: 474.5
+        y: 538.5
         z: 0
       }
       orientation {
@@ -115,6 +116,7 @@ activecomp {
       multiline: true
       isAllCaps: false
     }
+    classname: "CYISDFAtlasTextSceneNode"
     properties {
       key: "margin-top"
       value: "20"
@@ -137,7 +139,7 @@ activecomp {
       }
       position {
         x: 253.26
-        y: 264.5
+        y: 328.5
         z: 0
       }
       orientation {
@@ -172,6 +174,7 @@ activecomp {
       ellipsis: true
       isAllCaps: false
     }
+    classname: "CYISDFAtlasTextSceneNode"
     properties {
       key: "text-placeholder"
       value: "true"
@@ -198,7 +201,7 @@ activecomp {
       }
       position {
         x: 253.26
-        y: 224.5
+        y: 288.5
         z: 0
       }
       orientation {
@@ -232,13 +235,14 @@ activecomp {
       multiline: true
       isAllCaps: false
     }
+    classname: "CYISDFAtlasTextSceneNode"
     properties {
       key: "margin-top"
       value: "20"
     }
   }
   layer {
-    name: "Text-Title"
+    name: "Details"
     id: 346
     sourceid: -1
     transform {
@@ -253,8 +257,65 @@ activecomp {
         z: 1
       }
       position {
-        x: 252.26
+        x: 253.26
+        y: 228.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 24
+      fontColor {
+        alpha: 1
+        red: 0.85098040103912354
+        green: 0.35686275362968445
+        blue: 0.501960813999176
+      }
+      fontName: "Raleway-Bold"
+      isPointText: false
+      boundsWidth: 953
+      boundsHeight: 30
+      isLabel: true
+      text: "2018  |  116 mins  |  PG"
+      multiline: true
+      isAllCaps: false
+    }
+    classname: "CYISDFAtlasTextSceneNode"
+    properties {
+      key: "margin-top"
+      value: "20"
+    }
+  }
+  layer {
+    name: "Text-Title"
+    id: 347
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 248.5
         y: 40.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 252.26
+        y: 44.5
         z: 0
       }
       orientation {
@@ -289,6 +350,7 @@ activecomp {
       ellipsis: true
       isAllCaps: false
     }
+    classname: "CYISDFAtlasTextSceneNode"
     properties {
       key: "text-placeholder"
       value: "true"

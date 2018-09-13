@@ -159,7 +159,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 740
+        y: 660
         z: 0
       }
       orientation {
@@ -204,7 +204,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true

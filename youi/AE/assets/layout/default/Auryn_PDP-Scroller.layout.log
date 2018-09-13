@@ -10,17 +10,17 @@ activecomp {
     transform {
       anchorPoint {
         x: 960
-        y: 540
+        y: 0
         z: 0
       }
       scale {
-        x: 2.35
-        y: 2.35
-        z: 2.35
+        x: 2.5
+        y: 2.5
+        z: 2.5
       }
       position {
         x: 960
-        y: 661.75
+        y: -609
         z: 3000
       }
       orientation {
@@ -31,75 +31,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0.2
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "Btn-2x3-Full"
-    id: 390
-    sourceid: 266
-    transform {
-      anchorPoint {
-        x: 200
-        y: 350
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 334
-        y: 350
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "Layout-PDP-Meta"
-    id: 391
-    sourceid: 342
-    transform {
-      anchorPoint {
-        x: 600
-        y: 300
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 1184
-        y: 402
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -107,7 +39,7 @@ activecomp {
   }
   layer {
     name: "List-PDP"
-    id: 392
+    id: 390
     sourceid: 360
     transform {
       anchorPoint {
@@ -122,7 +54,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 1110
+        y: 1230
         z: 0
       }
       orientation {
@@ -133,7 +65,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -141,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Text-ListTitle"
-    id: 393
+    id: 391
     sourceid: -1
     transform {
       anchorPoint {
@@ -156,7 +88,7 @@ activecomp {
       }
       position {
         x: 379.26
-        y: 876.5
+        y: 996.5
         z: 0
       }
       orientation {
@@ -167,7 +99,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -186,23 +118,78 @@ activecomp {
       boundsWidth: 1367
       boundsHeight: 60
       isLabel: true
-      text: ""
+      text: "More Like This"
       multiline: true
-      ellipsis: true
       isAllCaps: false
     }
-    properties {
-      key: "margin-top"
-      value: "20"
+  }
+  layer {
+    name: "Layout-PDP-Meta"
+    id: 392
+    sourceid: 342
+    transform {
+      anchorPoint {
+        x: 600
+        y: 300
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1184
+        y: 522
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
     }
-    properties {
-      key: "text-placeholder"
-      value: "true"
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-2x3-Full"
+    id: 393
+    sourceid: 266
+    transform {
+      anchorPoint {
+        x: 200
+        y: 350
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 334
+        y: 470
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 60
+      rotationZ: 0
+      opacity: 0
     }
-    properties {
-      key: "text-overflow"
-      value: "ellipsis"
-    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
   }
   classname: "CYIScrollingView"
   bgcolor {
@@ -224,9 +211,9 @@ activecomp {
     value: "true"
   }
   childtemplates: "Auryn_Image-Dynamic-Background"
-  childtemplates: "Auryn_Btn-2x3-Full"
-  childtemplates: "Auryn_Layout-PDP-Meta"
   childtemplates: "Auryn_List-PDP"
+  childtemplates: "Auryn_Layout-PDP-Meta"
+  childtemplates: "Auryn_Btn-2x3-Full"
 }
 sources {
   uid: 322
@@ -234,22 +221,6 @@ sources {
   name: "Auryn_Image-Dynamic-Background.layout"
   width: 1920
   height: 1080
-  copy_source: true
-}
-sources {
-  uid: 266
-  srctype: AE_COMP_SRC
-  name: "Auryn_Btn-2x3-Full.layout"
-  width: 400
-  height: 700
-  copy_source: true
-}
-sources {
-  uid: 342
-  srctype: AE_COMP_SRC
-  name: "Auryn_Layout-PDP-Meta.layout"
-  width: 1200
-  height: 600
   copy_source: true
 }
 sources {
@@ -261,10 +232,26 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 5
+  uid: 3
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
   file_name: "yi_Raleway-Bold.ttf"
   style_name: "Bold"
+}
+sources {
+  uid: 342
+  srctype: AE_COMP_SRC
+  name: "Auryn_Layout-PDP-Meta.layout"
+  width: 1200
+  height: 600
+  copy_source: true
+}
+sources {
+  uid: 266
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-2x3-Full.layout"
+  width: 400
+  height: 700
+  copy_source: true
 }

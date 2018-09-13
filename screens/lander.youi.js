@@ -92,6 +92,12 @@ class Lander extends Component {
             <TimelineRef name="In" ref={(timeline) => this.inTimeline = timeline} onLoad={(ref) => {ref.play()}} />
             <TimelineRef name="Out" ref={(timeline) => this.outTimeline = timeline} />
           </ViewRef>
+
+          <ViewRef name="Nav-Logo">
+            <TimelineRef name="Loop" loop={true} ref={(timeline) => this.loopTimeline = timeline} onLoad={(ref) => {ref.play()}} />
+          </ViewRef>
+
+
       </Composition>
     );
   }

@@ -38,8 +38,42 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "List-Movies"
+    name: "Bar"
     id: 744
+    sourceid: 259816
+    transform {
+      anchorPoint {
+        x: 960
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 1084
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "List-Movies"
+    id: 745
     sourceid: 360
     transform {
       anchorPoint {
@@ -73,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Popular Movies"
-    id: 745
+    id: 746
     sourceid: -1
     transform {
       anchorPoint {
@@ -124,8 +158,42 @@ activecomp {
     }
   }
   layer {
+    name: "Bar"
+    id: 747
+    sourceid: 259816
+    transform {
+      anchorPoint {
+        x: 960
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 690
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
     name: "List-PDP"
-    id: 746
+    id: 748
     sourceid: 360
     transform {
       anchorPoint {
@@ -158,8 +226,8 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Popular Shows"
-    id: 747
+    name: "Popular Shows 2"
+    id: 749
     sourceid: -1
     transform {
       anchorPoint {
@@ -211,7 +279,7 @@ activecomp {
   }
   layer {
     name: "TextInput"
-    id: 748
+    id: 750
     sourceid: 1023
     transform {
       anchorPoint {
@@ -272,6 +340,19 @@ sources {
   copy_source: true
 }
 sources {
+  uid: 259816
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.078431002795696259
+    green: 0.21176500618457794
+    blue: 0.44705900549888611
+  }
+  width: 1920
+  height: 300
+  copy_source: false
+}
+sources {
   uid: 360
   srctype: AE_COMP_SRC
   name: "Auryn_List-PDP.layout"
@@ -280,7 +361,7 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 3
+  uid: 4
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true

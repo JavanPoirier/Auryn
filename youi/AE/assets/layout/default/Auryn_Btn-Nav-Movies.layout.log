@@ -143,9 +143,9 @@ activecomp {
       fontSize: 28
       fontColor {
         alpha: 1
-        red: 0.90588235855102539
+        red: 0.90587997436523438
         green: 0.20000000298023224
-        blue: 0.23529411852359772
+        blue: 0.23529000580310822
       }
       fontName: "Raleway-Medium"
       isPointText: false
