@@ -60,7 +60,7 @@ export default class Search extends Component {
 
   render() {
     const { data, fetched } = this.props
-    let movies, tv, people = []
+    let movies, tv = []
     console.log(data)
     if (fetched && this.state.query) {
       movies = data.filter(it => it.media_type == 'movie')
@@ -81,19 +81,19 @@ export default class Search extends Component {
 
 
         <ListRef
-            name="List-PDP"
-            data={movies}
-            renderItem={this.renderItem}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
+          name="List-PDP"
+          data={tv}
+          renderItem={this.renderItem}
+          keyExtractor={(item) => item.id}
+          horizontal={true}
         />
 
         <ListRef
-            name="List-Movies"
-            data={tv}
-            renderItem={this.renderItem}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
+          name="List-Movies"
+          data={movies}
+          renderItem={this.renderItem}
+          keyExtractor={(item) => item.id}
+          horizontal={true}
         />
 
         <TimelineRef name="SearchIn"
