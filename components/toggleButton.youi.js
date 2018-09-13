@@ -32,6 +32,8 @@ export default class ToggleButton extends Component {
         ref={ref => this.ref = ref}
         onPress={() => {
           if (this.state.toggled) return;
+          console.log(this.props.onPress);
+          this.props.onPress();
           this.props.onToggle(this.props.index);
           this.setState({
             toggled: !this.state.toggled

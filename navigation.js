@@ -15,7 +15,9 @@ const Stack = createStackNavigator(
       backgroundColor: '#0f3570',
     },
     transitionConfig: () => ({
-      transitionSpec: {},
+      transitionSpec: {
+        duration: 300
+      },
       screenInterpolator: () => {
       }
     })

@@ -14,17 +14,19 @@ class Lander extends Component {
   constructor(props) {
     super(props);
     this.menuGroup = [
-      'Btn-Nav-Discover',
-      'Btn-Nav-Movies',
-      'Btn-Nav-Shows',
-      'Btn-Nav-Live',
-      'Btn-Nav-Search',
-      'Btn-Nav-Profile',
+      { name: 'Btn-Nav-Discover', action: () => {} },
+      { name: 'Btn-Nav-Movies', action: () => {} },
+      { name: 'Btn-Nav-Shows', action: () => {} },
+      { name: 'Btn-Nav-Live', action: () => {} },
+      { name: 'Btn-Nav-Search', action: () => this.navigateToScreen('Search') },
+      { name: 'Btn-Nav-Profile', action: () => {} },
     ]
   }
+
   componentDidUpdate(prevProps) {
     console.log('FOCUS', this.props.isFocused)
   }
+
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       this.setState({focusable: true});
@@ -33,6 +35,18 @@ class Lander extends Component {
     this.props.navigation.addListener('didBlur', () => {
       this.setState({focusable: false})
     })
+  }
+
+  navigateToScreen = (screen) => {
+    console.log('NAVIGATE', 'From Lander to ' + screen)
+    let navigateAction = NavigationActions.navigate({
+      routeName: screen
+    })
+    this.props.navigation.dispatch(navigateAction)
+  }
+
+  srollToScreen = (screen) => {
+
   }
 
   unflatten = (array) => {
@@ -62,7 +76,7 @@ class Lander extends Component {
     const { discover } = this.props
     return (
       <Composition source="Auryn_Lander">
-        <ToggleGroup focusable={this.props.isFocused} names={this.menuGroup} />
+        <ToggleGroup focusable={this.props.isFocused} buttons={this.menuGroup} />
         <Timeline name="LanderIn"
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}

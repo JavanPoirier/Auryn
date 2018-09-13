@@ -54,7 +54,7 @@ export function tmdbSearch(query) {
   return (dispatch) => {
     dispatch({
       type: 'TMDB_SEARCH',
-      payload: fetch("http://api.themoviedb.org/3/search/multi/" + encodeURIComponent(query) + "?" + apiKeyParam)
+      payload: fetch("http://api.themoviedb.org/3/search/multi?query=" + encodeURIComponent(query) + "&" + apiKeyParam)
                 .then(response => response.json())
     });
   }
