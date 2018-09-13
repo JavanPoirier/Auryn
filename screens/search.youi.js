@@ -64,6 +64,7 @@ export default class Search extends Component {
     console.log(data)
     if (fetched && this.state.query) {
       movies = data.filter(it => it.media_type == 'movie')
+      tv = data.filter(it => it.media_type == 'tv')
       console.log(movies)
     }
     return (
@@ -76,7 +77,7 @@ export default class Search extends Component {
             this.setState({query: t})
           }}
         />
-        
+
 
 
         <ListRef
@@ -85,8 +86,16 @@ export default class Search extends Component {
             renderItem={this.renderItem}
             keyExtractor={(item) => item.id}
             horizontal={true}
-          />
-        
+        />
+
+        <ListRef
+            name="List-Movies"
+            data={tv}
+            renderItem={this.renderItem}
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+        />
+
         <TimelineRef name="SearchIn"
           ref={timeline => this.searchinTimeline = timeline}
           onLoad={timeline => timeline.play()}
