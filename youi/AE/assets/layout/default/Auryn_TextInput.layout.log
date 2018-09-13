@@ -224,7 +224,7 @@ activecomp {
     acceptslights: true
     castsshadows: false
   }
-  classname: "CYITextEditView"
+  classname: "CYIPasswordTextEditView"
   bgcolor {
     alpha: 1
     red: 0
@@ -237,7 +237,7 @@ activecomp {
   }
   properties {
     key: "componentSubtype"
-    value: "regular"
+    value: "protected"
   }
 }
 sources {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, TextInputRef, View, ButtonRef, ListRef, ImageRef, TextRef } from '@youi/react-native-youi';
+import { Composition, ViewRef, TextInputRef, View, ButtonRef, ListRef, ImageRef, TextRef, TimelineRef } from '@youi/react-native-youi';
 import { tmdbSearch } from '../actions/tmdbActions'
 import { NavigationActions } from 'react-navigation';
 import { throttle, debounce } from 'throttle-debounce';
@@ -88,7 +88,12 @@ export default class Search extends Component {
             keyExtractor={(item) => item.id}
             horizontal={true}
           />
-
+        
+        <TimelineRef name="SearchIn"
+          ref={timeline => this.searchinTimeline = timeline}
+          onLoad={timeline => timeline.play()}
+        />
+        <TimelineRef name="SearchOut" ref={timeline => this.searchoutTimeline = timeline} />
       </Composition>
     );
   }

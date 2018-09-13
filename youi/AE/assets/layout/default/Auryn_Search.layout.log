@@ -4,8 +4,76 @@ activecomp {
   height: 900
   defaultcameradistance: 2666.6667
   layer {
-    name: "Popular Searches"
+    name: "Background-Gradient.png"
     id: 743
+    sourceid: 831
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "List-PDP"
+    id: 744
+    sourceid: 360
+    transform {
+      anchorPoint {
+        x: 960
+        y: 200
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 910
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Popular Searches"
+    id: 745
     sourceid: -1
     transform {
       anchorPoint {
@@ -20,7 +88,7 @@ activecomp {
       }
       position {
         x: 537.72
-        y: 488.28012
+        y: 688.28015
         z: 0
       }
       orientation {
@@ -31,7 +99,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -56,74 +124,6 @@ activecomp {
     }
   }
   layer {
-    name: "TextInput"
-    id: 744
-    sourceid: 1023
-    transform {
-      anchorPoint {
-        x: 512
-        y: 37
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 840
-        y: 220
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "List-PDP"
-    id: 745
-    sourceid: 360
-    transform {
-      anchorPoint {
-        x: 960
-        y: 200
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 960
-        y: 710
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
     name: "Btn-Search"
     id: 746
     sourceid: 259598
@@ -140,7 +140,7 @@ activecomp {
       }
       position {
         x: 1466
-        y: 220
+        y: 420
         z: 0
       }
       orientation {
@@ -151,7 +151,41 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "TextInput"
+    id: 747
+    sourceid: 1023
+    transform {
+      anchorPoint {
+        x: 512
+        y: 37
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 840
+        y: 420
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -171,24 +205,19 @@ activecomp {
     key: "rows"
     value: "2"
   }
-  childtemplates: "Auryn_TextInput"
   childtemplates: "Auryn_List-PDP"
   childtemplates: "Auryn_Btn-Search"
+  childtemplates: "Auryn_TextInput"
 }
 sources {
-  uid: 1
-  srctype: AE_FONT_SRC
-  name: "Raleway-Medium"
-  copy_source: true
-  file_name: "yi_Raleway-Medium.ttf"
-  style_name: "Medium"
-}
-sources {
-  uid: 1023
-  srctype: AE_COMP_SRC
-  name: "Auryn_TextInput.layout"
-  width: 1024
-  height: 74
+  uid: 831
+  srctype: AE_IMAGE_SRC
+  name: "Background-Gradient.png"
+  width: 1920
+  height: 1080
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
   copy_source: true
 }
 sources {
@@ -200,10 +229,26 @@ sources {
   copy_source: true
 }
 sources {
+  uid: 3
+  srctype: AE_FONT_SRC
+  name: "Raleway-Medium"
+  copy_source: true
+  file_name: "yi_Raleway-Medium.ttf"
+  style_name: "Medium"
+}
+sources {
   uid: 259598
   srctype: AE_COMP_SRC
   name: "Auryn_Btn-Search.layout"
   width: 200
+  height: 74
+  copy_source: true
+}
+sources {
+  uid: 1023
+  srctype: AE_COMP_SRC
+  name: "Auryn_TextInput.layout"
+  width: 1024
   height: 74
   copy_source: true
 }
