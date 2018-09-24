@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, FocusManager, ListRef, TimelineRef} from '@youi/react-native-youi';
-import { ListItem, Timeline, DiscoverContainer, ToggleGroup } from '../components';
+import { Composition, ViewRef, ListRef, TimelineRef} from '@youi/react-native-youi';
+import { Timeline, DiscoverContainer, ToggleGroup } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
-import { tmdbDiscover } from '../actions/tmdbActions'
 
 @connect((store) => {
   return {
@@ -15,8 +14,8 @@ class Lander extends Component {
     super(props);
     this.menuGroup = [
       { name: 'Btn-Nav-Discover', action: () => {} },
-      { name: 'Btn-Nav-Movies', action: () => {} },
-      { name: 'Btn-Nav-Shows', action: () => {} },
+      { name: 'Btn-Nav-Movies', action: () => { this.shiftDownTimeline.play() } },
+      { name: 'Btn-Nav-Shows', action: () => { this.shiftUpTimeline.play() } },
       { name: 'Btn-Nav-Live', action: () => {} },
       { name: 'Btn-Nav-Search', action: () => this.navigateToScreen('Search') },
       { name: 'Btn-Nav-Profile', action: () => {} },
@@ -82,6 +81,8 @@ class Lander extends Component {
           onLoad={timeline => timeline.play()}
         />
         <TimelineRef name="LanderOut" ref={timeline => this.outTimeline = timeline} />
+        <TimelineRef name="ShiftUp" ref={t => this.shiftUpTimeline = t} />
+        <TimelineRef name="ShiftDown" ref={t => this.shiftDownTimeline = t} />
         <ListRef
           name="Discover"
           data={this.unflatten(discover)}

@@ -4,7 +4,7 @@ import { TimelineRef } from '@youi/react-native-youi';
 export default class Timeline extends Component {
   render = () => (
     <TimelineRef
-      name={this.props.name}
+      {...this.props}
       onLoad={(timeline) => { this.ref = timeline; if (this.props.onLoad) this.props.onLoad(timeline); }}
       loop={this.props.loop || this.props.name.toLowerCase() == 'loop'}
       onCompleted={() => {
@@ -14,6 +14,10 @@ export default class Timeline extends Component {
 
         if (this.props.loop) {
           this.timeline.play();
+        }
+
+        if (this.props.onCompleted) {
+          this.props.onCompleted();
         }
       }}
     />

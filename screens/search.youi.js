@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, TextInputRef, View, ButtonRef, ListRef, ImageRef, TextRef, TimelineRef } from '@youi/react-native-youi';
+import { Composition, BackHandler, ViewRef, TextInputRef, View, ButtonRef, ListRef, ImageRef, TextRef, TimelineRef } from '@youi/react-native-youi';
 import { tmdbSearch } from '../actions/tmdbActions'
 import { NavigationActions } from 'react-navigation';
 import { throttle, debounce } from 'throttle-debounce';
@@ -15,6 +15,12 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {query: ''}
+
+    BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
+  }
+
+  navigateBack = () => {
+    this.props.navigation.goBack(null);
   }
 
   onPressItem = (id) => {
@@ -61,11 +67,9 @@ export default class Search extends Component {
   render() {
     const { data, fetched } = this.props
     let movies, tv = []
-    console.log(data)
     if (fetched && this.state.query) {
-      movies = data.filter(it => it.media_type == 'movie')
-      tv = data.filter(it => it.media_type == 'tv')
-      console.log(movies)
+      movies = data.filter(it => it.media_type == 'movie');
+      tv = data.filter(it => it.media_type == 'tv');
     }
     return (
       <Composition source="Auryn_Search">
@@ -77,8 +81,6 @@ export default class Search extends Component {
             this.setState({query: t})
           }}
         />
-
-
 
         <ListRef
           name="List-PDP"
