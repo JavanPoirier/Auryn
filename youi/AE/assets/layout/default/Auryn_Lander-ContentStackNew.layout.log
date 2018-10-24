@@ -139,7 +139,7 @@ activecomp {
     acceptslights: true
     castsshadows: false
   }
-  classname: "CYIScrollingView"
+  classname: "CYIListView"
   bgcolor {
     alpha: 1
     red: 0.086274509803921567
@@ -148,7 +148,19 @@ activecomp {
   }
   properties {
     key: "componentSubtype"
-    value: "scrolling"
+    value: "streaming"
+  }
+  properties {
+    key: "componentType"
+    value: "list"
+  }
+  properties {
+    key: "layout"
+    value: "CYIColumnLayout"
+  }
+  properties {
+    key: "gravity"
+    value: "top"
   }
   childtemplates: "Auryn_Live"
   childtemplates: "Auryn_Shows"
