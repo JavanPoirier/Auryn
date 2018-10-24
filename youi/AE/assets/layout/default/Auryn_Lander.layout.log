@@ -38,9 +38,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Stack-Bottom"
+    name: "Stack"
     id: 65
-    sourceid: 657
+    sourceid: 259843
     transform {
       anchorPoint {
         x: 960
@@ -53,43 +53,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 0
-        y: 90
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    parentid: 68
-  }
-  layer {
-    name: "Stack-Active"
-    id: 66
-    sourceid: 657
-    transform {
-      anchorPoint {
         x: 960
-        y: 450
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 0
-        y: 990
+        y: 630
         z: 0
       }
       orientation {
@@ -100,51 +65,15 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    parentid: 68
-  }
-  layer {
-    name: "Stack-Top"
-    id: 67
-    sourceid: 657
-    transform {
-      anchorPoint {
-        x: 960
-        y: 450
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 0
-        y: -810
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    parentid: 68
   }
   layer {
     name: "Mover"
-    id: 68
+    id: 66
     sourceid: 655
     transform {
       anchorPoint {
@@ -178,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Nav"
-    id: 69
+    id: 67
     sourceid: 78
     transform {
       anchorPoint {
@@ -216,7 +145,7 @@ activecomp {
     green: 0.11372549019607843
     blue: 0.14509803921568629
   }
-  childtemplates: "Auryn_Lander-ContentStack"
+  childtemplates: "Auryn_Lander-ContentStackNew"
   childtemplates: "Auryn_Nav"
 }
 sources {
@@ -231,9 +160,9 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 657
+  uid: 259843
   srctype: AE_COMP_SRC
-  name: "Auryn_Lander-ContentStack.layout"
+  name: "Auryn_Lander-ContentStackNew.layout"
   width: 1920
   height: 900
   copy_source: true
