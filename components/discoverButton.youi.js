@@ -10,6 +10,3 @@ export default DiscoverButton = props => (
     </ButtonRef>
   </Composition>
 );
-
-
-//"http://image.tmdb.org/t/p/w500" + props.data.backdrop_path

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, ListRef, TimelineRef} from '@youi/react-native-youi';
-import { Timeline, DiscoverContainer, ToggleGroup } from '../components';
+import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef} from '@youi/react-native-youi';
+import { Timeline, DiscoverContainer, ToggleGroup, ListItemMovie } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
 
 @connect((store) => {
   return {
-    discover: store.tmdbReducer.discover.data
+    discover: store.tmdbReducer.discover.data,
+    movies: store.tmdbReducer.movies.data,
+    tv: store.tmdbReducer.tv.data,
   }
 })
 class Lander extends Component {
@@ -16,7 +18,7 @@ class Lander extends Component {
       { name: 'Btn-Nav-Discover', action: () => {} },
       { name: 'Btn-Nav-Movies', action: () => { this.shiftDownTimeline.play() } },
       { name: 'Btn-Nav-Shows', action: () => { this.shiftUpTimeline.play() } },
-      { name: 'Btn-Nav-Live', action: () => {} },
+      { name: 'Btn-Nav-Live', action: () => { console.log(this.scroller)} },
       { name: 'Btn-Nav-Search', action: () => this.navigateToScreen('Search') },
       { name: 'Btn-Nav-Profile', action: () => {} },
     ]
@@ -72,7 +74,7 @@ class Lander extends Component {
   }
 
   render() {
-    const { discover } = this.props
+    const { discover, movies, tv } = this.props
     return (
       <Composition source="Auryn_Lander">
         <ToggleGroup focusable={this.props.isFocused} buttons={this.menuGroup} />
@@ -83,21 +85,41 @@ class Lander extends Component {
         <TimelineRef name="LanderOut" ref={timeline => this.outTimeline = timeline} />
         <TimelineRef name="ShiftUp" ref={t => this.shiftUpTimeline = t} />
         <TimelineRef name="ShiftDown" ref={t => this.shiftDownTimeline = t} />
-        <ListRef
-          name="Discover"
-          data={this.unflatten(discover)}
-          renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
-          horizontal={true}
-        />
-          <ViewRef name="Nav">
-            <TimelineRef name="In" ref={(timeline) => this.inTimeline = timeline} onLoad={(ref) => {ref.play()}} />
-            <TimelineRef name="Out" ref={(timeline) => this.outTimeline = timeline} />
-          </ViewRef>
+        <ScrollRef
+          name="Stack-Scrolling"
+          ref={t => this.scroller = t}
+          scrollEnabled={false}
+          horizontal={false}
+        >
+          {/* <ListRef
+            name="Discover"
+            data={this.unflatten(discover)}
+            renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
+            horizontal={true}
+          />
+          <ListRef
+            name="Movies"
+            data={movies}
+            renderItem={({item, index}) => <ListItemMovie focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item} index={index}/>}
+            horizontal={true}
+          /> */}
 
-          <ViewRef name="Nav-Logo">
-            <TimelineRef name="Loop" loop={true} ref={(timeline) => this.loopTimeline = timeline} onLoad={(ref) => {ref.play()}} />
-          </ViewRef>
+          {/* <ListRef
+            name="Shows"
+            data={tv}
+            renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
+            horizontal={true}
+          /> */}
+        </ScrollRef>
 
+        <ViewRef name="Nav">
+          <TimelineRef name="In" ref={(timeline) => this.inTimeline = timeline} onLoad={(ref) => {ref.play()}} />
+          <TimelineRef name="Out" ref={(timeline) => this.outTimeline = timeline} />
+        </ViewRef>
+
+        <ViewRef name="Nav-Logo">
+          <TimelineRef name="Loop" loop={true} ref={(timeline) => this.loopTimeline = timeline} onLoad={(ref) => {ref.play()}} />
+        </ViewRef>
 
       </Composition>
     );
