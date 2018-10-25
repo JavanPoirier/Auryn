@@ -217,6 +217,6 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Medium.ttf"
+  file_name: "yi_Raleway-Medium.otf"
   style_name: "Medium"
 }

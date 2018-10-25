@@ -88,25 +88,25 @@ class Lander extends Component {
         <ScrollRef
           name="Stack"
           ref={t => this.scroller = t}
-          scrollEnabled={false}
+          scrollEnabled={true}
           horizontal={false}
         >
-        <Composition source='Auryn_Lander-ContentStackWrapper'>
-          <ListRef
-            name="Discover"
-            data={this.unflatten(discover)}
-            renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
-            horizontal={true}
-          />
-          <ListRef
-            name="Movies"
-            data={movies}
-            renderItem={({item, index}) => <ListItemMovie focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item} index={index}/>}
-            horizontal={true}
-          />
-        </Composition>
-
-
+          <Composition source='Auryn_Container-Discover'>
+            <ListRef
+              name="Discover"
+              data={this.unflatten(discover)}
+              renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
+              horizontal={true}
+            />
+          </Composition>
+          <Composition source='Auryn_Container-Movies'>
+            <ListRef
+              name="Movies"
+              data={movies}
+              renderItem={({item, index}) => <ListItemMovie focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item} index={index}/>}
+              horizontal={true}
+            />
+          </Composition>
           {/* <ListRef
             name="Shows"
             data={tv}
