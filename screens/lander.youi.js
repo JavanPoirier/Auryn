@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, View,FlatList} from '@youi/react-native-youi';
+import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, FocusManager} from '@youi/react-native-youi';
 import { Timeline, DiscoverContainer, ToggleGroup, ListItemMovie } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
@@ -15,17 +15,20 @@ class Lander extends Component {
   constructor(props) {
     super(props);
     this.menuGroup = [
-      { name: 'Btn-Nav-Discover', action: () => {} },
-      { name: 'Btn-Nav-Movies', action: () => { this.shiftDownTimeline.play() } },
-      { name: 'Btn-Nav-Shows', action: () => { this.shiftUpTimeline.play() } },
-      { name: 'Btn-Nav-Live', action: () => { this.scroller.scrollTo({x: 0, y: 150, animated: true});} },
+      { name: 'Btn-Nav-Discover', action: () => { this.scrollToScreen(0) } },
+      { name: 'Btn-Nav-Movies', action: () => { this.scrollToScreen(1) } },
+      { name: 'Btn-Nav-Shows', action: () => { this.scrollToScreen(2) } },
+      { name: 'Btn-Nav-Live', action: () => { this.scrollToScreen(3) } },
       { name: 'Btn-Nav-Search', action: () => this.navigateToScreen('Search') },
       { name: 'Btn-Nav-Profile', action: () => {} },
     ]
+    this.state = {focusListIndex:0}
+    this.lists = [];
   }
 
   componentDidUpdate(prevProps) {
     console.log('FOCUS', this.props.isFocused)
+    console.log(this.state.focusListIndex);
   }
 
   componentDidMount() {
@@ -46,8 +49,10 @@ class Lander extends Component {
     this.props.navigation.dispatch(navigateAction)
   }
 
-  srollToScreen = (screen) => {
-
+  scrollToScreen = (screenIndex) => {
+    this.setState({focusListIndex: screenIndex})
+    FocusManager.setNextFocus(this.toggleGroup, this.lists[screenIndex], "down")
+    this.scroller.scrollTo({x: 0, y: screenIndex*1350, animated: true});
   }
 
   unflatten = (array) => {
@@ -77,14 +82,16 @@ class Lander extends Component {
     const { discover, movies, tv } = this.props
     return (
       <Composition source="Auryn_Lander">
-        <ToggleGroup focusable={this.props.isFocused} buttons={this.menuGroup} />
+        <ToggleGroup
+          focusable={this.props.isFocused}
+          buttons={this.menuGroup}
+          ref={t => this.toggleGroup = t}
+        />
         <Timeline name="LanderIn"
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
         <TimelineRef name="LanderOut" ref={timeline => this.outTimeline = timeline} />
-        <TimelineRef name="ShiftUp" ref={t => this.shiftUpTimeline = t} />
-        <TimelineRef name="ShiftDown" ref={t => this.shiftDownTimeline = t} />
         <ScrollRef
           name="Stack"
           ref={t => this.scroller = t}
@@ -94,8 +101,9 @@ class Lander extends Component {
           <Composition source='Auryn_Container-Discover'>
             <ListRef
               name="Discover"
+              ref={t => this.lists.push(t)}
               data={this.unflatten(discover)}
-              renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
+              renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused && this.state.focusListIndex == 0 } onPressItem={this.onPressItem} data={item.data} index={index}/>}
               horizontal={true}
             />
           </Composition>
@@ -103,16 +111,21 @@ class Lander extends Component {
             <ListRef
               name="Movies"
               data={movies}
-              renderItem={({item, index}) => <ListItemMovie focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item} index={index}/>}
+              ref={t => this.lists.push(t)}
+              renderItem={({item, index}) => <ListItemMovie focusable={this.props.isFocused && this.state.focusListIndex == 1 } onPressItem={this.onPressItem} data={item} index={index}/>}
               horizontal={true}
             />
           </Composition>
-          {/* <ListRef
-            name="Shows"
-            data={tv}
-            renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
-            horizontal={true}
-          /> */}
+
+          <Composition source='Auryn_Container-Discover'>
+            <ListRef
+              name="Discover"
+              ref={t => this.lists.push(t)}
+              data={this.unflatten(discover)}
+              renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused && this.state.focusListIndex == 2 } onPressItem={this.onPressItem} data={item.data} index={index}/>}
+              horizontal={true}
+            />
+          </Composition>
         </ScrollRef>
 
         <ViewRef name="Nav">
