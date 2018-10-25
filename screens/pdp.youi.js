@@ -3,7 +3,7 @@ import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { View, TimelineRef, ButtonRef, Composition, ImageRef, TextRef, BackHandler, FocusManager, ViewRef, ListRef} from '@youi/react-native-youi';
 import { connect } from "react-redux";
 import Youtube from 'youtube-stream-url'
-import { Timeline, Video } from "../components"
+import { Timeline, Video, ListItem } from "../components"
 import { tmdbMovieDetails, tmdbTvDetails } from '../actions/tmdbActions'
 @connect((store) => {
   return {
@@ -63,6 +63,7 @@ class PDP extends Component {
 
   renderItem = ({item}) => {
     return (
+
       <Composition source="Auryn_ListItem-PDP">
         <ButtonRef name="Btn-Main-Half" onPress={() => this.onPressItem(item.id)}>
           <ImageRef
@@ -106,7 +107,7 @@ class PDP extends Component {
           <ListRef
             name="List-PDP"
             data={asset.similar.results}
-            renderItem={this.renderItem}
+            renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Small" data={item} onPress={() => this.onPressItem(item.id)}/>}
             keyExtractor={(item) => item.id}
             horizontal={true}
           />
@@ -115,18 +116,20 @@ class PDP extends Component {
           <TimelineRef name="ContentOut" ref={(timeline) => this.contentoutTimeline = timeline} />
 
           <ButtonRef
-            name="Btn-2x3-Full"
+            name="Btn-Poster-Large"
             onPress={this.playVideo}
           >
             <ImageRef
-              name="Image-Dynamic-2x3"
-              source={{uri: "http://image.tmdb.org/t/p/w500" + asset.poster_path}}
+              name="Image-Dynamic"
+              source={{uri: "http://image.tmdb.org/t/p/w1280" + asset.poster_path}}
             />
           </ButtonRef>
+
           <ImageRef
             name="Image-Dynamic-Background"
             source={{uri: "http://image.tmdb.org/t/p/w1280" + asset.backdrop_path}}
           />
+
           <ViewRef name="Layout-PDP-Meta">
             <TextRef name="Text-Title" text={asset.title} />
             <TextRef name="Text-Overview" text={asset.overview} />
