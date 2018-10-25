@@ -4,9 +4,9 @@ activecomp {
   height: 900
   defaultcameradistance: 2666.6667
   layer {
-    name: "Btn-Main-Half"
+    name: "ListItem-Shows"
     id: 687
-    sourceid: 27
+    sourceid: 259909
     transform {
       anchorPoint {
         x: 267
@@ -72,12 +72,12 @@ activecomp {
     key: "insert-after-layer-id"
     value: "-1"
   }
-  childtemplates: "Auryn_Btn-Main-Half"
+  childtemplates: "Auryn_ListItem-Shows"
 }
 sources {
-  uid: 27
+  uid: 259909
   srctype: AE_COMP_SRC
-  name: "Auryn_Btn-Main-Half.layout"
+  name: "Auryn_ListItem-Shows.layout"
   width: 534
   height: 300
   copy_source: true

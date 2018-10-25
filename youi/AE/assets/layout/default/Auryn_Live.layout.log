@@ -4,9 +4,9 @@ activecomp {
   height: 900
   defaultcameradistance: 2666.6667
   layer {
-    name: "Btn-Main-Full"
+    name: "ListItem-Live"
     id: 699
-    sourceid: 128
+    sourceid: 259921
     transform {
       anchorPoint {
         x: 533.5
@@ -72,12 +72,12 @@ activecomp {
     key: "insert-after-layer-id"
     value: "-1"
   }
-  childtemplates: "Auryn_Btn-Main-Full"
+  childtemplates: "Auryn_ListItem-Live"
 }
 sources {
-  uid: 128
+  uid: 259921
   srctype: AE_COMP_SRC
-  name: "Auryn_Btn-Main-Full.layout"
+  name: "Auryn_ListItem-Live.layout"
   width: 1067
   height: 600
   copy_source: true
