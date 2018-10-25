@@ -26,7 +26,12 @@ bool App::UserInit()
 {
 #if !defined(YI_MINI_GLOG)
     // miniglog defines this using a non-const char * causing a compile error and it has no implementation anyway.
-    google::InitGoogleLogging("--logtostderr=1");
+    static bool isGoogleLoggingInitialized = false;
+    if (!isGoogleLoggingInitialized)
+    {
+        google::InitGoogleLogging("--logtostderr=1");
+        isGoogleLoggingInitialized = true;
+    }
 #endif
 
     

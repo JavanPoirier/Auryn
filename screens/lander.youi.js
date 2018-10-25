@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef} from '@youi/react-native-youi';
+import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, View,FlatList} from '@youi/react-native-youi';
 import { Timeline, DiscoverContainer, ToggleGroup, ListItemMovie } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
@@ -18,7 +18,7 @@ class Lander extends Component {
       { name: 'Btn-Nav-Discover', action: () => {} },
       { name: 'Btn-Nav-Movies', action: () => { this.shiftDownTimeline.play() } },
       { name: 'Btn-Nav-Shows', action: () => { this.shiftUpTimeline.play() } },
-      { name: 'Btn-Nav-Live', action: () => { console.log(this.scroller)} },
+      { name: 'Btn-Nav-Live', action: () => { this.scroller.scrollTo({x: 0, y: 150, animated: true});} },
       { name: 'Btn-Nav-Search', action: () => this.navigateToScreen('Search') },
       { name: 'Btn-Nav-Profile', action: () => {} },
     ]
@@ -86,12 +86,13 @@ class Lander extends Component {
         <TimelineRef name="ShiftUp" ref={t => this.shiftUpTimeline = t} />
         <TimelineRef name="ShiftDown" ref={t => this.shiftDownTimeline = t} />
         <ScrollRef
-          name="Stack-Scrolling"
+          name="Stack"
           ref={t => this.scroller = t}
           scrollEnabled={false}
           horizontal={false}
         >
-          {/* <ListRef
+        <Composition source='Auryn_Lander-ContentStackWrapper'>
+          <ListRef
             name="Discover"
             data={this.unflatten(discover)}
             renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item.data} index={index}/>}
@@ -102,7 +103,9 @@ class Lander extends Component {
             data={movies}
             renderItem={({item, index}) => <ListItemMovie focusable={this.props.isFocused} onPressItem={this.onPressItem} data={item} index={index}/>}
             horizontal={true}
-          /> */}
+          />
+        </Composition>
+
 
           {/* <ListRef
             name="Shows"
