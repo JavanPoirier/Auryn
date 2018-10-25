@@ -3,44 +3,6 @@ activecomp {
   width: 1920
   height: 400
   defaultcameradistance: 2666.6667
-  layer {
-    name: "ListItem-PDP"
-    id: 360
-    sourceid: 407
-    transform {
-      anchorPoint {
-        x: 267
-        y: 200
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 267
-        y: 200
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    properties {
-      key: "placeholder"
-      value: "true"
-    }
-  }
   classname: "CYIListView"
   bgcolor {
     alpha: 1
@@ -60,17 +22,4 @@ activecomp {
     key: "layout"
     value: "CYIRowLayout"
   }
-  properties {
-    key: "insert-after-layer-id"
-    value: "-1"
-  }
-  childtemplates: "Auryn_ListItem-PDP"
-}
-sources {
-  uid: 407
-  srctype: AE_COMP_SRC
-  name: "Auryn_ListItem-PDP.layout"
-  width: 534
-  height: 400
-  copy_source: true
 }

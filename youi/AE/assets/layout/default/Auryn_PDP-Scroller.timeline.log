@@ -13197,7 +13197,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 393
-  targetname: "Btn-2x3-Full"
+  targetname: "Btn-Poster-Large"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -13208,7 +13208,7 @@ tracks {
 tracks {
   binding: POSITION
   targetid: 393
-  targetname: "Btn-2x3-Full"
+  targetname: "Btn-Poster-Large"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
     timeOffset: 0
@@ -15117,7 +15117,7 @@ tracks {
 tracks {
   binding: ROTATION_Y
   targetid: 393
-  targetname: "Btn-2x3-Full"
+  targetname: "Btn-Poster-Large"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0
@@ -15470,7 +15470,7 @@ tracks {
 tracks {
   binding: OPACITY
   targetid: 393
-  targetname: "Btn-2x3-Full"
+  targetname: "Btn-Poster-Large"
   keytimes {
     datatype: AE_FLOAT_DATA
     timeOffset: 0

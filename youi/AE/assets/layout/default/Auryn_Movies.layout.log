@@ -4,7 +4,7 @@ activecomp {
   height: 900
   defaultcameradistance: 2666.6667
   layer {
-    name: "ListItem-Movies"
+    name: "Container-Btn-Poster-Small"
     id: 463
     sourceid: 488
     transform {
@@ -68,12 +68,12 @@ activecomp {
     key: "insert-after-layer-id"
     value: "-1"
   }
-  childtemplates: "Auryn_ListItem-Movies"
+  childtemplates: "Auryn_Container-Btn-Poster-Small"
 }
 sources {
   uid: 488
   srctype: AE_COMP_SRC
-  name: "Auryn_ListItem-Movies.layout"
+  name: "Auryn_Container-Btn-Poster-Small.layout"
   width: 400
   height: 700
   copy_source: true

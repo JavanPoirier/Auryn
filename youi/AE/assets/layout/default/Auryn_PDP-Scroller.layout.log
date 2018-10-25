@@ -158,7 +158,7 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Btn-2x3-Full"
+    name: "Btn-Poster-Large"
     id: 393
     sourceid: 266
     transform {
@@ -213,7 +213,7 @@ activecomp {
   childtemplates: "Auryn_Image-Dynamic-Background"
   childtemplates: "Auryn_List-PDP"
   childtemplates: "Auryn_Layout-PDP-Meta"
-  childtemplates: "Auryn_Btn-2x3-Full"
+  childtemplates: "Auryn_Btn-Poster-Large"
 }
 sources {
   uid: 322
@@ -250,7 +250,7 @@ sources {
 sources {
   uid: 266
   srctype: AE_COMP_SRC
-  name: "Auryn_Btn-2x3-Full.layout"
+  name: "Auryn_Btn-Poster-Large.layout"
   width: 400
   height: 700
   copy_source: true

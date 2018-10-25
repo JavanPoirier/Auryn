@@ -44,7 +44,7 @@ activecomp {
     transform {
       anchorPoint {
         x: 960
-        y: 450
+        y: 452.5
         z: 0
       }
       scale {
@@ -145,7 +145,7 @@ activecomp {
     green: 0.11372549019607843
     blue: 0.14509803921568629
   }
-  childtemplates: "Auryn_Lander-ContentStackNew"
+  childtemplates: "Auryn_Lander-ContentStack"
   childtemplates: "Auryn_Nav"
 }
 sources {
@@ -162,9 +162,9 @@ sources {
 sources {
   uid: 259843
   srctype: AE_COMP_SRC
-  name: "Auryn_Lander-ContentStackNew.layout"
+  name: "Auryn_Lander-ContentStack.layout"
   width: 1920
-  height: 900
+  height: 905
   copy_source: true
 }
 sources {
