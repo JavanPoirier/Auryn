@@ -4,9 +4,9 @@ activecomp {
   height: 900
   defaultcameradistance: 2666.6667
   layer {
-    name: "Live"
+    name: "Container-Live"
     id: 259843
-    sourceid: 699
+    sourceid: 259897
     transform {
       anchorPoint {
         x: 960
@@ -40,7 +40,7 @@ activecomp {
   layer {
     name: "Movies 2"
     id: 259844
-    sourceid: 687
+    sourceid: 259885
     transform {
       anchorPoint {
         x: 960
@@ -74,7 +74,7 @@ activecomp {
   layer {
     name: "Movies"
     id: 259845
-    sourceid: 463
+    sourceid: 259873
     transform {
       anchorPoint {
         x: 960
@@ -106,9 +106,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Discover"
+    name: "Container-Discover"
     id: 259846
-    sourceid: 15
+    sourceid: 259861
     transform {
       anchorPoint {
         x: 960
@@ -162,39 +162,39 @@ activecomp {
     key: "gravity"
     value: "top"
   }
-  childtemplates: "Auryn_Live"
-  childtemplates: "Auryn_Shows"
-  childtemplates: "Auryn_Movies"
-  childtemplates: "Auryn_Discover"
+  childtemplates: "Auryn_Container-Live"
+  childtemplates: "Auryn_Container-Shows"
+  childtemplates: "Auryn_Container-Movies"
+  childtemplates: "Auryn_Container-Discover"
 }
 sources {
-  uid: 699
+  uid: 259897
   srctype: AE_COMP_SRC
-  name: "Auryn_Live.layout"
+  name: "Auryn_Container-Live.layout"
   width: 1920
   height: 900
   copy_source: true
 }
 sources {
-  uid: 687
+  uid: 259885
   srctype: AE_COMP_SRC
-  name: "Auryn_Shows.layout"
+  name: "Auryn_Container-Shows.layout"
   width: 1920
   height: 900
   copy_source: true
 }
 sources {
-  uid: 463
+  uid: 259873
   srctype: AE_COMP_SRC
-  name: "Auryn_Movies.layout"
+  name: "Auryn_Container-Movies.layout"
   width: 1920
   height: 900
   copy_source: true
 }
 sources {
-  uid: 15
+  uid: 259861
   srctype: AE_COMP_SRC
-  name: "Auryn_Discover.layout"
+  name: "Auryn_Container-Discover.layout"
   width: 1920
   height: 900
   copy_source: true

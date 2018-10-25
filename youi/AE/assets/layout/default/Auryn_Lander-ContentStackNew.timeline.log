@@ -1,7 +1,7 @@
 tracks {
   binding: IS_VISIBLE
   targetid: 259843
-  targetname: "Live"
+  targetname: "Container-Live"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -34,7 +34,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 259846
-  targetname: "Discover"
+  targetname: "Container-Discover"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
