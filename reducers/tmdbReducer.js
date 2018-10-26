@@ -32,7 +32,7 @@ export default function tmdbReducer(state={
 }, action) {
   switch (action.type) {
     case 'TMDB_DISCOVER_FULFILLED':
-      return {...state, discover: {data: action.payload.results, fetching: false, fetched: true}}
+      return {...state, discover: {data: action.payload, fetching: false, fetched: true}}
     case 'TMDB_DISCOVER_REJECTED':
       return {...state, discover: {fetching: false, error: action.payload}}
     case 'TMDB_DISCOVER':

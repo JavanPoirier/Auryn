@@ -68,18 +68,18 @@ class Lander extends Component {
     return returnArr;
   }
 
-  onPressItem = (id) => {
+  onPressItem = (id, type) => {
     console.log(id)
     let navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
-      params: { id: id, type: 'movie' },
+      params: { id: id, type: type },
       key: id
     })
     this.props.navigation.dispatch(navigateAction)
   }
 
   render() {
-    const { discover, movies, tv } = this.props
+    const { discover, movies, tv } = this.props;
     return (
       <Composition source="Auryn_Lander">
         <ToggleGroup
@@ -95,12 +95,8 @@ class Lander extends Component {
         <ScrollRef
           name="Stack"
           ref={t => this.scroller = t}
-          scrollEnabled={true}
+          scrollEnabled={false}
           horizontal={false}
-          snapToInterval={900}
-          snapToAlignment={"center"}
-          height={900}
-          // onMomentumScrollEnd={t => console.log(t)}
         >
           <Composition source='Auryn_Container-Discover'>
             <ListRef
@@ -116,7 +112,7 @@ class Lander extends Component {
               name="Movies"
               data={movies}
               ref={t => this.lists.push(t)}
-              renderItem={({item, index}) => <ListItem imageType="Poster" size="Small" focusable={this.props.isFocused && this.state.focusListIndex == 1 } onPressItem={this.onPressItem} data={item} index={index}/>}
+              renderItem={({item, index}) => <ListItem imageType="Poster" size="Small" focusable={this.props.isFocused && this.state.focusListIndex == 1 } onPress={this.onPressItem} data={item} index={index}/>}
               horizontal={true}
             />
           </Composition>
@@ -125,7 +121,7 @@ class Lander extends Component {
               name="Shows"
               ref={t => this.lists.push(t)}
               data={tv}
-              renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Small" focusable={this.props.isFocused && this.state.focusListIndex == 2 } onPressItem={this.onPressItem} data={item} index={index}/>}
+              renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Small" focusable={this.props.isFocused && this.state.focusListIndex == 2 } onPress={this.onPressItem} data={item} index={index}/>}
               horizontal={true}
             />
           </Composition>
@@ -134,7 +130,7 @@ class Lander extends Component {
               name="Live"
               ref={t => this.lists.push(t)}
               data={tv.slice(0,2)}
-              renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Large" focusable={this.props.isFocused && this.state.focusListIndex == 3 } onPressItem={this.onPressItem} data={item} index={index}/>}
+              renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Large" focusable={this.props.isFocused && this.state.focusListIndex == 3 } onPress={this.onPressItem} data={item} index={index}/>}
               horizontal={true}
             />
           </Composition> */}

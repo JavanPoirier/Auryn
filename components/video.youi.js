@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Composition, TextRef, ViewRef, VideoRef, BackHandler, FocusManager } from '@youi/react-native-youi';
-
-import { Scrubber, Timeline, Button } from '.'
-
-
+import { StyleSheet } from 'react-native';
+import { ViewRef, VideoRef, BackHandler } from '@youi/react-native-youi';
+import { Timeline } from '../components'
 export default class Video extends Component {
-
   constructor(props) {
     super(props);
     var videoSource = {
@@ -47,8 +43,7 @@ export default class Video extends Component {
   }
 
   navigateBack = () => {
-    this.video.pause();
-    this.props.outTimeline.play()
+    this.videoPlayer.pause();
   }
 
   render() {
@@ -79,17 +74,6 @@ export default class Video extends Component {
           }}
         />
         <Timeline name="Show" onLoad={t => t.play()}/>
-        {/* <ViewRef name="Player-Controls">
-
-        </ViewRef> */}
-
-      {/* <Scrubber
-        ref={ref => this.scrubber = ref}
-        style={styles.scrubber}
-        duration={this.state.duration}
-        currentTime={this.state.currentTime}
-      /> */}
-
       </ViewRef>
     );
   }

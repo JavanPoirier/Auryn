@@ -32,8 +32,8 @@ class PDP extends Component {
       }
     }
   }
-  navigateBack = () => {
 
+  navigateBack = () => {
   this.contentoutTimeline.play()
     this.outTimeline.play().then(() => {
       this.props.navigation.goBack(null);

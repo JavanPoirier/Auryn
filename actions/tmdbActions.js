@@ -2,10 +2,17 @@ const apiKeyParam = "api_key=7f5e61b6cef8643d2442344b45842192";
 
 export function tmdbDiscover() {
   return (dispatch) => {
+    let movies = []
     dispatch({
       type: 'TMDB_DISCOVER',
       payload: fetch("http://api.themoviedb.org/3/discover/movie?" + apiKeyParam)
                 .then(response => response.json())
+                .then(json => {
+                  movies = json.results.slice(0,10)
+                  return fetch("http://api.themoviedb.org/3/discover/tv?" + apiKeyParam)
+                })
+                .then(response => response.json())
+                .then(json => movies.concat(json.results.slice(0,10)).sort((a,b) => .5 - Math.random()))
     });
   }
 }
