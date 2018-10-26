@@ -1,7 +1,7 @@
 activecomp {
   name: "Auryn_Lander-ContentStack"
   width: 1920
-  height: 905
+  height: 900
   defaultcameradistance: 2666.6667
   layer {
     name: "Container-Live"
@@ -20,7 +20,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 3159.5
+        y: 3162
         z: 0
       }
       orientation {
@@ -58,7 +58,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 2260.5
+        y: 2258
         z: 0
       }
       orientation {
@@ -96,7 +96,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 1356.5
+        y: 1354
         z: 0
       }
       orientation {
@@ -134,7 +134,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 452.5
+        y: 450
         z: 0
       }
       orientation {

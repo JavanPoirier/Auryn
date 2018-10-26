@@ -44,7 +44,7 @@ activecomp {
     transform {
       anchorPoint {
         x: 960
-        y: 452.5
+        y: 450
         z: 0
       }
       scale {
@@ -53,8 +53,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 960
-        y: 630
+        x: 0
+        y: 90
         z: 0
       }
       orientation {
@@ -70,6 +70,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 66
   }
   layer {
     name: "Mover"
@@ -164,7 +165,7 @@ sources {
   srctype: AE_COMP_SRC
   name: "Auryn_Lander-ContentStack.layout"
   width: 1920
-  height: 905
+  height: 900
   copy_source: true
 }
 sources {
