@@ -36,7 +36,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 259688
-  targetname: "Medium Gray-Purple Solid 1"
+  targetname: "Profile-Tobias.png"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -47,7 +47,7 @@ tracks {
 tracks {
   binding: SCALE
   targetid: 259688
-  targetname: "Medium Gray-Purple Solid 1"
+  targetname: "Profile-Tobias.png"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
     timeOffset: 0
@@ -113,7 +113,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 259689
-  targetname: "Profile-Smile.png"
+  targetname: "Name"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -124,106 +124,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 259690
-  targetname: "Profile-Eye.png"
-  keytimes {
-    datatype: AE_INT_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_HOLD
-    ivalue1: 1
-  }
-}
-tracks {
-  binding: IS_VISIBLE
-  targetid: 259691
-  targetname: "Profile-Eye.png"
-  keytimes {
-    datatype: AE_INT_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_HOLD
-    ivalue1: 1
-  }
-}
-tracks {
-  binding: IS_VISIBLE
-  targetid: 259692
-  targetname: "Medium Gray-Purple Solid 2"
-  keytimes {
-    datatype: AE_INT_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_HOLD
-    ivalue1: 1
-  }
-}
-tracks {
-  binding: POSITION
-  targetid: 259692
-  targetname: "Medium Gray-Purple Solid 2"
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 55
-    fvalue2: 39
-    fvalue3: 0
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 2
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 55
-    fvalue2: 39
-    fvalue3: 0
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 2.01666
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 55
-    fvalue2: 48.541504
-    fvalue3: 0
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 2.03332
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 55
-    fvalue2: 62.290768
-    fvalue3: 0
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 2.04998
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 55
-    fvalue2: 66.737144
-    fvalue3: 0
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 2.06664
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 55
-    fvalue2: 68.533844
-    fvalue3: 0
-    isCookedKeytime: true
-  }
-  keytimes {
-    datatype: AE_FLOAT_VECTOR_DATA
-    timeOffset: 2.0833333
-    inttype: AE_INTERP_LINEAR
-    fvalue1: 55
-    fvalue2: 69
-    fvalue3: 0
-  }
-  trackName: "Position"
-}
-tracks {
-  binding: IS_VISIBLE
-  targetid: 259693
-  targetname: "SuzieQ"
+  targetname: "Active User"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
@@ -250,10 +151,6 @@ markers {
   tracksSelection {
     targetid: 259688
     binding: SCALE
-  }
-  tracksSelection {
-    targetid: 259692
-    binding: POSITION
   }
   alltracks: false
   id: 18

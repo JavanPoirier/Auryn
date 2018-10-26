@@ -20,7 +20,7 @@ class Lander extends Component {
       { name: 'Btn-Nav-Shows', action: () => { this.scrollToScreen(2) } },
       { name: 'Btn-Nav-Live', action: () => { this.scrollToScreen(3) } },
       { name: 'Btn-Nav-Search', action: () => this.navigateToScreen('Search') },
-      { name: 'Btn-Nav-Profile', action: () => {} },
+      { name: 'Btn-Nav-Profile', action: () => this.navigateToScreen('Profile') },
     ]
     this.state = {focusListIndex:0}
     this.lists = [];

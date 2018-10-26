@@ -53,8 +53,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 0
-        y: 90
+        x: 960
+        y: 630
         z: 0
       }
       orientation {
@@ -70,7 +70,6 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    parentid: 66
   }
   layer {
     name: "Mover"

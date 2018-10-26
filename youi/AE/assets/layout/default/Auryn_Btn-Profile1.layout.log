@@ -38,9 +38,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Magenta-Red Solid 2"
+    name: "Profile-Buster.png"
     id: 259619
-    sourceid: 259632
+    sourceid: 259949
     transform {
       anchorPoint {
         x: 121
@@ -72,144 +72,8 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Profile-Smile.png"
-    id: 259620
-    sourceid: 259634
-    transform {
-      anchorPoint {
-        x: 56.5
-        y: 21.5
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 96
-        y: 142
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "Profile-Eye.png"
-    id: 259621
-    sourceid: 259633
-    transform {
-      anchorPoint {
-        x: 21
-        y: 21
-        z: 0
-      }
-      scale {
-        x: 0.6
-        y: 0.6
-        z: 1
-      }
-      position {
-        x: 54
-        y: 81
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "Profile-Eye.png"
-    id: 259622
-    sourceid: 259633
-    transform {
-      anchorPoint {
-        x: 21
-        y: 21
-        z: 0
-      }
-      scale {
-        x: 0.8
-        y: 0.8
-        z: 1
-      }
-      position {
-        x: 182
-        y: 81
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "Magenta-Red Solid 3"
-    id: 259623
-    sourceid: 259642
-    transform {
-      anchorPoint {
-        x: 25
-        y: 25
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 55
-        y: 39
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
     name: "Name"
-    id: 259624
+    id: 259620
     sourceid: -1
     transform {
       anchorPoint {
@@ -254,18 +118,19 @@ activecomp {
       boundsWidth: 249
       boundsHeight: 42
       isLabel: true
-      text: ""
+      text: "Buster"
       multiline: true
+      ellipsis: true
       isAllCaps: false
     }
     properties {
-      key: "text-placeholder"
-      value: "true"
+      key: "text-overflow"
+      value: "ellipsis"
     }
   }
   layer {
     name: "Active User"
-    id: 259625
+    id: 259621
     sourceid: -1
     transform {
       anchorPoint {
@@ -310,9 +175,13 @@ activecomp {
       boundsWidth: 249
       boundsHeight: 25
       isLabel: true
-      text: "Active User"
+      text: ""
       multiline: true
       isAllCaps: false
+    }
+    properties {
+      key: "text-placeholder"
+      value: "true"
     }
   }
   classname: "CYIPushButtonView"
@@ -345,55 +214,18 @@ sources {
   copy_source: false
 }
 sources {
-  uid: 259632
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.91286766529083252
-    green: 0.032904054969549179
-    blue: 0.33563414216041565
-  }
+  uid: 259949
+  srctype: AE_IMAGE_SRC
+  name: "Profile-Buster.png"
   width: 242
   height: 242
-  copy_source: false
-}
-sources {
-  uid: 259634
-  srctype: AE_IMAGE_SRC
-  name: "Profile-Smile.png"
-  width: 113
-  height: 43
   numberOfFrames: 1
   fps: 0
   loops: 1
   copy_source: true
 }
 sources {
-  uid: 259633
-  srctype: AE_IMAGE_SRC
-  name: "Profile-Eye.png"
-  width: 42
-  height: 42
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
-  copy_source: true
-}
-sources {
-  uid: 259642
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.91372549533843994
-    green: 0.0313725508749485
-    blue: 0.33725491166114807
-  }
-  width: 50
-  height: 50
-  copy_source: false
-}
-sources {
-  uid: 6
+  uid: 3
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
@@ -401,7 +233,7 @@ sources {
   style_name: "Bold"
 }
 sources {
-  uid: 7
+  uid: 4
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
