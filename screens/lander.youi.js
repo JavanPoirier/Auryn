@@ -99,7 +99,8 @@ class Lander extends Component {
           horizontal={false}
           snapToInterval={900}
           snapToAlignment={"center"}
-          style={{height: 900}}
+          height={900}
+          // onMomentumScrollEnd={t => console.log(t)}
         >
           <Composition source='Auryn_Container-Discover'>
             <ListRef
@@ -128,7 +129,7 @@ class Lander extends Component {
               horizontal={true}
             />
           </Composition>
-          <Composition source='Auryn_Container-Live'>
+          {/* <Composition source='Auryn_Container-Live'>
             <ListRef
               name="Live"
               ref={t => this.lists.push(t)}
@@ -136,7 +137,7 @@ class Lander extends Component {
               renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Large" focusable={this.props.isFocused && this.state.focusListIndex == 3 } onPressItem={this.onPressItem} data={item} index={index}/>}
               horizontal={true}
             />
-          </Composition>
+          </Composition> */}
         </ScrollRef>
 
         <ViewRef name="Nav">
