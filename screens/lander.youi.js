@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, FocusManager} from '@youi/react-native-youi';
+import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, View, FocusManager} from '@youi/react-native-youi';
 import { Timeline, DiscoverContainer, ToggleGroup, ListItem } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from "react-redux";
@@ -52,7 +52,7 @@ class Lander extends Component {
   scrollToScreen = (screenIndex) => {
     this.setState({focusListIndex: screenIndex})
     // FocusManager.setNextFocus(this.toggleGroup, this.lists[screenIndex], "down")
-    this.scroller.scrollTo({x: 0, y: screenIndex*1350, animated: true});
+    this.scroller.scrollTo({x: 0, y: screenIndex*900, animated: true});
   }
 
   unflatten = (array) => {
@@ -98,42 +98,44 @@ class Lander extends Component {
           scrollEnabled={false}
           horizontal={false}
         >
-          <Composition source='Auryn_Container-Discover'>
-            <ListRef
-              name="Discover"
-              ref={t => this.lists.push(t)}
-              data={this.unflatten(discover)}
-              renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused && this.state.focusListIndex == 0 } onPressItem={this.onPressItem} data={item.data} index={index}/>}
-              horizontal={true}
-            />
-          </Composition>
-          <Composition source='Auryn_Container-Movies'>
-            <ListRef
-              name="Movies"
-              data={movies}
-              ref={t => this.lists.push(t)}
-              renderItem={({item, index}) => <ListItem imageType="Poster" size="Small" focusable={this.props.isFocused && this.state.focusListIndex == 1 } onPress={this.onPressItem} data={item} index={index}/>}
-              horizontal={true}
-            />
-          </Composition>
-          <Composition source='Auryn_Container-Shows'>
-            <ListRef
-              name="Shows"
-              ref={t => this.lists.push(t)}
-              data={tv}
-              renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Small" focusable={this.props.isFocused && this.state.focusListIndex == 2 } onPress={this.onPressItem} data={item} index={index}/>}
-              horizontal={true}
-            />
-          </Composition>
-          <Composition source='Auryn_Container-Live'>
-            <ListRef
-              name="Live"
-              ref={t => this.lists.push(t)}
-              data={tv.slice(0,2)}
-              renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Large" focusable={this.props.isFocused && this.state.focusListIndex == 3 } onPress={this.onPressItem} data={item} index={index}/>}
-              horizontal={true}
-            />
-          </Composition>
+          <View>
+            <Composition source='Auryn_Container-Discover'>
+              <ListRef
+                name="Discover"
+                ref={t => this.lists.push(t)}
+                data={this.unflatten(discover)}
+                renderItem={({item, index}) => <DiscoverContainer focusable={this.props.isFocused && this.state.focusListIndex == 0 } onPressItem={this.onPressItem} data={item.data} index={index}/>}
+                horizontal={true}
+              />
+            </Composition>
+            <Composition source='Auryn_Container-Movies'>
+              <ListRef
+                name="Movies"
+                data={movies}
+                ref={t => this.lists.push(t)}
+                renderItem={({item, index}) => <ListItem imageType="Poster" size="Small" focusable={this.props.isFocused && this.state.focusListIndex == 1 } onPress={this.onPressItem} data={item} index={index}/>}
+                horizontal={true}
+              />
+            </Composition>
+            <Composition source='Auryn_Container-Shows'>
+              <ListRef
+                name="Shows"
+                ref={t => this.lists.push(t)}
+                data={tv}
+                renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Small" focusable={this.props.isFocused && this.state.focusListIndex == 2 } onPress={this.onPressItem} data={item} index={index}/>}
+                horizontal={true}
+              />
+            </Composition>
+            <Composition source='Auryn_Container-Live'>
+              <ListRef
+                name="Live"
+                ref={t => this.lists.push(t)}
+                data={tv.slice(0,2)}
+                renderItem={({item, index}) => <ListItem imageType="Backdrop" size="Large" focusable={this.props.isFocused && this.state.focusListIndex == 3 } onPress={this.onPressItem} data={item} index={index}/>}
+                horizontal={true}
+              />
+            </Composition>
+          </View>
         </ScrollRef>
 
         <ViewRef name="Nav">
