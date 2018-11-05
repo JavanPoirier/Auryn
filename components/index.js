@@ -1,5 +1,5 @@
 import Button             from './button.youi'
-import ListItem           from './listItem.youi'
+import ListItem           from './listitem.youi'
 import Video              from './video.youi'
 import Scrubber           from './scrubber.youi'
 import Timeline           from './timeline.youi'

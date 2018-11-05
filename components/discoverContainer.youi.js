@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from '@youi/react-native-youi';
-import ListItem from './listItem.youi'
+import ListItem from './listitem.youi'
 
 export default DiscoverContainer = (props) => {
   if (props.index % 2) {
