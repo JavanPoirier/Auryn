@@ -105,40 +105,6 @@ activecomp {
     acceptslights: true
     castsshadows: false
   }
-  layer {
-    name: "Test-Nav"
-    id: 627
-    sourceid: 769
-    transform {
-      anchorPoint {
-        x: 960
-        y: 540
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 960
-        y: 540
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
   bgcolor {
     alpha: 1
     red: 0.2627450980392157
@@ -148,7 +114,6 @@ activecomp {
   childtemplates: "Auryn_PDP"
   childtemplates: "Auryn_Lander"
   childtemplates: "Auryn_Splash"
-  childtemplates: "Auryn_Test-Nav"
 }
 sources {
   uid: 253
@@ -170,14 +135,6 @@ sources {
   uid: 187
   srctype: AE_COMP_SRC
   name: "Auryn_Splash.layout"
-  width: 1920
-  height: 1080
-  copy_source: true
-}
-sources {
-  uid: 769
-  srctype: AE_COMP_SRC
-  name: "Auryn_Test-Nav.layout"
   width: 1920
   height: 1080
   copy_source: true

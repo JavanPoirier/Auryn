@@ -1,8 +1,8 @@
 activecomp {
   name: "Auryn_Btn-Backdrop-Large"
-  width: 1067
+  width: 1068
   height: 600
-  defaultcameradistance: 1481.9445
+  defaultcameradistance: 1483.3334
   layer {
     name: "Black Solid 7"
     id: 128
@@ -19,7 +19,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 533.5
+        x: 534
         y: 300
         z: 0
       }
@@ -43,7 +43,7 @@ activecomp {
     sourceid: 52
     transform {
       anchorPoint {
-        x: 533.5
+        x: 534
         y: 300
         z: 0
       }
@@ -53,7 +53,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 533.5
+        x: 534
         y: 300
         z: 0
       }
@@ -82,13 +82,13 @@ activecomp {
         z: 0
       }
       scale {
-        x: 1067
+        x: 1081
         y: 0.35
         z: 1
       }
       position {
-        x: 533.5
-        y: 600
+        x: 534
+        y: 602
         z: 0
       }
       orientation {
@@ -111,7 +111,7 @@ activecomp {
     sourceid: 95
     transform {
       anchorPoint {
-        x: 533.5
+        x: 534
         y: 2
         z: 0
       }
@@ -121,7 +121,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 533.5
+        x: 534
         y: 2
         z: 0
       }
@@ -145,7 +145,7 @@ activecomp {
     sourceid: 930
     transform {
       anchorPoint {
-        x: 533.5
+        x: 534
         y: 2
         z: 0
       }
@@ -155,7 +155,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 533.5
+        x: 534
         y: 598
         z: 0
       }
@@ -189,7 +189,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 1065
+        x: 1066
         y: 300
         z: 0
       }
@@ -257,7 +257,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 299.26
+        x: 299.76
         y: 530.5
         z: 0
       }
@@ -318,7 +318,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 298.26
+        x: 298.76
         y: 558.5
         z: 0
       }
@@ -401,7 +401,7 @@ sources {
   uid: 52
   srctype: AE_COMP_SRC
   name: "Auryn_Image-Dynamic-Full.layout"
-  width: 1067
+  width: 1068
   height: 600
   copy_source: true
 }
@@ -425,7 +425,7 @@ sources {
     green: 0.20000000298023224
     blue: 0.23529411852359772
   }
-  width: 1067
+  width: 1068
   height: 4
   copy_source: false
 }
@@ -438,7 +438,7 @@ sources {
     green: 0.20000000298023224
     blue: 0.23529411852359772
   }
-  width: 1067
+  width: 1068
   height: 4
   copy_source: false
 }
@@ -473,7 +473,7 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Medium.otf"
+  file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
 }
 sources {
@@ -481,6 +481,6 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
-  file_name: "yi_Raleway-Bold.otf"
+  file_name: "yi_Raleway-Bold.ttf"
   style_name: "Bold"
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Composition, BackHandler, ButtonRef, TextRef } from '@youi/react-native-youi';
+import { Composition, BackHandler, ButtonRef, TextRef, TimelineRef } from '@youi/react-native-youi';
+import { Timeline } from "../components"
 
 export default class Profile extends Component {
   constructor(props) {
@@ -7,9 +8,16 @@ export default class Profile extends Component {
     this.state = {activeButton: 1}
     BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
   }
+
+
+
   navigateBack = () => {
-    this.props.navigation.goBack(null);
+  this.outTimeline.play()
+    this.outTimeline.play().then(() => {
+      this.props.navigation.goBack(null);
+    });
   }
+
 
   onPress = (i) => {
     this.setState({activeButton: i});
@@ -19,6 +27,14 @@ export default class Profile extends Component {
     console.log(this.buttons)
     return (
       <Composition source="Auryn_Profile">
+
+        <Timeline name="ProfileIn"
+          ref={timeline => this.inTimeline = timeline}
+          onLoad={timeline => timeline.play()}
+        />
+
+        <Timeline name="ProfileOut" ref={timeline => this.outTimeline = timeline} />
+
         {this.buttons}
 
         <ButtonRef name={"Btn-Profile1"} onPress={() => this.onPress(1)} >

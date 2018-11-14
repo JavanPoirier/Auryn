@@ -82,13 +82,13 @@ activecomp {
         z: 0
       }
       scale {
-        x: 533.5
+        x: 553.5
         y: 0.29
         z: 1
       }
       position {
         x: 267
-        y: 300
+        y: 302
         z: 0
       }
       orientation {
@@ -473,7 +473,7 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Medium.otf"
+  file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
 }
 sources {
@@ -481,6 +481,6 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
-  file_name: "yi_Raleway-Bold.otf"
+  file_name: "yi_Raleway-Bold.ttf"
   style_name: "Bold"
 }

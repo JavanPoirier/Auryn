@@ -1,11 +1,45 @@
 activecomp {
   name: "Auryn_Profile"
   width: 1920
-  height: 900
+  height: 1080
   defaultcameradistance: 2666.6667
   layer {
-    name: "Btn-Profile3"
+    name: "Background-Gradient.png"
     id: 712
+    sourceid: 831
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Btn-Profile3"
+    id: 713
     sourceid: 259687
     transform {
       anchorPoint {
@@ -20,7 +54,7 @@ activecomp {
       }
       position {
         x: 1256
-        y: 510
+        y: 670
         z: 0
       }
       orientation {
@@ -31,7 +65,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -39,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Btn-Profile2"
-    id: 713
+    id: 714
     sourceid: 259648
     transform {
       anchorPoint {
@@ -54,7 +88,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 510
+        y: 670
         z: 0
       }
       orientation {
@@ -65,7 +99,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -73,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Btn-Profile1"
-    id: 714
+    id: 715
     sourceid: 259618
     transform {
       anchorPoint {
@@ -88,7 +122,7 @@ activecomp {
       }
       position {
         x: 654
-        y: 510
+        y: 670
         z: 0
       }
       orientation {
@@ -99,7 +133,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -107,7 +141,7 @@ activecomp {
   }
   layer {
     name: "Title"
-    id: 715
+    id: 716
     sourceid: -1
     transform {
       anchorPoint {
@@ -122,7 +156,7 @@ activecomp {
       }
       position {
         x: 539.72
-        y: 220.28012
+        y: 380.28012
         z: 0
       }
       orientation {
@@ -133,7 +167,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -159,7 +193,7 @@ activecomp {
   }
   layer {
     name: "Message"
-    id: 716
+    id: 717
     sourceid: -1
     transform {
       anchorPoint {
@@ -174,7 +208,7 @@ activecomp {
       }
       position {
         x: 539.72
-        y: 850.28015
+        y: 1010.2802
         z: 0
       }
       orientation {
@@ -185,7 +219,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -228,6 +262,17 @@ activecomp {
   childtemplates: "Auryn_Btn-Profile1"
 }
 sources {
+  uid: 831
+  srctype: AE_IMAGE_SRC
+  name: "Background-Gradient.png"
+  width: 1920
+  height: 1080
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
   uid: 259687
   srctype: AE_COMP_SRC
   name: "Auryn_Btn-Profile3.layout"
@@ -252,18 +297,18 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 4
+  uid: 5
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
-  file_name: "yi_Raleway-Bold.otf"
+  file_name: "yi_Raleway-Bold.ttf"
   style_name: "Bold"
 }
 sources {
-  uid: 5
+  uid: 6
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Medium.otf"
+  file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
 }

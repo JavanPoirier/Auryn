@@ -1,7 +1,7 @@
 activecomp {
   name: "Auryn_Btn-Poster-Small"
   width: 400
-  height: 700
+  height: 800
   defaultcameradistance: 555.55554
   layer {
     name: "Background"
@@ -214,7 +214,7 @@ activecomp {
     transform {
       anchorPoint {
         x: 248.5
-        y: 40.5
+        y: 4.5
         z: 0
       }
       scale {
@@ -223,8 +223,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 248.092
-        y: 662.5
+        x: 268.09198
+        y: 646.5
         z: 0
       }
       orientation {
@@ -235,24 +235,24 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 0.8
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
     textinfo {
       justification: AE_TEXT_LEFT
-      fontSize: 28
+      fontSize: 24
       fontColor {
         alpha: 1
         red: 1
         green: 1
         blue: 1
       }
-      fontName: "Raleway-Bold"
+      fontName: "Raleway-Medium"
       isPointText: false
-      boundsWidth: 391
-      boundsHeight: 40
+      boundsWidth: 361
+      boundsHeight: 124
       isLabel: true
       text: ""
       multiline: true
@@ -285,7 +285,7 @@ activecomp {
       }
       position {
         x: 268.02002
-        y: 592.5
+        y: 658.5
         z: 0
       }
       orientation {
@@ -422,16 +422,16 @@ sources {
 sources {
   uid: 7
   srctype: AE_FONT_SRC
-  name: "Raleway-Bold"
+  name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Bold.otf"
-  style_name: "Bold"
+  file_name: "yi_Raleway-Medium.ttf"
+  style_name: "Medium"
 }
 sources {
   uid: 8
   srctype: AE_FONT_SRC
   name: "Raleway-Black"
   copy_source: true
-  file_name: "yi_Raleway-Black.otf"
+  file_name: "yi_Raleway-Black.ttf"
   style_name: "Black"
 }

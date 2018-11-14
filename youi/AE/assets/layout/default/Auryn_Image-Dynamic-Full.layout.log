@@ -1,15 +1,15 @@
 activecomp {
   name: "Auryn_Image-Dynamic-Full"
-  width: 1067
+  width: 1068
   height: 600
-  defaultcameradistance: 1481.9445
+  defaultcameradistance: 1483.3334
   layer {
     name: "ImageNode"
     id: 52
     sourceid: 13
     transform {
       anchorPoint {
-        x: 533.5
+        x: 534
         y: 300
         z: 0
       }
@@ -19,7 +19,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 533.5
+        x: 534
         y: 300
         z: 0
       }
@@ -58,7 +58,7 @@ sources {
     green: 0.20784313976764679
     blue: 0.43921568989753723
   }
-  width: 1067
+  width: 1068
   height: 600
   copy_source: false
 }

@@ -1,15 +1,15 @@
 activecomp {
   name: "Auryn_Container-Btn-Backdrop-Large"
-  width: 1067
+  width: 1068
   height: 600
-  defaultcameradistance: 1481.9445
+  defaultcameradistance: 1483.3334
   layer {
     name: "Btn-Backdrop-Large"
     id: 802
     sourceid: 128
     transform {
       anchorPoint {
-        x: 533.5
+        x: 534
         y: 300
         z: 0
       }
@@ -19,7 +19,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 533.5
+        x: 534
         y: 300
         z: 0
       }
@@ -49,7 +49,7 @@ sources {
   uid: 128
   srctype: AE_COMP_SRC
   name: "Auryn_Btn-Backdrop-Large.layout"
-  width: 1067
+  width: 1068
   height: 600
   copy_source: true
 }

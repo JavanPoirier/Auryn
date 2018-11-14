@@ -269,7 +269,7 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Black"
   copy_source: true
-  file_name: "yi_Raleway-Black.otf"
+  file_name: "yi_Raleway-Black.ttf"
   style_name: "Black"
 }
 sources {
@@ -277,6 +277,6 @@ sources {
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true
-  file_name: "yi_Raleway-Medium.otf"
+  file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
 }
