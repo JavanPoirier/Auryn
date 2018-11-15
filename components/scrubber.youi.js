@@ -2,28 +2,11 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 export default class Scrubber extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      thumbPos: this.props.currentTime / this.props.duration,
-      thumbOpacity: 0,
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) { // eslint-disable-line camelcase
-    this.setState({
-      thumbPos: nextProps.currentTime / nextProps.duration,
-    });
-  }
-
   render = () =>
-    <View style={[
-      styles.container,
-      { opacity: this.state.thumbOpacity },
-    ]}>
+    <View style={styles.container}>
       <View style={[
         styles.track,
-        { flex: this.state.thumbPos },
+        { flex: this.props.currentTime / this.props.duration },
       ]} />
       <Image
         source={{ uri: 'res://drawable/default/Scrubber-Thumb.png' }}
