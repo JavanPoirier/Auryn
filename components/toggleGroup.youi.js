@@ -4,21 +4,15 @@ import ToggleButton from './toggleButton.youi';
 export default class ToggleGroup extends React.Component {
   constructor(props) {
     super(props);
-    const toggles = new Array(this.props.buttons.length).fill(false);
-    toggles[0] = true;
     this.state = {
-      toggles,
+      toggles: [true].concat(new Array(this.props.buttons.length - 1).fill(false)),
     };
-    this.onToggle = this.onToggle.bind(this);
   }
 
-  onToggle(index) {
-    const toggles = new Array(this.props.buttons.length).fill(false);
-    toggles[index] = true;
+  onToggle = index =>
     this.setState({
-      toggles,
-    });
-  }
+      toggles: this.props.buttons.map((_, i) => i === index),
+    })
 
   render = () =>
     this.props.buttons.map((button, index) =>
