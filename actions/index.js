@@ -1,5 +1,5 @@
-import tmdbActions from './tmdbActions'
+import tmdbActions from './tmdbActions';
 
 export {
-  tmdbActions
-}
+  tmdbActions,
+};

@@ -5,18 +5,17 @@ export default class Button extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggled: true
-    }
+      toggled: true,
+    };
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.toggled != prevState.toggled) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.toggled !== prevState.toggled)
       this.state.toggled ? this.toggleOnTimeline.play() : this.toggleOffTimeline.play();
-    }
   }
 
   render() {
-    let toggleTimelines = this.props.toggle ? (
+    const toggleTimelines = this.props.toggle ?
       <Fragment>
         <TimelineRef name="Toggle-On"
           onLoad={timeline => {
@@ -28,9 +27,9 @@ export default class Button extends Component {
           onLoad={timeline => this.toggleOffTimeline = timeline}
         />
       </Fragment>
-    ) : null;
+      : null;
 
-    let button =
+    const button =
       <Fragment key={this.props.name}>
         <ButtonRef
           name={this.props.name}
@@ -38,9 +37,9 @@ export default class Button extends Component {
           focusable={this.props.focusable}
           onClick={() => {
             this.props.onClick();
-            if (this.props.toggle) {
+            if (this.props.toggle)
               this.setState({ toggled: !this.state.toggled });
-            }
+
             this.focusInTimeline.play();
           }}
         >
@@ -49,9 +48,9 @@ export default class Button extends Component {
           />
           {toggleTimelines}
         </ButtonRef>
-      </Fragment>
+      </Fragment>;
 
-    let container = this.props.container ? (
+    const container = this.props.container ?
       <ViewRef name={this.props.container} key={this.props.container}>
         <TimelineRef name="In"
           ref={timeline => this.inTimeline = timeline}
@@ -59,7 +58,7 @@ export default class Button extends Component {
         />
         {button}
       </ViewRef>
-    ) : [button];
+      : [button];
 
     return [container];
   }
