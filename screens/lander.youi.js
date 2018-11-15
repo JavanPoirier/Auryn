@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, View } from '@youi/react-native-youi';
+import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, View, FocusManager } from '@youi/react-native-youi';
 import { Timeline, DiscoverContainer, ToggleGroup, ListItem } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -121,38 +121,65 @@ class Lander extends Component {
               <ListRef
                 name="Discover"
                 data={this.groupInto3(discover)}
+                horizontal={true}
                 renderItem={({ item, index }) =>
                   <DiscoverContainer
-                    focusable={this.props.isFocused && this.state.focusListIndex === 0}
+                    focusable={this.props.isFocused && this.state.focusListIndex === 1}
                     onPressItem={this.onPressItem}
                     data={item.data}
                     index={index}
                   />}
-                horizontal={true}
               />
             </Composition>
             <Composition source="Auryn_Container-Movies">
               <ListRef
                 name="Movies"
                 data={movies}
-                renderItem={({ item, index }) => <ListItem imageType="Poster" size="Small" focusable={this.props.isFocused && this.state.focusListIndex === 1} onPress={this.onPressItem} data={item} index={index} />}
                 horizontal={true}
+                keyExtractor={item => item.id}
+                renderItem={({ item, index }) =>
+                  <ListItem
+                    imageType="Poster"
+                    size="Small"
+                    focusable={this.props.isFocused && this.state.focusListIndex === 1}
+                    onPress={this.onPressItem}
+                    data={item}
+                    index={index}
+                  />}
               />
             </Composition>
             <Composition source="Auryn_Container-Shows">
               <ListRef
                 name="Shows"
                 data={tv}
-                renderItem={({ item, index }) => <ListItem imageType="Backdrop" size="Small" focusable={this.props.isFocused && this.state.focusListIndex === 2} onPress={this.onPressItem} data={item} index={index} />}
                 horizontal={true}
+                keyExtractor={item => item.id}
+                renderItem={({ item, index }) =>
+                  <ListItem
+                    imageType="Backdrop"
+                    size="Small"
+                    focusable={this.props.isFocused && this.state.focusListIndex === 2}
+                    onPress={this.onPressItem}
+                    data={item}
+                    index={index}
+                  />}
               />
             </Composition>
             <Composition source="Auryn_Container-Live">
               <ListRef
                 name="Live"
                 data={tv.slice(0, 2)}
-                renderItem={({ item, index }) => <ListItem imageType="Backdrop" size="Large" focusable={this.props.isFocused && this.state.focusListIndex === 3} onPress={this.onPressItem} data={item} index={index} />}
                 horizontal={true}
+                keyExtractor={item => item.id}
+                renderItem={({ item, index }) =>
+                  <ListItem
+                    imageType="Backdrop"
+                    size="Large"
+                    focusable={this.props.isFocused && this.state.focusListIndex === 3}
+                    onPress={this.onPressItem}
+                    data={item}
+                    index={index}
+                  />}
               />
             </Composition>
           </View>
