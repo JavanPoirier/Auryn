@@ -14,7 +14,6 @@ class Lander extends Component {
   constructor(props) {
     super(props);
     this.state = { focusListIndex: 0 };
-    this.lists = [];
   }
 
   componentDidUpdate() {
@@ -110,7 +109,6 @@ class Lander extends Component {
       <Composition source="Auryn_Lander">
         <ToggleGroup
           focusable={this.props.isFocused}
-          ref={toggleGroup => this.toggleGroup = toggleGroup}
           buttons={menuGroup}
         />
         <Timeline name="LanderIn"
@@ -128,7 +126,6 @@ class Lander extends Component {
             <Composition source="Auryn_Container-Discover">
               <ListRef
                 name="Discover"
-                ref={list => this.lists.push(list)}
                 data={this.unflatten(discover)}
                 renderItem={({ item, index }) =>
                   <DiscoverContainer
@@ -144,7 +141,6 @@ class Lander extends Component {
               <ListRef
                 name="Movies"
                 data={movies}
-                ref={list => this.lists.push(list)}
                 renderItem={({ item, index }) => <ListItem imageType="Poster" size="Small" focusable={this.props.isFocused && this.state.focusListIndex === 1} onPress={this.onPressItem} data={item} index={index} />}
                 horizontal={true}
               />
@@ -152,7 +148,6 @@ class Lander extends Component {
             <Composition source="Auryn_Container-Shows">
               <ListRef
                 name="Shows"
-                ref={list => this.lists.push(list)}
                 data={tv}
                 renderItem={({ item, index }) => <ListItem imageType="Backdrop" size="Small" focusable={this.props.isFocused && this.state.focusListIndex === 2} onPress={this.onPressItem} data={item} index={index} />}
                 horizontal={true}
@@ -161,7 +156,6 @@ class Lander extends Component {
             <Composition source="Auryn_Container-Live">
               <ListRef
                 name="Live"
-                ref={list => this.lists.push(list)}
                 data={tv.slice(0, 2)}
                 renderItem={({ item, index }) => <ListItem imageType="Backdrop" size="Large" focusable={this.props.isFocused && this.state.focusListIndex === 3} onPress={this.onPressItem} data={item} index={index} />}
                 horizontal={true}
