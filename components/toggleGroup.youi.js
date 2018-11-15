@@ -20,19 +20,15 @@ export default class ToggleGroup extends React.Component {
     });
   }
 
-  render() {
-    const nav = [];
-    this.props.buttons.forEach((it, index) =>
-      nav.push(<ToggleButton
+  render = () =>
+    this.props.buttons.map((button, index) =>
+      <ToggleButton
+        key={index}
         focusable={this.props.focusable}
         index={index}
         onToggle={this.onToggle}
-        name={it.name}
-        onPress={it.action}
+        name={button.name}
+        onPress={button.action}
         toggled={this.state.toggles[index]}
-      />));
-    return (
-      [nav]
-    );
-  }
+      />)
 }
