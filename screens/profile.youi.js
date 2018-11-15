@@ -10,38 +10,22 @@ export default class Profile extends Component {
   }
 
   navigateBack = () => {
-    this.outTimeline.play().then(() =>
-      this.props.navigation.goBack(null));
+    this.outTimeline.play().then(() => this.props.navigation.goBack(null));
   }
 
   onPress = i => this.setState({ activeButton: i })
 
-  render() {
-    console.log(this.buttons);
+  render = () => {
+    const buttons = new Array(3).fill().map((_, i) =>
+      <ButtonRef key={i} name={`Btn-Profile${i + 1}`} onPress={() => this.onPress(i + 1)} >
+        <TextRef name="Active User" text={this.state.activeButton === i + 1 ? 'Active User' : ''} />
+      </ButtonRef>);
+
     return (
       <Composition source="Auryn_Profile">
-
-        <Timeline name="ProfileIn"
-          ref={timeline => this.inTimeline = timeline}
-          onLoad={timeline => timeline.play()}
-        />
-
+        <Timeline name="ProfileIn" onLoad={timeline => timeline.play()} />
         <Timeline name="ProfileOut" ref={timeline => this.outTimeline = timeline} />
-
-        {this.buttons}
-
-        <ButtonRef name={'Btn-Profile1'} onPress={() => this.onPress(1)} >
-          <TextRef name="Active User" text={this.state.activeButton === 1 ? 'Active User' : ''} />
-        </ButtonRef>
-
-        <ButtonRef name={'Btn-Profile2'} onPress={() => this.onPress(2)} >
-          <TextRef name="Active User" text={this.state.activeButton === 2 ? 'Active User' : ''} />
-        </ButtonRef>
-
-        <ButtonRef name={'Btn-Profile3'} onPress={() => this.onPress(3)} >
-          <TextRef name="Active User" text={this.state.activeButton === 3 ? 'Active User' : ''} />
-        </ButtonRef>
-
+        {buttons}
       </Composition>
     );
   }
