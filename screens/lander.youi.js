@@ -3,6 +3,7 @@ import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, View } from '@yo
 import { Timeline, DiscoverContainer, ToggleGroup, ListItem } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
+import { chunk } from 'lodash';
 
 @connect(store => ({
   discover: store.tmdbReducer.discover.data,
@@ -48,18 +49,11 @@ class Lander extends Component {
     });
   }
 
-  unflatten = array => {
-    const returnArr = [];
-
-    for (let index = 0; index < array.length; index += 3) {
-      if (index >= array.length - 3) break;
-      returnArr.push({
-        key: index,
-        data: array.slice(index, index + 3),
-      });
-    }
-    return returnArr;
-  }
+  groupInto3 = array =>
+    chunk(array, 3).map((data, index) => ({
+      key: index,
+      data,
+    }))
 
   onPressItem = (id, type) => {
     console.log(id);
@@ -126,7 +120,7 @@ class Lander extends Component {
             <Composition source="Auryn_Container-Discover">
               <ListRef
                 name="Discover"
-                data={this.unflatten(discover)}
+                data={this.groupInto3(discover)}
                 renderItem={({ item, index }) =>
                   <DiscoverContainer
                     focusable={this.props.isFocused && this.state.focusListIndex === 0}

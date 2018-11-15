@@ -3,6 +3,7 @@ import { View } from '@youi/react-native-youi';
 import ListItem from './listitem.youi';
 
 export default function DiscoverContainer(props) {
+  if (props.data.length !== 3) return null;
   if (props.index % 2) {
     return (
       <View>
