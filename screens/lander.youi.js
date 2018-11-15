@@ -13,32 +13,6 @@ import { connect } from 'react-redux';
 class Lander extends Component {
   constructor(props) {
     super(props);
-    this.menuGroup = [
-      {
-        name: 'Btn-Nav-Discover',
-        action: () => this.scrollToScreen(0),
-      },
-      {
-        name: 'Btn-Nav-Movies',
-        action: () => this.scrollToScreen(1),
-      },
-      {
-        name: 'Btn-Nav-Shows',
-        action: () => this.scrollToScreen(2),
-      },
-      {
-        name: 'Btn-Nav-Live',
-        action: () => this.scrollToScreen(3),
-      },
-      {
-        name: 'Btn-Nav-Search',
-        action: () => this.navigateToScreen('Search'),
-      },
-      {
-        name: 'Btn-Nav-Profile',
-        action: () => this.navigateToScreen('Profile'),
-      },
-    ];
     this.state = { focusListIndex: 0 };
     this.lists = [];
   }
@@ -105,12 +79,39 @@ class Lander extends Component {
   render() { // eslint-disable-line max-lines-per-function
     const { discover, movies, tv } = this.props;
 
+    const menuGroup = [
+      {
+        name: 'Btn-Nav-Discover',
+        action: () => this.scrollToScreen(0),
+      },
+      {
+        name: 'Btn-Nav-Movies',
+        action: () => this.scrollToScreen(1),
+      },
+      {
+        name: 'Btn-Nav-Shows',
+        action: () => this.scrollToScreen(2),
+      },
+      {
+        name: 'Btn-Nav-Live',
+        action: () => this.scrollToScreen(3),
+      },
+      {
+        name: 'Btn-Nav-Search',
+        action: () => this.navigateToScreen('Search'),
+      },
+      {
+        name: 'Btn-Nav-Profile',
+        action: () => this.navigateToScreen('Profile'),
+      },
+    ];
+
     return (
       <Composition source="Auryn_Lander">
         <ToggleGroup
           focusable={this.props.isFocused}
-          buttons={this.menuGroup}
           ref={toggleGroup => this.toggleGroup = toggleGroup}
+          buttons={menuGroup}
         />
         <Timeline name="LanderIn"
           ref={timeline => this.inTimeline = timeline}
