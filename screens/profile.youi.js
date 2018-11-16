@@ -9,9 +9,14 @@ export default class Profile extends Component {
     BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
   }
 
+  //playing animations before calling out seems to break 'back handling', it continues to reference old screens/timelines
   navigateBack = () => {
     this.outTimeline.play().then(() => this.props.navigation.goBack(null));
   }
+
+  //navigateBack = () => {
+  //  this.props.navigation.goBack(null);
+  //}
 
   onPress = i => this.setState({ activeButton: i })
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Composition, BackHandler, TextInputRef, ButtonRef, ListRef, ImageRef, TextRef, TimelineRef } from '@youi/react-native-youi';
 import { tmdbSearch } from '../actions/tmdbActions';
+import { Timeline } from '../components';
 import { NavigationActions } from 'react-navigation';
 import { debounce } from 'throttle-debounce';
 import { connect } from 'react-redux';
@@ -17,9 +18,14 @@ class Search extends Component {
     BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
   }
 
+  //playing animations before calling out seems to break 'back handling', it continues to reference old screens/timelines
   navigateBack = () => {
-    this.props.navigation.goBack(null);
+    this.outTimeline.play().then(() => this.props.navigation.goBack(null));
   }
+
+  //navigateBack = () => {
+  //  this.props.navigation.goBack(null);
+  //}
 
   onPressItem = id => {
     console.log(id);
@@ -95,11 +101,15 @@ class Search extends Component {
           horizontal={true}
         />
 
+        <Timeline name="SearchOut" ref={timeline => this.outTimeline = timeline} />
+
         <TimelineRef name="SearchIn"
           ref={timeline => this.searchinTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
-        <TimelineRef name="SearchOut" ref={timeline => this.searchoutTimeline = timeline} />
+
+
+
       </Composition>
     );
   }
