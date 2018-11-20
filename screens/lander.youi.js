@@ -100,10 +100,12 @@ class Lander extends Component {
         />
         <ButtonRef
           name="Btn-Nav-Search"
+          focusable={this.props.isFocused}
           onPress={() => this.navigateToScreen('Search')}
         />
         <ButtonRef
           name="Btn-Nav-Profile"
+          focusable={this.props.isFocused}
           onPress={() => this.navigateToScreen('Profile')}
         />
         <Timeline name="LanderIn"
