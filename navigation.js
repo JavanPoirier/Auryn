@@ -6,7 +6,6 @@ const Stack = createStackNavigator(
     Splash: { screen: Screens.Splash },
     Lander: { screen: Screens.Lander },
     PDP: { screen: Screens.PDP },
-    Player: { screen: Screens.Player },
     Search: { screen: Screens.Search },
     Profile: { screen: Screens.Profile },
   },
