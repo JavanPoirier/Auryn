@@ -14,18 +14,20 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { query: '' };
-
-    BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
   }
 
-  //playing animations before calling out seems to break 'back handling', it continues to reference old screens/timelines
+  componentDidMount() {
+    this.props.navigation.addListener('didFocus', () => {
+      BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
+    });
+    this.props.navigation.addListener('didBlur', () => {
+      BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
+    });
+  }
+
   navigateBack = () => {
     this.outTimeline.play().then(() => this.props.navigation.goBack(null));
   }
-
-  //navigateBack = () => {
-  //  this.props.navigation.goBack(null);
-  //}
 
   onPressItem = id => {
     console.log(id);
@@ -107,7 +109,6 @@ class Search extends Component {
           ref={timeline => this.searchinTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
-
 
 
       </Composition>
