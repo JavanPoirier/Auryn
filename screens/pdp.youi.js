@@ -24,9 +24,9 @@ import { tmdbMovieDetails, tmdbTvDetails } from '../actions/tmdbActions';
 class PDP extends Component {
   constructor(props) {
     super(props);
-    BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
     this.state = {
       youtubeVideo: null,
+      videoPlaying: false,
     };
   }
 
@@ -41,8 +41,15 @@ class PDP extends Component {
   }
 
   navigateBack = () => {
-    this.contentoutTimeline.play();
-    this.outTimeline.play().then(() => this.props.navigation.goBack(null));
+    if (this.state.videoPlaying === true) {
+      this.videoPlayer.pause();
+      this.videoOutTimeline.play();
+      this.setState({ videoPlaying: false });
+    } else {
+      // TODO: turn into a promise.both?
+      this.contentoutTimeline.play();
+      this.outTimeline.play().then(() => this.props.navigation.goBack(null));
+    }
   }
 
   onPressItem = id => {
@@ -59,6 +66,13 @@ class PDP extends Component {
   }
 
   componentDidMount() {
+    this.props.navigation.addListener('didFocus', () => {
+      BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
+    });
+    this.props.navigation.addListener('didBlur', () => {
+      BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
+    });
+
     const type = this.props.navigation.getParam('type');
     const id = this.props.navigation.getParam('id');
 
@@ -80,11 +94,13 @@ class PDP extends Component {
       </ButtonRef>
     </Composition>
 
-  playVideo = () =>
-    this.videoInTimeline.play()
+  playVideo = () => {
+    this.setState({ videoPlaying: true });
+      this.videoInTimeline.play()
       .then(() => {
         this.videoPlayer.play();
       });
+  }
 
   render() { // eslint-disable-line max-lines-per-function
     const { asset, fetched } = this.props;
