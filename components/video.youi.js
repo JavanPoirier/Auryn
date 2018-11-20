@@ -17,7 +17,6 @@ export default class Video extends Component {
       paused: true,
     };
 
-    BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
   }
 
   componentDidUpdate(prevProps) {
@@ -40,11 +39,17 @@ export default class Video extends Component {
   }
 
   play = () => {
-    this.videoPlayer.play();
+    if (this.videoPlayer)
+      this.videoPlayer.play();
+  }
+
+  pause = () => {
+    if (this.videoPlayer)
+      this.videoPlayer.pause();
   }
 
   navigateBack = () => {
-    this.videoPlayer.pause();
+    this.pause();
   }
 
   render = () =>
@@ -56,7 +61,6 @@ export default class Video extends Component {
         }}
         paused={this.state.paused}
         source={this.state.videoSource}
-        onPlaybackComplete={() => this.navigateBack}
         onCurrentTimeUpdated={currentTime => {
           let sec = Math.floor(currentTime.nativeEvent / 1000);
           let min = Math.floor(sec / 60);
