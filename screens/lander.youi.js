@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, View, FocusManager } from '@youi/react-native-youi';
+import { Composition, ViewRef, ListRef, TimelineRef, ScrollRef, ButtonRef, View, FocusManager } from '@youi/react-native-youi';
 import { Timeline, DiscoverContainer, ToggleGroup, ListItem } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -15,6 +15,7 @@ class Lander extends Component {
   constructor(props) {
     super(props);
     this.state = { focusListIndex: 0 };
+    this.lists = [];
   }
 
   componentDidUpdate() {
@@ -89,14 +90,6 @@ class Lander extends Component {
         name: 'Btn-Nav-Live',
         action: () => this.scrollToScreen(3),
       },
-      {
-        name: 'Btn-Nav-Search',
-        action: () => this.navigateToScreen('Search'),
-      },
-      {
-        name: 'Btn-Nav-Profile',
-        action: () => this.navigateToScreen('Profile'),
-      },
     ];
 
     return (
@@ -104,6 +97,14 @@ class Lander extends Component {
         <ToggleGroup
           focusable={this.props.isFocused}
           buttons={menuGroup}
+        />
+        <ButtonRef
+          name="Btn-Nav-Search"
+          onPress={() => this.navigateToScreen('Search')}
+        />
+        <ButtonRef
+          name="Btn-Nav-Profile"
+          onPress={() => this.navigateToScreen('Profile')}
         />
         <Timeline name="LanderIn"
           ref={timeline => this.inTimeline = timeline}
@@ -121,10 +122,11 @@ class Lander extends Component {
               <ListRef
                 name="Discover"
                 data={this.groupInto3(discover)}
+                ref={ref => this.lists[0] = ref}
                 horizontal={true}
                 renderItem={({ item, index }) =>
                   <DiscoverContainer
-                    focusable={this.props.isFocused && this.state.focusListIndex === 1}
+                    focusable={this.props.isFocused && this.state.focusListIndex === 0}
                     onPressItem={this.onPressItem}
                     data={item.data}
                     index={index}
@@ -135,6 +137,7 @@ class Lander extends Component {
               <ListRef
                 name="Movies"
                 data={movies}
+                ref={ref => this.lists[1] = ref}
                 horizontal={true}
                 keyExtractor={item => item.id}
                 renderItem={({ item, index }) =>
@@ -152,6 +155,7 @@ class Lander extends Component {
               <ListRef
                 name="Shows"
                 data={tv}
+                ref={ref => this.lists[2] = ref}
                 horizontal={true}
                 keyExtractor={item => item.id}
                 renderItem={({ item, index }) =>
@@ -169,6 +173,7 @@ class Lander extends Component {
               <ListRef
                 name="Live"
                 data={tv.slice(0, 2)}
+                ref={ref => this.lists[3] = ref}
                 horizontal={true}
                 keyExtractor={item => item.id}
                 renderItem={({ item, index }) =>
