@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withNavigationFocus, NavigationActions } from 'react-navigation';
+import { withNavigationFocus } from 'react-navigation';
 import {
   BackHandler,
   ButtonRef,
@@ -33,6 +33,7 @@ class PDP extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.asset !== prevProps.asset) {
       console.log('ASSET', this.props.asset);
+      this.contentInTimeline.play();
       if (this.props.asset.videos.results.length > 0) {
         Youtube.getInfo({ url: `http://www.youtube.com/watch?v=${this.props.asset.videos.results[0].key}` })
           .then(video => this.setState({ youtubeVideo: video }));
@@ -46,27 +47,23 @@ class PDP extends Component {
       this.videoOutTimeline.play();
       this.setState({ videoPlaying: false });
     } else {
-      // TODO: turn into a promise.both?
-      this.contentoutTimeline.play();
-      this.outTimeline.play().then(() => this.props.navigation.goBack(null));
+      this.outTimeline.play().then(() => {
+        this.props.navigation.goBack(null);
+      });
     }
   }
 
-  onPressItem = id => {
-    this.outTimeline.play()
-      .then(() => {
-        const navigateAction = NavigationActions.navigate({
-          routeName: 'PDP',
-          params: { id },
-          key: id,
-        });
-
-        this.props.navigation.dispatch(navigateAction);
-      });
+  onPressItem = (id, type) => {
+    this.contentOutTimeline.play();
+    type === 'movie' ?
+    this.props.dispatch(tmdbMovieDetails(id))
+    : this.props.dispatch(tmdbTvDetails(id));
   }
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
+      if (this.contentInTimeline)
+        this.contentInTimeline.play();
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
     });
     this.props.navigation.addListener('didBlur', () => {
@@ -76,23 +73,10 @@ class PDP extends Component {
     const type = this.props.navigation.getParam('type');
     const id = this.props.navigation.getParam('id');
 
-    if (type === 'movie')
-      this.props.dispatch(tmdbMovieDetails(id));
-    if (type === 'tv')
-      this.props.dispatch(tmdbTvDetails(id));
+    type === 'movie' ?
+    this.props.dispatch(tmdbMovieDetails(id))
+    : this.props.dispatch(tmdbTvDetails(id));
   }
-
-  renderItem = ({ item }) =>
-    <Composition source="Auryn_ListItem-PDP">
-      <ButtonRef name="Btn-Main-Half" onPress={() => this.onPressItem(item.id)}>
-        <ImageRef
-          name="Image-Dynamic"
-          source={{ uri: `http://image.tmdb.org/t/p/w500${item.backdrop_path}` }}
-        />
-        <TextRef name="Text-Title" text={item.title} />
-        <TextRef name="Text-Details" text={item.overview} />
-      </ButtonRef>
-    </Composition>
 
   playVideo = () => {
     this.setState({ videoPlaying: true });
@@ -104,7 +88,6 @@ class PDP extends Component {
 
   render() { // eslint-disable-line max-lines-per-function
     const { asset, fetched } = this.props;
-
     if (!fetched)
       return <View />;
 
@@ -125,17 +108,25 @@ class PDP extends Component {
           <ListRef
             name="List-PDP"
             data={asset.similar.results}
-            renderItem={({ item }) =>
-              <ListItem imageType="Backdrop" size="Small" data={item} onPress={() => this.onPressItem(item.id)} />}
+            renderItem={({ item, index }) =>
+              <ListItem
+                imageType="Backdrop"
+                size="Small"
+                focusable={this.props.isFocused}
+                onPress={this.onPressItem}
+                data={item}
+                index={index}
+              />}
             keyExtractor={item => item.id}
             horizontal={true}
           />
 
-          <TimelineRef name="ContentIn" ref={timeline => this.contentinTimeline = timeline} onLoad={ref => ref.play()} />
-          <TimelineRef name="ContentOut" ref={timeline => this.contentoutTimeline = timeline} />
+          <TimelineRef name="ContentIn" ref={timeline => this.contentInTimeline = timeline} onLoad={ref => ref.play()} />
+          <Timeline name="ContentOut" ref={timeline => this.contentOutTimeline = timeline} />
 
           <ButtonRef
             name="Btn-Poster-Large"
+            focusable={this.props.isFocused}
             onPress={this.playVideo}
           >
             <ImageRef
@@ -153,7 +144,7 @@ class PDP extends Component {
             <TextRef name="Text-Title" text={asset.title} />
             <TextRef name="Text-Overview" text={asset.overview} />
             <TextRef name="Text-Featured" text="Director: Darth Solo  |  Starring: John Wick, Catherine Freda, Marco Frank" />
-            <TimelineRef name="In2" ref={timeline => this.in2Timeline = timeline} onLoad={ref => ref.play()} />
+            <TimelineRef name="In2" ref={timeline => this.pdpMetaInTimeline = timeline} onLoad={ref => ref.play()} />
           </ViewRef>
 
         </ViewRef>
