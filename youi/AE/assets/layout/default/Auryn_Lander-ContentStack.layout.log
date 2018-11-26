@@ -4,84 +4,8 @@ activecomp {
   height: 900
   defaultcameradistance: 2666.6667
   layer {
-    name: "Loader-4.png"
-    id: 259843
-    sourceid: 259807
-    transform {
-      anchorPoint {
-        x: 30
-        y: 30
-        z: 0
-      }
-      scale {
-        x: 7.8
-        y: 7.8
-        z: 7.8
-      }
-      position {
-        x: 960
-        y: 450
-        z: 1533
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    properties {
-      key: "layoutable"
-      value: "false"
-    }
-  }
-  layer {
-    name: "Loader-3.png"
-    id: 259844
-    sourceid: 259806
-    transform {
-      anchorPoint {
-        x: 30
-        y: 30
-        z: 0
-      }
-      scale {
-        x: 7.8
-        y: 7.8
-        z: 7.8
-      }
-      position {
-        x: 1448
-        y: 606
-        z: -1000
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    properties {
-      key: "layoutable"
-      value: "false"
-    }
-  }
-  layer {
     name: "Container-Live"
-    id: 259845
+    id: 259843
     sourceid: 259897
     transform {
       anchorPoint {
@@ -119,7 +43,7 @@ activecomp {
   }
   layer {
     name: "Movies 2"
-    id: 259846
+    id: 259844
     sourceid: 259885
     transform {
       anchorPoint {
@@ -157,7 +81,7 @@ activecomp {
   }
   layer {
     name: "Movies"
-    id: 259847
+    id: 259845
     sourceid: 259873
     transform {
       anchorPoint {
@@ -195,7 +119,7 @@ activecomp {
   }
   layer {
     name: "Container-Discover"
-    id: 259848
+    id: 259846
     sourceid: 259861
     transform {
       anchorPoint {
@@ -256,34 +180,12 @@ activecomp {
   }
   properties {
     key: "insert-after-layer-id"
-    value: "259844"
+    value: "-1"
   }
   childtemplates: "Auryn_Container-Live"
   childtemplates: "Auryn_Container-Shows"
   childtemplates: "Auryn_Container-Movies"
   childtemplates: "Auryn_Container-Discover"
-}
-sources {
-  uid: 259807
-  srctype: AE_IMAGE_SRC
-  name: "Loader-4.png"
-  width: 60
-  height: 60
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
-  copy_source: true
-}
-sources {
-  uid: 259806
-  srctype: AE_IMAGE_SRC
-  name: "Loader-3.png"
-  width: 60
-  height: 60
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
-  copy_source: true
 }
 sources {
   uid: 259897

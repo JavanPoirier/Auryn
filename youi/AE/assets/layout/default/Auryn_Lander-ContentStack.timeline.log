@@ -1,28 +1,6 @@
 tracks {
   binding: IS_VISIBLE
   targetid: 259843
-  targetname: "Loader-4.png"
-  keytimes {
-    datatype: AE_INT_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_HOLD
-    ivalue1: 1
-  }
-}
-tracks {
-  binding: IS_VISIBLE
-  targetid: 259844
-  targetname: "Loader-3.png"
-  keytimes {
-    datatype: AE_INT_DATA
-    timeOffset: 0
-    inttype: AE_INTERP_HOLD
-    ivalue1: 1
-  }
-}
-tracks {
-  binding: IS_VISIBLE
-  targetid: 259845
   targetname: "Container-Live"
   keytimes {
     datatype: AE_INT_DATA
@@ -33,7 +11,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 259846
+  targetid: 259844
   targetname: "Movies 2"
   keytimes {
     datatype: AE_INT_DATA
@@ -44,7 +22,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 259847
+  targetid: 259845
   targetname: "Movies"
   keytimes {
     datatype: AE_INT_DATA
@@ -55,7 +33,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 259848
+  targetid: 259846
   targetname: "Container-Discover"
   keytimes {
     datatype: AE_INT_DATA
