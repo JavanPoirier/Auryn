@@ -12,7 +12,7 @@ export default class ToggleButton extends Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.toggled !== prevProps.toggled) {
       this.setState({
         toggled: this.props.toggled,
@@ -27,13 +27,16 @@ export default class ToggleButton extends Component {
       ref={ref => this.ref = ref}
       onPress={() => {
         if (this.state.toggled && this.props.isRadio) return;
-        this.props.onPress();
+
+        if (this.props.onPress)
+          this.props.onPress();
+
         if (this.props.onToggle)
           this.props.onToggle(this.props.index);
 
         this.setState({
           toggled: !this.state.toggled,
-        }, this.toggleOnTimeline.play);
+        });
       }}
     >
       <TimelineRef
