@@ -20,7 +20,7 @@ activecomp {
       }
       position {
         x: 1806
-        y: -56
+        y: 110
         z: 0
       }
       orientation {
@@ -31,7 +31,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -54,7 +54,7 @@ activecomp {
       }
       position {
         x: 1742
-        y: -56
+        y: 110
         z: 0
       }
       orientation {
@@ -65,7 +65,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -88,7 +88,7 @@ activecomp {
       }
       position {
         x: 1267
-        y: -56
+        y: 44
         z: 0
       }
       orientation {
@@ -99,7 +99,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -122,7 +122,7 @@ activecomp {
       }
       position {
         x: 1062
-        y: -56
+        y: 44
         z: 0
       }
       orientation {
@@ -133,7 +133,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -156,7 +156,7 @@ activecomp {
       }
       position {
         x: 857
-        y: -56
+        y: 44
         z: 0
       }
       orientation {
@@ -167,7 +167,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -190,7 +190,7 @@ activecomp {
       }
       position {
         x: 652
-        y: -56
+        y: 44
         z: 0
       }
       orientation {
@@ -201,7 +201,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true

@@ -22,4 +22,8 @@ activecomp {
     key: "layout"
     value: "CYIRowLayout"
   }
+  properties {
+    key: "horizontal-end-magnet-offset"
+    value: "100"
+  }
 }
