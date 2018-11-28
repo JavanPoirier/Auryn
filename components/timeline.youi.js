@@ -14,8 +14,10 @@ export default class Timeline extends Component {
         if (this.resolve && !this.props.loop)
           this.resolve('onCompleted');
 
-        if (this.props.loop)
-          this.timeline.play();
+        /*
+         * if (this.props.loop)
+         *   this.ref.play();
+         */
 
         if (this.props.onCompleted)
           this.props.onCompleted();
@@ -25,5 +27,10 @@ export default class Timeline extends Component {
   play = () => new Promise(resolve => {
     this.resolve = resolve;
     this.ref.play();
+  });
+
+  stop = () => new Promise(resolve => {
+    this.resolve = resolve;
+    this.ref.stop();
   });
 }
