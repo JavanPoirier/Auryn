@@ -26,10 +26,11 @@ export default class ToggleButton extends Component {
       name={this.props.name}
       ref={ref => this.ref = ref}
       onPress={() => {
-        if (this.state.toggled) return;
-        console.log(this.props.onPress);
+        if (this.state.toggled && this.props.isRadio) return;
         this.props.onPress();
-        this.props.onToggle(this.props.index);
+        if (this.props.onToggle)
+          this.props.onToggle(this.props.index);
+
         this.setState({
           toggled: !this.state.toggled,
         }, this.toggleOnTimeline.play);
