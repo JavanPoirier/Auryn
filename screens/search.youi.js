@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Composition, BackHandler, TextInputRef, ButtonRef, ListRef, ImageRef, TextRef, TimelineRef } from '@youi/react-native-youi';
+import { Composition, BackHandler, TextInputRef, ButtonRef, ListRef, ImageRef, TextRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
 import { tmdbSearch } from '../actions/tmdbActions';
-import { Timeline } from '../components';
+import { Timeline, ListItem } from '../components';
 import { NavigationActions } from 'react-navigation';
 import { debounce } from 'throttle-debounce';
 import { connect } from 'react-redux';
@@ -19,6 +19,10 @@ class Search extends Component {
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
+      if (this.searchText) {
+        FocusManager.focus(this.searchText);
+        this.searchText.activate();
+      }
     });
     this.props.navigation.addListener('didBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
@@ -42,18 +46,6 @@ class Search extends Component {
     this.props.navigation.dispatch(navigateAction);
   }
 
-  renderItem = ({ item }) =>
-    <Composition source="Auryn_ListItem-PDP">
-      <ButtonRef name="Btn-Main-Half" onPress={() => this.onPressItem(item.id)}>
-        <ImageRef
-          name="Image-Dynamic"
-          source={{ uri: `http://image.tmdb.org/t/p/w500${item.backdrop_path}` }}
-        />
-        <TextRef name="Text-Title" text={item.title} />
-        <TextRef name="Text-Details" text={item.overview} />
-      </ButtonRef>
-    </Composition>
-
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.query !== nextState.query) {
       this.search();
@@ -70,7 +62,7 @@ class Search extends Component {
     this.props.dispatch(tmdbSearch(this.state.query));
   })
 
-  render() {
+  render() { // eslint-disable-line max-lines-per-function
     const { data, fetched } = this.props;
     let movies = [];
     let tv = [];
@@ -90,7 +82,15 @@ class Search extends Component {
         <ListRef
           name="List-PDP"
           data={tv}
-          renderItem={this.renderItem}
+          renderItem={({ item, index }) =>
+          <ListItem
+            imageType="Backdrop"
+            size="Small"
+            focusable={this.props.isFocused && !this.state.videoVisible}
+            onPress={this.onPressItem}
+            data={item}
+            index={index}
+          />}
           keyExtractor={item => item.id}
           horizontal={true}
         />
@@ -98,7 +98,15 @@ class Search extends Component {
         <ListRef
           name="List-Movies"
           data={movies}
-          renderItem={this.renderItem}
+          renderItem={({ item, index }) =>
+          <ListItem
+            imageType="Backdrop"
+            size="Small"
+            focusable={this.props.isFocused && !this.state.videoVisible}
+            onPress={this.onPressItem}
+            data={item}
+            index={index}
+          />}
           keyExtractor={item => item.id}
           horizontal={true}
         />

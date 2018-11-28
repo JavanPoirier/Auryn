@@ -41,9 +41,8 @@ class PDP extends Component {
       }
     }
 
-    if (this.state.videoVisible !== prevState.videoVisible) 
+    if (this.state.videoVisible !== prevState.videoVisible)
       if (!this.state.videoVisible) FocusManager.focus(this.posterButton);
-    
   }
 
   navigateBack = () => {
