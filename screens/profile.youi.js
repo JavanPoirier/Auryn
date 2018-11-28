@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, BackHandler, ButtonRef, TextRef } from '@youi/react-native-youi';
+import { Composition, BackHandler, ButtonRef, TextRef, FocusManager } from '@youi/react-native-youi';
 import { Timeline } from '../components';
 
 export default class Profile extends Component {
@@ -11,6 +11,7 @@ export default class Profile extends Component {
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
+      if (this.activeButton) FocusManager.focus(this.activeButton);
     });
     this.props.navigation.addListener('didBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
@@ -25,7 +26,14 @@ export default class Profile extends Component {
 
   render = () => {
     const buttons = new Array(3).fill().map((_, i) =>
-      <ButtonRef key={i} name={`Btn-Profile${i + 1}`} onPress={() => this.onPress(i + 1)} >
+      <ButtonRef
+        key={i}
+        name={`Btn-Profile${i + 1}`}
+        onPress={() => this.onPress(i + 1)}
+        ref={ref => {
+          if (i === 0) this.activeButton = ref;
+        }}
+      >
         <TextRef name="Active User" text={this.state.activeButton === i + 1 ? 'Active User' : ''} />
       </ButtonRef>);
 
