@@ -43,7 +43,7 @@ class PDP extends Component {
 
   navigateBack = () => {
     if (this.state.videoPlaying === true) {
-      this.videoPlayer.pause();
+      this.videoPlayer.navigateBack();
       this.videoOutTimeline.play();
       this.setState({ videoPlaying: false });
     } else {
@@ -82,7 +82,7 @@ class PDP extends Component {
     this.setState({ videoPlaying: true });
       this.videoInTimeline.play()
       .then(() => {
-        this.videoPlayer.play();
+        this.videoPlayer.playPause();
       });
   }
 

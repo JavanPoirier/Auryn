@@ -46,7 +46,28 @@ export default class Video extends Component {
   navigateBack = () => {
     if (!this.videoPlayer) return;
     this.videoPlayer.stop();
+    this.videoHideTimeline.play();
   }
+
+  onCurrentTimeUpdated = currentTime => {
+    let sec = Math.floor(currentTime.nativeEvent / 1000);
+    let min = Math.floor(sec / 60);
+    let hour = Math.floor(sec / 3600);
+    sec %= 60;
+    min %= 60;
+    hour = hour < 1 ? '' : `${hour}:`;
+    min = min < 10 ? `0${min}` : min;
+    sec = sec < 10 ? `0${sec}` : sec;
+    const time = `${hour}${min}:${sec}`;
+    this.setState({
+      currentTime: currentTime.nativeEvent,
+      formattedTime: time,
+    });
+  }
+
+  show = () => this.videoShowTimeline.play()
+
+  hide = () => this.videoHideTimeline.play()
 
   render = () =>
     <ViewRef name="Video">
@@ -55,33 +76,16 @@ export default class Video extends Component {
         ref={ref => {
           this.videoPlayer = ref;
         }}
-        onPaused={() => {
-this.setState({ paused: true });
-}}
-        onPlaying={() => {
-this.setState({ paused: false });
-}}
-        source={this.state.videoSource}
-        onCurrentTimeUpdated={currentTime => {
-          let sec = Math.floor(currentTime.nativeEvent / 1000);
-          let min = Math.floor(sec / 60);
-          let hour = Math.floor(sec / 3600);
-          sec %= 60;
-          min %= 60;
-          hour = hour < 1 ? '' : `${hour}:`;
-          min = min < 10 ? `0${min}` : min;
-          sec = sec < 10 ? `0${sec}` : sec;
-          const time = `${hour}${min}:${sec}`;
-          this.setState({
-            currentTime: currentTime.nativeEvent,
-            formattedTime: time,
-          });
-        }}
-        onDurationChanged={duration => {
+        onPaused={ () => this.setState({ paused: true }) }
+        onPlaying={ () => this.setState({ paused: false }) }
+        source={ this.state.videoSource }
+        onCurrentTimeUpdated={ this.onCurrentTimeUpdated }
+        onDurationChanged={ duration => {
           this.setState({ duration: duration.nativeEvent });
         }}
       />
-      <Timeline name="Show" onLoad={timeline => timeline.play()} />
+      <Timeline name="Show" ref={ref => this.videoShowTimeline = ref} />
+      <Timeline name="Hide" ref={ref => this.videoHideTimeline = ref} />
       <ViewRef name="Player-Controls">
         <Timeline name="Show"
           ref={ref => this.controlsShowTimeline = ref}
@@ -90,10 +94,14 @@ this.setState({ paused: false });
         <Timeline name="Hide"
           ref={ref => this.controlsHideTimeline = ref}
         />
-        <ToggleButton name="Btn-PlayPause" onPress={this.playPause} toggle={true}/>
+        <ToggleButton name="Btn-PlayPause"
+          onPress={this.playPause}
+          toggled={!this.state.paused}
+          toggle={true}
+        />
         <ViewRef name="Video-TextDetails">
-          <TextRef name="title" text={this.props.title}/>
-          <TextRef name="details" text={this.props.details}/>
+          <TextRef name="Title" text={this.props.title}/>
+          <TextRef name="Details" text={this.props.details}/>
         </ViewRef>
       </ViewRef>
     </ViewRef>
