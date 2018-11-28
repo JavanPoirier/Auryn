@@ -12,7 +12,7 @@ export default class ToggleButton extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.toggled !== prevProps.toggled) {
       this.setState({
         toggled: this.props.toggled,
@@ -24,7 +24,11 @@ export default class ToggleButton extends Component {
     <ButtonRef
       focusable={this.props.focusable}
       name={this.props.name}
-      ref={ref => { if (this.props.ref) this.props.ref(ref); this.ref = ref; }}
+      ref={ref => {
+        if (this.props.ref)
+          this.props.ref(ref);
+        this.ref = ref;
+      }}
       onPress={() => {
         if (this.state.toggled && this.props.isRadio) return;
 
