@@ -43,7 +43,7 @@ class PDP extends Component {
 
   navigateBack = () => {
     if (this.state.videoPlaying === true) {
-      this.videoPlayer.navigateBack();
+      this.video.navigateBack();
       this.videoOutTimeline.play();
       this.setState({ videoPlaying: false });
     } else {
@@ -55,6 +55,7 @@ class PDP extends Component {
 
   onPressItem = (id, type) => {
     this.contentOutTimeline.play();
+    this.video.reset();
     type === 'movie' ?
     this.props.dispatch(tmdbMovieDetails(id))
     : this.props.dispatch(tmdbTvDetails(id));
@@ -80,10 +81,9 @@ class PDP extends Component {
 
   playVideo = () => {
     this.setState({ videoPlaying: true });
-      this.videoInTimeline.play()
-      .then(() => {
-        this.videoPlayer.playPause();
-      });
+    this.videoInTimeline.play();
+    setTimeout(() => this.video.playPause(), 100);
+    // This.video.playPause();//
   }
 
   render() { // eslint-disable-line max-lines-per-function
@@ -96,7 +96,7 @@ class PDP extends Component {
 
         <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
         <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
-        <Video source={this.state.youtubeVideo} ref={ref => this.videoPlayer = ref} />
+        <Video source={this.state.youtubeVideo} ref={ref => this.video = ref} />
 
         <Timeline name="PDPIn"
           ref={timeline => this.inTimeline = timeline}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ViewRef, VideoRef, TextRef } from '@youi/react-native-youi';
+import { ViewRef, VideoRef, TextRef, TimelineRef } from '@youi/react-native-youi';
 import { Timeline, ToggleButton } from '../components';
 
 export default class Video extends Component {
@@ -19,23 +19,37 @@ export default class Video extends Component {
 
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.source !== prevProps.source) {
       const video = this.props.source;
       console.log('VIDEO', video);
       if (video && video.formats) {
         const format = video.formats
           .find(fmt => fmt.type.indexOf('mp4') > 0 && fmt.quality === 'hd720');
+
         if (format) {
-          this.setState({
-            videoSource: {
-              uri: format.url,
-              type: 'MP4',
-            },
-          });
+          this.setState({ videoSource: { uri: format.url,
+          type: 'MP4' } });
         }
       }
     }
+
+    if (this.state.percent !== prevState.percent) {
+      console.log('SCRUB', this.state.percent);
+      this.scrubberTimeline.seek(this.state.percent);
+    }
+  }
+
+  reset = () => {
+    if (!this.videoPlayer) return;
+
+    this.videoPlayer.stop();
+    this.scrubberTimeline.seek(0);
+    this.setState({
+      formattedTime: '00:00',
+      duration: 0,
+      paused: true,
+    });
   }
 
   playPause = () => {
@@ -45,11 +59,12 @@ export default class Video extends Component {
 
   navigateBack = () => {
     if (!this.videoPlayer) return;
-    this.videoPlayer.stop();
+    this.videoPlayer.pause();
     this.videoHideTimeline.play();
   }
 
   onCurrentTimeUpdated = currentTime => {
+    if (isNaN(currentTime.nativeEvent)) return;
     let sec = Math.floor(currentTime.nativeEvent / 1000);
     let min = Math.floor(sec / 60);
     let hour = Math.floor(sec / 3600);
@@ -62,6 +77,7 @@ export default class Video extends Component {
     this.setState({
       currentTime: currentTime.nativeEvent,
       formattedTime: time,
+      percent: currentTime.nativeEvent / this.state.duration,
     });
   }
 
@@ -99,6 +115,10 @@ export default class Video extends Component {
           toggled={!this.state.paused}
           toggle={true}
         />
+        <TextRef name="Duration" text={this.state.formattedTime} />
+        <ViewRef name="Bar">
+          <TimelineRef name="ScrollStart" ref={ref => this.scrubberTimeline = ref} />
+        </ViewRef>
         <ViewRef name="Video-TextDetails">
           <TextRef name="Title" text={this.props.title}/>
           <TextRef name="Details" text={this.props.details}/>
