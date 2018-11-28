@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ViewRef, VideoRef, TextRef, TimelineRef } from '@youi/react-native-youi';
+import { ViewRef, VideoRef, TextRef, TimelineRef, Input, FocusManager } from '@youi/react-native-youi';
 import { Timeline, ToggleButton } from '../components';
 
 export default class Video extends Component {
@@ -16,10 +16,28 @@ export default class Video extends Component {
       focusable: true,
       paused: true,
     };
-
+    this.controlsVisible = false;
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  keys = [
+    'YI_KEY_SPACE',
+    'YI_KEY_PLAY',
+    'YI_KEY_MEDIA_PLAY',
+    'YI_KEY_MEDIA_PLAY_PAUSE',
+    'YI_KEY_ENTER',
+    'YI_KEY_SELECT',
+    'YI_KEY_PAGEDOWN',
+    'YI_KEY_ARROW_DOWN',
+    'YI_KEY_ARROW_UP',
+    'YI_KEY_ARROW_LEFT',
+    'YI_KEY_ARROW_RIGHT',
+    'YI_KEY_ARROW_UP_LEFT',
+    'YI_KEY_ARROW_UP_RIGHT',
+    'YI_KEY_ARROW_DOWN_LEFT',
+    'YI_KEY_ARROW_DOWN_RIGHT',
+  ];
+
+  componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements
     if (this.props.source !== prevProps.source) {
       const video = this.props.source;
       console.log('VIDEO', video);
@@ -38,6 +56,44 @@ export default class Video extends Component {
       console.log('SCRUB', this.state.percent);
       this.scrubberTimeline.seek(this.state.percent);
     }
+
+    if (this.props.visible !== prevProps.visible) {
+      if (this.props.visible)
+        this.keys.forEach(key => Input.addEventListener(key, this.registerUserActivity));
+       else {
+      this.controlsHideTimeline.play();
+      this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
+      }
+
+    }
+  }
+
+  inactivityDetected = () => {
+    this.controlsHideTimeline.play();
+    this.controlsVisible = false;
+  }
+
+  showControls = () => {
+    this.controlsVisible = true;
+    FocusManager.focus(this.playButton);
+    this.controlsShowTimeline.play();
+  }
+
+  hideControls = () => {
+    this.controlsVisible = false;
+    FocusManager.focus(this.videoPlayer);
+    this.controlsHideTimeline.play();
+  }
+
+  registerUserActivity = keyEvent => {
+    console.log(keyEvent);
+    if (!this.controlsVisible) this.showControls();
+
+    if (this.activityTimeout)
+      clearTimeout(this.activityTimeout);
+
+    // Set our new activity timeout
+    this.activityTimeout = setTimeout(() => this.inactivityDetected(), 3000);
   }
 
   reset = () => {
@@ -60,10 +116,9 @@ export default class Video extends Component {
   navigateBack = () => {
     if (!this.videoPlayer) return;
     this.videoPlayer.pause();
-    this.videoHideTimeline.play();
   }
 
-  onCurrentTimeUpdated = currentTime => {
+  onCurrentTimeUpdated = currentTime => { // eslint-disable-line max-statements
     if (isNaN(currentTime.nativeEvent)) return;
     let sec = Math.floor(currentTime.nativeEvent / 1000);
     let min = Math.floor(sec / 60);
@@ -81,10 +136,6 @@ export default class Video extends Component {
     });
   }
 
-  show = () => this.videoShowTimeline.play()
-
-  hide = () => this.videoHideTimeline.play()
-
   render = () =>
     <ViewRef name="Video">
       <VideoRef
@@ -100,12 +151,14 @@ export default class Video extends Component {
           this.setState({ duration: duration.nativeEvent });
         }}
       />
-      <Timeline name="Show" ref={ref => this.videoShowTimeline = ref} />
-      <Timeline name="Hide" ref={ref => this.videoHideTimeline = ref} />
+      <ViewRef name="ActivityIndicator">
+        <Timeline name="Show" ref={ref => this.activityShowTimeline = ref} />
+        <Timeline name="Hide" ref={ref => this.activityHideTimeline = ref} />
+      </ViewRef>
       <ViewRef name="Player-Controls">
         <Timeline name="Show"
           ref={ref => this.controlsShowTimeline = ref}
-          onLoad={timeline => timeline.play()}
+          // OnLoad={timeline => timeline.play()}
         />
         <Timeline name="Hide"
           ref={ref => this.controlsHideTimeline = ref}
@@ -114,6 +167,7 @@ export default class Video extends Component {
           onPress={this.playPause}
           toggled={!this.state.paused}
           toggle={true}
+          ref={ref => this.playButton = ref}
         />
         <TextRef name="Duration" text={this.state.formattedTime} />
         <ViewRef name="Bar">

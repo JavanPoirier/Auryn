@@ -25,5 +25,6 @@ export default class ToggleGroup extends React.Component {
         onPress={button.action}
         toggled={this.state.toggles[index]}
         isRadio={true}
+        ref={button.ref}
       />)
 }

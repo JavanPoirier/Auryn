@@ -26,6 +26,7 @@ class Lander extends Component {
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       this.setState({ focusable: true });
+      if (this.discoverButton) FocusManager.focus(this.discoverButton);
       this.inTimeline.play();
     });
     this.props.navigation.addListener('didBlur', () =>
@@ -77,6 +78,7 @@ class Lander extends Component {
       {
         name: 'Btn-Nav-Discover',
         action: () => this.scrollToScreen(0),
+        ref: ref => this.discoverButton = ref,
       },
       {
         name: 'Btn-Nav-Movies',

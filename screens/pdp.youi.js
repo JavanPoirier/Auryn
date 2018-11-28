@@ -10,6 +10,7 @@ import {
   TimelineRef,
   View,
   ViewRef,
+  FocusManager,
 } from '@youi/react-native-youi';
 import { connect } from 'react-redux';
 import Youtube from 'youtube-stream-url';
@@ -26,11 +27,11 @@ class PDP extends Component {
     super(props);
     this.state = {
       youtubeVideo: null,
-      videoPlaying: false,
+      videoVisible: false,
     };
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.asset !== prevProps.asset) {
       console.log('ASSET', this.props.asset);
       this.contentInTimeline.play();
@@ -39,13 +40,18 @@ class PDP extends Component {
           .then(video => this.setState({ youtubeVideo: video }));
       }
     }
+
+    if (this.state.videoVisible !== prevState.videoVisible) 
+      if (!this.state.videoVisible) FocusManager.focus(this.posterButton);
+    
   }
 
   navigateBack = () => {
-    if (this.state.videoPlaying === true) {
+    if (this.state.videoVisible === true) {
       this.video.navigateBack();
+
       this.videoOutTimeline.play();
-      this.setState({ videoPlaying: false });
+      this.setState({ videoVisible: false });
     } else {
       this.outTimeline.play().then(() => {
         this.props.navigation.goBack(null);
@@ -65,6 +71,7 @@ class PDP extends Component {
     this.props.navigation.addListener('didFocus', () => {
       if (this.contentInTimeline)
         this.contentInTimeline.play();
+      if (this.posterButton) FocusManager.focus(this.posterButton);
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
     });
     this.props.navigation.addListener('didBlur', () => {
@@ -80,10 +87,9 @@ class PDP extends Component {
   }
 
   playVideo = () => {
-    this.setState({ videoPlaying: true });
+    this.setState({ videoVisible: true });
     this.videoInTimeline.play();
     setTimeout(() => this.video.playPause(), 100);
-    // This.video.playPause();//
   }
 
   render() { // eslint-disable-line max-lines-per-function
@@ -96,7 +102,7 @@ class PDP extends Component {
 
         <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
         <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
-        <Video source={this.state.youtubeVideo} ref={ref => this.video = ref} />
+        <Video source={this.state.youtubeVideo} ref={ref => this.video = ref} visible={this.state.videoVisible}/>
 
         <Timeline name="PDPIn"
           ref={timeline => this.inTimeline = timeline}
@@ -112,7 +118,7 @@ class PDP extends Component {
               <ListItem
                 imageType="Backdrop"
                 size="Small"
-                focusable={this.props.isFocused}
+                focusable={this.props.isFocused && !this.state.videoVisible}
                 onPress={this.onPressItem}
                 data={item}
                 index={index}
@@ -126,8 +132,9 @@ class PDP extends Component {
 
           <ButtonRef
             name="Btn-Poster-Large"
-            focusable={this.props.isFocused}
+            focusable={this.props.isFocused && !this.state.videoVisible}
             onPress={this.playVideo}
+            ref={ref => this.posterButton = ref}
           >
             <ImageRef
               name="Image-Dynamic"

@@ -24,7 +24,7 @@ export default class ToggleButton extends Component {
     <ButtonRef
       focusable={this.props.focusable}
       name={this.props.name}
-      ref={ref => this.ref = ref}
+      ref={ref => { if (this.props.ref) this.props.ref(ref); this.ref = ref; }}
       onPress={() => {
         if (this.state.toggled && this.props.isRadio) return;
 
