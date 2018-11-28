@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ViewRef, VideoRef, BackHandler } from '@youi/react-native-youi';
-import { Timeline } from '../components';
+import { ViewRef, VideoRef, TextRef } from '@youi/react-native-youi';
+import { Timeline, ToggleButton } from '../components';
 
 export default class Video extends Component {
   constructor(props) {
@@ -38,18 +38,14 @@ export default class Video extends Component {
     }
   }
 
-  play = () => {
-    if (this.videoPlayer)
-      this.videoPlayer.play();
-  }
-
-  pause = () => {
-    if (this.videoPlayer)
-      this.videoPlayer.pause();
+  playPause = () => {
+    if (!this.videoPlayer) return;
+    this.state.paused ? this.videoPlayer.play() : this.videoPlayer.pause();
   }
 
   navigateBack = () => {
-    this.pause();
+    if (!this.videoPlayer) return;
+    this.videoPlayer.stop();
   }
 
   render = () =>
@@ -59,7 +55,12 @@ export default class Video extends Component {
         ref={ref => {
           this.videoPlayer = ref;
         }}
-        paused={this.state.paused}
+        onPaused={() => {
+this.setState({ paused: true });
+}}
+        onPlaying={() => {
+this.setState({ paused: false });
+}}
         source={this.state.videoSource}
         onCurrentTimeUpdated={currentTime => {
           let sec = Math.floor(currentTime.nativeEvent / 1000);
@@ -81,5 +82,19 @@ export default class Video extends Component {
         }}
       />
       <Timeline name="Show" onLoad={timeline => timeline.play()} />
+      <ViewRef name="Player-Controls">
+        <Timeline name="Show"
+          ref={ref => this.controlsShowTimeline = ref}
+          onLoad={timeline => timeline.play()}
+        />
+        <Timeline name="Hide"
+          ref={ref => this.controlsHideTimeline = ref}
+        />
+        <ToggleButton name="Btn-PlayPause" onPress={this.playPause} toggle={true}/>
+        <ViewRef name="Video-TextDetails">
+          <TextRef name="title" text={this.props.title}/>
+          <TextRef name="details" text={this.props.details}/>
+        </ViewRef>
+      </ViewRef>
     </ViewRef>
 }
