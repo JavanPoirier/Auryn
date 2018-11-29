@@ -167,6 +167,7 @@ export default class Video extends Component {
           onPress={this.playPause}
           toggled={!this.state.paused}
           toggle={true}
+          focusable={this.props.visible}
           ref={ref => this.playButton = ref}
         />
         <TextRef name="Duration" text={this.state.formattedTime} />
