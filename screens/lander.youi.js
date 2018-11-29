@@ -5,6 +5,8 @@ import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { chunk } from 'lodash';
 
+import { Input } from '@youi/react-native-youi';
+
 @connect(store => ({
   discover: store.tmdbReducer.discover.data,
   movies: store.tmdbReducer.movies.data,
@@ -26,7 +28,7 @@ class Lander extends Component {
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       this.setState({ focusable: true });
-      if (this.discoverButton) FocusManager.focus(this.discoverButton);
+      if (this.menuButtons) FocusManager.focus(this.menuButtons.getButtonRef(0));
       this.inTimeline.play();
     });
     this.props.navigation.addListener('didBlur', () =>
@@ -43,6 +45,7 @@ class Lander extends Component {
   }
 
   scrollToScreen = screenIndex => {
+    FocusManager.setNextFocus(this.menuButtons.getButtonRef(screenIndex), this.lists[screenIndex], 'down');
     this.setState({ focusListIndex: screenIndex });
     this.scroller.scrollTo({
       x: 0,
@@ -78,7 +81,6 @@ class Lander extends Component {
       {
         name: 'Btn-Nav-Discover',
         action: () => this.scrollToScreen(0),
-        ref: ref => this.discoverButton = ref,
       },
       {
         name: 'Btn-Nav-Movies',
@@ -99,6 +101,7 @@ class Lander extends Component {
         <ToggleGroup
           focusable={this.props.isFocused}
           buttons={menuGroup}
+          ref={ref => this.menuButtons = ref}
         />
         <ButtonRef
           name="Btn-Nav-Search"

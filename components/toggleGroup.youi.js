@@ -7,12 +7,15 @@ export default class ToggleGroup extends React.Component {
     this.state = {
       toggles: [true].concat(new Array(this.props.buttons.length - 1).fill(false)),
     };
+    this.buttonRefs = [];
   }
 
   onToggle = index =>
     this.setState({
       toggles: this.props.buttons.map((_, i) => i === index),
     })
+
+  getButtonRef = index => this.buttonRefs[index]
 
   render = () =>
     this.props.buttons.map((button, index) =>
@@ -25,6 +28,6 @@ export default class ToggleGroup extends React.Component {
         onPress={button.action}
         toggled={this.state.toggles[index]}
         isRadio={true}
-        ref={button.ref}
+        ref={ref => this.buttonRefs[index] = ref}
       />)
 }
