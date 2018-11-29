@@ -5,8 +5,6 @@ import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { chunk } from 'lodash';
 
-import { Input } from '@youi/react-native-youi';
-
 @connect(store => ({
   discover: store.tmdbReducer.discover.data,
   movies: store.tmdbReducer.movies.data,
@@ -45,7 +43,9 @@ class Lander extends Component {
   }
 
   scrollToScreen = screenIndex => {
-    FocusManager.setNextFocus(this.menuButtons.getButtonRef(screenIndex), this.lists[screenIndex], 'down');
+    for (let index = 0; index < this.lists.length; index++)
+      FocusManager.setNextFocus(this.menuButtons.getButtonRef(index), this.lists[screenIndex], 'down');
+
     this.setState({ focusListIndex: screenIndex });
     this.scroller.scrollTo({
       x: 0,
@@ -123,6 +123,7 @@ class Lander extends Component {
           ref={scroller => this.scroller = scroller}
           scrollEnabled={false}
           horizontal={false}
+          focusable={false}
         >
           <View>
             <Composition source="Auryn_Container-Discover">
