@@ -87,6 +87,15 @@ class PDP extends Component {
     setTimeout(() => this.video.playPause(), 100);
   }
 
+  getFeaturedText = credits => {
+    const director = credits.crew.find(it => it.job === 'Director');
+    const cast = credits.cast.slice(0, 3).map(it => it.name).join(', ');
+    if (director)
+      return `Director: ${director.name} | Starring: ${cast}`;
+
+    return `Starring: ${cast}`;
+  }
+
   render() { // eslint-disable-line max-lines-per-function
     const { asset, fetched } = this.props;
     if (!fetched)
@@ -143,9 +152,9 @@ class PDP extends Component {
           />
 
           <ViewRef name="Layout-PDP-Meta">
-            <TextRef name="Text-Title" text={asset.title} />
+            <TextRef name="Text-Title" text={asset.title || asset.name} />
             <TextRef name="Text-Overview" text={asset.overview} />
-            <TextRef name="Text-Featured" text="Director: Darth Solo  |  Starring: John Wick, Catherine Freda, Marco Frank" />
+            <TextRef name="Text-Featured" text={this.getFeaturedText(asset.credits)} />
             <TimelineRef name="In2" ref={timeline => this.pdpMetaInTimeline = timeline} onLoad={ref => ref.play()} />
           </ViewRef>
 

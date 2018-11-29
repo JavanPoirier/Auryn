@@ -33,13 +33,13 @@ class Search extends Component {
     this.outTimeline.play().then(() => this.props.navigation.goBack(null));
   }
 
-  onPressItem = id => {
+  onPressItem = (id, type) => {
     console.log(id);
     const navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
       params: {
         id,
-        type: 'movie',
+        type,
       },
       key: id,
     });
