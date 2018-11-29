@@ -102,8 +102,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
         tv: { fetching: true },
       };
 
-    case 'TMDB_TV_DETAILS_FULFILLED':
-    case 'TMDB_MOVIE_DETAILS_FULFILLED':
+    case 'TMDB_DETAILS_FULFILLED':
       return {
         ...state,
         details: {
@@ -112,8 +111,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           fetched: true,
         },
       };
-    case 'TMDB_TV_DETAILS_REJECTED':
-    case 'TMDB_MOVIE_DETAILS_REJECTED':
+    case 'TMDB_DETAILS_REJECTED':
       return {
         ...state,
         details: {
@@ -121,8 +119,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           error: action.payload,
         },
       };
-    case 'TMDB_TV_DETAILS':
-    case 'TMDB_MOVIE_DETAILS':
+    case 'TMDB_DETAILS':
       return {
         ...state,
         details: { fetching: true },

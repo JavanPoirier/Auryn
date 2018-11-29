@@ -15,7 +15,7 @@ import {
 import { connect } from 'react-redux';
 import Youtube from 'youtube-stream-url';
 import { Timeline, Video, ListItem } from '../components';
-import { tmdbMovieDetails, tmdbTvDetails } from '../actions/tmdbActions';
+import { tmdbDetails } from '../actions/tmdbActions';
 
 @connect(store => ({
   asset: store.tmdbReducer.details.data,
@@ -61,9 +61,7 @@ class PDP extends Component {
   onPressItem = (id, type) => {
     this.contentOutTimeline.play();
     this.video.reset();
-    type === 'movie' ?
-    this.props.dispatch(tmdbMovieDetails(id))
-    : this.props.dispatch(tmdbTvDetails(id));
+    this.props.dispatch(tmdbDetails(id, type));
   }
 
   componentDidMount() {
@@ -80,9 +78,7 @@ class PDP extends Component {
     const type = this.props.navigation.getParam('type');
     const id = this.props.navigation.getParam('id');
 
-    type === 'movie' ?
-    this.props.dispatch(tmdbMovieDetails(id))
-    : this.props.dispatch(tmdbTvDetails(id));
+    this.props.dispatch(tmdbDetails(id, type));
   }
 
   playVideo = () => {

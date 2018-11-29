@@ -28,16 +28,9 @@ export const tmdbTv = () => dispatch => dispatch({
     .then(response => response.json()),
 });
 
-export const tmdbMovieDetails = id => dispatch => dispatch({
-  type: 'TMDB_MOVIE_DETAILS',
-  payload: fetch(`http://api.themoviedb.org/3/movie/${id}?append_to_response=similar,videos&${apiKeyParam}`)
-    .then(response => response.json()),
-});
-
-
-export const tmdbTvDetails = id => dispatch => dispatch({
-  type: 'TMDB_TV_DETAILS',
-  payload: fetch(`http://api.themoviedb.org/3/tv/${id}?append_to_response=similar,videos&${apiKeyParam}`)
+export const tmdbDetails = (id, type) => dispatch => dispatch({
+  type: 'TMDB_DETAILS',
+  payload: fetch(`http://api.themoviedb.org/3/${type}/${id}?append_to_response=similar,videos,credits&${apiKeyParam}`)
     .then(response => response.json()),
 });
 
