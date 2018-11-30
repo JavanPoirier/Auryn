@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TimelineRef } from '@youi/react-native-youi';
 
-export default class Timeline extends Component {
-  render = () =>
-    <TimelineRef
+export default class Timeline extends React.PureComponent {
+  render() {
+    return (
+      <TimelineRef
       {...this.props}
       onLoad={timeline => {
         this.ref = timeline;
@@ -14,15 +15,12 @@ export default class Timeline extends Component {
         if (this.resolve && !this.props.loop)
           this.resolve('onCompleted');
 
-        /*
-         * if (this.props.loop)
-         *   this.ref.play();
-         */
-
         if (this.props.onCompleted)
           this.props.onCompleted();
       }}
-    />;
+    />
+    );
+  }
 
   play = () => new Promise(resolve => {
     this.resolve = resolve;

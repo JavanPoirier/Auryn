@@ -142,7 +142,7 @@ class PDP extends Component {
           >
             <ImageRef
               name="Image-Dynamic"
-              source={{ uri: `http://image.tmdb.org/t/p/w1280${asset.poster_path}` }}
+              source={{ uri: `http://image.tmdb.org/t/p/w500${asset.poster_path}` }}
             />
           </ButtonRef>
 
