@@ -16,6 +16,24 @@ class Lander extends Component {
     super(props);
     this.state = { focusListIndex: 0 };
     this.lists = [];
+    this.menuGroup = [
+      {
+        name: 'Btn-Nav-Discover',
+        action: () => this.scrollToScreen(0),
+      },
+      {
+        name: 'Btn-Nav-Movies',
+        action: () => this.scrollToScreen(1),
+      },
+      {
+        name: 'Btn-Nav-Shows',
+        action: () => this.scrollToScreen(2),
+      },
+      {
+        name: 'Btn-Nav-Live',
+        action: () => this.scrollToScreen(3),
+      },
+    ];
   }
 
   componentDidUpdate() {
@@ -27,7 +45,7 @@ class Lander extends Component {
     this.props.navigation.addListener('didFocus', () => {
       this.setState({ focusable: true });
       if (this.menuButtons) FocusManager.focus(this.menuButtons.getButtonRef(0));
-      this.inTimeline.play();
+      if (this.inTimeline) this.inTimeline.play();
     });
     this.props.navigation.addListener('didBlur', () =>
       this.setState({ focusable: false }));
@@ -77,30 +95,14 @@ class Lander extends Component {
   render() { // eslint-disable-line max-lines-per-function
     const { discover, movies, tv } = this.props;
 
-    const menuGroup = [
-      {
-        name: 'Btn-Nav-Discover',
-        action: () => this.scrollToScreen(0),
-      },
-      {
-        name: 'Btn-Nav-Movies',
-        action: () => this.scrollToScreen(1),
-      },
-      {
-        name: 'Btn-Nav-Shows',
-        action: () => this.scrollToScreen(2),
-      },
-      {
-        name: 'Btn-Nav-Live',
-        action: () => this.scrollToScreen(3),
-      },
-    ];
+    if (!this.props.isFocused)
+      return <View />;
 
     return (
       <Composition source="Auryn_Lander">
         <ToggleGroup
           focusable={this.props.isFocused}
-          buttons={menuGroup}
+          buttons={this.menuGroup}
           ref={ref => this.menuButtons = ref}
         />
         <ButtonRef

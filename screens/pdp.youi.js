@@ -98,7 +98,7 @@ class PDP extends Component {
 
   render() { // eslint-disable-line max-lines-per-function
     const { asset, fetched } = this.props;
-    if (!fetched)
+    if (!fetched || !this.props.isFocused)
       return <View />;
 
     return (

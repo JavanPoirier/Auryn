@@ -24,6 +24,8 @@ using namespace yi::react;
 
 bool App::UserInit()
 {
+    
+    InitializeDevPanel();
 #if !defined(YI_MINI_GLOG)
     // miniglog defines this using a non-const char * causing a compile error and it has no implementation anyway.
     static bool isGoogleLoggingInitialized = false;
