@@ -9,12 +9,12 @@ activecomp {
     sourceid: 831
     transform {
       anchorPoint {
-        x: 960
+        x: 0.5
         y: 540
         z: 0
       }
       scale {
-        x: 1
+        x: 1920
         y: 1
         z: 1
       }
@@ -265,7 +265,7 @@ sources {
   uid: 831
   srctype: AE_IMAGE_SRC
   name: "Background-Gradient.png"
-  width: 1920
+  width: 1
   height: 1080
   numberOfFrames: 1
   fps: 0

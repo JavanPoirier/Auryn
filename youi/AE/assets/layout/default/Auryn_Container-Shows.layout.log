@@ -43,6 +43,10 @@ activecomp {
     green: 0.11372549019607843
     blue: 0.14509803921568629
   }
+  properties {
+    key: "gravity"
+    value: "center"
+  }
   childtemplates: "Auryn_Shows"
 }
 sources {

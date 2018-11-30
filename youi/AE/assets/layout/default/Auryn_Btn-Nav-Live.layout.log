@@ -4,13 +4,13 @@ activecomp {
   height: 60
   defaultcameradistance: 277.77777
   layer {
-    name: "Red Solid 1"
+    name: "Red Solid 23"
     id: 570
-    sourceid: 898
+    sourceid: 520050
     transform {
       anchorPoint {
         x: 100
-        y: 30
+        y: 2
         z: 0
       }
       scale {
@@ -20,6 +20,74 @@ activecomp {
       }
       position {
         x: 100
+        y: 2
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Red Solid 23"
+    id: 571
+    sourceid: 520050
+    transform {
+      anchorPoint {
+        x: 100
+        y: 2
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 100
+        y: 58
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Red Solid 24"
+    id: 572
+    sourceid: 520055
+    transform {
+      anchorPoint {
+        x: 2
+        y: 30
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 198
         y: 30
         z: 0
       }
@@ -38,22 +106,22 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Deep Royal Blue Solid 8"
-    id: 571
-    sourceid: 933
+    name: "Red Solid 24"
+    id: 573
+    sourceid: 520055
     transform {
       anchorPoint {
-        x: 99
-        y: 29
+        x: 2
+        y: 30
         z: 0
       }
       scale {
-        x: 0.98
-        y: 0.94
+        x: 1
+        y: 1
         z: 1
       }
       position {
-        x: 100
+        x: 2
         y: 30
         z: 0
       }
@@ -65,16 +133,16 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
   }
   layer {
-    name: "Dark Royal Blue Solid 2"
-    id: 572
-    sourceid: 259778
+    name: "Deep Royal Blue Solid 15"
+    id: 574
+    sourceid: 520067
     transform {
       anchorPoint {
         x: 99
@@ -107,7 +175,7 @@ activecomp {
   }
   layer {
     name: "LIVE"
-    id: 573
+    id: 575
     sourceid: -1
     transform {
       anchorPoint {
@@ -159,7 +227,7 @@ activecomp {
   }
   layer {
     name: "LIVE 2"
-    id: 574
+    id: 576
     sourceid: -1
     transform {
       anchorPoint {
@@ -226,7 +294,7 @@ activecomp {
   }
 }
 sources {
-  uid: 898
+  uid: 520050
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
@@ -235,30 +303,30 @@ sources {
     blue: 0.23529411852359772
   }
   width: 200
+  height: 4
+  copy_source: false
+}
+sources {
+  uid: 520055
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
+  }
+  width: 4
   height: 60
   copy_source: false
 }
 sources {
-  uid: 933
+  uid: 520067
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
-    red: 0.058823529630899429
+    red: 0.054901961237192154
     green: 0.20784313976764679
     blue: 0.43921568989753723
-  }
-  width: 198
-  height: 58
-  copy_source: false
-}
-sources {
-  uid: 259778
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.11764705926179886
-    green: 0.18431372940540314
-    blue: 0.21176470816135406
   }
   width: 198
   height: 58

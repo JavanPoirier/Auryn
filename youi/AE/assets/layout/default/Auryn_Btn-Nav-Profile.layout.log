@@ -4,18 +4,18 @@ activecomp {
   height: 60
   defaultcameradistance: 83.333336
   layer {
-    name: "Red Solid 2"
+    name: "Deep Royal Blue Solid 16"
     id: 604
-    sourceid: 910
+    sourceid: 520094
     transform {
       anchorPoint {
-        x: 30
-        y: 30
+        x: 28
+        y: 28
         z: 0
       }
       scale {
-        x: 1
-        y: 1
+        x: 0.98
+        y: 0.94
         z: 1
       }
       position {
@@ -38,22 +38,90 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Deep Royal Blue Solid 9"
+    name: "Red Solid 25"
     id: 605
-    sourceid: 940
+    sourceid: 520096
     transform {
       anchorPoint {
-        x: 29
-        y: 29
+        x: 30
+        y: 2
         z: 0
       }
       scale {
-        x: 0.94
-        y: 0.94
+        x: 1
+        y: 1
         z: 1
       }
       position {
         x: 30
+        y: 2
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Red Solid 26"
+    id: 606
+    sourceid: 520098
+    transform {
+      anchorPoint {
+        x: 30
+        y: 2
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 30
+        y: 58
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Red Solid 24"
+    id: 607
+    sourceid: 520055
+    transform {
+      anchorPoint {
+        x: 2
+        y: 30
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 58
         y: 30
         z: 0
       }
@@ -65,29 +133,29 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
   }
   layer {
-    name: "Dark Royal Blue Solid 3"
-    id: 606
-    sourceid: 259785
+    name: "Red Solid 24"
+    id: 608
+    sourceid: 520055
     transform {
       anchorPoint {
-        x: 29
-        y: 29
+        x: 2
+        y: 30
         z: 0
       }
       scale {
-        x: 0.94
-        y: 0.94
+        x: 1
+        y: 1
         z: 1
       }
       position {
-        x: 30
+        x: 2
         y: 30
         z: 0
       }
@@ -107,7 +175,7 @@ activecomp {
   }
   layer {
     name: "Icon-Profile-Active.png"
-    id: 607
+    id: 609
     sourceid: 979
     transform {
       anchorPoint {
@@ -141,7 +209,7 @@ activecomp {
   }
   layer {
     name: "Icon-Profile.png"
-    id: 608
+    id: 610
     sourceid: 965
     transform {
       anchorPoint {
@@ -190,7 +258,20 @@ activecomp {
   }
 }
 sources {
-  uid: 910
+  uid: 520094
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.054901961237192154
+    green: 0.20784313976764679
+    blue: 0.43921568989753723
+  }
+  width: 56
+  height: 56
+  copy_source: false
+}
+sources {
+  uid: 520096
   srctype: AE_SOLID_SRC
   color {
     alpha: 1
@@ -199,33 +280,33 @@ sources {
     blue: 0.23529411852359772
   }
   width: 60
+  height: 4
+  copy_source: false
+}
+sources {
+  uid: 520098
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
+  }
+  width: 60
+  height: 4
+  copy_source: false
+}
+sources {
+  uid: 520055
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0.90588235855102539
+    green: 0.20000000298023224
+    blue: 0.23529411852359772
+  }
+  width: 4
   height: 60
-  copy_source: false
-}
-sources {
-  uid: 940
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.058823529630899429
-    green: 0.20784313976764679
-    blue: 0.43921568989753723
-  }
-  width: 58
-  height: 58
-  copy_source: false
-}
-sources {
-  uid: 259785
-  srctype: AE_SOLID_SRC
-  color {
-    alpha: 1
-    red: 0.11764705926179886
-    green: 0.18431372940540314
-    blue: 0.21176470816135406
-  }
-  width: 58
-  height: 58
   copy_source: false
 }
 sources {

@@ -1,8 +1,8 @@
 activecomp {
   name: "Auryn_Player-Scrubber"
-  width: 1400
-  height: 12
-  defaultcameradistance: 1944.4445
+  width: 1500
+  height: 60
+  defaultcameradistance: 2083.3333
   layer {
     name: "BarBG"
     id: 519942
@@ -19,8 +19,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 0
-        y: 6
+        x: 50
+        y: 30
         z: 0
       }
       orientation {
@@ -53,8 +53,42 @@ activecomp {
         z: 1
       }
       position {
+        x: 50
+        y: 30
+        z: 0
+      }
+      orientation {
         x: 0
-        y: 6
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Player-Thumb.png"
+    id: 519944
+    sourceid: 520045
+    transform {
+      anchorPoint {
+        x: 24
+        y: 24
+        z: 0
+      }
+      scale {
+        x: 0.6
+        y: 0.6
+        z: 1
+      }
+      position {
+        x: 72
+        y: 30
         z: 0
       }
       orientation {
@@ -103,4 +137,15 @@ sources {
   width: 1400
   height: 12
   copy_source: false
+}
+sources {
+  uid: 520045
+  srctype: AE_IMAGE_SRC
+  name: "Player-Thumb.png"
+  width: 48
+  height: 48
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
 }

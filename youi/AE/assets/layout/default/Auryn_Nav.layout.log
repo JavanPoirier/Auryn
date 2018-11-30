@@ -214,7 +214,7 @@ activecomp {
     transform {
       anchorPoint {
         x: 40
-        y: 35.5
+        y: 36
         z: 0
       }
       scale {
@@ -312,6 +312,6 @@ sources {
   srctype: AE_COMP_SRC
   name: "Auryn_Nav-Logo.layout"
   width: 80
-  height: 71
+  height: 72
   copy_source: true
 }
