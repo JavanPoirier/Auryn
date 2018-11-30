@@ -46,8 +46,12 @@ export default class Video extends Component {
           .find(fmt => fmt.type.indexOf('mp4') > 0 && fmt.quality === 'hd720');
 
         if (format) {
-          this.setState({ videoSource: { uri: format.url,
-          type: 'MP4' } });
+          this.setState({
+            videoSource: {
+              uri: format.url,
+              type: 'MP4',
+            },
+          });
         }
       }
     }
@@ -60,9 +64,9 @@ export default class Video extends Component {
     if (this.props.visible !== prevProps.visible) {
       if (this.props.visible)
         this.keys.forEach(key => Input.addEventListener(key, this.registerUserActivity));
-       else {
-      this.controlsHideTimeline.play();
-      this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
+      else {
+        this.controlsHideTimeline.play();
+        this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
       }
 
     }
@@ -143,11 +147,11 @@ export default class Video extends Component {
         ref={ref => {
           this.videoPlayer = ref;
         }}
-        onPaused={ () => this.setState({ paused: true }) }
-        onPlaying={ () => this.setState({ paused: false }) }
-        source={ this.state.videoSource }
-        onCurrentTimeUpdated={ this.onCurrentTimeUpdated }
-        onDurationChanged={ duration => {
+        onPaused={() => this.setState({ paused: true })}
+        onPlaying={() => this.setState({ paused: false })}
+        source={this.state.videoSource}
+        onCurrentTimeUpdated={this.onCurrentTimeUpdated}
+        onDurationChanged={duration => {
           this.setState({ duration: duration.nativeEvent });
         }}
       />
@@ -158,7 +162,7 @@ export default class Video extends Component {
       <ViewRef name="Player-Controls">
         <Timeline name="Show"
           ref={ref => this.controlsShowTimeline = ref}
-          // OnLoad={timeline => timeline.play()}
+        // OnLoad={timeline => timeline.play()}
         />
         <Timeline name="Hide"
           ref={ref => this.controlsHideTimeline = ref}
@@ -175,8 +179,8 @@ export default class Video extends Component {
           <TimelineRef name="ScrollStart" ref={ref => this.scrubberTimeline = ref} />
         </ViewRef>
         <ViewRef name="Video-TextDetails">
-          <TextRef name="Title" text={this.props.title}/>
-          <TextRef name="Details" text={this.props.details}/>
+          <TextRef name="Title" text={this.props.title} />
+          <TextRef name="Details" text={this.props.details} />
         </ViewRef>
       </ViewRef>
     </ViewRef>
