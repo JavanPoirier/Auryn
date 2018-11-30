@@ -34,7 +34,7 @@ bool App::UserInit()
     }
 #endif
 
-    
+
 #if defined(YI_LOCAL_JS_APP)
     #if defined(YI_INLINE_JS_APP)
         std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderInlineString(INLINE_JS_BUNDLE_STRING));
@@ -43,8 +43,9 @@ bool App::UserInit()
     #endif
 #else
     std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderRemote());
+    //std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderRemote(CYIUrl("http://<your_metro_server_ip>:8081/index.youi.bundle?platform=ios&dev=false&hot=false&minify=false")));
 #endif
-    
+
     PlatformApp::SetJsBundleLoader(std::move(pBundleLoader));
     return PlatformApp::UserInit();
 }
