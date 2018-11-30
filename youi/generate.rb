@@ -486,6 +486,13 @@ class GenerateOptions
     end
 end
 
+symlink_success = system("ln -f ../.hooks/pre-commit ../.git/hooks/pre-commit")
+if symlink_success
+    puts "Successfully symlinked git hook"
+else
+    puts "Failed to symlink git hook"
+end
+
 options = GenerateOptions.parse(ARGV)
 GenerateOptions.generate_bundle(options)
 command = GenerateOptions.create_command(options)
