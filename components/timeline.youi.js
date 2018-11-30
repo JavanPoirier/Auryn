@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { TimelineRef } from '@youi/react-native-youi';
 
-export default class Timeline extends React.PureComponent {
+export default class Timeline extends PureComponent {
   render() {
     return (
       <TimelineRef

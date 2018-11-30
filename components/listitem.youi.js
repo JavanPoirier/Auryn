@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Composition, TextRef, ButtonRef, ImageRef } from '@youi/react-native-youi';
 
-export default class ListItem extends React.PureComponent {
+export default class ListItem extends PureComponent {
   constructor(props) {
     super(props);
 

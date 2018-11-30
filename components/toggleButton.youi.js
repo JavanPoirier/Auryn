@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   ButtonRef,
   TimelineRef,
 } from '@youi/react-native-youi';
 
-export default class ToggleButton extends React.PureComponent {
+export default class ToggleButton extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
