@@ -45,7 +45,7 @@ class Lander extends Component {
     this.props.navigation.addListener('didFocus', () => {
       this.setState({ focusable: true });
       if (this.menuButtons) FocusManager.focus(this.menuButtons.getButtonRef(0));
-      if (this.inTimeline) this.inTimeline.play();
+      // If (this.inTimeline) this.inTimeline.play();
     });
     this.props.navigation.addListener('didBlur', () =>
       this.setState({ focusable: false }));
@@ -79,17 +79,21 @@ class Lander extends Component {
     }))
 
   onPressItem = (id, type) => {
-    console.log(id);
-    const navigateAction = NavigationActions.navigate({
-      routeName: 'PDP',
-      params: {
-        id,
-        type,
-      },
-      key: id,
+    Promise.all([
+        this.outTimeline.play(),
+        this.navOutTimeline.play(),
+      ])
+    .then(() => {
+      const navigateAction = NavigationActions.navigate({
+        routeName: 'PDP',
+        params: {
+          id,
+          type,
+        },
+        key: id,
+      });
+      this.props.navigation.dispatch(navigateAction);
     });
-
-    this.props.navigation.dispatch(navigateAction);
   }
 
   render() { // eslint-disable-line max-lines-per-function, max-statements
@@ -122,7 +126,7 @@ class Lander extends Component {
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
-        <TimelineRef name="LanderOut" ref={timeline => this.outTimeline = timeline} />
+        <Timeline name="LanderOut" ref={timeline => this.outTimeline = timeline} />
         <ScrollRef
           name="Stack"
           ref={scroller => this.scroller = scroller}
@@ -204,12 +208,12 @@ class Lander extends Component {
         </ScrollRef>
 
         <ViewRef name="Nav">
-          <TimelineRef name="In" ref={timeline => this.inTimeline = timeline} onLoad={ref => ref.play()} />
-          <TimelineRef name="Out" ref={timeline => this.outTimeline = timeline} />
+          <Timeline name="In" ref={timeline => this.navInTimeline = timeline} onLoad={ref => ref.play()} />
+          <Timeline name="Out" ref={timeline => this.navOutTimeline = timeline} />
         </ViewRef>
 
         <ViewRef name="Nav-Logo">
-          <TimelineRef name="Loop" loop={true} ref={timeline => this.loopTimeline = timeline} onLoad={ref => ref.play()} />
+          <TimelineRef name="Loop" loop={true} onLoad={ref => ref.play()} />
         </ViewRef>
 
       </Composition>
