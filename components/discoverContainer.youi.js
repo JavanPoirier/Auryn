@@ -2,50 +2,58 @@ import React from 'react';
 import { View } from '@youi/react-native-youi';
 import ListItem from './listitem.youi';
 
-export default function DiscoverContainer(props) {
-  if (props.data.length !== 3) return null;
-  if (props.index % 2) {
-    return (
-      <View>
-        <View style={{ flexDirection: 'row' }}>
+export default class DiscoverContainer extends React.PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    if (this.props.data.length !== 3) return null;
+
+    if (this.props.index % 2) {
+      return (
+        <View>
+          <View style={{ flexDirection: 'row' }}>
+            <ListItem
+              focusable={this.props.focusable} onPress={this.props.onPressItem}
+              imageType="Backdrop" size="Small"
+              data={this.props.data[0]}
+            />
+            <ListItem
+              focusable={this.props.focusable} onPress={this.props.onPressItem}
+              imageType="Backdrop" size="Small"
+              data={this.props.data[1]}
+            />
+          </View>
           <ListItem
-            focusable={props.focusable} onPress={props.onPressItem}
-            imageType="Backdrop" size="Small"
-            data={props.data[0]}
-          />
-          <ListItem
-            focusable={props.focusable} onPress={props.onPressItem}
-            imageType="Backdrop" size="Small"
-            data={props.data[1]}
+            focusable={this.props.focusable} onPress={this.props.onPressItem}
+            imageType="Backdrop" size="Large"
+            data={this.props.data[2]}
           />
         </View>
+      );
+    }
+
+    return (
+      <View>
         <ListItem
-          focusable={props.focusable} onPress={props.onPressItem}
+          focusable={this.props.focusable} onPress={this.props.onPressItem}
           imageType="Backdrop" size="Large"
-          data={props.data[2]}
+          data={this.props.data[0]}
         />
+        <View style={{ flexDirection: 'row' }}>
+          <ListItem
+            focusable={this.props.focusable} onPress={this.props.onPressItem}
+            imageType="Backdrop" size="Small"
+            data={this.props.data[1]}
+          />
+          <ListItem
+            focusable={this.props.focusable} onPress={this.props.onPressItem}
+            imageType="Backdrop" size="Small"
+            data={this.props.data[2]}
+          />
+        </View>
       </View>
     );
   }
-  return (
-    <View>
-      <ListItem
-        focusable={props.focusable} onPress={props.onPressItem}
-        imageType="Backdrop" size="Large"
-        data={props.data[0]}
-      />
-      <View style={{ flexDirection: 'row' }}>
-        <ListItem
-          focusable={props.focusable} onPress={props.onPressItem}
-          imageType="Backdrop" size="Small"
-          data={props.data[1]}
-        />
-        <ListItem
-          focusable={props.focusable} onPress={props.onPressItem}
-          imageType="Backdrop" size="Small"
-          data={props.data[2]}
-        />
-      </View>
-    </View>
-  );
 }
