@@ -92,8 +92,11 @@ class Lander extends Component {
     this.props.navigation.dispatch(navigateAction);
   }
 
-  render() { // eslint-disable-line max-lines-per-function
-    const { discover, movies, tv } = this.props;
+  render() { // eslint-disable-line max-lines-per-function, max-statements
+    let { discover, movies, tv } = this.props;
+    discover = discover.filter(asset => asset.original_language === 'en');
+    movies = movies.filter(asset => asset.original_language === 'en');
+    tv = tv.filter(asset => asset.original_language === 'en');
 
     if (!this.props.isFocused)
       return <View />;
