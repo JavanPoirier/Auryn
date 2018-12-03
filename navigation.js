@@ -8,7 +8,7 @@ const stackOptions = {
   },
   transitionConfig: () => ({
     transitionSpec: {
-      duration: 300,
+      duration: 0,
     },
     screenInterpolator: () => { },
   }),
@@ -21,17 +21,23 @@ const AppStack = createStackNavigator(
     Search: { screen: Screens.Search },
     Profile: { screen: Screens.Profile },
   },
-  stackOptions,
+  {
+    ...stackOptions,
+    initialRouteName: 'Lander',
+  }
 );
 
-const rootNavigationStack = createSwitchNavigator(
-{
-  Splash: { screen: Screens.Splash },
-  AppStack: { screen: AppStack },
-},
-{
-  initialRouteName: 'Splash',
-},
+const SplashStack = createStackNavigator(
+  { Splash: { screen: Screens.Splash } },
+  {
+    ...stackOptions,
+    initialRouteName: 'Splash',
+  }
 );
+
+const rootNavigationStack = createSwitchNavigator({
+  Splash: SplashStack,
+  App: AppStack,
+});
 
 export default rootNavigationStack;
