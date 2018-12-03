@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef } from '@youi/react-native-youi';
+import { Composition, ViewRef, View, StyleSheet } from '@youi/react-native-youi';
 import { Timeline } from '../components';
 import { tmdbDiscover, tmdbMovies, tmdbTv } from '../actions/tmdbActions';
 import { NavigationActions } from 'react-navigation';
@@ -35,24 +35,33 @@ class Splash extends Component {
     }
 
     return (
-      <Composition source="Auryn_Splash">
-        <Timeline
-          name="SplashIn"
-          ref={timeline => this.inTimeline = timeline}
-          onLoad={timeline => timeline.play()}
-        />
-        <Timeline
-          name="SplashOut"
-          ref={timeline => this.outTimeline = timeline}
-        />
-        <ViewRef name="Loader">
-          <Timeline name="Loop"
+      <View style={styles.container}
+      >
+        <Composition source="Auryn_Splash">
+          <Timeline
+            name="SplashIn"
+            ref={timeline => this.inTimeline = timeline}
             onLoad={timeline => timeline.play()}
           />
-        </ViewRef>
-      </Composition>
+          <Timeline
+            name="SplashOut"
+            ref={timeline => this.outTimeline = timeline}
+          />
+          <ViewRef name="Loader">
+            <Timeline name="Loop"
+              onLoad={timeline => timeline.play()}
+            />
+          </ViewRef>
+        </Composition>
+      </View>
     );
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#143672',
+  },
+});
 export default Splash;

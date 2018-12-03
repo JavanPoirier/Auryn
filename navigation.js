@@ -4,7 +4,7 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 const stackOptions = {
   headerMode: 'none',
   cardStyle: {
-    backgroundColor: '#0f3570',
+    backgroundColor: '#143672',
   },
   transitionConfig: () => ({
     transitionSpec: {
@@ -13,26 +13,25 @@ const stackOptions = {
     screenInterpolator: () => { },
   }),
 };
+
 const AppStack = createStackNavigator(
-  {
+{
     Lander: { screen: Screens.Lander },
     PDP: { screen: Screens.PDP },
     Search: { screen: Screens.Search },
     Profile: { screen: Screens.Profile },
   },
-  stackOptions
+  stackOptions,
 );
 
-const SplashStack = createStackNavigator({ Splash: { screen: Screens.Splash } }, stackOptions);
-
-const exportedStack = createSwitchNavigator(
+const rootNavigationStack = createSwitchNavigator(
 {
-  Splash: SplashStack,
-  App: AppStack,
+  Splash: { screen: Screens.Splash },
+  AppStack: { screen: AppStack },
 },
 {
   initialRouteName: 'Splash',
-}
+},
 );
 
-export default exportedStack;
+export default rootNavigationStack;
