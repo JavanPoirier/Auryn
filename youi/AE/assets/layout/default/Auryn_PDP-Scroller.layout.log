@@ -14,14 +14,14 @@ activecomp {
         z: 0
       }
       scale {
-        x: 2.5
-        y: 2.5
-        z: 2.5
+        x: 1
+        y: 1
+        z: 1
       }
       position {
         x: 960
-        y: -609
-        z: 3000
+        y: 0
+        z: -500
       }
       orientation {
         x: 0
