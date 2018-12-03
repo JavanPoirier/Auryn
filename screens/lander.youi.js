@@ -43,12 +43,15 @@ class Lander extends Component {
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
-      this.setState({ focusable: true });
-      if (this.menuButtons) FocusManager.focus(this.menuButtons.getButtonRef(0));
-      // If (this.inTimeline) this.inTimeline.play();
+
+      if (this.landerInTimeline && this.navInTimeline) {
+        Promise.all([
+          this.landerInTimeline.play,
+          this.navInTimeline.play,
+        ]);
+      }
+
     });
-    this.props.navigation.addListener('didBlur', () =>
-      this.setState({ focusable: false }));
   }
 
   navigateToScreen = screen => {
@@ -79,21 +82,17 @@ class Lander extends Component {
     }))
 
   onPressItem = (id, type) => {
-    Promise.all([
-        this.outTimeline.play(),
-        this.navOutTimeline.play(),
-      ])
-    .then(() => {
-      const navigateAction = NavigationActions.navigate({
-        routeName: 'PDP',
-        params: {
-          id,
-          type,
-        },
-        key: id,
-      });
-      this.props.navigation.dispatch(navigateAction);
+    console.log(id);
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'PDP',
+      params: {
+        id,
+        type,
+      },
+      key: id,
     });
+
+    this.props.navigation.dispatch(navigateAction);
   }
 
   render() { // eslint-disable-line max-lines-per-function, max-statements
@@ -123,10 +122,12 @@ class Lander extends Component {
           onPress={() => this.navigateToScreen('Profile')}
         />
         <Timeline name="LanderIn"
-          ref={timeline => this.inTimeline = timeline}
-          onLoad={timeline => timeline.play()}
+          onLoad={timeline => {
+            this.landerInTimeline = timeline;
+            this.landerInTimeline.play();
+          }}
         />
-        <Timeline name="LanderOut" ref={timeline => this.outTimeline = timeline} />
+        <TimelineRef name="LanderOut" ref={timeline => this.outTimeline = timeline} />
         <ScrollRef
           name="Stack"
           ref={scroller => this.scroller = scroller}
@@ -208,12 +209,17 @@ class Lander extends Component {
         </ScrollRef>
 
         <ViewRef name="Nav">
-          <Timeline name="In" ref={timeline => this.navInTimeline = timeline} onLoad={ref => ref.play()} />
+          <Timeline name="In" onLoad={timeline => {
+            this.navInTimeline = timeline;
+            this.navInTimeline.play();
+            FocusManager.focus(this.menuButtons.getButtonRef(0));
+          } }
+            />
           <Timeline name="Out" ref={timeline => this.navOutTimeline = timeline} />
         </ViewRef>
 
         <ViewRef name="Nav-Logo">
-          <TimelineRef name="Loop" loop={true} onLoad={ref => ref.play()} />
+          <TimelineRef name="Loop" loop={true} />
         </ViewRef>
 
       </Composition>
