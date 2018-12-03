@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 
 import tmdbReducer from './tmdbReducer';
-import pdpReducer from './pdpReducer';
+import youtubeReducer from './youtubeReducer';
+
 
 export default combineReducers({
   tmdbReducer,
-  pdpReducer,
+  youtubeReducer,
 });

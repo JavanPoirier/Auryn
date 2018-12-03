@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ViewRef, VideoRef, TextRef, TimelineRef, Input, FocusManager } from '@youi/react-native-youi';
 import { Timeline, ToggleButton } from '../components';
 
-export default class Video extends Component {
+export default class Video extends PureComponent {
   constructor(props) {
     super(props);
     const videoSource = {
@@ -38,23 +38,9 @@ export default class Video extends Component {
   ];
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements
-    if (this.props.source !== prevProps.source) {
-      const video = this.props.source;
-      console.log('VIDEO', video);
-      if (video && video.formats) {
-        const format = video.formats
-          .find(fmt => fmt.type.indexOf('mp4') > 0 && fmt.quality === 'hd720');
+    if (this.props.source !== prevProps.source)
+      console.log('VIDEO', this.props.source);
 
-        if (format) {
-          this.setState({
-            videoSource: {
-              uri: format.url,
-              type: 'MP4',
-            },
-          });
-        }
-      }
-    }
 
     if (this.state.percent !== prevState.percent) {
       console.log('SCRUB', this.state.percent);
@@ -147,11 +133,11 @@ export default class Video extends Component {
         ref={ref => {
           this.videoPlayer = ref;
         }}
-        onPaused={() => this.setState({ paused: true })}
-        onPlaying={() => this.setState({ paused: false })}
-        source={this.state.videoSource}
-        onCurrentTimeUpdated={this.onCurrentTimeUpdated}
-        onDurationChanged={duration => {
+        onPaused={ () => this.setState({ paused: true }) }
+        onPlaying={ () => this.setState({ paused: false }) }
+        source={ this.props.source }
+        onCurrentTimeUpdated={ this.onCurrentTimeUpdated }
+        onDurationChanged={ duration => {
           this.setState({ duration: duration.nativeEvent });
         }}
       />

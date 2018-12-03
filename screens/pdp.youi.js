@@ -13,20 +13,21 @@ import {
   FocusManager,
 } from '@youi/react-native-youi';
 import { connect } from 'react-redux';
-import Youtube from 'youtube-stream-url';
+
 import { Timeline, Video, ListItem } from '../components';
-import { tmdbDetails } from '../actions/tmdbActions';
+import { tmdbDetails  } from '../actions/tmdbActions';
+import { youtubeVideo } from '../actions/youtubeActions';
 
 @connect(store => ({
   asset: store.tmdbReducer.details.data,
   fetched: store.tmdbReducer.details.fetched,
+  videoSource: store.youtubeReducer.videoSource,
 }))
 
 class PDP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      youtubeVideo: null,
       videoVisible: false,
     };
   }
@@ -35,10 +36,8 @@ class PDP extends Component {
     if (this.props.asset !== prevProps.asset) {
       console.log('ASSET', this.props.asset);
       this.contentInTimeline.play();
-      if (this.props.asset.videos.results.length > 0) {
-        Youtube.getInfo({ url: `http://www.youtube.com/watch?v=${this.props.asset.videos.results[0].key}` })
-          .then(video => this.setState({ youtubeVideo: video }));
-      }
+      if (this.props.asset.videos.results.length > 0)
+        this.props.dispatch(youtubeVideo(this.props.asset.videos.results[0].key));
     }
 
     if (this.state.videoVisible !== prevState.videoVisible)
@@ -78,6 +77,7 @@ class PDP extends Component {
     const type = this.props.navigation.getParam('type');
     const id = this.props.navigation.getParam('id');
 
+
     this.props.dispatch(tmdbDetails(id, type));
   }
 
@@ -97,7 +97,7 @@ class PDP extends Component {
   }
 
   render() { // eslint-disable-line max-lines-per-function
-    const { asset, fetched } = this.props;
+    const { asset, fetched, videoSource } = this.props;
     if (!fetched || !this.props.isFocused)
       return <View />;
 
@@ -106,7 +106,7 @@ class PDP extends Component {
 
         <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
         <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
-        <Video source={this.state.youtubeVideo} ref={ref => this.video = ref} visible={this.state.videoVisible}/>
+        <Video source={videoSource} ref={ref => this.video = ref} visible={this.state.videoVisible}/>
 
         <Timeline name="PDPIn"
           ref={timeline => this.inTimeline = timeline}
