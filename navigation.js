@@ -1,26 +1,38 @@
 import * as Screens from './screens';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 
-const Stack = createStackNavigator(
+const stackOptions = {
+  headerMode: 'none',
+  cardStyle: {
+    backgroundColor: '#0f3570',
+  },
+  transitionConfig: () => ({
+    transitionSpec: {
+      duration: 300,
+    },
+    screenInterpolator: () => { },
+  }),
+};
+const AppStack = createStackNavigator(
   {
-    Splash: { screen: Screens.Splash },
     Lander: { screen: Screens.Lander },
     PDP: { screen: Screens.PDP },
     Search: { screen: Screens.Search },
     Profile: { screen: Screens.Profile },
   },
-  {
-    headerMode: 'none',
-    cardStyle: {
-      backgroundColor: '#0f3570',
-    },
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 300,
-      },
-      screenInterpolator: () => { },
-    }),
-  }
+  stackOptions
 );
 
-export default Stack;
+const SplashStack = createStackNavigator({ Splash: { screen: Screens.Splash } }, stackOptions);
+
+const exportedStack = createSwitchNavigator(
+{
+  Splash: SplashStack,
+  App: AppStack,
+},
+{
+  initialRouteName: 'Splash',
+}
+);
+
+export default exportedStack;
