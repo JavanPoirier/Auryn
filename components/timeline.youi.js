@@ -8,7 +8,7 @@ export default class Timeline extends PureComponent {
       {...this.props}
       onLoad={timeline => {
         this.ref = timeline;
-        if (this.props.onLoad) this.props.onLoad(timeline);
+        if (this.props.onLoad) this.props.onLoad(this);
       }}
       loop={this.props.loop || this.props.name.toLowerCase() === 'loop'}
       onCompleted={() => {
