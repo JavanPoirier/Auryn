@@ -19,7 +19,7 @@ export default class ListItem extends PureComponent {
         <ButtonRef
           focusable={this.props.focusable}
           onPress={() => this.props.onPress(this.props.data.id, this.type)} name={this.buttonName}>
-          <ImageRef name="Image-Dynamic" source={{ uri: this.imageUri }} />
+          <ImageRef name="Image-Dynamic" source={this.props.focusable ? { uri: this.imageUri } : null } />
           <TextRef name="Text-Details" text={this.props.data.overview} />
           <TextRef name="Text-Title" text={this.title} />
         </ButtonRef>
