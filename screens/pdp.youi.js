@@ -117,7 +117,7 @@ class PDP extends Component {
         <ViewRef name="PDP-Scroller">
           <ListRef
             name="List-PDP"
-            data={asset.similar.results}
+            data={asset.similar.results.slice(0, 5)}
             renderItem={({ item, index }) =>
               <ListItem
                 imageType="Backdrop"

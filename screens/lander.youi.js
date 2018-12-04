@@ -63,7 +63,7 @@ class Lander extends Component {
     this.props.navigation.dispatch(navigateAction);
   }
 
-  scrollToScreen = screenIndex => {
+  scrollToScreen = (screenIndex, animated = true) => {
     for (let index = 0; index < this.lists.length; index++)
       FocusManager.setNextFocus(this.menuButtons.getButtonRef(index), this.lists[screenIndex], 'down');
 
@@ -71,7 +71,7 @@ class Lander extends Component {
     this.scroller.scrollTo({
       x: 0,
       y: screenIndex * 900,
-      animated: true,
+      animated,
     });
   }
 
@@ -97,9 +97,9 @@ class Lander extends Component {
 
   render() { // eslint-disable-line max-lines-per-function, max-statements
     let { discover, movies, tv } = this.props;
-    discover = discover.filter(asset => asset.original_language === 'en');
-    movies = movies.filter(asset => asset.original_language === 'en');
-    tv = tv.filter(asset => asset.original_language === 'en');
+    discover = discover.filter(asset => asset.original_language === 'en').slice(0, 15);
+    movies = movies.filter(asset => asset.original_language === 'en').slice(0, 10);
+    tv = tv.filter(asset => asset.original_language === 'en').slice(0, 10);
 
     if (!this.props.isFocused)
       return <View />;
