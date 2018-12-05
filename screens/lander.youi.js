@@ -4,6 +4,7 @@ import { Timeline, DiscoverContainer, ToggleGroup, ListItem } from '../component
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { chunk } from 'lodash';
+import { tmdbDetails } from '../actions/tmdbActions';
 
 @connect(store => ({
   discover: store.tmdbReducer.discover.data,
@@ -18,6 +19,7 @@ class Lander extends Component {
       focusListIndex: 0,
     };
     this.lists = [];
+    this.lastFocusItem = null;
     this.menuGroup = [
       {
         name: 'Btn-Nav-Discover',
@@ -83,7 +85,7 @@ class Lander extends Component {
       data,
     }))
 
-  onPressItem = (id, type) => {
+  onPressItem = (id, type, ref) => {
     console.log(id);
     const navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
@@ -93,15 +95,16 @@ class Lander extends Component {
       },
       key: id,
     });
-
+    this.props.dispatch(tmdbDetails(id, type));
+    this.lastFocusItem = ref;
     this.props.navigation.dispatch(navigateAction);
   }
 
   render() { // eslint-disable-line max-lines-per-function, max-statements
     let { discover, movies, tv } = this.props;
-    discover = discover.filter(asset => asset.original_language === 'en').slice(0, 15);
-    movies = movies.filter(asset => asset.original_language === 'en').slice(0, 10);
-    tv = tv.filter(asset => asset.original_language === 'en').slice(0, 10);
+    discover = discover.filter(asset => asset.original_language === 'en' && asset.backdrop_path).slice(0, 15);
+    movies = movies.filter(asset => asset.original_language === 'en' && asset.poster_path).slice(0, 10);
+    tv = tv.filter(asset => asset.original_language === 'en' && asset.backdrop_path).slice(0, 10);
 
     if (!this.props.isFocused)
       return <View />;

@@ -73,12 +73,6 @@ class PDP extends Component {
     this.props.navigation.addListener('didBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
     });
-
-    const type = this.props.navigation.getParam('type');
-    const id = this.props.navigation.getParam('id');
-
-
-    this.props.dispatch(tmdbDetails(id, type));
   }
 
   playVideo = () => {
@@ -117,7 +111,7 @@ class PDP extends Component {
         <ViewRef name="PDP-Scroller">
           <ListRef
             name="List-PDP"
-            data={asset.similar.results.slice(0, 5)}
+            data={asset.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString() }))}
             renderItem={({ item, index }) =>
               <ListItem
                 imageType="Backdrop"
@@ -127,7 +121,6 @@ class PDP extends Component {
                 data={item}
                 index={index}
               />}
-            keyExtractor={item => item.id}
             horizontal={true}
           />
 
