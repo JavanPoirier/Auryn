@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, BackHandler, TextInputRef, ButtonRef, ListRef, ImageRef, TextRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
+import { Composition, BackHandler, TextInputRef, ListRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
 import { tmdbSearch } from '../actions/tmdbActions';
 import { Timeline, ListItem } from '../components';
 import { NavigationActions } from 'react-navigation';
@@ -91,7 +91,6 @@ class Search extends Component {
             data={item}
             index={index}
           />}
-          keyExtractor={item => item.id}
           horizontal={true}
         />
 
