@@ -1,5 +1,6 @@
 // © You i Labs Inc. 2000-2017. All rights reserved.
 #include "App.h"
+#include <appium/YiWebDriverLocator.h>
 #include <cxxreact/JSBigString.h>
 #include <glog/logging.h>
 
@@ -24,8 +25,13 @@ using namespace yi::react;
 
 bool App::UserInit()
 {
-    
-    InitializeDevPanel();
+    // Start the web driver for allowing the use of Appium.
+    CYIWebDriver *pWebDriver = CYIWebDriverLocator::GetWebDriver();
+    if (pWebDriver)
+    {
+        pWebDriver->Start();
+    }
+
 #if !defined(YI_MINI_GLOG)
     // miniglog defines this using a non-const char * causing a compile error and it has no implementation anyway.
     static bool isGoogleLoggingInitialized = false;
@@ -36,7 +42,7 @@ bool App::UserInit()
     }
 #endif
 
-
+    
 #if defined(YI_LOCAL_JS_APP)
     #if defined(YI_INLINE_JS_APP)
         std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderInlineString(INLINE_JS_BUNDLE_STRING));
@@ -45,9 +51,8 @@ bool App::UserInit()
     #endif
 #else
     std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderRemote());
-    //std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderRemote(CYIUrl("http://<your_metro_server_ip>:8081/index.youi.bundle?platform=ios&dev=false&hot=false&minify=false")));
 #endif
-
+    
     PlatformApp::SetJsBundleLoader(std::move(pBundleLoader));
     return PlatformApp::UserInit();
 }

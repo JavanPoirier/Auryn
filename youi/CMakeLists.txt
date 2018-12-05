@@ -22,6 +22,10 @@ set(UWP_BUNDLE_URL_SCHEME "<Extensions>\n\t\t\t\t<uap:Extension Category=\"windo
 set(_STAGING_DIR "${CMAKE_CURRENT_BINARY_DIR}/Staging")
 set(_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
+if(NOT (CMAKE_GENERATOR MATCHES "Visual Studio" OR CMAKE_GENERATOR MATCHES Xcode) AND NOT CMAKE_BUILD_TYPE)
+    message(FATAL_ERROR "CMAKE_BUILD_TYPE needs to be set for single configuration generators. Default builds are not allowed.")
+endif()
+
 # This is used solely for projects that are built within the You.i Engine repository and can be removed for commercial projects.
 include(${YouiEngine_DIR}/cmake/Hunter/YiInitializeHunter.cmake OPTIONAL)
 project(${YI_PROJECT_NAME} LANGUAGES C CXX)
@@ -43,14 +47,9 @@ if(YI_BUILD_CLOUD_SERVER)
         PATHS ${YouiEngine_DIR}
     )
     mark_as_advanced(YI_CLOUD_CMAKE_DIR)
-
     list(INSERT CMAKE_MODULE_PATH 0 ${YI_CLOUD_CMAKE_DIR})
 endif()
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
-if (NOT MSVC_IDE AND NOT XCODE AND NOT CMAKE_BUILD_TYPE)
-    message(FATAL_ERROR "CMAKE_BUILD_TYPE needs to be set for single configuration generators. Default builds are not allowed.")
-endif()
 
 if(NOT DEFINED YI_PLATFORM)
     message(FATAL_ERROR "The YI_PLATFORM variable was not given to the generator.")
@@ -67,16 +66,34 @@ endif()
 # minimal effort.
 include("${CMAKE_CURRENT_SOURCE_DIR}/SourceList.cmake")
 
-if(NOT YouiEngine_FOUND)
-    if(YI_BUILD_CLOUD_SERVER)
-        set(_EXTRA_COMPONENTS cloud)
-    endif()
+# Locating the You.i Engine is now done via the 'find_package' command. We first set the version of the engine that
+# we want to look for, using the PACKAGE_FIND_VERSION variable that is used within the 'find_package' flow.
+#
+# Next, the call to 'find_package' passing the 'YouiEngine_DIR' path to the HINTS argument is made. This tells
+# CMake to look within the 'YouiEngine_DIR' path for the You.i Engine. If found, the 'find_package' command will
+# give back a 'youiengine' target that the project can link against. This target contains all of the third party
+# libraries and their include directories, as well as the engine library, its include directories and any compiler
+# definitions or options.
 
-    find_package(YouiEngine ${YI_YOUI_ENGINE_VERSION}
-        COMPONENTS react ${_EXTRA_COMPONENTS}
-        HINTS ${YouiEngine_DIR}
-        REQUIRED
-    )
+if(ANDROID AND IS_DIRECTORY ${YouiEngine_DIR}/core)
+    add_subdirectory(${YouiEngine_DIR}/core ${CMAKE_CURRENT_BINARY_DIR}/core)
+    add_subdirectory(${YouiEngine_DIR}/react/react-native-youiengine ${CMAKE_BINARY_DIR}/react/react-native-youiengine)
+else()
+    if(NOT YouiEngine_FOUND)
+        if(YI_BUILD_CLOUD_SERVER)
+            set(_EXTRA_COMPONENTS cloud cloud-utilities)
+        endif()
+
+        find_package(YouiEngine
+            ${YI_YOUI_ENGINE_VERSION}
+            COMPONENTS
+                react
+                ${_EXTRA_COMPONENTS}
+            HINTS
+                ${YouiEngine_DIR}
+            REQUIRED
+        )
+    endif()
 endif()
 
 include(Modules/YiPlatformSourceFiles)
@@ -125,7 +142,7 @@ if(YI_BUILD_CLOUD_SERVER)
     find_path(APPCOMMON_INCLUDE_DIR
         AppFactory.h
         PATH_SUFFIXES
-            templates/mains/Resources/roku
+            templates/mains/Resources/bluesky
             cloud/AppCommon/src
         PATHS
             ${YouiEngine_DIR}
@@ -155,6 +172,7 @@ unset(APPCOMMON_INCLUDE_DIR CACHE)
 target_link_libraries(${YI_PROJECT_NAME}
     PRIVATE
         $<$<BOOL:${YI_BUILD_CLOUD_SERVER}>:youi::cloud>
+        $<$<BOOL:${YI_BUILD_CLOUD_SERVER}>:youi::cloud-utilities>
         youi::react
 )
 
@@ -221,6 +239,10 @@ if(COMMAND yi_copy_cloud_libs)
     yi_copy_cloud_libs(PROJECT_TARGET ${PROJECT_NAME} REACTNATIVE)
 endif()
 
+# Copy You.i Engine custom Roku components to the application folder. These are needed for the app to run as a Cloud server.
+if (COMMAND yi_copy_roku_app_common)
+    yi_copy_roku_app_common(PROJECT_TARGET ${PROJECT_NAME} OUTPUT_DIRECTORY ${YI_BASE_OUTPUT_DIRECTORY})
+endif()
 
 include(Modules/react/YiConfigureJsBundling)
 yi_configure_js_bundling(PROJECT_TARGET ${PROJECT_NAME} BASE_OUTPUT_DIR ${YI_BASE_OUTPUT_DIRECTORY})

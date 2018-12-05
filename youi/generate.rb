@@ -24,7 +24,7 @@ class GenerateOptions
         options.jsbundle_file = []
         options.jsbundle_working_directory = nil
 
-        platformList = ["Android", "Ios", "Linux", "Osx", "Ps4", "Roku2", "Roku4", "Tizen-Nacl", "Tvos", "Uwp", "Vs2017"]
+        platformList = ["Android", "Bluesky2", "Bluesky4", "Ios", "Linux", "Osx", "Ps4", "Tizen-Nacl", "Tvos", "Uwp", "Vs2017"]
         configurationList = ["Debug","Release"]
 
         unless File.exist?(File.join("#{__dir__}", "CMakeLists.txt"))
@@ -68,7 +68,7 @@ class GenerateOptions
                 "Tizen-NaCl:",
                 "  - Eclipse CDT4 - Ninja (default if installed)",
                 "  - Eclipse CDT4 - Unix Makefiles (default without ninja)",
-                "Roku2/Roku4:",
+                "Bluesky2/Bluesky4:",
                 "  - Ninja (default if installed)",
                 "  - Unix Makefiles (default without ninja)",
                 "UWP:",
@@ -205,7 +205,7 @@ class GenerateOptions
                         puts "Could not find ninja or unix make. One of these generators must be installed to generate for Tizen-NaCl."
                         exit 1
                     end
-                when /roku2|roku4/i
+                when /bluesky2|bluesky4/i
                     ninja = system('ninja', [:out, :err] => File::NULL)
                     make = system('make', [:out, :err] => File::NULL)
                     if ninja != nil
@@ -213,7 +213,7 @@ class GenerateOptions
                     elsif make != nil
                         options.generator = "Unix Makefiles"
                     else
-                        puts "Could not find ninja or unix make. One of these generators must be installed to generate for Roku2 or Roku4."
+                        puts "Could not find ninja or unix make. One of these generators must be installed to generate for bluesky2 or bluesky4."
                         exit 1
                     end
                 end
@@ -232,7 +232,7 @@ class GenerateOptions
             unless options.build_directory
                 options.build_directory = File.expand_path(File.join(__dir__, "build", "#{options.platform.downcase}"))
 
-                unless options.generator.match(/(Visual Studio)|Xcode/)
+                unless options.generator.match(/(Visual Studio)|Xcode|AndroidStudio/)
                     options.build_directory = File.join(options.build_directory, "#{options.defines["CMAKE_BUILD_TYPE"]}")
                 end
             end
@@ -319,7 +319,7 @@ class GenerateOptions
                 puts "Found engine directory #{engine_dir}"
                 return File.absolute_path(engine_dir)
             else
-                puts "ERROR: Passed youi_engine variable #{options.engine_hint}, but could not find valid You.i Engine install"
+                puts "ERROR: Passed youi_version variable #{options.engine_hint}, but could not find valid You.i Engine install"
                 puts "Ensure that you have that version installed in $HOME/youiengine/, or the provided path is correct."
                 abort
             end
@@ -341,14 +341,14 @@ class GenerateOptions
                 else
                     puts "ERROR: Parsed @youi/react-native-youi version #{depVersion}, but could not find valid You.i Engine install"
                     puts "Ensure that you have that version installed in $HOME/youiengine/, or the provided path is correct. If you"
-                    puts "know what you are doing you can force a different engine version by passing the --youi_engine argument."
+                    puts "know what you are doing you can force a different engine version by passing the --youi_version argument."
                     puts "\nInstall the required version with \n\tyoui-tv install #{depVersion}\n"
                     abort
                 end
             else
                 puts "ERROR: Found package.json, but could not find @youi/react-native-youi dependency."
                 puts "Ensure that you have upgraded your current application to the latest You.i Engine version. If you"
-                puts "know what you are doing you can force a different engine version by passing the --youi_engine argument."
+                puts "know what you are doing you can force a different engine version by passing the --youi_version argument."
                 puts "\nInstall the latest version with \n\tyoui-tv install\n"
                 abort
             end
@@ -423,6 +423,21 @@ class GenerateOptions
                 toolchain_platform << value.capitalize
             end
 
+            case options.platform
+            when /Tizen-NaCl/i
+                if options.defines.has_key?("YI_ARCH")
+                    tizen_valid_archs = ["armv7", "x86_64", "x86_32"]
+                    if tizen_valid_archs.include?(options.defines["YI_ARCH"])
+                        toolchain_platform << "-" << options.defines["YI_ARCH"]
+                    else
+                        puts "ERROR: Invalid YI_ARCH specified for Tizen-NaCl. Valid architectures: #{tizen_valid_archs}"
+                        abort
+                    end
+                else
+                    toolchain_platform << "-armv7"
+                end
+            end
+
             toolchain_subpath = File.join("cmake", "Toolchain", "Toolchain-" + toolchain_platform + ".cmake")
 
             toolchain_file = File.join(__dir__, toolchain_subpath)
@@ -432,6 +447,9 @@ class GenerateOptions
 
             if File.exist?(toolchain_file)
                 options.defines["CMAKE_TOOLCHAIN_FILE"] = toolchain_file
+            else
+                puts "ERROR: Default toolchain file not found for platform at path: #{toolchain_file}"
+                abort
             end
         end
 
@@ -484,13 +502,6 @@ class GenerateOptions
             abort
         end
     end
-end
-
-symlink_success = system("ln -f ../.hooks/pre-commit ../.git/hooks/pre-commit")
-if symlink_success
-    puts "Successfully symlinked git hook"
-else
-    puts "Failed to symlink git hook"
 end
 
 options = GenerateOptions.parse(ARGV)
