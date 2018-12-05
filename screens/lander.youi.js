@@ -14,7 +14,9 @@ import { chunk } from 'lodash';
 class Lander extends Component {
   constructor(props) {
     super(props);
-    this.state = { focusListIndex: 0 };
+    this.state = {
+      focusListIndex: 0,
+    };
     this.lists = [];
     this.menuGroup = [
       {
@@ -77,7 +79,7 @@ class Lander extends Component {
 
   groupInto3 = array =>
     chunk(array, 3).map((data, index) => ({
-      key: index,
+      key: index.toString(),
       data,
     }))
 
@@ -157,7 +159,6 @@ class Lander extends Component {
                 data={movies}
                 ref={ref => this.lists[1] = ref}
                 horizontal={true}
-                keyExtractor={item => item.id}
                 renderItem={({ item, index }) =>
                   <ListItem
                     imageType="Poster"
@@ -175,7 +176,6 @@ class Lander extends Component {
                 data={tv}
                 ref={ref => this.lists[2] = ref}
                 horizontal={true}
-                keyExtractor={item => item.id}
                 renderItem={({ item, index }) =>
                   <ListItem
                     imageType="Backdrop"
@@ -193,7 +193,6 @@ class Lander extends Component {
                 data={tv.slice(0, 2)}
                 ref={ref => this.lists[3] = ref}
                 horizontal={true}
-                keyExtractor={item => item.id}
                 renderItem={({ item, index }) =>
                   <ListItem
                     imageType="Backdrop"
