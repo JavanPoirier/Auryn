@@ -25,8 +25,8 @@ export default class ToggleButton extends PureComponent {
       focusable={this.props.focusable}
       name={this.props.name}
       ref={ref => {
-        if (this.props.ref)
-          this.props.ref(ref);
+        if (this.props.buttonRef)
+          this.props.buttonRef(ref);
         this.ref = ref;
       }}
       onPress={() => {
