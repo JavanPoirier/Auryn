@@ -4,42 +4,8 @@ activecomp {
   height: 1080
   defaultcameradistance: 2666.6667
   layer {
-    name: "Background-Gradient.png"
-    id: 712
-    sourceid: 831
-    transform {
-      anchorPoint {
-        x: 0.5
-        y: 540
-        z: 0
-      }
-      scale {
-        x: 1920
-        y: 1
-        z: 1
-      }
-      position {
-        x: 960
-        y: 540
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
     name: "Btn-Profile3"
-    id: 713
+    id: 712
     sourceid: 259687
     transform {
       anchorPoint {
@@ -73,7 +39,7 @@ activecomp {
   }
   layer {
     name: "Btn-Profile2"
-    id: 714
+    id: 713
     sourceid: 259648
     transform {
       anchorPoint {
@@ -107,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Btn-Profile1"
-    id: 715
+    id: 714
     sourceid: 259618
     transform {
       anchorPoint {
@@ -141,7 +107,7 @@ activecomp {
   }
   layer {
     name: "Title"
-    id: 716
+    id: 715
     sourceid: -1
     transform {
       anchorPoint {
@@ -193,7 +159,7 @@ activecomp {
   }
   layer {
     name: "Message"
-    id: 717
+    id: 716
     sourceid: -1
     transform {
       anchorPoint {
@@ -262,17 +228,6 @@ activecomp {
   childtemplates: "Auryn_Btn-Profile1"
 }
 sources {
-  uid: 831
-  srctype: AE_IMAGE_SRC
-  name: "Background-Gradient.png"
-  width: 1
-  height: 1080
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
-  copy_source: true
-}
-sources {
   uid: 259687
   srctype: AE_COMP_SRC
   name: "Auryn_Btn-Profile3.layout"
@@ -297,7 +252,7 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 5
+  uid: 4
   srctype: AE_FONT_SRC
   name: "Raleway-Bold"
   copy_source: true
@@ -305,7 +260,7 @@ sources {
   style_name: "Bold"
 }
 sources {
-  uid: 6
+  uid: 5
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true

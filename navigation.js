@@ -4,11 +4,15 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 const stackOptions = {
   headerMode: 'none',
   cardStyle: {
-    backgroundColor: '#143672',
+    backgroundColor: 'transparent',
+    opacity: 1,
   },
   transitionConfig: () => ({
     transitionSpec: {
       duration: 0,
+    },
+    containerStyle: {
+      backgroundColor: 'transparent',
     },
     screenInterpolator: () => { },
   }),

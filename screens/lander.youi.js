@@ -11,38 +11,17 @@ import { tmdbDetails } from '../actions/tmdbActions';
   movies: store.tmdbReducer.movies.data,
   tv: store.tmdbReducer.tv.data,
 }))
-
 class Lander extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      focusListIndex: 0,
+      currentListIndex: 0,
     };
     this.lists = [];
     this.lastFocusItem = null;
-    this.menuGroup = [
-      {
-        name: 'Btn-Nav-Discover',
-        action: () => this.scrollToScreen(0),
-      },
-      {
-        name: 'Btn-Nav-Movies',
-        action: () => this.scrollToScreen(1),
-      },
-      {
-        name: 'Btn-Nav-Shows',
-        action: () => this.scrollToScreen(2),
-      },
-      {
-        name: 'Btn-Nav-Live',
-        action: () => this.scrollToScreen(3),
-      },
-    ];
-  }
 
-  componentDidUpdate() {
-    console.log('FOCUS', this.props.isFocused);
-    console.log(this.state.focusListIndex);
+    this.menuGroup = ['Discover', 'Movies', 'Shows', 'Live']
+    .map((it, i) => ({ name: `Btn-Nav-${it}`, action: () => this.scrollToScreen(i) }));
   }
 
   componentDidMount() {
@@ -71,7 +50,7 @@ class Lander extends Component {
     for (let index = 0; index < this.lists.length; index++)
       FocusManager.setNextFocus(this.menuButtons.getButtonRef(index), this.lists[screenIndex], 'down');
 
-    this.setState({ focusListIndex: screenIndex });
+    this.setState({ currentListIndex: screenIndex });
     this.scroller.scrollTo({
       x: 0,
       y: screenIndex * 900,
@@ -149,7 +128,7 @@ class Lander extends Component {
                 horizontal={true}
                 renderItem={({ item, index }) =>
                   <DiscoverContainer
-                    focusable={this.props.isFocused && this.state.focusListIndex === 0}
+                    focusable={this.props.isFocused && this.state.currentListIndex === 0}
                     onPressItem={this.onPressItem}
                     data={item.data}
                     index={index}
@@ -166,7 +145,7 @@ class Lander extends Component {
                   <ListItem
                     imageType="Poster"
                     size="Small"
-                    focusable={this.props.isFocused && this.state.focusListIndex === 1}
+                    focusable={this.props.isFocused && this.state.currentListIndex === 1}
                     onPress={this.onPressItem}
                     data={item}
                     index={index}
@@ -183,7 +162,7 @@ class Lander extends Component {
                   <ListItem
                     imageType="Backdrop"
                     size="Small"
-                    focusable={this.props.isFocused && this.state.focusListIndex === 2}
+                    focusable={this.props.isFocused && this.state.currentListIndex === 2}
                     onPress={this.onPressItem}
                     data={item}
                     index={index}
@@ -200,7 +179,7 @@ class Lander extends Component {
                   <ListItem
                     imageType="Backdrop"
                     size="Large"
-                    focusable={this.props.isFocused && this.state.focusListIndex === 3}
+                    focusable={this.props.isFocused && this.state.currentListIndex === 3}
                     onPress={this.onPressItem}
                     data={item}
                     index={index}

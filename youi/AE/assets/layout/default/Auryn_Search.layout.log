@@ -4,42 +4,8 @@ activecomp {
   height: 1080
   defaultcameradistance: 2666.6667
   layer {
-    name: "Background-Gradient.png"
-    id: 743
-    sourceid: 831
-    transform {
-      anchorPoint {
-        x: 0.5
-        y: 540
-        z: 0
-      }
-      scale {
-        x: 1920
-        y: 1
-        z: 1
-      }
-      position {
-        x: 960
-        y: 540
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
     name: "Bar"
-    id: 744
+    id: 743
     sourceid: 259816
     transform {
       anchorPoint {
@@ -73,7 +39,7 @@ activecomp {
   }
   layer {
     name: "List-Movies"
-    id: 745
+    id: 744
     sourceid: 360
     transform {
       anchorPoint {
@@ -107,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Popular Movies"
-    id: 746
+    id: 745
     sourceid: -1
     transform {
       anchorPoint {
@@ -159,7 +125,7 @@ activecomp {
   }
   layer {
     name: "Bar"
-    id: 747
+    id: 746
     sourceid: 259816
     transform {
       anchorPoint {
@@ -193,7 +159,7 @@ activecomp {
   }
   layer {
     name: "List-PDP"
-    id: 748
+    id: 747
     sourceid: 360
     transform {
       anchorPoint {
@@ -227,7 +193,7 @@ activecomp {
   }
   layer {
     name: "Popular Shows 2"
-    id: 749
+    id: 748
     sourceid: -1
     transform {
       anchorPoint {
@@ -279,7 +245,7 @@ activecomp {
   }
   layer {
     name: "TextInput"
-    id: 750
+    id: 749
     sourceid: 1023
     transform {
       anchorPoint {
@@ -329,17 +295,6 @@ activecomp {
   childtemplates: "Auryn_TextInput"
 }
 sources {
-  uid: 831
-  srctype: AE_IMAGE_SRC
-  name: "Background-Gradient.png"
-  width: 1
-  height: 1080
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
-  copy_source: true
-}
-sources {
   uid: 259816
   srctype: AE_SOLID_SRC
   color {
@@ -361,7 +316,7 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 4
+  uid: 3
   srctype: AE_FONT_SRC
   name: "Raleway-Medium"
   copy_source: true

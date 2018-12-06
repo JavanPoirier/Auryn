@@ -38,42 +38,8 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Background-Gradient.png"
-    id: 254
-    sourceid: 831
-    transform {
-      anchorPoint {
-        x: 0.5
-        y: 540
-        z: 0
-      }
-      scale {
-        x: 1920
-        y: 1
-        z: 1
-      }
-      position {
-        x: 960
-        y: 540
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
     name: "PDP-Scroller"
-    id: 255
+    id: 254
     sourceid: 389
     transform {
       anchorPoint {
@@ -107,7 +73,7 @@ activecomp {
   }
   layer {
     name: "Fader"
-    id: 256
+    id: 255
     sourceid: 421
     transform {
       anchorPoint {
@@ -154,17 +120,6 @@ sources {
   name: "Auryn_Video.layout"
   width: 1920
   height: 1080
-  copy_source: true
-}
-sources {
-  uid: 831
-  srctype: AE_IMAGE_SRC
-  name: "Background-Gradient.png"
-  width: 1
-  height: 1080
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
   copy_source: true
 }
 sources {

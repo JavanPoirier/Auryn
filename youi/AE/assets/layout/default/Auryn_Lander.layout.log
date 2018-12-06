@@ -4,42 +4,8 @@ activecomp {
   height: 1080
   defaultcameradistance: 2666.6667
   layer {
-    name: "Background-Gradient.png"
-    id: 64
-    sourceid: 831
-    transform {
-      anchorPoint {
-        x: 0.5
-        y: 540
-        z: 0
-      }
-      scale {
-        x: 1920
-        y: 1
-        z: 1
-      }
-      position {
-        x: 960
-        y: 540
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
     name: "Stack"
-    id: 65
+    id: 64
     sourceid: 259843
     transform {
       anchorPoint {
@@ -73,7 +39,7 @@ activecomp {
   }
   layer {
     name: "Nav"
-    id: 66
+    id: 65
     sourceid: 78
     transform {
       anchorPoint {
@@ -113,17 +79,6 @@ activecomp {
   }
   childtemplates: "Auryn_Lander-ContentStack"
   childtemplates: "Auryn_Nav"
-}
-sources {
-  uid: 831
-  srctype: AE_IMAGE_SRC
-  name: "Background-Gradient.png"
-  width: 1
-  height: 1080
-  numberOfFrames: 1
-  fps: 0
-  loops: 1
-  copy_source: true
 }
 sources {
   uid: 259843
