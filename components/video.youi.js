@@ -5,13 +5,13 @@ import { Timeline, ToggleButton } from '../components';
 export default class Video extends PureComponent {
   constructor(props) {
     super(props);
-    const videoSource = {
+    this.fallbackVideo = {
       uri: 'http://www.streambox.fr/playlists/x31jrg1/x31jrg1.m3u8',
       type: 'HLS',
     };
 
     this.state = {
-      videoSource,
+      videoSource: props.source,
       formattedTime: '00:00',
       focusable: true,
       paused: true,
@@ -38,9 +38,10 @@ export default class Video extends PureComponent {
   ];
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements
-    if (this.props.source !== prevProps.source)
+    if (this.props.source !== prevProps.source) {
       console.log('VIDEO', this.props.source);
-
+      this.setState({ videoSource: this.props.source });
+    }
 
     if (this.state.percent !== prevState.percent) {
       console.log('SCRUB', this.state.percent);
@@ -75,8 +76,7 @@ export default class Video extends PureComponent {
     this.controlsHideTimeline.play();
   }
 
-  registerUserActivity = keyEvent => {
-    console.log(keyEvent);
+  registerUserActivity = () => {
     if (!this.controlsVisible) this.showControls();
 
     if (this.activityTimeout)
@@ -126,8 +126,9 @@ export default class Video extends PureComponent {
     });
   }
 
-  render = () =>
-    <ViewRef name="Video">
+  render() { // eslint-disable-line max-lines-per-function
+    return (
+      <ViewRef name="Video">
       <VideoRef
         name="VideoSurface"
         ref={ref => {
@@ -135,7 +136,10 @@ export default class Video extends PureComponent {
         }}
         onPaused={ () => this.setState({ paused: true }) }
         onPlaying={ () => this.setState({ paused: false }) }
-        source={ this.props.source }
+        source={ this.state.videoSource }
+        onErrorOccurred={ () => {
+          this.setState({ videoSource: this.fallbackVideo });
+        }}
         onCurrentTimeUpdated={ this.onCurrentTimeUpdated }
         onDurationChanged={ duration => {
           this.setState({ duration: duration.nativeEvent });
@@ -170,4 +174,7 @@ export default class Video extends PureComponent {
         </ViewRef>
       </ViewRef>
     </ViewRef>
+    );
+  }
+
 }
