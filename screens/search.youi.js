@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Composition, BackHandler, TextInputRef, ListRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
-import { tmdbSearch } from '../actions/tmdbActions';
+import { View, Composition, BackHandler, TextInputRef, ListRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
+import { tmdbSearch, tmdbDetails } from '../actions/tmdbActions';
 import { Timeline, ListItem } from '../components';
 import { NavigationActions, withNavigationFocus } from 'react-navigation';
 import { debounce } from 'throttle-debounce';
@@ -19,9 +19,10 @@ class Search extends Component {
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
-      if (this.searchText)
-        FocusManager.focus(this.searchText);
-        // this.searchText.activate();
+      // if (this.searchText) {
+      //   FocusManager.focus(this.searchText);
+      //   this.searchText.activate();
+      // }
     });
     this.props.navigation.addListener('didBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
@@ -42,6 +43,7 @@ class Search extends Component {
       },
       key: id,
     });
+    this.props.dispatch(tmdbDetails(id, type));
     this.props.navigation.dispatch(navigateAction);
   }
 
@@ -62,6 +64,8 @@ class Search extends Component {
   })
 
   render() { // eslint-disable-line max-lines-per-function
+    if (!this.props.isFocused)
+     return <View/>;
     const { data, fetched } = this.props;
     let movies = [];
     let tv = [];
@@ -73,9 +77,15 @@ class Search extends Component {
       <Composition source="Auryn_Search">
         <TextInputRef
           ref={ref => this.searchText = ref}
+          onLoad={() => {
+            FocusManager.focus(this.searchText);
+            this.searchText.activate();
+            this.searchText.props.text = this.state.text;
+          }}
           name="TextInput"
           secureTextEntry={false}
           onChangeText={text => this.setState({ query: text })}
+          defaultValue={this.state.query}
         />
 
         <ListRef
@@ -115,8 +125,6 @@ class Search extends Component {
           ref={timeline => this.searchinTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
-
-
       </Composition>
     );
   }
