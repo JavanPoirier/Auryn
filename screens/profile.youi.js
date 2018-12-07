@@ -6,13 +6,12 @@ import { withNavigationFocus } from 'react-navigation';
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeButton: 1 };
+    this.state = { activeButtonIndex: 1 };
   }
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
-      if (this.activeButton) FocusManager.focus(this.activeButton);
     });
     this.props.navigation.addListener('didBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
@@ -23,19 +22,20 @@ class Profile extends Component {
     this.outTimeline.play().then(() => this.props.navigation.goBack(null));
   }
 
-  onPress = i => this.setState({ activeButton: i })
+  onPress = i => this.setState({ activeButtonIndex: i })
 
   render = () => {
     const buttons = new Array(3).fill().map((_, i) =>
       <ButtonRef
         key={i}
         name={`Btn-Profile${i + 1}`}
+        onLoad={() => FocusManager.focus(this.activeButton)}
         onPress={() => this.onPress(i + 1)}
         ref={ref => {
-          if (i === 0) this.activeButton = ref;
+          if (i + 1 === this.state.activeButtonIndex) this.activeButton = ref;
         }}
       >
-        <TextRef name="Active User" text={this.state.activeButton === i + 1 ? 'Active User' : ''} />
+        <TextRef name="Active User" text={this.state.activeButtonIndex === i + 1 ? 'Active User' : ''} />
       </ButtonRef>);
 
     return (

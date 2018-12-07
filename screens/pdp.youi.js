@@ -32,16 +32,15 @@ class PDP extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.asset !== prevProps.asset) {
       console.log('ASSET', this.props.asset);
       this.contentInTimeline.play();
       if (this.props.asset.videos.results.length > 0)
         this.props.dispatch(youtubeVideo(this.props.asset.videos.results[0].key));
-    }
 
-    if (this.state.videoVisible !== prevState.videoVisible)
-      if (!this.state.videoVisible) FocusManager.focus(this.posterButton);
+      FocusManager.focus(this.posterButton);
+    }
   }
 
   navigateBack = () => {
@@ -67,7 +66,6 @@ class PDP extends Component {
     this.props.navigation.addListener('didFocus', () => {
       if (this.contentInTimeline)
         this.contentInTimeline.play();
-      if (this.posterButton) FocusManager.focus(this.posterButton);
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
     });
     this.props.navigation.addListener('didBlur', () => {
@@ -143,6 +141,7 @@ class PDP extends Component {
             focusable={this.props.isFocused && !this.state.videoVisible}
             onPress={this.playVideo}
             ref={ref => this.posterButton = ref}
+            onLoad={() => FocusManager.focus(this.posterButton)}
           >
             <ImageRef
               name="Image-Dynamic"
