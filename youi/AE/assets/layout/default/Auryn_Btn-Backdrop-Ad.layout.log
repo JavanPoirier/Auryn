@@ -4,9 +4,9 @@ activecomp {
   height: 300
   defaultcameradistance: 741.66669
   layer {
-    name: "Black Solid 6"
+    name: "Ad-Background-Coke.png"
     id: 520121
-    sourceid: 376
+    sourceid: 520155
     transform {
       anchorPoint {
         x: 267
@@ -38,8 +38,180 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "White Solid 19"
+    name: "Black Solid 6"
     id: 520122
+    sourceid: 376
+    transform {
+      anchorPoint {
+        x: 267
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 267
+        y: 150
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Title 2"
+    id: 520123
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 248.5
+        y: 40.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 420.26
+        y: 187.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 28
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Medium"
+      isPointText: false
+      boundsWidth: 274
+      boundsHeight: 135
+      isLabel: true
+      text: "Click here for free bottle of coke!"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "Title"
+    id: 520124
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 248.5
+        y: 40.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 420.26
+        y: 127.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 42
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Bold"
+      isPointText: false
+      boundsWidth: 259
+      boundsHeight: 54
+      isLabel: true
+      text: "Thirsty?"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "Ad-Coke-Bottle.png"
+    id: 520125
+    sourceid: 520156
+    transform {
+      anchorPoint {
+        x: 110
+        y: 150
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 267
+        y: 150
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "White Solid 19"
+    id: 520126
     sourceid: 520154
     transform {
       anchorPoint {
@@ -73,7 +245,7 @@ activecomp {
   }
   layer {
     name: "White Solid 18"
-    id: 520123
+    id: 520127
     sourceid: 520150
     transform {
       anchorPoint {
@@ -107,7 +279,7 @@ activecomp {
   }
   layer {
     name: "White Solid 17"
-    id: 520124
+    id: 520128
     sourceid: 520146
     transform {
       anchorPoint {
@@ -141,7 +313,7 @@ activecomp {
   }
   layer {
     name: "White Solid 16"
-    id: 520125
+    id: 520129
     sourceid: 520143
     transform {
       anchorPoint {
@@ -173,110 +345,6 @@ activecomp {
     acceptslights: true
     castsshadows: false
   }
-  layer {
-    name: "Text-Details"
-    id: 520126
-    sourceid: -1
-    transform {
-      anchorPoint {
-        x: 248.5
-        y: 40.5
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 299.26
-        y: 247.5
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    textinfo {
-      justification: AE_TEXT_LEFT
-      fontSize: 18
-      fontColor {
-        alpha: 1
-        red: 1
-        green: 1
-        blue: 1
-      }
-      fontName: "Raleway-Medium"
-      isPointText: false
-      boundsWidth: 454
-      boundsHeight: 63
-      isLabel: true
-      text: "Click here for your free bottle of Coca Cola"
-      multiline: true
-      isAllCaps: false
-    }
-  }
-  layer {
-    name: "Text-Title"
-    id: 520127
-    sourceid: -1
-    transform {
-      anchorPoint {
-        x: 248.5
-        y: 40.5
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 298.26
-        y: 267.5
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0.8
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    textinfo {
-      justification: AE_TEXT_LEFT
-      fontSize: 36
-      fontColor {
-        alpha: 1
-        red: 1
-        green: 1
-        blue: 1
-      }
-      fontName: "Raleway-Bold"
-      isPointText: false
-      boundsWidth: 462
-      boundsHeight: 54
-      isLabel: true
-      text: "Advertisement"
-      multiline: true
-      isAllCaps: false
-    }
-  }
   classname: "CYIPushButtonView"
   bgcolor {
     alpha: 1
@@ -298,6 +366,17 @@ activecomp {
   }
 }
 sources {
+  uid: 520155
+  srctype: AE_IMAGE_SRC
+  name: "Ad-Background-Coke.png"
+  width: 534
+  height: 300
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
   uid: 376
   srctype: AE_SOLID_SRC
   color {
@@ -309,6 +388,33 @@ sources {
   width: 534
   height: 300
   copy_source: false
+}
+sources {
+  uid: 3
+  srctype: AE_FONT_SRC
+  name: "Raleway-Medium"
+  copy_source: true
+  file_name: "yi_Raleway-Medium.ttf"
+  style_name: "Medium"
+}
+sources {
+  uid: 4
+  srctype: AE_FONT_SRC
+  name: "Raleway-Bold"
+  copy_source: true
+  file_name: "yi_Raleway-Bold.ttf"
+  style_name: "Bold"
+}
+sources {
+  uid: 520156
+  srctype: AE_IMAGE_SRC
+  name: "Ad-Coke-Bottle.png"
+  width: 220
+  height: 300
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
 }
 sources {
   uid: 520154
@@ -361,20 +467,4 @@ sources {
   width: 4
   height: 300
   copy_source: false
-}
-sources {
-  uid: 6
-  srctype: AE_FONT_SRC
-  name: "Raleway-Medium"
-  copy_source: true
-  file_name: "yi_Raleway-Medium.ttf"
-  style_name: "Medium"
-}
-sources {
-  uid: 7
-  srctype: AE_FONT_SRC
-  name: "Raleway-Bold"
-  copy_source: true
-  file_name: "yi_Raleway-Bold.ttf"
-  style_name: "Bold"
 }
