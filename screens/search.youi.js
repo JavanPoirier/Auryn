@@ -19,10 +19,6 @@ class Search extends Component {
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
-      // if (this.searchText) {
-      //   FocusManager.focus(this.searchText);
-      //   this.searchText.activate();
-      // }
     });
     this.props.navigation.addListener('didBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
@@ -79,8 +75,6 @@ class Search extends Component {
           ref={ref => this.searchText = ref}
           onLoad={() => {
             FocusManager.focus(this.searchText);
-            this.searchText.activate();
-            this.searchText.props.text = this.state.text;
           }}
           name="TextInput"
           secureTextEntry={false}
