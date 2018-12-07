@@ -19,7 +19,6 @@ class Lander extends Component {
     };
     this.lists = [];
     this.lastFocusItem = null;
-
     this.menuGroup = ['Discover', 'Movies', 'Shows', 'Live']
     .map((it, i) => ({ name: `Btn-Nav-${it}`, action: () => this.scrollToScreen(i) }));
   }
@@ -79,6 +78,22 @@ class Lander extends Component {
     this.props.navigation.dispatch(navigateAction);
   }
 
+  getItemLayout = (data, index, imageType, imageSize) => {
+    let length = 0;
+    if (imageType === 'Poster' && imageSize === 'Small')
+      length = 400;
+    if (imageType === 'Backdrop' && imageSize === 'Small')
+      length = 534;
+    if (imageType === 'Backdrop' && imageSize === 'Large')
+      length = 1068;
+
+    return {
+      index,
+      length,
+      offset: length * index,
+    };
+  }
+
   render() { // eslint-disable-line max-lines-per-function, max-statements
     let { discover, movies, tv } = this.props;
     discover = discover.filter(asset => asset.original_language === 'en' && asset.backdrop_path).slice(0, 15);
@@ -126,6 +141,8 @@ class Lander extends Component {
                 data={this.groupInto3(discover)}
                 ref={ref => this.lists[0] = ref}
                 horizontal={true}
+                initialScrollIndex={0}
+                getItemLayout={(data, index) => this.getItemLayout(data, index, 'Backdrop', 'Large')}
                 renderItem={({ item, index }) =>
                   <DiscoverContainer
                     focusable={this.props.isFocused && this.state.currentListIndex === 0}
@@ -141,6 +158,8 @@ class Lander extends Component {
                 data={movies}
                 ref={ref => this.lists[1] = ref}
                 horizontal={true}
+                initialScrollIndex={0}
+                getItemLayout={(data, index) => this.getItemLayout(data, index, 'Poster', 'Small')}
                 renderItem={({ item, index }) =>
                   <ListItem
                     imageType="Poster"
@@ -158,6 +177,8 @@ class Lander extends Component {
                 data={tv}
                 ref={ref => this.lists[2] = ref}
                 horizontal={true}
+                initialScrollIndex={0}
+                getItemLayout={(data, index) => this.getItemLayout(data, index, 'Backdrop', 'Small')}
                 renderItem={({ item, index }) =>
                   <ListItem
                     imageType="Backdrop"
@@ -174,7 +195,9 @@ class Lander extends Component {
                 name="Live"
                 data={tv.slice(0, 2)}
                 ref={ref => this.lists[3] = ref}
+                initialScrollIndex={0}
                 horizontal={true}
+                getItemLayout={(data, index) => this.getItemLayout(data, index, 'Backdrop', 'Large')}
                 renderItem={({ item, index }) =>
                   <ListItem
                     imageType="Backdrop"

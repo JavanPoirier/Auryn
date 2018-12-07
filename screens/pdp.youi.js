@@ -90,6 +90,22 @@ class PDP extends Component {
     return `Starring: ${cast}`;
   }
 
+  getItemLayout = (data, index, imageType, imageSize) => {
+    let length = 0;
+    if (imageType === 'Poster' && imageSize === 'Small')
+      length = 400;
+    if (imageType === 'Backdrop' && imageSize === 'Small')
+      length = 534;
+    if (imageType === 'Backdrop' && imageSize === 'Large')
+      length = 1068;
+
+    return {
+      index,
+      length,
+      offset: length * index,
+    };
+  }
+
   render() { // eslint-disable-line max-lines-per-function
     const { asset, fetched, videoSource } = this.props;
     if (!fetched || !this.props.isFocused)
@@ -112,6 +128,8 @@ class PDP extends Component {
           <ListRef
             name="List-PDP"
             data={asset.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString() }))}
+            initialScrollIndex={0}
+            getItemLayout={(data, index) => this.getItemLayout(data, index, 'Backdrop', 'Large')}
             renderItem={({ item, index }) =>
               <ListItem
                 imageType="Backdrop"
