@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Composition, BackHandler, ButtonRef, TextRef, FocusManager } from '@youi/react-native-youi';
 import { Timeline } from '../components';
+import { withNavigationFocus } from 'react-navigation';
 
-export default class Profile extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = { activeButton: 1 };
@@ -46,3 +47,5 @@ export default class Profile extends Component {
     );
   }
 }
+
+export default withNavigationFocus(Profile);

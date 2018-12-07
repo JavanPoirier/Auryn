@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Composition, BackHandler, TextInputRef, ListRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
 import { tmdbSearch } from '../actions/tmdbActions';
 import { Timeline, ListItem } from '../components';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, withNavigationFocus } from 'react-navigation';
 import { debounce } from 'throttle-debounce';
 import { connect } from 'react-redux';
 
@@ -19,10 +19,9 @@ class Search extends Component {
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
       BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
-      if (this.searchText) {
+      if (this.searchText)
         FocusManager.focus(this.searchText);
-        this.searchText.activate();
-      }
+        // this.searchText.activate();
     });
     this.props.navigation.addListener('didBlur', () => {
       BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
@@ -86,7 +85,7 @@ class Search extends Component {
           <ListItem
             imageType="Backdrop"
             size="Small"
-            focusable={this.props.isFocused && !this.state.videoVisible}
+            focusable={this.props.isFocused}
             onPress={this.onPressItem}
             data={item}
             index={index}
@@ -123,4 +122,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default withNavigationFocus(Search);
