@@ -1,0 +1,431 @@
+activecomp {
+  name: "Auryn_Ad-Coke"
+  width: 1920
+  height: 1080
+  defaultcameradistance: 2666.6667
+  layer {
+    name: "Background"
+    id: 690010628
+    sourceid: 690011404
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "Background-Coke.png"
+    id: 690010629
+    sourceid: 690011826
+    transform {
+      anchorPoint {
+        x: 480
+        y: 270
+        z: 0
+      }
+      scale {
+        x: 2.2
+        y: 2.2
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "open happiness"
+    id: 690010630
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 336
+        y: 78
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1250
+        y: 632
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 88
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "ArialMT"
+      isPointText: false
+      boundsWidth: 734
+      boundsHeight: 156
+      isLabel: true
+      text: "open happiness"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "TM"
+    id: 690010631
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 336
+        y: 78
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1880
+        y: 632
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 22
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "ArialMT"
+      isPointText: false
+      boundsWidth: 734
+      boundsHeight: 156
+      isLabel: true
+      text: "TM"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "open a Coke,"
+    id: 690010632
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 336
+        y: 78
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1250
+        y: 542
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 88
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "ArialMT"
+      isPointText: false
+      boundsWidth: 672
+      boundsHeight: 156
+      isLabel: true
+      text: "open a Coke,"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "Looper"
+    id: 690010633
+    sourceid: 690011724
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 1.2
+        y: 1.2
+        z: 1
+      }
+      position {
+        x: 202
+        y: 50
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 690010636
+  }
+  layer {
+    name: "Btn-Cap"
+    id: 690010634
+    sourceid: 690011385
+    transform {
+      anchorPoint {
+        x: 70
+        y: 49.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: -42
+        y: 94
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 690010635
+  }
+  layer {
+    name: "ScalePropTopRightAnchor"
+    id: 690010635
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 100
+        y: 0
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1920
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "ScalePropCenterAnchor"
+    id: 690010636
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  bgcolor {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  childtemplates: "Auryn_Looper"
+  childtemplates: "Auryn_Btn-Cap"
+}
+sources {
+  uid: 690011404
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  width: 1920
+  height: 1080
+  copy_source: false
+}
+sources {
+  uid: 690011826
+  srctype: AE_IMAGE_SRC
+  name: "Background-Coke.png"
+  width: 960
+  height: 540
+  numberOfFrames: 1
+  fps: 0
+  loops: 1
+  copy_source: true
+}
+sources {
+  uid: 3
+  srctype: AE_FONT_SRC
+  name: "ArialMT"
+  copy_source: true
+  file_name: "yi_Arial-Regular.ttf"
+  style_name: "Regular"
+}
+sources {
+  uid: 690011724
+  srctype: AE_COMP_SRC
+  name: "Auryn_Looper.layout"
+  width: 1920
+  height: 1080
+  copy_source: true
+}
+sources {
+  uid: 690011385
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Cap.layout"
+  width: 140
+  height: 131
+  copy_source: true
+}
+sources {
+  uid: 690011406
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
+}
