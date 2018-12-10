@@ -32,13 +32,23 @@ export default class ListItem extends PureComponent {
       );
     }
 
+    if (!this.props.focusable)
+      return <Composition source={this.compositionName} loadSync={true}/>;
     return (
       <Composition source={this.compositionName} loadSync={true}>
         <ButtonRef
           focusable={this.props.focusable}
           ref={ref => this.ref = ref}
-          onPress={() => this.props.onPress(this.props.data.id, this.type, this.ref)} name={this.buttonName}>
-          <ImageRef name="Image-Dynamic" source={this.props.focusable ? { uri: this.imageUri } : null } />
+          onPress={() => this.props.onPress(this.props.data.id, this.type, this.ref)}
+          name={this.buttonName}
+          visible={this.state.imageReady}
+        >
+          <ImageRef
+            name="Image-Dynamic"
+            onLoadStart={() => this.setState({ imageReady: false })}
+            onLoad={() => this.setState({ imageReady: true })}
+            visible={this.state.imageReady}
+            source={this.props.focusable ? { uri: this.imageUri } : null } />
           <TextRef name="Text-Details" text={this.props.data.overview} />
           <TextRef name="Text-Title" text={this.title} />
         </ButtonRef>

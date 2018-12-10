@@ -27,10 +27,8 @@ class Lander extends Component {
     this.props.navigation.addListener('didFocus', () => {
 
       if (this.landerInTimeline && this.navInTimeline) {
-        Promise.all([
-          this.landerInTimeline.play,
-          this.navInTimeline.play,
-        ]);
+        this.landerInTimeline.play();
+        this.navInTimeline.play(1);
       }
 
     });
@@ -99,9 +97,6 @@ class Lander extends Component {
     discover = discover.filter(asset => asset.original_language === 'en' && asset.backdrop_path).slice(0, 15);
     movies = movies.filter(asset => asset.original_language === 'en' && asset.poster_path).slice(0, 10);
     tv = tv.filter(asset => asset.original_language === 'en' && asset.backdrop_path).slice(0, 10);
-
-    if (!this.props.isFocused)
-      return <View />;
 
     return (
       <Composition source="Auryn_Lander">
