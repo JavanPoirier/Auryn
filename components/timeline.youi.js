@@ -22,9 +22,12 @@ export default class Timeline extends PureComponent {
     );
   }
 
-  play = () => new Promise(resolve => {
+  play = (seek = 0) => new Promise(resolve => {
     this.resolve = resolve;
-    this.ref.play();
+    if (seek)
+      this.ref.seek(seek);
+    else
+      this.ref.play();
   });
 
   stop = () => new Promise(resolve => {
