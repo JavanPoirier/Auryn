@@ -42,7 +42,7 @@ class Lander extends Component {
       routeName: screen,
     });
 
-    this.props.navigation.dispatch(navigateAction);
+    this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));
   }
 
   scrollToScreen = (screenIndex, animated = true) => {
@@ -75,8 +75,8 @@ class Lander extends Component {
     });
     this.props.dispatch(tmdbDetails(id, type));
     this.lastFocusItem = ref;
-    this.props.navigation.dispatch(navigateAction);
-  }
+    this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));
+}
 
   getItemLayout = (data, index, imageType, imageSize) => {
     let length = 0;
@@ -126,7 +126,7 @@ class Lander extends Component {
             this.landerInTimeline.play();
           }}
         />
-        <TimelineRef name="LanderOut" ref={timeline => this.outTimeline = timeline} />
+        <Timeline name="LanderOut" ref={timeline => this.outTimeline = timeline} />
         <ScrollRef
           name="Stack"
           ref={scroller => this.scroller = scroller}
