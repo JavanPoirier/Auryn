@@ -19,8 +19,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 1256
-        y: 670
+        x: 346
+        y: 180
         z: 0
       }
       orientation {
@@ -36,6 +36,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 717
   }
   layer {
     name: "Btn-Profile2"
@@ -53,8 +54,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 960
-        y: 670
+        x: 50
+        y: 180
         z: 0
       }
       orientation {
@@ -70,6 +71,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 717
   }
   layer {
     name: "Btn-Profile1"
@@ -87,8 +89,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 654
-        y: 670
+        x: -256
+        y: 180
         z: 0
       }
       orientation {
@@ -104,6 +106,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 717
   }
   layer {
     name: "Title"
@@ -209,6 +212,40 @@ activecomp {
       isAllCaps: false
     }
   }
+  layer {
+    name: "ScalePropCenterAnchor"
+    id: 717
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
   bgcolor {
     alpha: 1
     red: 0.086274509803921567
@@ -266,4 +303,11 @@ sources {
   copy_source: true
   file_name: "yi_Raleway-Medium.ttf"
   style_name: "Medium"
+}
+sources {
+  uid: 690011406
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
 }

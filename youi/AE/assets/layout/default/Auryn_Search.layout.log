@@ -20,7 +20,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 1084
+        y: 594
         z: 0
       }
       orientation {
@@ -36,6 +36,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 751
   }
   layer {
     name: "List-Movies"
@@ -54,7 +55,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 1134
+        y: 644
         z: 0
       }
       orientation {
@@ -70,6 +71,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 751
   }
   layer {
     name: "Popular Movies"
@@ -88,7 +90,7 @@ activecomp {
       }
       position {
         x: 537.72
-        y: 942.28015
+        y: 452.28012
         z: 0
       }
       orientation {
@@ -122,6 +124,7 @@ activecomp {
       multiline: true
       isAllCaps: false
     }
+    parentid: 751
   }
   layer {
     name: "Bar"
@@ -140,7 +143,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 690
+        y: 200
         z: 0
       }
       orientation {
@@ -156,6 +159,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 751
   }
   layer {
     name: "List-PDP"
@@ -174,7 +178,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 740
+        y: 250
         z: 0
       }
       orientation {
@@ -190,6 +194,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 751
   }
   layer {
     name: "Popular Shows 2"
@@ -208,7 +213,7 @@ activecomp {
       }
       position {
         x: 537.72
-        y: 548.28015
+        y: 58.280121
         z: 0
       }
       orientation {
@@ -242,6 +247,7 @@ activecomp {
       multiline: true
       isAllCaps: false
     }
+    parentid: 751
   }
   layer {
     name: "TextInput"
@@ -259,8 +265,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 960
-        y: 380
+        x: 50
+        y: -110
         z: 0
       }
       orientation {
@@ -272,6 +278,75 @@ activecomp {
       rotationY: 0
       rotationZ: 0
       opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 750
+  }
+  layer {
+    name: "ScaleWidthPropCenterAnchor"
+    id: 750
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "ScaleWidthPropLeftAnchor"
+    id: 751
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 0
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
@@ -330,4 +405,11 @@ sources {
   width: 1024
   height: 74
   copy_source: true
+}
+sources {
+  uid: 690011406
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
 }

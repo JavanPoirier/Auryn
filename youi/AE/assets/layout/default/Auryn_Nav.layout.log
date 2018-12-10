@@ -19,7 +19,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 1806
+        x: -14
         y: 110
         z: 0
       }
@@ -36,6 +36,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 85
   }
   layer {
     name: "Btn-Nav-Search"
@@ -53,7 +54,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 1742
+        x: -78
         y: 110
         z: 0
       }
@@ -70,6 +71,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 85
   }
   layer {
     name: "Btn-Nav-Live"
@@ -87,7 +89,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 1267
+        x: 357
         y: 44
         z: 0
       }
@@ -104,6 +106,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 86
   }
   layer {
     name: "Btn-Nav-Shows"
@@ -121,7 +124,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 1062
+        x: 152
         y: 44
         z: 0
       }
@@ -138,6 +141,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 86
   }
   layer {
     name: "Btn-Nav-Movies"
@@ -155,7 +159,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 857
+        x: -53
         y: 44
         z: 0
       }
@@ -172,6 +176,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 86
   }
   layer {
     name: "Btn-Nav-Discover"
@@ -189,7 +194,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 652
+        x: -258
         y: 44
         z: 0
       }
@@ -206,6 +211,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 86
   }
   layer {
     name: "Nav-Logo"
@@ -236,6 +242,109 @@ activecomp {
       rotationY: 0
       rotationZ: 0
       opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 87
+  }
+  layer {
+    name: "ScalePropTopRightAnchor"
+    id: 85
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 100
+        y: 0
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1920
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "ScalePropTopAnchor"
+    id: 86
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 50
+        y: 0
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "ScalePropTopLeftAnchor"
+    id: 87
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 0
+        y: 0
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
@@ -314,4 +423,11 @@ sources {
   width: 80
   height: 72
   copy_source: true
+}
+sources {
+  uid: 690011406
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
 }

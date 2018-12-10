@@ -38,7 +38,7 @@ activecomp {
     castsshadows: false
     textinfo {
       justification: AE_TEXT_LEFT
-      fontSize: 36
+      fontSize: 32
       fontColor {
         alpha: 1
         red: 1
@@ -99,7 +99,7 @@ activecomp {
     castsshadows: false
     textinfo {
       justification: AE_TEXT_LEFT
-      fontSize: 72
+      fontSize: 60
       fontColor {
         alpha: 1
         red: 1

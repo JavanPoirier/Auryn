@@ -19,8 +19,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 336
-        y: 662
+        x: -574
+        y: 172
         z: 0
       }
       orientation {
@@ -36,6 +36,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 194
   }
   layer {
     name: "Logo-TMDB-Movie.png"
@@ -53,8 +54,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 476
-        y: 514
+        x: -434
+        y: 24
         z: 0
       }
       orientation {
@@ -70,6 +71,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 194
   }
   layer {
     name: "Logo-TMDB-The.png"
@@ -87,8 +89,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 362.5
-        y: 364
+        x: -547.5
+        y: -126
         z: 0
       }
       orientation {
@@ -104,6 +106,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 194
   }
   layer {
     name: "Deep Royal Blue Solid 13"
@@ -121,8 +124,8 @@ activecomp {
         z: 1
       }
       position {
-        x: -236
-        y: 540
+        x: -1146
+        y: 50
         z: 0
       }
       orientation {
@@ -138,6 +141,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 194
   }
   layer {
     name: "Logo-TMDB-Outline.png"
@@ -155,8 +159,8 @@ activecomp {
         z: 1
       }
       position {
-        x: 960
-        y: 540
+        x: 50
+        y: 50
         z: 0
       }
       orientation {
@@ -172,6 +176,7 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+    parentid: 194
   }
   layer {
     name: "Loader"
@@ -190,7 +195,7 @@ activecomp {
       }
       position {
         x: 90
-        y: 1164
+        y: 184
         z: 0
       }
       orientation {
@@ -202,6 +207,75 @@ activecomp {
       rotationY: 0
       rotationZ: 0
       opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 193
+  }
+  layer {
+    name: "ScalePropBottomLeftAnchor"
+    id: 193
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 0
+        y: 100
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: 1080
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "ScalePropCenterAnchor"
+    id: 194
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 960
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
@@ -279,4 +353,11 @@ sources {
   width: 100
   height: 100
   copy_source: true
+}
+sources {
+  uid: 690011406
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
 }
