@@ -129,51 +129,50 @@ export default class Video extends PureComponent {
   render() { // eslint-disable-line max-lines-per-function
     return (
       <ViewRef name="Video">
-      <VideoRef
-        name="VideoSurface"
-        ref={ref => {
-          this.videoPlayer = ref;
-        }}
-        onPaused={ () => this.setState({ paused: true }) }
-        onPlaying={ () => this.setState({ paused: false }) }
-        source={ this.state.videoSource }
-        onErrorOccurred={ () => {
-          this.setState({ videoSource: this.fallbackVideo });
-        }}
-        onCurrentTimeUpdated={ this.onCurrentTimeUpdated }
-        onDurationChanged={ duration => {
-          this.setState({ duration: duration.nativeEvent });
-        }}
-      />
-      <ViewRef name="ActivityIndicator">
-        <Timeline name="Show" ref={ref => this.activityShowTimeline = ref} />
-        <Timeline name="Hide" ref={ref => this.activityHideTimeline = ref} />
-      </ViewRef>
-      <ViewRef name="Player-Controls">
-        <Timeline name="Show"
-          ref={ref => this.controlsShowTimeline = ref}
-        // OnLoad={timeline => timeline.play()}
+        <VideoRef
+          name="VideoSurface"
+          ref={ref => {
+            this.videoPlayer = ref;
+          }}
+          onPaused={ () => this.setState({ paused: true }) }
+          onPlaying={ () => this.setState({ paused: false }) }
+          source={ this.state.videoSource }
+          onErrorOccurred={ () => {
+            this.setState({ videoSource: this.fallbackVideo });
+          }}
+          onCurrentTimeUpdated={ this.onCurrentTimeUpdated }
+          onDurationChanged={ duration => {
+            this.setState({ duration: duration.nativeEvent });
+          }}
         />
-        <Timeline name="Hide"
-          ref={ref => this.controlsHideTimeline = ref}
-        />
-        <ToggleButton name="Btn-PlayPause"
-          onPress={this.playPause}
-          toggled={!this.state.paused}
-          toggle={true}
-          focusable={this.props.visible}
-          ref={ref => this.playButton = ref}
-        />
-        <TextRef name="Duration" text={this.state.formattedTime} />
-        <ViewRef name="Bar">
-          <TimelineRef name="ScrollStart" ref={ref => this.scrubberTimeline = ref} />
+        <ViewRef name="ActivityIndicator">
+          <Timeline name="Show" ref={ref => this.activityShowTimeline = ref} />
+          <Timeline name="Hide" ref={ref => this.activityHideTimeline = ref} />
         </ViewRef>
-        <ViewRef name="Video-TextDetails">
-          <TextRef name="Title" text={this.props.title} />
-          <TextRef name="Details" text={this.props.details} />
-        </ViewRef>
-      </ViewRef>
-    </ViewRef>
+        <ViewRef name="Player-Controls">
+          <Timeline name="Show"
+            ref={ref => this.controlsShowTimeline = ref}
+          />
+          <Timeline name="Hide"
+            ref={ref => this.controlsHideTimeline = ref}
+          />
+          <ToggleButton name="Btn-PlayPause"
+            onPress={this.playPause}
+            toggled={!this.state.paused}
+            toggle={true}
+            focusable={this.props.visible}
+            ref={ref => this.playButton = ref}
+          />
+          <TextRef name="Duration" text={this.state.formattedTime} />
+          <ViewRef name="Bar">
+            <TimelineRef name="ScrollStart" ref={ref => this.scrubberTimeline = ref} />
+          </ViewRef>
+          <ViewRef name="Video-TextDetails">
+            <TextRef name="Title" text={this.props.title} />
+            <TextRef name="Details" text={this.props.details} />
+          </ViewRef>
+       </ViewRef>
+     </ViewRef>
     );
   }
 

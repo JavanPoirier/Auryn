@@ -107,7 +107,13 @@ class PDP extends Component {
 
         <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
         <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
-        <Video source={videoSource} ref={ref => this.video = ref} visible={this.state.videoVisible}/>
+        <Video
+          source={videoSource}
+          ref={ref => this.video = ref}
+          visible={this.state.videoVisible}
+          title={asset.title || asset.name}
+          details={asset.overview}
+        />
 
         <Timeline name="PDPIn"
           ref={timeline => this.inTimeline = timeline}
