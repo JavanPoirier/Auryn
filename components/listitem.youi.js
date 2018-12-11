@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { Composition, TextRef, ButtonRef, ImageRef, View, Image, StyleSheet, TouchableHighlight } from '@youi/react-native-youi';
 
 export default class ListItem extends PureComponent {
@@ -14,6 +14,16 @@ export default class ListItem extends PureComponent {
     this.imageStyle = styles[this.buttonName.replace(/-/gu, '')];
     this.mode = 'comp';
   }
+
+  metadata = () =>
+    <Fragment>
+      <ImageRef
+        name="Image-Dynamic"
+        source={ { uri: this.imageUri } } />
+      <TextRef name="Text-Details" text={this.props.data.overview} />
+      <TextRef name="Text-Title" text={this.title} />
+    </Fragment>
+
 
   render() {
     if (this.mode !== 'comp') {
@@ -32,8 +42,6 @@ export default class ListItem extends PureComponent {
       );
     }
 
-    if (!this.props.focusable)
-      return <Composition source={this.compositionName} loadSync={true}/>;
     return (
       <Composition source={this.compositionName} loadSync={true}>
         <ButtonRef
@@ -43,14 +51,7 @@ export default class ListItem extends PureComponent {
           name={this.buttonName}
           visible={this.state.imageReady}
         >
-          <ImageRef
-            name="Image-Dynamic"
-            onLoadStart={() => this.setState({ imageReady: false })}
-            onLoad={() => this.setState({ imageReady: true })}
-            visible={this.state.imageReady}
-            source={this.props.focusable ? { uri: this.imageUri } : null } />
-          <TextRef name="Text-Details" text={this.props.data.overview} />
-          <TextRef name="Text-Title" text={this.title} />
+        {this.props.focusable ? this.metadata() : null }
         </ButtonRef>
       </Composition>
     );
