@@ -1,4 +1,4 @@
-export default function youtubeReducer(state = {
+export default function youtubeReducer(state = { // eslint-disable-line max-lines-per-function
   videoSource: {
     uri: 'http://www.streambox.fr/playlists/x31jrg1/x31jrg1.m3u8',
     type: 'HLS',
@@ -28,7 +28,13 @@ export default function youtubeReducer(state = {
           fetched: true,
         };
       }
-      return state;
+
+      // No viable format found
+      return {
+          ...state,
+          fetching: false,
+          fetched: true,
+        };
     }
     case 'YOUTUBE_VIDEO_REJECTED':
       return {
