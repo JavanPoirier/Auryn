@@ -1,7 +1,7 @@
 activecomp {
   name: "Auryn_Player-Controls"
   width: 1920
-  height: 606
+  height: 1080
   defaultcameradistance: 2666.6667
   layer {
     name: "Gradient-Player.png"
@@ -20,7 +20,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 570
+        y: 1044
         z: 0
       }
       orientation {
@@ -54,7 +54,7 @@ activecomp {
       }
       position {
         x: 1760
-        y: 779.36017
+        y: 1253.3601
         z: 0
       }
       orientation {
@@ -115,7 +115,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 750
+        y: 1224
         z: 0
       }
       orientation {
@@ -149,7 +149,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 522
+        y: 996
         z: 0
       }
       orientation {
@@ -183,7 +183,7 @@ activecomp {
       }
       position {
         x: 138
-        y: 681
+        y: 665
         z: 0
       }
       orientation {
@@ -195,6 +195,75 @@ activecomp {
       rotationY: 0
       rotationZ: 0
       opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 519924
+  }
+  layer {
+    name: "ScalePropLeftAnchor"
+    id: 519924
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 0
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 0
+        y: 540
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+  }
+  layer {
+    name: "ScalePropTopRightAnchor"
+    id: 519925
+    sourceid: 690011406
+    transform {
+      anchorPoint {
+        x: 100
+        y: 0
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1920
+        y: 0
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
     }
     acceptsshadows: true
     acceptslights: true
@@ -252,4 +321,11 @@ sources {
   width: 150
   height: 150
   copy_source: true
+}
+sources {
+  uid: 690011406
+  srctype: AE_NULL_SRC
+  width: 100
+  height: 100
+  copy_source: false
 }

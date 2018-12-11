@@ -69,8 +69,8 @@ tracks {
     datatype: AE_FLOAT_VECTOR_DATA
     timeOffset: 0
     inttype: AE_INTERP_LINEAR
-    fvalue1: 72
-    fvalue2: 30
+    fvalue1: -628
+    fvalue2: 50
     fvalue3: 0
   }
   keytimes {
@@ -83,8 +83,8 @@ tracks {
     sOutTangentX: 231
     sOutTangentY: 0
     sOutTangentZ: 0
-    fvalue1: 72
-    fvalue2: 30
+    fvalue1: -628
+    fvalue2: 50
     fvalue3: 0
   }
   keytimes {
@@ -97,8 +97,8 @@ tracks {
     sOutTangentX: 231
     sOutTangentY: 0
     sOutTangentZ: 0
-    fvalue1: 1458
-    fvalue2: 30
+    fvalue1: 758
+    fvalue2: 50
     fvalue3: 0
   }
   trackName: "Position"
@@ -796,6 +796,17 @@ tracks {
     fvalue3: 1
   }
   trackName: "Scale"
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 519945
+  targetname: "ScalePropCenterAnchor"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
 }
 markers {
   starttime: 1

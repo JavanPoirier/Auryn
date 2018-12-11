@@ -4295,7 +4295,7 @@ tracks {
 tracks {
   binding: IS_VISIBLE
   targetid: 66
-  targetname: "ScaleWidthPropBottomLeftAnchor"
+  targetname: "ScaleWidthPropLeftAnchor"
   keytimes {
     datatype: AE_INT_DATA
     timeOffset: 0
