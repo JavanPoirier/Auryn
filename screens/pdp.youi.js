@@ -5,7 +5,6 @@ import {
   ButtonRef,
   Composition,
   ImageRef,
-  ListRef,
   TextRef,
   TimelineRef,
   View,
@@ -14,7 +13,7 @@ import {
 } from '@youi/react-native-youi';
 import { connect } from 'react-redux';
 
-import { Timeline, Video, ListItem } from '../components';
+import { Timeline, Video, List } from '../components';
 import { tmdbDetails  } from '../actions/tmdbActions';
 import { youtubeVideo } from '../actions/youtubeActions';
 
@@ -95,15 +94,6 @@ class PDP extends Component {
     return `Starring: ${cast}`;
   }
 
-  getItemLayout = (data, index) => {
-    const length = 534;
-    return {
-      index,
-      length,
-      offset: length * index,
-    };
-  }
-
   render() { // eslint-disable-line max-lines-per-function
     const { asset, fetched, videoSource } = this.props;
     if (!fetched || !this.props.isFocused)
@@ -129,21 +119,12 @@ class PDP extends Component {
 
         <Timeline name="PDPOut" ref={timeline => this.outTimeline = timeline} />
         <ViewRef name="PDP-Scroller">
-          <ListRef
+          <List
             name="List-PDP"
+            type="Shows"
             data={asset.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString() }))}
-            initialScrollIndex={0}
-            getItemLayout={this.getItemLayout}
-            renderItem={({ item, index }) =>
-              <ListItem
-                imageType="Backdrop"
-                size="Small"
-                focusable={this.props.isFocused && !this.state.videoVisible}
-                onPress={this.onPressItem}
-                data={item}
-                index={index}
-              />}
-            horizontal={true}
+            focusable={this.props.isFocused && !this.state.videoVisible}
+            onPressItem={this.onPressItem}
           />
 
           <TimelineRef name="ContentIn" ref={timeline => this.contentInTimeline = timeline} onLoad={ref => ref.play()} />

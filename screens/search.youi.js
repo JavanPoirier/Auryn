@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Composition, BackHandler, TextInputRef, ListRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
+import { View, Composition, BackHandler, TextInputRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
 import { tmdbSearch, tmdbDetails } from '../actions/tmdbActions';
-import { Timeline, ListItem } from '../components';
+import { Timeline, List } from '../components';
 import { NavigationActions, withNavigationFocus } from 'react-navigation';
 import { debounce } from 'throttle-debounce';
 import { connect } from 'react-redux';
@@ -66,8 +66,8 @@ class Search extends Component {
     let movies = [];
     let tv = [];
     if (fetched && this.state.query) {
-      movies = data.filter(it => it.media_type === 'movie');
-      tv = data.filter(it => it.media_type === 'tv');
+      movies = data.filter(it => it.media_type === 'movie').slice(0, 10);
+      tv = data.filter(it => it.media_type === 'tv').slice(0, 10);
     }
     return (
       <Composition source="Auryn_Search">
@@ -82,35 +82,19 @@ class Search extends Component {
           defaultValue={this.state.query}
         />
 
-        <ListRef
+        <List
           name="List-PDP"
+          type="Shows"
           data={tv}
-          renderItem={({ item, index }) =>
-          <ListItem
-            imageType="Backdrop"
-            size="Small"
-            focusable={this.props.isFocused}
-            onPress={this.onPressItem}
-            data={item}
-            index={index}
-          />}
-          horizontal={true}
+          focusable={this.props.isFocused}
+          onPressItem={this.onPressItem}
         />
-
-        <ListRef
+        <List
           name="List-Movies"
+          type="Shows"
           data={movies}
-          renderItem={({ item, index }) =>
-          <ListItem
-            imageType="Backdrop"
-            size="Small"
-            focusable={this.props.isFocused && !this.state.videoVisible}
-            onPress={this.onPressItem}
-            data={item}
-            index={index}
-          />}
-          keyExtractor={item => item.id}
-          horizontal={true}
+          focusable={this.props.isFocused}
+          onPressItem={this.onPressItem}
         />
 
         <Timeline name="SearchOut" ref={timeline => this.outTimeline = timeline} />

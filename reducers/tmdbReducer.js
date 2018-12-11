@@ -60,7 +60,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
       return {
         ...state,
         movies: {
-          data: action.payload.results.map(it => ({ ...it, key: it.id.toString() })),
+          data: action.payload,
           fetching: false,
           fetched: true,
         },
@@ -83,7 +83,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
       return {
         ...state,
         tv: {
-          data: action.payload.results.map(it => ({ ...it, key: it.id.toString() })),
+          data: action.payload,
           fetching: false,
           fetched: true,
         },
@@ -129,7 +129,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
       return {
         ...state,
         search: {
-          data: action.payload.results.map(it => ({ ...it, key: it.id.toString() })),
+          data: action.payload,
           fetching: false,
           fetched: true,
         },
