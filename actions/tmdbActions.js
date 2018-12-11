@@ -18,13 +18,13 @@ export const tmdbDiscover = () => dispatch => {
 
 export const tmdbMovies = () => dispatch => dispatch({
   type: 'TMDB_MOVIES',
-  payload: fetch(`http://api.themoviedb.org/3/movie/top_rated?${apiKeyParam}`)
+  payload: fetch(`http://api.themoviedb.org/3/movie/popular?${apiKeyParam}`)
     .then(response => response.json()),
 });
 
 export const tmdbTv = () => dispatch => dispatch({
   type: 'TMDB_TV',
-  payload: fetch(`http://api.themoviedb.org/3/tv/top_rated?${apiKeyParam}`)
+  payload: fetch(`http://api.themoviedb.org/3/tv/popular?${apiKeyParam}`)
     .then(response => response.json()),
 });
 
