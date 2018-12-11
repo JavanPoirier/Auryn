@@ -15,11 +15,10 @@ import { connect } from 'react-redux';
 
 import { Timeline, Video, List } from '../components';
 import { tmdbDetails  } from '../actions/tmdbActions';
-import { youtubeVideo } from '../actions/youtubeActions';
 
 @connect(store => ({
   asset: store.tmdbReducer.details.data,
-  fetched: store.tmdbReducer.details.fetched,
+  fetched: store.tmdbReducer.details.fetched && store.youtubeReducer.fetched,
   videoSource: store.youtubeReducer.videoSource,
 }))
 
@@ -35,15 +34,9 @@ class PDP extends Component {
     if (this.props.asset !== prevProps.asset) {
       console.log('ASSET', this.props.asset);
       this.contentInTimeline.play();
-      this.dispatchYoutubeVideo();
 
       FocusManager.focus(this.posterButton);
     }
-  }
-
-  dispatchYoutubeVideo = () => {
-    if (this.props.asset && this.props.asset.videos.results.length > 0)
-        this.props.dispatch(youtubeVideo(this.props.asset.videos.results[0].key));
   }
 
   navigateBack = () => {
@@ -67,8 +60,6 @@ class PDP extends Component {
   }
 
   componentDidMount() {
-    this.dispatchYoutubeVideo();
-
     this.props.navigation.addListener('didFocus', () => {
       if (this.contentInTimeline)
         this.contentInTimeline.play();
