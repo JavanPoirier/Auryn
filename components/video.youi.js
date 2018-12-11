@@ -52,7 +52,7 @@ export default class Video extends PureComponent {
       if (this.props.visible)
         this.keys.forEach(key => Input.addEventListener(key, this.registerUserActivity));
       else {
-        this.controlsHideTimeline.play();
+        this.controlsHideTimeline.play(1);
         this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
       }
 

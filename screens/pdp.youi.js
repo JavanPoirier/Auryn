@@ -36,11 +36,15 @@ class PDP extends Component {
     if (this.props.asset !== prevProps.asset) {
       console.log('ASSET', this.props.asset);
       this.contentInTimeline.play();
-      if (this.props.asset.videos.results.length > 0)
-        this.props.dispatch(youtubeVideo(this.props.asset.videos.results[0].key));
+      this.dispatchYoutubeVideo();
 
       FocusManager.focus(this.posterButton);
     }
+  }
+
+  dispatchYoutubeVideo = () => {
+    if (this.props.asset && this.props.asset.videos.results.length > 0)
+        this.props.dispatch(youtubeVideo(this.props.asset.videos.results[0].key));
   }
 
   navigateBack = () => {
@@ -49,6 +53,7 @@ class PDP extends Component {
 
       this.videoOutTimeline.play();
       this.setState({ videoVisible: false });
+      FocusManager.focus(this.posterButton);
     } else {
       this.outTimeline.play().then(() => {
         this.props.navigation.goBack(null);
@@ -63,6 +68,8 @@ class PDP extends Component {
   }
 
   componentDidMount() {
+    this.dispatchYoutubeVideo();
+
     this.props.navigation.addListener('didFocus', () => {
       if (this.contentInTimeline)
         this.contentInTimeline.play();
