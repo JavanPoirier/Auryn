@@ -55,6 +55,12 @@ class Lander extends Component {
   }
 
   onPressItem = (id, type, ref) => {
+    // CES
+    if (type === 'Ad') {
+      this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'AdOverlay' }));
+      return;
+    }
+    // END CES
     console.log(id);
     const navigateAction = NavigationActions.navigate({
       routeName: 'PDP',

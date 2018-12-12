@@ -1,15 +1,41 @@
 import React from 'react';
 import { View } from '@youi/react-native-youi';
 import ListItem from './listitem.youi';
+import { AdListItem } from '../ces2018';
 
 export default class DiscoverContainer extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
-  render() {
+  render() { // eslint-disable-line max-lines-per-function
     if (this.props.data.length !== 3) return null;
 
+    // CES
+    if (this.props.index === 1) {
+      return (
+        <View>
+          <View style={{ flexDirection: 'row' }}>
+            <ListItem
+              focusable={this.props.focusable} onPress={this.props.onPressItem}
+              imageType="Backdrop" size="Small"
+              data={this.props.data[0]}
+            />
+            <AdListItem
+              focusable={this.props.focusable} onPress={this.props.onPressItem}
+              imageType="Backdrop" size="Small"
+              data={this.props.data[1]}
+            />
+          </View>
+          <ListItem
+            focusable={this.props.focusable} onPress={this.props.onPressItem}
+            imageType="Backdrop" size="Large"
+            data={this.props.data[2]}
+          />
+        </View>
+      );
+    }
+    // END CES
     if (this.props.index % 2) {
       return (
         <View>

@@ -1,4 +1,7 @@
 import * as Screens from './screens';
+// CES
+import { AdOverlay } from './ces2018';
+// END CES
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 
 const stackOptions = {
@@ -24,6 +27,9 @@ const AppStack = createStackNavigator(
     PDP: { screen: Screens.PDP },
     Search: { screen: Screens.Search },
     Profile: { screen: Screens.Profile },
+    // CES
+    AdOverlay: { screen: AdOverlay },
+    // END CES
   },
   {
     ...stackOptions,
