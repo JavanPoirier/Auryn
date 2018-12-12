@@ -30,12 +30,16 @@ export default class YiReactApp extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    borderColor: 'black',
+    borderWidth: 3,
   },
   background: {
     width: 1920,
     height: 1080,
     resizeMode: 'repeat',
     position: 'absolute',
+    borderColor: 'black',
+    borderWidth: 5,
   },
 });
 
