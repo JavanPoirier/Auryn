@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ViewRef, VideoRef, TextRef, TimelineRef, Input, FocusManager } from '@youi/react-native-youi';
+import { ViewRef, VideoRef, ButtonRef, TextRef, TimelineRef, Input, FocusManager } from '@youi/react-native-youi';
 import { Timeline, ToggleButton } from '../components';
 
 export default class Video extends PureComponent {
@@ -128,7 +128,7 @@ export default class Video extends PureComponent {
 
   render() { // eslint-disable-line max-lines-per-function
     return (
-      <ViewRef name="Video">
+      <ButtonRef name="Video" onPress={this.registerUserActivity}>
         <VideoRef
           name="VideoSurface"
           ref={ref => {
@@ -172,7 +172,7 @@ export default class Video extends PureComponent {
             <TextRef name="Details" text={this.props.details} />
           </ViewRef>
        </ViewRef>
-     </ViewRef>
+     </ButtonRef>
     );
   }
 
