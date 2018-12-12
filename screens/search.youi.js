@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Composition, BackHandler, TextInputRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
 import { tmdbSearch, tmdbDetails } from '../actions/tmdbActions';
-import { Timeline, List } from '../components';
+import { Timeline, List, BackButton } from '../components';
 import { NavigationActions, withNavigationFocus } from 'react-navigation';
 import { debounce } from 'throttle-debounce';
 import { connect } from 'react-redux';
@@ -70,6 +70,11 @@ class Search extends Component {
     }
     return (
       <Composition source="Auryn_Search">
+        <BackButton
+          focusable={this.props.isFocused}
+          hasBackButton={this.props.screenProps.hasBackButton}
+          onPress={this.navigateBack}
+        />
         <TextInputRef
           ref={ref => this.searchText = ref}
           onLoad={() => {

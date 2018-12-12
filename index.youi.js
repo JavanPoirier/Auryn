@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, View, Image } from '@youi/react-native-youi';
+import { AppRegistry, StyleSheet, View, Image, DeviceInfo } from '@youi/react-native-youi';
 import { Provider } from 'react-redux';
 import store from './store';
 import Stack from './navigation';
@@ -11,6 +11,8 @@ import Stack from './navigation';
 export default class YiReactApp extends Component {
   constructor() {
     super();
+    const systemName = DeviceInfo.getSystemName();
+    this.hasBackButton = !['iOS'].includes(systemName);
   }
 
   render = () =>
@@ -20,7 +22,7 @@ export default class YiReactApp extends Component {
           style={styles.background}
           source={{ 'uri': 'res://drawable/default/Background-Gradient.png' }}
         />
-        <Stack />
+        <Stack screenProps={{ hasBackButton: this.hasBackButton }}/>
       </View>
     </Provider>
 }

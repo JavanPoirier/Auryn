@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Composition, BackHandler, ButtonRef, TextRef, FocusManager } from '@youi/react-native-youi';
-import { Timeline } from '../components';
+import { Timeline, BackButton } from '../components';
 import { withNavigationFocus } from 'react-navigation';
 
 class Profile extends Component {
@@ -39,6 +39,11 @@ class Profile extends Component {
 
     return (
       <Composition source="Auryn_Profile">
+        <BackButton
+          focusable={this.props.isFocused}
+          hasBackButton={this.props.screenProps.hasBackButton}
+          onPress={this.navigateBack}
+        />
         <Timeline name="ProfileIn" onLoad={timeline => timeline.play()} />
         <Timeline name="ProfileOut" ref={timeline => this.outTimeline = timeline} />
         {buttons}

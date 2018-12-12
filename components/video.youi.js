@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { ViewRef, VideoRef, ButtonRef, TextRef, TimelineRef, Input, FocusManager } from '@youi/react-native-youi';
-import { Timeline, ToggleButton } from '../components';
+import { Timeline, ToggleButton, BackButton } from '../components';
 
 export default class Video extends PureComponent {
   constructor(props) {
@@ -150,6 +150,11 @@ export default class Video extends PureComponent {
           <Timeline name="Hide" ref={ref => this.activityHideTimeline = ref} />
         </ViewRef>
         <ViewRef name="Player-Controls">
+          <BackButton
+            focusable={this.props.visible}
+            hasBackButton={this.props.hasBackButton}
+            onPress={this.props.onPressBackButton}
+          />
           <Timeline name="Show"
             ref={ref => this.controlsShowTimeline = ref}
           />

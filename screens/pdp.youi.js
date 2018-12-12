@@ -13,7 +13,7 @@ import {
 } from '@youi/react-native-youi';
 import { connect } from 'react-redux';
 
-import { Timeline, Video, List } from '../components';
+import { Timeline, Video, List, BackButton } from '../components';
 import { tmdbDetails  } from '../actions/tmdbActions';
 
 @connect(store => ({
@@ -100,6 +100,7 @@ class PDP extends Component {
           visible={this.state.videoVisible}
           title={asset.title || asset.name}
           details={asset.overview}
+          onPressBackButton={this.navigateBack}
         />
 
         <Timeline name="PDPIn"
@@ -109,6 +110,11 @@ class PDP extends Component {
 
         <Timeline name="PDPOut" ref={timeline => this.outTimeline = timeline} />
         <ViewRef name="PDP-Scroller">
+          <BackButton
+            focusable={this.props.isFocused}
+            hasBackButton={this.props.screenProps.hasBackButton}
+            onPress={this.navigateBack}
+          />
           <List
             name="List-PDP"
             type="Shows"
@@ -126,6 +132,7 @@ class PDP extends Component {
             onPress={this.playVideo}
             ref={ref => this.posterButton = ref}
             onLoad={() => FocusManager.focus(this.posterButton)}
+            hasBackButton={this.props.screenProps.hasBackButton}
           >
             <ImageRef
               name="Image-Dynamic"

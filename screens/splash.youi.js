@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, View, StyleSheet } from '@youi/react-native-youi';
+import { Composition, ViewRef, View, StyleSheet, DeviceInfo } from '@youi/react-native-youi';
 import { Timeline } from '../components';
 import { tmdbDiscover, tmdbMovies, tmdbTv } from '../actions/tmdbActions';
 import { NavigationActions } from 'react-navigation';
@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 class Splash extends Component {
   constructor(props) {
     super(props);
+    console.log('DEVICEINFO', DeviceInfo.getSystemName());
   }
 
   componentDidMount() {
