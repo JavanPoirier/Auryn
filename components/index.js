@@ -1,3 +1,4 @@
+import BackButton from './backButton.youi';
 import ListItem from './listitem.youi';
 import List from './list.youi';
 import Video from './video.youi';
@@ -7,6 +8,7 @@ import ToggleButton from './toggleButton.youi';
 import ToggleGroup from './toggleGroup.youi';
 
 export {
+  BackButton,
   ListItem,
   List,
   Timeline,
