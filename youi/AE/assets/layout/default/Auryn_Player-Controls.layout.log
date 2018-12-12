@@ -199,11 +199,46 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    parentid: 519924
+    parentid: 519925
+  }
+  layer {
+    name: "Btn-Back"
+    id: 519924
+    sourceid: 690011939
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 45
+        y: -113
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 519926
   }
   layer {
     name: "ScalePropLeftAnchor"
-    id: 519924
+    id: 519925
     sourceid: 690011406
     transform {
       anchorPoint {
@@ -237,7 +272,7 @@ activecomp {
   }
   layer {
     name: "ScalePropTopRightAnchor"
-    id: 519925
+    id: 519926
     sourceid: 690011406
     transform {
       anchorPoint {
@@ -278,6 +313,7 @@ activecomp {
   childtemplates: "Auryn_Player-Scrubber"
   childtemplates: "Auryn_Video-TextDetails"
   childtemplates: "Auryn_Btn-PlayPause"
+  childtemplates: "Auryn_Btn-Back"
 }
 sources {
   uid: 891
@@ -320,6 +356,14 @@ sources {
   name: "Auryn_Btn-PlayPause.layout"
   width: 150
   height: 150
+  copy_source: true
+}
+sources {
+  uid: 690011939
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Back.layout"
+  width: 100
+  height: 100
   copy_source: true
 }
 sources {

@@ -190,11 +190,46 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    parentid: 394
+    parentid: 395
+  }
+  layer {
+    name: "Btn-Back"
+    id: 394
+    sourceid: 690011939
+    transform {
+      anchorPoint {
+        x: 50
+        y: 50
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 46
+        y: -122
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 396
   }
   layer {
     name: "ScaleWidthPropLeftAnchor"
-    id: 394
+    id: 395
     sourceid: 690011406
     transform {
       anchorPoint {
@@ -228,7 +263,7 @@ activecomp {
   }
   layer {
     name: "ScaleWidthPropTopRightAnchor"
-    id: 395
+    id: 396
     sourceid: 690011406
     transform {
       anchorPoint {
@@ -283,6 +318,7 @@ activecomp {
   childtemplates: "Auryn_List-PDP"
   childtemplates: "Auryn_Layout-PDP-Meta"
   childtemplates: "Auryn_Btn-Poster-Large"
+  childtemplates: "Auryn_Btn-Back"
 }
 sources {
   uid: 322
@@ -322,6 +358,14 @@ sources {
   name: "Auryn_Btn-Poster-Large.layout"
   width: 400
   height: 700
+  copy_source: true
+}
+sources {
+  uid: 690011939
+  srctype: AE_COMP_SRC
+  name: "Auryn_Btn-Back.layout"
+  width: 100
+  height: 100
   copy_source: true
 }
 sources {
