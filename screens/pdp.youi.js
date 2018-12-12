@@ -51,6 +51,8 @@ class PDP extends Component {
         this.props.navigation.goBack(null);
       });
     }
+
+    return true;
   }
 
   onPressItem = (id, type) => {
@@ -61,13 +63,10 @@ class PDP extends Component {
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
-      if (this.contentInTimeline)
-        this.contentInTimeline.play();
-      BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
+      if (this.contentInTimeline) this.contentInTimeline.play();
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
     });
-    this.props.navigation.addListener('didBlur', () => {
-      BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
-    });
+    this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
   }
 
   playVideo = () => {

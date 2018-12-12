@@ -10,15 +10,14 @@ class AdOverlay extends PureComponent {
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
-      BackHandler.addEventListener('onBackButtonPressed', this.navigateBack);
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
     });
-    this.props.navigation.addListener('didBlur', () => {
-      BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
-    });
+    this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
   }
 
   navigateBack = () => {
     this.outTimeline.play().then(() => this.props.navigation.goBack(null));
+    return true;
   }
 
   render = () => {

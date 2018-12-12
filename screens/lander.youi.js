@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, TimelineRef, ScrollRef, ButtonRef, View, FocusManager } from '@youi/react-native-youi';
+import { Composition, ViewRef, TimelineRef, ScrollRef, ButtonRef, View, FocusManager, BackHandler } from '@youi/react-native-youi';
 import { Timeline, ToggleGroup, List } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -25,12 +25,18 @@ class Lander extends Component {
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
 
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => true);
+
+      // CES
+      if (this.adPressed) return;
+      // END CES
+
       if (this.landerInTimeline && this.navInTimeline) {
         this.landerInTimeline.play();
         this.navInTimeline.play(1);
       }
-
     });
+    this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
   }
 
   navigateToScreen = screen => {
@@ -56,7 +62,9 @@ class Lander extends Component {
 
   onPressItem = (id, type, ref) => {
     // CES
+    this.adPressed = false;
     if (type === 'Ad') {
+      this.adPressed = true;
       this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'AdOverlay' }));
       return;
     }
