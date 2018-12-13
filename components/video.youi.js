@@ -52,7 +52,7 @@ export default class Video extends PureComponent {
       if (this.props.visible)
         this.keys.forEach(key => Input.addEventListener(key, this.registerUserActivity));
       else {
-        this.controlsHideTimeline.play(1);
+        if (this.controlsHideTimeline) this.controlsHideTimeline.play(1);
         this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
       }
 
@@ -60,7 +60,7 @@ export default class Video extends PureComponent {
   }
 
   inactivityDetected = () => {
-    this.controlsHideTimeline.play();
+    if (this.controlsHideTimeline) this.controlsHideTimeline.play();
     this.controlsVisible = false;
   }
 
@@ -73,7 +73,7 @@ export default class Video extends PureComponent {
   hideControls = () => {
     this.controlsVisible = false;
     FocusManager.focus(this.videoPlayer);
-    this.controlsHideTimeline.play();
+    if (this.controlsHideTimeline) this.controlsHideTimeline.play();
   }
 
   registerUserActivity = () => {
