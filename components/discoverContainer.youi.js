@@ -17,18 +17,23 @@ export default class DiscoverContainer extends React.PureComponent {
         <View>
           <View style={{ flexDirection: 'row' }}>
             <ListItem
-              focusable={this.props.focusable} onPress={this.props.onPressItem}
+              focusable={this.props.focusable}
+              onPress={this.props.onPress}
+              onFocus={this.props.onFocus}
               imageType="Backdrop" size="Small"
               data={this.props.data[0]}
             />
             <AdListItem
-              focusable={this.props.focusable} onPress={this.props.onPressItem}
+              focusable={this.props.focusable}
+              onPress={this.props.onPress}
+              onFocus={this.props.onFocus}
               imageType="Backdrop" size="Small"
               data={this.props.data[1]}
             />
           </View>
           <ListItem
-            focusable={this.props.focusable} onPress={this.props.onPressItem}
+            focusable={this.props.focusable}
+            onPress={this.props.onPress}
             imageType="Backdrop" size="Large"
             data={this.props.data[2]}
           />
@@ -41,18 +46,23 @@ export default class DiscoverContainer extends React.PureComponent {
         <View>
           <View style={{ flexDirection: 'row' }}>
             <ListItem
-              focusable={this.props.focusable} onPress={this.props.onPressItem}
+              focusable={this.props.focusable}
+              onPress={this.props.onPress}
+              onFocus={this.props.onFocus}
               imageType="Backdrop" size="Small"
               data={this.props.data[0]}
             />
             <ListItem
-              focusable={this.props.focusable} onPress={this.props.onPressItem}
+              focusable={this.props.focusable}
+              onPress={this.props.onPressItem}
+              onFocus={this.props.onFocus}
               imageType="Backdrop" size="Small"
               data={this.props.data[1]}
             />
           </View>
           <ListItem
-            focusable={this.props.focusable} onPress={this.props.onPressItem}
+            focusable={this.props.focusable}
+            onPress={this.props.onPressItem}
             imageType="Backdrop" size="Large"
             data={this.props.data[2]}
           />
@@ -65,6 +75,7 @@ export default class DiscoverContainer extends React.PureComponent {
         <ListItem
           focusable={this.props.focusable} onPress={this.props.onPressItem}
           imageType="Backdrop" size="Large"
+          onFocus={this.props.onFocus}
           data={this.props.data[0]}
         />
         <View style={{ flexDirection: 'row' }}>

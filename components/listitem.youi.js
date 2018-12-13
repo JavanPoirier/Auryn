@@ -2,6 +2,11 @@ import React, { PureComponent, Fragment } from 'react';
 import { Composition, TextRef, ButtonRef, ImageRef, View, Image, StyleSheet, TouchableHighlight } from '@youi/react-native-youi';
 
 export default class ListItem extends PureComponent {
+  static defaultProps = {
+    onFocus: () => {},
+    onPress: () => {},
+  }
+
   constructor(props) {
     super(props);
     this.buttonName = `Btn-${this.props.imageType}-${this.props.size}`;
@@ -47,9 +52,10 @@ export default class ListItem extends PureComponent {
         <ButtonRef
           focusable={this.props.focusable}
           ref={ref => this.ref = ref}
+          onFocus={() => this.props.onFocus(this.ref)}
           onPress={() => this.props.onPress(this.props.data.id, this.type, this.ref)}
           name={this.buttonName}
-          visible={this.state.imageReady}
+          visible={this.state.focusable}
         >
         {this.props.focusable ? this.metadata() : null }
         </ButtonRef>

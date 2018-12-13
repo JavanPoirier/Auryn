@@ -5,6 +5,13 @@ import {
 } from '@youi/react-native-youi';
 
 export default class ToggleButton extends PureComponent {
+  static defaultProps = {
+    buttonRef: () => {},
+    onFocus: () => {},
+    onToggle: () => {},
+    onPress: () => {},
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -25,18 +32,15 @@ export default class ToggleButton extends PureComponent {
       focusable={this.props.focusable}
       name={this.props.name}
       ref={ref => {
-        if (this.props.buttonRef)
-          this.props.buttonRef(ref);
+        this.props.buttonRef(ref);
         this.ref = ref;
       }}
+      onFocus={() => this.props.onFocus(this.ref)}
       onPress={() => {
         if (this.state.toggled && this.props.isRadio) return;
 
-        if (this.props.onPress)
-          this.props.onPress();
-
-        if (this.props.onToggle)
-          this.props.onToggle(this.props.index);
+        this.props.onPress();
+        this.props.onToggle(this.props.index);
 
         this.setState({
           toggled: !this.state.toggled,

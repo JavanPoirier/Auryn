@@ -34,7 +34,8 @@ export default class List extends PureComponent {
       return (
         <DiscoverContainer
           focusable={this.props.focusable}
-          onPressItem={this.props.onPressItem}
+          onPress={this.props.onPressItem}
+          onFocus={this.props.onFocusItem}
           data={item.data}
           index={index}
         />
@@ -46,6 +47,7 @@ export default class List extends PureComponent {
         imageType={this.imageSettings.type}
         size={this.imageSettings.size}
         focusable={this.props.focusable}
+        onFocus={this.props.onFocusItem}
         onPress={this.props.onPressItem}
         data={item}
         index={index}
