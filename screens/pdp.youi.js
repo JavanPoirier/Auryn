@@ -101,6 +101,7 @@ class PDP extends Component {
           title={asset.title || asset.name}
           details={asset.overview}
           onPressBackButton={this.navigateBack}
+          hasBackButton={this.props.screenProps.hasBackButton}
         />
 
         <Timeline name="PDPIn"
