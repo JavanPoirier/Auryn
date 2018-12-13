@@ -19,13 +19,26 @@ class Lander extends Component {
     this.lists = [];
     this.lastFocusItem = null;
     this.menuGroup = ['Discover', 'Movies', 'Shows', 'Live']
-    .map((it, i) => ({ name: `Btn-Nav-${it}`, action: () => this.scrollToScreen(i) }));
+    .map((it, i) => (
+      {
+        name: `Btn-Nav-${it}`,
+        onPress: () => {
+          this.scrollToScreen(i);
+          this.selectedMenuItemIndex = i;
+        },
+      }
+    ));
   }
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
 
       this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => true);
+
+      if (this.lastFocusItem) {
+        FocusManager.enableFocus(this.lastFocusItem);
+        FocusManager.focus(this.lastFocusItem);
+      }
 
       // CES
       if (this.adPressed) return;
@@ -35,6 +48,8 @@ class Lander extends Component {
         this.landerInTimeline.play();
         this.navInTimeline.play(1);
       }
+
+
     });
     this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
   }
@@ -51,6 +66,9 @@ class Lander extends Component {
   scrollToScreen = (screenIndex, animated = true) => {
     for (let index = 0; index < this.lists.length; index++)
       FocusManager.setNextFocus(this.menuButtons.getButtonRef(index), this.lists[screenIndex], 'down');
+    FocusManager.setNextFocus(this.searchButton, this.lists[screenIndex], 'down');
+    FocusManager.setNextFocus(this.profileButton, this.lists[screenIndex], 'down');
+    FocusManager.setNextFocus(this.lists[screenIndex], this.menuButtons.getButtonRef(screenIndex), 'up');
 
     this.setState({ currentListIndex: screenIndex });
     this.scroller.scrollTo({
@@ -60,7 +78,17 @@ class Lander extends Component {
     });
   }
 
-  onPressItem = (id, type, ref) => {
+  onFocusItem = ref => {
+    this.lastFocusItem = ref;
+    FocusManager.setNextFocus(ref, this.menuButtons.getButtonRef(this.state.currentListIndex), 'up');
+    for (let index = 0; index < this.lists.length; index++)
+      FocusManager.setNextFocus(this.menuButtons.getButtonRef(index), ref, 'down');
+
+    FocusManager.setNextFocus(this.searchButton, ref, 'down');
+    FocusManager.setNextFocus(this.profileButton, ref, 'down');
+  }
+
+  onPressItem = (id, type) => {
     // CES
     this.adPressed = false;
     if (type === 'Ad') {
@@ -79,7 +107,6 @@ class Lander extends Component {
       key: id,
     });
     this.props.dispatch(tmdbDetails(id, type));
-    this.lastFocusItem = ref;
     this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));
   }
 
@@ -94,11 +121,13 @@ class Lander extends Component {
         <ButtonRef
           name="Btn-Nav-Search"
           focusable={this.props.isFocused}
+          ref={ref => this.searchButton = ref}
           onPress={() => this.navigateToScreen('Search')}
         />
         <ButtonRef
           name="Btn-Nav-Profile"
           focusable={this.props.isFocused}
+          ref={ref => this.profileButton = ref}
           onPress={() => this.navigateToScreen('Profile')}
         />
         <Timeline name="LanderIn"
@@ -123,6 +152,7 @@ class Lander extends Component {
                 data={this.props.discover}
                 ref={ref => this.lists[0] = ref}
                 focusable={this.props.isFocused && this.state.currentListIndex === 0}
+                onFocusItem={this.onFocusItem}
                 onPressItem={this.onPressItem}
               />
             </Composition>
@@ -133,6 +163,7 @@ class Lander extends Component {
                 data={this.props.movies}
                 ref={ref => this.lists[1] = ref}
                 focusable={this.props.isFocused && this.state.currentListIndex === 1}
+                onFocusItem={this.onFocusItem}
                 onPressItem={this.onPressItem}
               />
             </Composition>
@@ -143,6 +174,7 @@ class Lander extends Component {
                 data={this.props.tv}
                 ref={ref => this.lists[2] = ref}
                 focusable={this.props.isFocused && this.state.currentListIndex === 2}
+                onFocusItem={this.onFocusItem}
                 onPressItem={this.onPressItem}
               />
             </Composition>
@@ -153,6 +185,7 @@ class Lander extends Component {
                 data={this.props.tv.slice(0, 2)}
                 ref={ref => this.lists[3] = ref}
                 focusable={this.props.isFocused && this.state.currentListIndex === 3}
+                onFocusItem={this.onFocusItem}
                 onPressItem={this.onPressItem}
               />
             </Composition>
