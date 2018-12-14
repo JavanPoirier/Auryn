@@ -1,6 +1,178 @@
 tracks {
   binding: IS_VISIBLE
   targetid: 187
+  targetname: "Background-Gradient.png"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 188
+  targetname: "Deep Royal Blue Solid 13"
+  keytimes {
+    datatype: AE_INT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_HOLD
+    ivalue1: 1
+  }
+}
+tracks {
+  binding: OPACITY
+  targetid: 188
+  targetname: "Deep Royal Blue Solid 13"
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 0
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 7.95
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 1
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 7.96666
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.99063516
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 7.98332
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.95172888
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 7.9999804
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.8484208
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.0166407
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.65097541
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.0333
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.48137233
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.04996
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.37106213
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.06662
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.29452136
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.08328
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.23819819
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.0999393
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.1953043
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.1165991
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.16203445
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.1332588
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.1360449
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.1499186
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.11578588
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.1665783
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.10017589
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.183238
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.088427775
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.1998978
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.079949118
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.2165575
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.074281752
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.2332172
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.071063191
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.249877
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.070001185
+    isCookedKeytime: true
+  }
+  keytimes {
+    datatype: AE_FLOAT_DATA
+    timeOffset: 8.25
+    inttype: AE_INTERP_LINEAR
+    fvalue1: 0.07
+  }
+  trackName: "Opacity"
+}
+tracks {
+  binding: IS_VISIBLE
+  targetid: 189
   targetname: "Logo-TMDB-DB.png"
   keytimes {
     datatype: AE_INT_DATA
@@ -11,7 +183,7 @@ tracks {
 }
 tracks {
   binding: POSITION
-  targetid: 187
+  targetid: 189
   targetname: "Logo-TMDB-DB.png"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
@@ -482,7 +654,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 187
+  targetid: 189
   targetname: "Logo-TMDB-DB.png"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -3410,7 +3582,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 188
+  targetid: 190
   targetname: "Logo-TMDB-Movie.png"
   keytimes {
     datatype: AE_INT_DATA
@@ -3421,7 +3593,7 @@ tracks {
 }
 tracks {
   binding: POSITION
-  targetid: 188
+  targetid: 190
   targetname: "Logo-TMDB-Movie.png"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
@@ -3883,7 +4055,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 188
+  targetid: 190
   targetname: "Logo-TMDB-Movie.png"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -6783,7 +6955,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 189
+  targetid: 191
   targetname: "Logo-TMDB-The.png"
   keytimes {
     datatype: AE_INT_DATA
@@ -6794,7 +6966,7 @@ tracks {
 }
 tracks {
   binding: POSITION
-  targetid: 189
+  targetid: 191
   targetname: "Logo-TMDB-The.png"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
@@ -7265,7 +7437,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 189
+  targetid: 191
   targetname: "Logo-TMDB-The.png"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -10137,7 +10309,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 190
+  targetid: 192
   targetname: "Deep Royal Blue Solid 13"
   keytimes {
     datatype: AE_INT_DATA
@@ -10148,7 +10320,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 190
+  targetid: 192
   targetname: "Deep Royal Blue Solid 13"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -10178,7 +10350,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 191
+  targetid: 193
   targetname: "Logo-TMDB-Outline.png"
   keytimes {
     datatype: AE_INT_DATA
@@ -10189,7 +10361,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 191
+  targetid: 193
   targetname: "Logo-TMDB-Outline.png"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -13158,7 +13330,7 @@ tracks {
 }
 tracks {
   binding: SCALE
-  targetid: 191
+  targetid: 193
   targetname: "Logo-TMDB-Outline.png"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
@@ -16975,7 +17147,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 192
+  targetid: 194
   targetname: "Loader"
   keytimes {
     datatype: AE_INT_DATA
@@ -16986,7 +17158,7 @@ tracks {
 }
 tracks {
   binding: POSITION
-  targetid: 192
+  targetid: 194
   targetname: "Loader"
   keytimes {
     datatype: AE_FLOAT_VECTOR_DATA
@@ -20470,7 +20642,7 @@ tracks {
 }
 tracks {
   binding: OPACITY
-  targetid: 192
+  targetid: 194
   targetname: "Loader"
   keytimes {
     datatype: AE_FLOAT_DATA
@@ -23180,7 +23352,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 193
+  targetid: 195
   targetname: "ScalePropBottomLeftAnchor"
   keytimes {
     datatype: AE_INT_DATA
@@ -23191,7 +23363,7 @@ tracks {
 }
 tracks {
   binding: IS_VISIBLE
-  targetid: 194
+  targetid: 196
   targetname: "ScalePropCenterAnchor"
   keytimes {
     datatype: AE_INT_DATA
@@ -23205,22 +23377,6 @@ markers {
   duration: 3
   name: "SplashIn"
   tracksSelection {
-    targetid: 187
-    binding: POSITION
-  }
-  tracksSelection {
-    targetid: 187
-    binding: OPACITY
-  }
-  tracksSelection {
-    targetid: 188
-    binding: POSITION
-  }
-  tracksSelection {
-    targetid: 188
-    binding: OPACITY
-  }
-  tracksSelection {
     targetid: 189
     binding: POSITION
   }
@@ -23230,22 +23386,38 @@ markers {
   }
   tracksSelection {
     targetid: 190
-    binding: OPACITY
-  }
-  tracksSelection {
-    targetid: 191
-    binding: OPACITY
-  }
-  tracksSelection {
-    targetid: 191
-    binding: SCALE
-  }
-  tracksSelection {
-    targetid: 192
     binding: POSITION
   }
   tracksSelection {
+    targetid: 190
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 191
+    binding: POSITION
+  }
+  tracksSelection {
+    targetid: 191
+    binding: OPACITY
+  }
+  tracksSelection {
     targetid: 192
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 193
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 193
+    binding: SCALE
+  }
+  tracksSelection {
+    targetid: 194
+    binding: POSITION
+  }
+  tracksSelection {
+    targetid: 194
     binding: OPACITY
   }
   alltracks: false
@@ -23253,12 +23425,8 @@ markers {
 }
 markers {
   starttime: 5
-  duration: 3
+  duration: 3.25
   name: "SplashOut"
-  tracksSelection {
-    targetid: 187
-    binding: OPACITY
-  }
   tracksSelection {
     targetid: 188
     binding: OPACITY
@@ -23276,15 +23444,23 @@ markers {
     binding: OPACITY
   }
   tracksSelection {
-    targetid: 191
+    targetid: 192
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 193
+    binding: OPACITY
+  }
+  tracksSelection {
+    targetid: 193
     binding: SCALE
   }
   tracksSelection {
-    targetid: 192
+    targetid: 194
     binding: POSITION
   }
   tracksSelection {
-    targetid: 192
+    targetid: 194
     binding: OPACITY
   }
   alltracks: false

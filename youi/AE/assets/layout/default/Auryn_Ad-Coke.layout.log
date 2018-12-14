@@ -87,7 +87,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 1250
+        x: 1262
         y: 632
         z: 0
       }
@@ -139,7 +139,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 1880
+        x: 1892
         y: 632
         z: 0
       }
@@ -191,7 +191,7 @@ activecomp {
         z: 1
       }
       position {
-        x: 1250
+        x: 1262
         y: 542
         z: 0
       }
@@ -228,8 +228,788 @@ activecomp {
     }
   }
   layer {
-    name: "Looper"
+    name: "URL"
     id: 690010633
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 336
+        y: 78
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1478
+        y: 840.0968
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 36
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "ArialMT"
+      isPointText: false
+      boundsWidth: 672
+      boundsHeight: 156
+      isLabel: true
+      text: "Go to Coke.com/CES and enter this promo code for your free bottle of Coke"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "C 2"
+    id: 690010634
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1210
+        y: 764
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 0.84705883264541626
+        green: 0.08235294371843338
+        blue: 0.086274512112140656
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "C"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "C"
+    id: 690010635
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1214
+        y: 760
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "C"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "EC"
+    id: 690010636
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1312
+        y: 764
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 0.84705883264541626
+        green: 0.08235294371843338
+        blue: 0.086274512112140656
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "EC"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "E"
+    id: 690010637
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1316
+        y: 760
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "E"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "S 2"
+    id: 690010638
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1412
+        y: 764
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 0.84705883264541626
+        green: 0.08235294371843338
+        blue: 0.086274512112140656
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "S"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "S"
+    id: 690010639
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1416
+        y: 760
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "S"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "2C"
+    id: 690010640
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1512
+        y: 764
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 0.84705883264541626
+        green: 0.08235294371843338
+        blue: 0.086274512112140656
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "2C"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "2"
+    id: 690010641
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1516
+        y: 760
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "2"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "0"
+    id: 690010642
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1600
+        y: 764
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 0.84705883264541626
+        green: 0.08235294371843338
+        blue: 0.086274512112140656
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "0"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "0C"
+    id: 690010643
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1604
+        y: 760
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "0C"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "1C"
+    id: 690010644
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1682
+        y: 764
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 0.84705883264541626
+        green: 0.08235294371843338
+        blue: 0.086274512112140656
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "1C"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "1"
+    id: 690010645
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1686
+        y: 760
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "1"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "9C"
+    id: 690010646
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1762
+        y: 764
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 0.84705883264541626
+        green: 0.08235294371843338
+        blue: 0.086274512112140656
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "9C"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "9"
+    id: 690010647
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1766
+        y: 760
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "9"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "Looper"
+    id: 690010648
     sourceid: 690011724
     transform {
       anchorPoint {
@@ -260,11 +1040,11 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    parentid: 690010636
+    parentid: 690010650
   }
   layer {
     name: "Btn-Cap"
-    id: 690010634
+    id: 690010649
     sourceid: 690011385
     transform {
       anchorPoint {
@@ -278,8 +1058,8 @@ activecomp {
         z: 1
       }
       position {
-        x: -42
-        y: 94
+        x: 868
+        y: -396
         z: 0
       }
       orientation {
@@ -295,45 +1075,11 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
-    parentid: 690010635
+    parentid: 690010650
   }
   layer {
-    name: "ScalePropTopRightAnchor"
-    id: 690010635
-    sourceid: 690011406
-    transform {
-      anchorPoint {
-        x: 100
-        y: 0
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 1920
-        y: 0
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 1
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-  }
-  layer {
-    name: "ScalePropCenterAnchor"
-    id: 690010636
+    name: "ScaleWidthPropCenterAnchor"
+    id: 690010650
     sourceid: 690011406
     transform {
       anchorPoint {
@@ -364,6 +1110,76 @@ activecomp {
     acceptsshadows: true
     acceptslights: true
     castsshadows: false
+  }
+  layer {
+    name: "Black Solid 11"
+    id: 690010651
+    sourceid: 690012069
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 50
+        y: -1030
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 690010650
+  }
+  layer {
+    name: "Black Solid 11"
+    id: 690010652
+    sourceid: 690012069
+    transform {
+      anchorPoint {
+        x: 960
+        y: 540
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 50
+        y: 1130
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    parentid: 690010650
   }
   bgcolor {
     alpha: 1
@@ -407,6 +1223,14 @@ sources {
   style_name: "Regular"
 }
 sources {
+  uid: 4
+  srctype: AE_FONT_SRC
+  name: "Arial-BoldMT"
+  copy_source: true
+  file_name: "yi_Arial-Bold.ttf"
+  style_name: "Bold"
+}
+sources {
   uid: 690011724
   srctype: AE_COMP_SRC
   name: "Auryn_Looper.layout"
@@ -427,5 +1251,18 @@ sources {
   srctype: AE_NULL_SRC
   width: 100
   height: 100
+  copy_source: false
+}
+sources {
+  uid: 690012069
+  srctype: AE_SOLID_SRC
+  color {
+    alpha: 1
+    red: 0
+    green: 0
+    blue: 0
+  }
+  width: 1920
+  height: 1080
   copy_source: false
 }
