@@ -1,0 +1,171 @@
+activecomp {
+  name: "Auryn_Layout-Movies"
+  width: 400
+  height: 200
+  defaultcameradistance: 555.55554
+  layer {
+    name: "Text-Details"
+    id: 690012089
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 248.5
+        y: 4.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 268.09198
+        y: 55.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 24
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Medium"
+      isPointText: false
+      boundsWidth: 361
+      boundsHeight: 145
+      isLabel: true
+      text: ""
+      multiline: true
+      ellipsis: true
+      isAllCaps: false
+    }
+    properties {
+      key: "text-placeholder"
+      value: "true"
+    }
+    properties {
+      key: "text-overflow"
+      value: "ellipsis"
+    }
+  }
+  layer {
+    name: "Text-Title"
+    id: 690012090
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 248.5
+        y: 40.5
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 268.02002
+        y: 51.5
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 1
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 32
+      fontColor {
+        alpha: 1
+        red: 1
+        green: 1
+        blue: 1
+      }
+      fontName: "Raleway-Black"
+      isPointText: false
+      boundsWidth: 373
+      boundsHeight: 79
+      isLabel: true
+      text: ""
+      multiline: true
+      ellipsis: true
+      isAllCaps: false
+    }
+    properties {
+      key: "text-placeholder"
+      value: "true"
+    }
+    properties {
+      key: "text-overflow"
+      value: "ellipsis"
+    }
+  }
+  classname: "CYIPushButtonView"
+  bgcolor {
+    alpha: 1
+    red: 0.086274509803921567
+    green: 0.11372549019607843
+    blue: 0.14509803921568629
+  }
+  properties {
+    key: "componentSubtype"
+    value: "push"
+  }
+  properties {
+    key: "componentType"
+    value: "button"
+  }
+  properties {
+    key: "layout"
+    value: "CYIColumnLayout"
+  }
+  properties {
+    key: "padding-top"
+    value: "20"
+  }
+  properties {
+    key: "padding-left"
+    value: "20"
+  }
+}
+sources {
+  uid: 1
+  srctype: AE_FONT_SRC
+  name: "Raleway-Medium"
+  copy_source: true
+  file_name: "yi_Raleway-Medium.ttf"
+  style_name: "Medium"
+}
+sources {
+  uid: 2
+  srctype: AE_FONT_SRC
+  name: "Raleway-Black"
+  copy_source: true
+  file_name: "yi_Raleway-Black.ttf"
+  style_name: "Black"
+}

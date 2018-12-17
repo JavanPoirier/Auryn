@@ -10,7 +10,7 @@ activecomp {
     transform {
       anchorPoint {
         x: 200
-        y: 400
+        y: 450
         z: 0
       }
       scale {
@@ -50,6 +50,6 @@ sources {
   srctype: AE_COMP_SRC
   name: "Auryn_Btn-Poster-Small.layout"
   width: 400
-  height: 800
+  height: 900
   copy_source: true
 }

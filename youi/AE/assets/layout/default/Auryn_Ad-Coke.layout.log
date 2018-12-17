@@ -317,9 +317,9 @@ activecomp {
       fontSize: 152
       fontColor {
         alpha: 1
-        red: 0.84705883264541626
-        green: 0.08235294371843338
-        blue: 0.086274512112140656
+        red: 0.84706008434295654
+        green: 0.082349993288517
+        blue: 0.08626999706029892
       }
       fontName: "Arial-BoldMT"
       isPointText: false
@@ -421,9 +421,9 @@ activecomp {
       fontSize: 152
       fontColor {
         alpha: 1
-        red: 0.84705883264541626
-        green: 0.08235294371843338
-        blue: 0.086274512112140656
+        red: 0.84706008434295654
+        green: 0.082349993288517
+        blue: 0.08626999706029892
       }
       fontName: "Arial-BoldMT"
       isPointText: false
@@ -525,9 +525,9 @@ activecomp {
       fontSize: 152
       fontColor {
         alpha: 1
-        red: 0.84705883264541626
-        green: 0.08235294371843338
-        blue: 0.086274512112140656
+        red: 0.84706008434295654
+        green: 0.082349993288517
+        blue: 0.08626999706029892
       }
       fontName: "Arial-BoldMT"
       isPointText: false
@@ -629,9 +629,9 @@ activecomp {
       fontSize: 152
       fontColor {
         alpha: 1
-        red: 0.84705883264541626
-        green: 0.08235294371843338
-        blue: 0.086274512112140656
+        red: 0.84706008434295654
+        green: 0.082349993288517
+        blue: 0.08626999706029892
       }
       fontName: "Arial-BoldMT"
       isPointText: false
@@ -733,9 +733,9 @@ activecomp {
       fontSize: 152
       fontColor {
         alpha: 1
-        red: 0.84705883264541626
-        green: 0.08235294371843338
-        blue: 0.086274512112140656
+        red: 0.84706008434295654
+        green: 0.082349993288517
+        blue: 0.08626999706029892
       }
       fontName: "Arial-BoldMT"
       isPointText: false
@@ -837,9 +837,9 @@ activecomp {
       fontSize: 152
       fontColor {
         alpha: 1
-        red: 0.84705883264541626
-        green: 0.08235294371843338
-        blue: 0.086274512112140656
+        red: 0.84706008434295654
+        green: 0.082349993288517
+        blue: 0.08626999706029892
       }
       fontName: "Arial-BoldMT"
       isPointText: false
@@ -941,9 +941,9 @@ activecomp {
       fontSize: 152
       fontColor {
         alpha: 1
-        red: 0.84705883264541626
-        green: 0.08235294371843338
-        blue: 0.086274512112140656
+        red: 0.84706008434295654
+        green: 0.082349993288517
+        blue: 0.08626999706029892
       }
       fontName: "Arial-BoldMT"
       isPointText: false
@@ -1139,7 +1139,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
@@ -1174,7 +1174,7 @@ activecomp {
       rotationX: 0
       rotationY: 0
       rotationZ: 0
-      opacity: 1
+      opacity: 0
     }
     acceptsshadows: true
     acceptslights: true
