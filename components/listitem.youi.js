@@ -16,7 +16,7 @@ export default class ListItem extends PureComponent {
     this.title = this.props.data.name || this.props.data.title;
     this.type = 'name' in this.props.data ? 'tv' : 'movie';
     this.state = { focused: false };
-    this.imageStyle = styles[this.buttonName.replace(/-/gu, '')];
+    this.imageStyle = styles[this.buttonName];
     this.mode = 'comp';
   }
 
@@ -67,15 +67,15 @@ export default class ListItem extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-  BtnBackdropSmall: {
+  'Btn-Backdrop-Small': {
     width: 534,
     height: 300,
   },
-  BtnBackdropLarge: {
+  'Btn-Backdrop-Large': {
     width: 1068,
     height: 600,
   },
-  BtnPosterSmall: {
+  'Btn-Poster-Small': {
     width: 400,
     height: 600,
   },
