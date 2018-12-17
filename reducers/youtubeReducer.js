@@ -34,11 +34,11 @@ export default function youtubeReducer(state = { // eslint-disable-line max-line
 
       // No viable format found
       return {
-          ...state,
-          videoSource: defaultVideoSource,
-          fetching: false,
-          fetched: true,
-        };
+        ...state,
+        videoSource: defaultVideoSource,
+        fetching: false,
+        fetched: true,
+      };
     }
     case 'YOUTUBE_VIDEO_REJECTED':
       return {

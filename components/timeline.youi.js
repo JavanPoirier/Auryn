@@ -5,20 +5,20 @@ export default class Timeline extends PureComponent {
   render() {
     return (
       <TimelineRef
-      {...this.props}
-      onLoad={timeline => {
-        this.ref = timeline;
-        if (this.props.onLoad) this.props.onLoad(this);
-      }}
-      loop={this.props.loop || this.props.name.toLowerCase() === 'loop'}
-      onCompleted={() => {
-        if (this.resolve && !this.props.loop)
-          this.resolve('onCompleted');
+        {...this.props}
+        onLoad={timeline => {
+          this.ref = timeline;
+          if (this.props.onLoad) this.props.onLoad(this);
+        }}
+        loop={this.props.loop || this.props.name.toLowerCase() === 'loop'}
+        onCompleted={() => {
+          if (this.resolve && !this.props.loop)
+            this.resolve('onCompleted');
 
-        if (this.props.onCompleted)
-          this.props.onCompleted();
-      }}
-    />
+          if (this.props.onCompleted)
+            this.props.onCompleted();
+        }}
+      />
     );
   }
 

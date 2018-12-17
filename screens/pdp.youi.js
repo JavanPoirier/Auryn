@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 
 import { Timeline, Video, List, BackButton } from '../components';
-import { tmdbDetails  } from '../actions/tmdbActions';
+import { tmdbDetails } from '../actions/tmdbActions';
 
 @connect(store => ({
   asset: store.tmdbReducer.details.data,

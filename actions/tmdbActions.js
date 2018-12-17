@@ -11,8 +11,8 @@ const groupInto3 = array =>
 
 const normalize = (array, imagePath = 'backdrop_path') =>
   array.filter(asset => asset.original_language === 'en' && asset[imagePath])
-       .slice(0, 15)
-       .map(it => ({ ...it, key: it.id.toString() }));
+    .slice(0, 15)
+    .map(it => ({ ...it, key: it.id.toString() }));
 
 export const tmdbDiscover = () => dispatch => {
   let movies = [];

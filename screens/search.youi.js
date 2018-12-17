@@ -60,7 +60,7 @@ class Search extends Component {
 
   render() { // eslint-disable-line max-lines-per-function
     if (!this.props.isFocused)
-     return <View/>;
+      return <View />;
     const { data, fetched } = this.props;
     let movies = [];
     let tv = [];

@@ -134,14 +134,14 @@ export default class Video extends PureComponent {
           ref={ref => {
             this.videoPlayer = ref;
           }}
-          onPaused={ () => this.setState({ paused: true }) }
-          onPlaying={ () => this.setState({ paused: false }) }
-          source={ this.state.videoSource }
-          onErrorOccurred={ () => {
+          onPaused={() => this.setState({ paused: true })}
+          onPlaying={() => this.setState({ paused: false })}
+          source={this.state.videoSource}
+          onErrorOccurred={() => {
             this.setState({ videoSource: this.fallbackVideo });
           }}
-          onCurrentTimeUpdated={ this.onCurrentTimeUpdated }
-          onDurationChanged={ duration => {
+          onCurrentTimeUpdated={this.onCurrentTimeUpdated}
+          onDurationChanged={duration => {
             this.setState({ duration: duration.nativeEvent });
           }}
         />
@@ -176,8 +176,8 @@ export default class Video extends PureComponent {
             <TextRef name="Title" text={this.props.title} />
             <TextRef name="Details" text={this.props.details} />
           </ViewRef>
-       </ViewRef>
-     </ButtonRef>
+        </ViewRef>
+      </ButtonRef>
     );
   }
 

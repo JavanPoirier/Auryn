@@ -19,15 +19,15 @@ class Lander extends Component {
     this.lists = [];
     this.lastFocusItem = null;
     this.menuGroup = ['Discover', 'Movies', 'Shows', 'Live']
-    .map((it, i) => (
-      {
-        name: `Btn-Nav-${it}`,
-        onPress: () => {
-          this.scrollToScreen(i);
-          this.selectedMenuItemIndex = i;
-        },
-      }
-    ));
+      .map((it, i) => (
+        {
+          name: `Btn-Nav-${it}`,
+          onPress: () => {
+            this.scrollToScreen(i);
+            this.selectedMenuItemIndex = i;
+          },
+        }
+      ));
   }
 
   componentDidMount() {
@@ -197,8 +197,8 @@ class Lander extends Component {
             this.navInTimeline = timeline;
             this.navInTimeline.play();
             FocusManager.focus(this.menuButtons.getButtonRef(0));
-          } }
-            />
+          }}
+          />
           <Timeline name="Out" ref={timeline => this.navOutTimeline = timeline} />
         </ViewRef>
 
