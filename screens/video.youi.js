@@ -18,6 +18,7 @@ class Video extends PureComponent {
     };
 
     this.state = {
+      videoSource: this.props.videoSource,
       formattedTime: '00:00',
       focusable: true,
       paused: true,
@@ -51,11 +52,6 @@ class Video extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements
-    if (this.props.source !== prevProps.source) {
-      console.log('VIDEO', this.props.source);
-      this.setState({ videoSource: this.props.source });
-    }
-
     if (this.state.percent !== prevState.percent) {
       console.log('SCRUB', this.state.percent);
       this.scrubberTimeline.play(this.state.percent);
@@ -133,7 +129,7 @@ class Video extends PureComponent {
   }
 
   render() { // eslint-disable-line max-lines-per-function
-    const { asset, fetched, videoSource } = this.props;
+    const { asset, fetched } = this.props;
     if (!fetched || !this.props.isFocused)
       return <View />;
 
@@ -157,7 +153,7 @@ class Video extends PureComponent {
              this.videoPlayer.play();
              this.inTimeline.play();
             }}
-            source={videoSource}
+            source={this.state.videoSource}
             onErrorOccurred={() => {
               this.setState({ videoSource: this.fallbackVideo });
             }}
@@ -165,7 +161,6 @@ class Video extends PureComponent {
             onDurationChanged={duration => {
               this.setState({ duration: duration.nativeEvent });
             }}
-            visible={!this.state.paused}
           />
           <ViewRef name="ActivityIndicator">
             <Timeline name="Show" ref={ref => this.activityShowTimeline = ref} />

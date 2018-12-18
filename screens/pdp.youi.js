@@ -18,7 +18,6 @@ import { tmdbDetails } from '../actions/tmdbActions';
 @connect(store => ({
   asset: store.tmdbReducer.details.data,
   fetched: store.tmdbReducer.details.fetched && store.youtubeReducer.fetched,
-  videoSource: store.youtubeReducer.videoSource,
 }))
 class PDP extends Component {
   constructor(props) {
