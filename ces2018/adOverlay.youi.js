@@ -16,6 +16,7 @@ class AdOverlay extends PureComponent {
   }
 
   navigateBack = () => {
+    this.inTimeline.play(1);
     this.outTimeline.play().then(() => this.props.navigation.goBack(null));
     return true;
   }
@@ -25,7 +26,9 @@ class AdOverlay extends PureComponent {
 
     return (
       <Composition source="Auryn_Ad-Coke">
-        <Timeline name="In" onLoad={timeline => timeline.play()} />
+        <Timeline name="In"
+          ref={timeline => this.inTimeline = timeline}
+          onLoad={timeline => timeline.play()} />
         <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
         <ButtonRef
           name="Btn-Cap"
