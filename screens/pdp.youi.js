@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withNavigationFocus } from 'react-navigation';
+import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import {
   BackHandler,
   ButtonRef,
@@ -12,7 +12,7 @@ import {
 } from '@youi/react-native-youi';
 import { connect } from 'react-redux';
 
-import { Timeline, Video, List, BackButton } from '../components';
+import { Timeline, List, BackButton } from '../components';
 import { tmdbDetails } from '../actions/tmdbActions';
 
 @connect(store => ({
@@ -20,13 +20,9 @@ import { tmdbDetails } from '../actions/tmdbActions';
   fetched: store.tmdbReducer.details.fetched && store.youtubeReducer.fetched,
   videoSource: store.youtubeReducer.videoSource,
 }))
-
 class PDP extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      videoVisible: false,
-    };
     this.allowVideoPlayback = false;
   }
 
@@ -40,39 +36,31 @@ class PDP extends Component {
   }
 
   navigateBack = () => {
-    if (this.state.videoVisible === true) {
-      this.video.navigateBack();
-
-      this.videoOutTimeline.play();
-      this.setState({ videoVisible: false });
-      FocusManager.focus(this.posterButton);
-    } else {
-      this.outTimeline.play().then(() => {
-        this.props.navigation.goBack(null);
-      });
-    }
-
+    this.outTimeline.play().then(() => {
+      this.props.navigation.goBack(null);
+    });
     return true;
   }
 
   onPressItem = (id, type) => {
     this.allowVideoPlayback = false;
     this.contentOutTimeline.play();
-    this.video.reset();
     this.props.dispatch(tmdbDetails(id, type));
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', () =>
-      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack));
+    this.props.navigation.addListener('didFocus', () => {
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+      if (this.posterButton)
+        setTimeout(() => FocusManager.focus(this.posterButton), 1);
+    });
+
     this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
   }
 
   playVideo = () => {
     if (!this.allowVideoPlayback) return;
-    this.setState({ videoVisible: true });
-    this.videoInTimeline.play();
-    setTimeout(() => this.video.playPause(), 100);
+    this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'Video' }));
   }
 
   getFeaturedText = credits => {
@@ -85,8 +73,8 @@ class PDP extends Component {
   }
 
   render() { // eslint-disable-line max-lines-per-function
-    const { asset, fetched, videoSource } = this.props;
-    if (!fetched || !this.props.isFocused)
+    const { asset, fetched } = this.props;
+    if (!fetched)
       return <View />;
 
     return (
@@ -94,15 +82,6 @@ class PDP extends Component {
 
         <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
         <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
-        <Video
-          source={videoSource}
-          ref={ref => this.video = ref}
-          visible={this.state.videoVisible}
-          title={asset.title || asset.name}
-          details={asset.overview}
-          onPressBackButton={this.navigateBack}
-          hasBackButton={this.props.screenProps.hasBackButton}
-        />
 
         <Timeline name="PDPIn"
           ref={timeline => this.inTimeline = timeline}
@@ -110,7 +89,7 @@ class PDP extends Component {
         />
 
         <Timeline name="PDPOut" ref={timeline => this.outTimeline = timeline} />
-        <ViewRef name="PDP-Scroller">
+        <ViewRef name="PDP-Scroller" visible={this.props.isFocused}>
           <BackButton
             focusable={this.props.isFocused}
             hasBackButton={this.props.screenProps.hasBackButton}
@@ -120,7 +99,7 @@ class PDP extends Component {
             name="List-PDP"
             type="Shows"
             data={asset.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString() }))}
-            focusable={this.props.isFocused && !this.state.videoVisible}
+            focusable={this.props.isFocused}
             onPressItem={this.onPressItem}
           />
 
@@ -132,7 +111,7 @@ class PDP extends Component {
 
           <ButtonRef
             name="Btn-Poster-Large"
-            focusable={this.props.isFocused && !this.state.videoVisible}
+            focusable={this.props.isFocused}
             onPress={this.playVideo}
             ref={ref => this.posterButton = ref}
             onLoad={() => FocusManager.focus(this.posterButton)}

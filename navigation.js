@@ -27,6 +27,7 @@ const AppStack = createStackNavigator(
     PDP: { screen: Screens.PDP },
     Search: { screen: Screens.Search },
     Profile: { screen: Screens.Profile },
+    Video: { screen: Screens.Video },
     // CES
     AdOverlay: { screen: AdOverlay },
     // END CES
