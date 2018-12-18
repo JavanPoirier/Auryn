@@ -5,6 +5,7 @@ export default class Timeline extends PureComponent {
   static defaultProps = {
     onLoad: () => {},
     onCompleted: () => {},
+    direction: 'forward',
   }
 
   render() {
@@ -29,7 +30,7 @@ export default class Timeline extends PureComponent {
   play = (seek = 0) => new Promise(resolve => {
     this.resolve = resolve;
     if (seek)
-      this.ref.seek(seek);
+      this.ref.seek(this.props.direction === 'forward' ? seek : 1 - seek);
     else
       this.ref.play();
   });
