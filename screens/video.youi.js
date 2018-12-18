@@ -139,9 +139,10 @@ class Video extends PureComponent {
 
     return (
       <Composition source="Auryn_VideoContainer">
-        <Timeline name="In"
+        <Timeline
+          name="In"
           ref={timeline => this.inTimeline = timeline}
-          onLoad={timeline => timeline.play()} />
+         />
         <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
 
         <ButtonRef name="Video" onPress={this.registerUserActivity}>
@@ -152,7 +153,10 @@ class Video extends PureComponent {
             }}
             onPaused={() => this.setState({ paused: true })}
             onPlaying={() => this.setState({ paused: false })}
-            onReady={() => this.videoPlayer.play()}
+            onReady={() => {
+             this.videoPlayer.play();
+             this.inTimeline.play();
+            }}
             source={videoSource}
             onErrorOccurred={() => {
               this.setState({ videoSource: this.fallbackVideo });
@@ -161,6 +165,7 @@ class Video extends PureComponent {
             onDurationChanged={duration => {
               this.setState({ duration: duration.nativeEvent });
             }}
+            visible={!this.state.paused}
           />
           <ViewRef name="ActivityIndicator">
             <Timeline name="Show" ref={ref => this.activityShowTimeline = ref} />

@@ -53,6 +53,8 @@ class PDP extends Component {
       this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
       if (this.posterButton)
         setTimeout(() => FocusManager.focus(this.posterButton), 1);
+
+      if (this.videoOutTimeline) this.videoOutTimeline.play();
     });
 
     this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
@@ -60,7 +62,9 @@ class PDP extends Component {
 
   playVideo = () => {
     if (!this.allowVideoPlayback) return;
-    this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'Video' }));
+    this.videoInTimeline.play().then(() =>
+      this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'Video' })));
+
   }
 
   getFeaturedText = credits => {
