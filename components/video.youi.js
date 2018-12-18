@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ViewRef, VideoRef, ButtonRef, TextRef, TimelineRef, Input, FocusManager } from '@youi/react-native-youi';
+import { ViewRef, VideoRef, ButtonRef, TextRef, Input, FocusManager } from '@youi/react-native-youi';
 import { Timeline, ToggleButton, BackButton } from '../components';
 
 export default class Video extends PureComponent {
@@ -45,7 +45,7 @@ export default class Video extends PureComponent {
 
     if (this.state.percent !== prevState.percent) {
       console.log('SCRUB', this.state.percent);
-      this.scrubberTimeline.seek(this.state.percent);
+      this.scrubberTimeline.play(this.state.percent);
     }
 
     if (this.props.visible !== prevProps.visible) {
@@ -90,7 +90,7 @@ export default class Video extends PureComponent {
     if (!this.videoPlayer) return;
 
     this.videoPlayer.stop();
-    this.scrubberTimeline.seek(0);
+    this.scrubberTimeline.play(0);
     this.setState({
       formattedTime: '00:00',
       duration: 0,
@@ -170,7 +170,7 @@ export default class Video extends PureComponent {
           />
           <TextRef name="Duration" text={this.state.formattedTime} />
           <ViewRef name="Bar">
-            <TimelineRef name="ScrollStart" ref={ref => this.scrubberTimeline = ref} />
+            <Timeline name="ScrollStart" ref={ref => this.scrubberTimeline = ref} />
           </ViewRef>
           <ViewRef name="Video-TextDetails">
             <TextRef name="Title" text={this.props.title} />
