@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, TimelineRef, ScrollRef, ButtonRef, View, FocusManager, BackHandler } from '@youi/react-native-youi';
+import { Composition, ViewRef, ScrollRef, ButtonRef, View, FocusManager, BackHandler } from '@youi/react-native-youi';
 import { Timeline, ToggleGroup, List } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -203,7 +203,7 @@ class Lander extends Component {
         </ViewRef>
 
         <ViewRef name="Nav-Logo">
-          <TimelineRef name="Loop" loop={true} />
+          <Timeline name="Loop" loop={true} />
         </ViewRef>
 
       </Composition>

@@ -6,7 +6,6 @@ import {
   Composition,
   ImageRef,
   TextRef,
-  TimelineRef,
   View,
   ViewRef,
   FocusManager,
@@ -124,7 +123,7 @@ class PDP extends Component {
             onPressItem={this.onPressItem}
           />
 
-          <TimelineRef name="ContentIn" ref={timeline => this.contentInTimeline = timeline} onLoad={ref => ref.play()} />
+          <Timeline name="ContentIn" ref={timeline => this.contentInTimeline = timeline} onLoad={ref => ref.play()} />
           <Timeline name="ContentOut" ref={timeline => this.contentOutTimeline = timeline} />
 
           <ButtonRef
@@ -150,7 +149,7 @@ class PDP extends Component {
             <TextRef name="Text-Title" text={asset.title || asset.name} />
             <TextRef name="Text-Overview" text={asset.overview} />
             <TextRef name="Text-Featured" text={this.getFeaturedText(asset.credits)} />
-            <TimelineRef name="In2" ref={timeline => this.pdpMetaInTimeline = timeline} onLoad={ref => ref.play()} />
+            <Timeline name="In2" ref={timeline => this.pdpMetaInTimeline = timeline} onLoad={ref => ref.play()} />
           </ViewRef>
 
         </ViewRef>

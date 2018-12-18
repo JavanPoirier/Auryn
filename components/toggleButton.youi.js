@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
-import {
-  ButtonRef,
-  TimelineRef,
-} from '@youi/react-native-youi';
+import { ButtonRef } from '@youi/react-native-youi';
+import { Timeline } from '.';
 
 export default class ToggleButton extends PureComponent {
   static defaultProps = {
@@ -47,7 +45,7 @@ export default class ToggleButton extends PureComponent {
         });
       }}
     >
-      <TimelineRef
+      <Timeline
         name="Toggle-On"
         direction={this.state.toggled ? 'forward' : 'reverse'}
         ref={ref => this.toggleOnTimeline = ref}

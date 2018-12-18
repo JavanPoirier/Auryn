@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Composition, BackHandler, TextInputRef, TimelineRef, FocusManager } from '@youi/react-native-youi';
+import { View, Composition, BackHandler, TextInputRef, FocusManager } from '@youi/react-native-youi';
 import { tmdbSearch, tmdbDetails } from '../actions/tmdbActions';
 import { Timeline, List, BackButton } from '../components';
 import { NavigationActions, withNavigationFocus } from 'react-navigation';
@@ -103,7 +103,7 @@ class Search extends Component {
 
         <Timeline name="SearchOut" ref={timeline => this.outTimeline = timeline} />
 
-        <TimelineRef name="SearchIn"
+        <Timeline name="SearchIn"
           ref={timeline => this.searchinTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
