@@ -27,12 +27,13 @@ class PDP extends Component {
     this.state = {
       videoVisible: false,
     };
+    this.allowVideoPlayback = false;
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.asset !== prevProps.asset) {
       console.log('ASSET', this.props.asset);
-      this.contentInTimeline.play();
+      this.contentInTimeline.play().then(() => this.allowVideoPlayback = true);
 
       FocusManager.focus(this.posterButton);
     }
@@ -55,20 +56,20 @@ class PDP extends Component {
   }
 
   onPressItem = (id, type) => {
+    this.allowVideoPlayback = false;
     this.contentOutTimeline.play();
     this.video.reset();
     this.props.dispatch(tmdbDetails(id, type));
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', () => {
-      if (this.contentInTimeline) this.contentInTimeline.play();
-      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
-    });
+    this.props.navigation.addListener('didFocus', () =>
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack));
     this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
   }
 
   playVideo = () => {
+    if (!this.allowVideoPlayback) return;
     this.setState({ videoVisible: true });
     this.videoInTimeline.play();
     setTimeout(() => this.video.playPause(), 100);
@@ -123,7 +124,10 @@ class PDP extends Component {
             onPressItem={this.onPressItem}
           />
 
-          <Timeline name="ContentIn" ref={timeline => this.contentInTimeline = timeline} onLoad={ref => ref.play()} />
+          <Timeline
+            name="ContentIn"
+            ref={timeline => this.contentInTimeline = timeline}
+            onLoad={ref => ref.play().then(() => this.allowVideoPlayback = true)} />
           <Timeline name="ContentOut" ref={timeline => this.contentOutTimeline = timeline} />
 
           <ButtonRef
@@ -132,7 +136,6 @@ class PDP extends Component {
             onPress={this.playVideo}
             ref={ref => this.posterButton = ref}
             onLoad={() => FocusManager.focus(this.posterButton)}
-            hasBackButton={this.props.screenProps.hasBackButton}
           >
             <ImageRef
               name="Image-Dynamic"
