@@ -60,6 +60,10 @@ class PDP extends PureComponent {
   }
 
   shouldComponentUpdate(nextProps) {
+    // Re-render if lost/gained focus
+    if (nextProps.isFocused !== this.props.isFocused)
+      return true;
+
     // Only render if the asset.id matches the requested pdp asset id
     return nextProps.asset.id === nextProps.navigation.getParam('id');
   }
@@ -86,7 +90,7 @@ class PDP extends PureComponent {
     const { asset, fetched } = this.props;
     console.log('ASSET', asset);
 
-    if (!fetched)
+    if (!fetched || !this.props.isFocused)
       return <View />;
 
     return (

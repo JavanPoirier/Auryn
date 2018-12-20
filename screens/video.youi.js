@@ -18,13 +18,12 @@ class Video extends PureComponent {
     };
 
     this.state = {
+      controlsVisible: false,
       formattedTime: '00:00',
       focusable: true,
       paused: true,
       error: false,
     };
-
-    this.controlsVisible = false;
   }
 
   keys = [
@@ -72,28 +71,30 @@ class Video extends PureComponent {
     if (this.state.percent !== nextState.percent)
       return true;
 
+    if (nextState.controlsVisible) return true;
+
     return false;
   }
 
   inactivityDetected = () => {
     if (this.controlsHideTimeline) this.controlsHideTimeline.play();
-    this.controlsVisible = false;
+    this.setState({ controlsVisible: false });
   }
 
   showControls = () => {
-    this.controlsVisible = true;
+    this.setState({ controlsVisible: true });
     FocusManager.focus(this.playButton);
     this.controlsShowTimeline.play();
   }
 
   hideControls = () => {
-    this.controlsVisible = false;
+    this.setState({ controlsVisible: false });
     FocusManager.focus(this.videoPlayer);
     if (this.controlsHideTimeline) this.controlsHideTimeline.play();
   }
 
   registerUserActivity = () => {
-    if (!this.controlsVisible) this.showControls();
+    if (!this.state.controlsVisible) this.showControls();
 
     if (this.activityTimeout)
       clearTimeout(this.activityTimeout);
