@@ -19,6 +19,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
   },
   details: {
     data: {},
+    cache: [],
     fetching: false,
     fetched: false,
     error: null,
@@ -40,6 +41,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           fetched: true,
         },
       };
+
     case 'TMDB_DISCOVER_REJECTED':
       return {
         ...state,
@@ -48,11 +50,13 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           error: action.payload,
         },
       };
+
     case 'TMDB_DISCOVER':
       return {
         ...state,
         discover: {
           fetching: true,
+          fetched: false,
         },
       };
 
@@ -65,6 +69,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           fetched: true,
         },
       };
+
     case 'TMDB_MOVIES_REJECTED':
       return {
         ...state,
@@ -73,10 +78,11 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           error: action.payload,
         },
       };
+
     case 'TMDB_MOVIES':
       return {
         ...state,
-        movies: { fetching: true },
+        movies: { fetching: true, fetched: false },
       };
 
     case 'TMDB_TV_FULFILLED':
@@ -88,6 +94,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           fetched: true,
         },
       };
+
     case 'TMDB_TV_REJECTED':
       return {
         ...state,
@@ -96,10 +103,11 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           error: action.payload,
         },
       };
+
     case 'TMDB_TV':
       return {
         ...state,
-        tv: { fetching: true },
+        tv: { fetching: true, fetched: false },
       };
 
     case 'TMDB_DETAILS_FULFILLED':
@@ -107,10 +115,12 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
         ...state,
         details: {
           data: action.payload,
+          cache: action.meta.cachehit ? [state.details.cache] : [...state.details.cache, action.payload],
           fetching: false,
           fetched: true,
         },
       };
+
     case 'TMDB_DETAILS_REJECTED':
       return {
         ...state,
@@ -119,11 +129,18 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           error: action.payload,
         },
       };
+
     case 'TMDB_DETAILS':
       return {
         ...state,
-        details: { fetching: true },
+        details: { fetching: true, fetched: false },
       };
+
+    case 'TMDB_DETAILS_CLEAR':
+    return {
+      ...state,
+      details: { asset: null },
+    };
 
     case 'TMDB_SEARCH_FULFILLED':
       return {
@@ -134,6 +151,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           fetched: true,
         },
       };
+
     case 'TMDB_SEARCH_REJECTED':
       return {
         ...state,
@@ -142,6 +160,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
           error: action.payload,
         },
       };
+
     case 'TMDB_SEARCH':
       return {
         ...state,

@@ -3,7 +3,6 @@ import { View, Composition, BackHandler, TextInputRef, FocusManager } from '@you
 import { tmdbSearch, tmdbDetails } from '../actions/tmdbActions';
 import { Timeline, List, BackButton } from '../components';
 import { NavigationActions, withNavigationFocus } from 'react-navigation';
-import { debounce } from 'throttle-debounce';
 import { connect } from 'react-redux';
 
 @connect(store => ({
@@ -51,12 +50,7 @@ class Search extends Component {
     return true;
   }
 
-  search = debounce(300, () => {
-    if (!this.state.query || this.state.query.length < 3)
-      return;
-    console.log('SEARCH', this.state.query);
-    this.props.dispatch(tmdbSearch(this.state.query));
-  })
+  search = () => this.props.dispatch(tmdbSearch(this.state.query));
 
   render() { // eslint-disable-line max-lines-per-function
     if (!this.props.isFocused)

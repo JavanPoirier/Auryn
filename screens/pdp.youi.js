@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import {
   BackHandler,
@@ -18,20 +18,12 @@ import { tmdbDetails } from '../actions/tmdbActions';
 @connect(store => ({
   asset: store.tmdbReducer.details.data,
   fetched: store.tmdbReducer.details.fetched && store.youtubeReducer.fetched,
+  fetching: store.tmdbReducer.details.fetching,
 }))
-class PDP extends Component {
+class PDP extends PureComponent {
   constructor(props) {
     super(props);
     this.allowVideoPlayback = false;
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.asset !== prevProps.asset) {
-      console.log('ASSET', this.props.asset);
-      this.contentInTimeline.play().then(() => this.allowVideoPlayback = true);
-
-      FocusManager.focus(this.posterButton);
-    }
   }
 
   navigateBack = () => {
@@ -43,9 +35,16 @@ class PDP extends Component {
 
   onPressItem = (id, type) => {
     this.allowVideoPlayback = false;
-    this.contentOutTimeline.play();
     this.props.dispatch(tmdbDetails(id, type));
+    this.contentOutTimeline.play()
+      .then(() => this.props.navigation.navigate({ routeName: 'PDP', params: { id, type } }))
+      .then(() => {
+        FocusManager.focus(this.posterButton);
+        this.contentInTimeline.play();
+      });
   }
+
+  onFocusItem = (ref, id, type) => this.props.dispatch(tmdbDetails(id, type));
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
@@ -62,8 +61,10 @@ class PDP extends Component {
   playVideo = () => {
     if (!this.allowVideoPlayback) return;
     this.videoInTimeline.play().then(() =>
-      this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'Video' })));
-
+      this.props.navigation.dispatch(NavigationActions.navigate({
+          routeName: 'Video',
+          params: { videoSource: this.props.asset.videoSource },
+        })));
   }
 
   getFeaturedText = credits => {
@@ -76,10 +77,13 @@ class PDP extends Component {
   }
 
   render() { // eslint-disable-line max-lines-per-function
-    const { asset, fetched } = this.props;
-    if (!fetched)
+    const { fetched, asset } = this.props;
+    console.log('ASSET', asset);
+
+    if (!fetched || !asset)
       return <View />;
 
+      console.log('render');
     return (
       <Composition source="Auryn_PDP">
 
@@ -104,6 +108,7 @@ class PDP extends Component {
             data={asset.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString() }))}
             focusable={this.props.isFocused}
             onPressItem={this.onPressItem}
+            onFocusItem={this.onFocusItem}
           />
 
           <Timeline

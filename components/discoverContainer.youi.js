@@ -34,6 +34,8 @@ export default class DiscoverContainer extends React.PureComponent {
           <ListItem
             focusable={this.props.focusable}
             onPress={this.props.onPress}
+            onFocus={this.props.onFocus}
+            shouldChangeFocus={false}
             imageType="Backdrop" size="Large"
             data={this.props.data[2]}
           />
@@ -63,6 +65,8 @@ export default class DiscoverContainer extends React.PureComponent {
           <ListItem
             focusable={this.props.focusable}
             onPress={this.props.onPress}
+            onFocus={this.props.onFocus}
+            shouldChangeFocus={false}
             imageType="Backdrop" size="Large"
             data={this.props.data[2]}
           />
@@ -83,12 +87,16 @@ export default class DiscoverContainer extends React.PureComponent {
           <ListItem
             focusable={this.props.focusable}
             onPress={this.props.onPress}
+            onFocus={this.props.onFocus}
+            shouldChangeFocus={false}
             imageType="Backdrop" size="Small"
             data={this.props.data[1]}
           />
           <ListItem
             focusable={this.props.focusable}
             onPress={this.props.onPress}
+            onFocus={this.props.onFocus}
+            shouldChangeFocus={false}
             imageType="Backdrop" size="Small"
             data={this.props.data[2]}
           />

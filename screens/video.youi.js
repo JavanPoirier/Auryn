@@ -5,9 +5,7 @@ import { withNavigationFocus } from 'react-navigation';
 import { connect } from 'react-redux';
 
 @connect(store => ({
-  asset: store.tmdbReducer.details.data,
-  fetched: store.tmdbReducer.details.fetched && store.youtubeReducer.fetched,
-  videoSource: store.youtubeReducer.videoSource,
+  videoSource: store.tmdbReducer.details.data.videoSource,
 }))
 class Video extends PureComponent {
   constructor(props) {

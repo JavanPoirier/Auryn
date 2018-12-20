@@ -52,10 +52,11 @@ export default class ListItem extends PureComponent {
         <ButtonRef
           focusable={this.props.focusable}
           ref={ref => this.ref = ref}
-          onFocus={() => this.props.onFocus(this.ref)}
+          onFocus={() => this.props.onFocus(this.ref, this.props.data.id, this.type)}
           onPress={() => this.props.onPress(this.props.data.id, this.type, this.ref)}
           name={this.buttonName}
           visible={this.state.focusable}
+          shouldChangeFocus={this.props.shouldChangeFocus}
         >
         {this.props.focusable ? this.metadata() : null }
         </ButtonRef>

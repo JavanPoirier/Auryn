@@ -78,8 +78,12 @@ class Lander extends Component {
     });
   }
 
-  onFocusItem = ref => {
+  onFocusItem = (ref, id, type) => {
+    this.props.dispatch(tmdbDetails(id, type));
     this.lastFocusItem = ref;
+
+    if (ref.props.shouldChangeFocus === false) return;
+
     FocusManager.setNextFocus(ref, this.menuButtons.getButtonRef(this.state.currentListIndex), 'up');
     for (let index = 0; index < this.lists.length; index++)
       FocusManager.setNextFocus(this.menuButtons.getButtonRef(index), ref, 'down');
@@ -88,7 +92,7 @@ class Lander extends Component {
     FocusManager.setNextFocus(this.profileButton, ref, 'down');
   }
 
-  onPressItem = (id, type) => {
+  onPressItem = (id, type, ref) => {
     // CES
     this.adPressed = false;
     if (type === 'Ad') {
@@ -97,6 +101,7 @@ class Lander extends Component {
       return;
     }
     // END CES
+    this.lastFocusItem = ref;
     console.log(id);
     const navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
@@ -104,7 +109,6 @@ class Lander extends Component {
         id,
         type,
       },
-      key: id,
     });
     this.props.dispatch(tmdbDetails(id, type));
     this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));

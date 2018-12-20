@@ -45,23 +45,58 @@ export const tmdbTv = () => dispatch => dispatch({
     .then(json => normalize(json.results)),
 });
 
-export const tmdbDetails = (id, type) => dispatch => {
-  let details = {};
+export const tmdbDetails = (id, type) => (dispatch, getState) => {
+  const { details } = getState().tmdbReducer.details;
+  const cachedPayload = details.cache.find(it => it.id === id && it.type === type);
+  if (cachedPayload) {
+    return dispatch({
+      type: 'TMDB_DETAILS',
+      payload: Promise.resolve(cachedPayload),
+      meta: {
+        params: { type, id },
+        cachehit: true,
+      },
+    });
+  }
 
-  dispatch({
+  let payload = {};
+  return dispatch({
     type: 'TMDB_DETAILS',
+    meta: {
+      params: { type, id },
+      cachehit: false,
+      debounce: {
+        time: 500,
+        key: 'TMDB_DETAILS',
+      },
+    },
     payload: fetch(`http://api.themoviedb.org/3/${type}/${id}?append_to_response=similar,videos,credits&${apiKeyParam}`)
       .then(response => response.json())
       .then(json => {
-        details = json;
-        const key = details.videos.results.length ? details.videos.results[0].key : 'nO_DIwuGBnA';
-        return dispatch(youtubeVideo(key));
+        payload = json;
+        payload.type = 'name' in payload ? 'tv' : 'movie';
+        payload.youtubeId = payload.videos.results.length ? payload.videos.results[0].key : 'nO_DIwuGBnA';
+        return dispatch(youtubeVideo(payload.youtubeId));
       })
-      .then(() => details),
+      .then(() => payload.videoSource = getState().youtubeReducer.videoSource)
+      .then(() => payload),
   });
 };
+
+export const tmdbClearDetails = () => dispatch => {
+  dispatch({
+    type: 'TMDB_DETAILS_CLEAR',
+    payload: true,
+  });
+};
+
 export const tmdbSearch = query => dispatch => dispatch({
   type: 'TMDB_SEARCH',
+  meta: {
+    debounce: {
+      time: 500,
+    },
+  },
   payload: fetch(`http://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}&${apiKeyParam}`)
     .then(response => response.json())
     .then(json => normalize(json.results)),
