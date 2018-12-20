@@ -4,6 +4,7 @@ import { Timeline, ToggleGroup, List } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { tmdbDetails } from '../actions/tmdbActions';
+import { cacheDetails } from '../actions/cacheActions';
 
 @connect(store => ({
   discover: store.tmdbReducer.discover.data,
@@ -79,7 +80,7 @@ class Lander extends Component {
   }
 
   onFocusItem = (ref, id, type) => {
-    this.props.dispatch(tmdbDetails(id, type, true));
+    this.props.dispatch(cacheDetails(id, type));
     this.lastFocusItem = ref;
 
     if (ref.props.shouldChangeFocus === false) return;

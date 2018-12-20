@@ -44,33 +44,18 @@ export const tmdbTv = () => dispatch => dispatch({
     .then(json => normalize(json.results)),
 });
 
-export const tmdbDetails = (id, type, cacheOnly = false) => (dispatch, getState) => {
-  const { tmdbReducer: { detailsCache, details: { fetching } } } = getState();
-  if (fetching) return dispatch({ type: 'NONE' });
-  const cachedPayload = detailsCache.find(it => it.id === id && it.type === type);
+export const tmdbDetails = (id, type) => (dispatch, getState) => {
+  const { cacheReducer: { details: { cache } } } = getState();
+  const cachedPayload = cache.find(it => it.id === id && it.type === type);
   if (cachedPayload) {
     return dispatch({
       type: 'TMDB_DETAILS',
       payload: Promise.resolve(cachedPayload),
-      meta: {
-        params: { type, id },
-        cachehit: true,
-        cacheOnly,
-      },
     });
   }
 
   return dispatch({
     type: 'TMDB_DETAILS',
-    meta: {
-      params: { type, id },
-      cachehit: false,
-      cacheOnly,
-      debounce: {
-        time: 500,
-        key: 'TMDB_DETAILS',
-      },
-    },
     payload: fetch(`http://api.themoviedb.org/3/${type}/${id}?append_to_response=similar,videos,credits&${apiKeyParam}`)
       .then(response => response.json())
       .then(json => {
@@ -99,9 +84,4 @@ export const tmdbSearch = query => dispatch => dispatch({
   payload: fetch(`http://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}&${apiKeyParam}`)
     .then(response => response.json())
     .then(json => normalize(json.results)),
-});
-
-export const fetchPDPfromCache = id => dispatch => dispatch({
-  type: 'FETCH_PDP_CACHE',
-  payload: id,
 });

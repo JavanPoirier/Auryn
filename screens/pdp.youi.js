@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { Timeline, List, BackButton } from '../components';
 import { tmdbDetails } from '../actions/tmdbActions';
 import { youtubeVideo } from '../actions/youtubeActions';
+import { cacheDetails } from '../actions/cacheActions';
 
 @connect(store => ({
   asset: store.tmdbReducer.details.data,
@@ -45,7 +46,7 @@ class PDP extends PureComponent {
       });
   }
 
-  onFocusItem = (ref, id, type) => this.props.dispatch(tmdbDetails(id, type, true));
+  onFocusItem = (ref, id, type) => this.props.dispatch(cacheDetails(id, type));
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
