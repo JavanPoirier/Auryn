@@ -79,7 +79,7 @@ class Lander extends Component {
   }
 
   onFocusItem = (ref, id, type) => {
-    this.props.dispatch(tmdbDetails(id, type));
+    this.props.dispatch(tmdbDetails(id, type, true));
     this.lastFocusItem = ref;
 
     if (ref.props.shouldChangeFocus === false) return;

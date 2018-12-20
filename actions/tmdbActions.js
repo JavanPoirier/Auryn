@@ -44,10 +44,9 @@ export const tmdbTv = () => dispatch => dispatch({
     .then(json => normalize(json.results)),
 });
 
-export const tmdbDetails = (id, type) => (dispatch, getState) => {
-  const { tmdbReducer: { details, fetching } } = getState();
-
+export const tmdbDetails = (id, type, cacheOnly = false) => (dispatch, getState) => {
   if (fetching) return dispatch({});
+  const { tmdbReducer: { details, fetching } } = getState();
 
   const cachedPayload = details.cache.find(it => it.id === id && it.type === type);
   if (cachedPayload) {
@@ -57,6 +56,7 @@ export const tmdbDetails = (id, type) => (dispatch, getState) => {
       meta: {
         params: { type, id },
         cachehit: true,
+        cacheOnly,
       },
     });
   }
@@ -66,6 +66,7 @@ export const tmdbDetails = (id, type) => (dispatch, getState) => {
     meta: {
       params: { type, id },
       cachehit: false,
+      cacheOnly,
       debounce: {
         time: 500,
         key: 'TMDB_DETAILS',

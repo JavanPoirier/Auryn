@@ -120,10 +120,12 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
         cache.push(action.payload);
 
       if (cache.length > 20) cache.pop();
+
+      const data = action.meta.cacheOnly ? state.details.data : action.payload;
       return {
         ...state,
         details: {
-          data: action.payload,
+          data,
           cache,
           fetching: false,
           fetched: true,

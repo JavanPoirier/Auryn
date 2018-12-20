@@ -45,7 +45,7 @@ class PDP extends PureComponent {
       });
   }
 
-  onFocusItem = (ref, id, type) => this.props.dispatch(tmdbDetails(id, type));
+  onFocusItem = (ref, id, type) => this.props.dispatch(tmdbDetails(id, type, true));
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
