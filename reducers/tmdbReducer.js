@@ -111,11 +111,20 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
       };
 
     case 'TMDB_DETAILS_FULFILLED':
+      const cache = [...state.details.cache];
+      if (action.meta.cachehit) {
+        const i = cache.findIndex(it => it.id === action.payload.id && it.type === action.payload.type);
+        cache.splice(i, 1);
+        cache.unshift(action.payload);
+      } else
+        cache.push(action.payload);
+
+      if (cache.length > 20) cache.pop();
       return {
         ...state,
         details: {
           data: action.payload,
-          cache: action.meta.cachehit ? [state.details.cache] : [...state.details.cache, action.payload],
+          cache,
           fetching: false,
           fetched: true,
         },
