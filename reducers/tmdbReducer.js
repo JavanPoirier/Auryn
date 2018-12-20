@@ -142,7 +142,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
     case 'TMDB_DETAILS':
       return {
         ...state,
-        details: { fetching: true, fetched: false },
+        details: { ...state.details, data: {}, fetching: true, fetched: false },
       };
 
     case 'TMDB_DETAILS_CLEAR':

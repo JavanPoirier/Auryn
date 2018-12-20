@@ -1,5 +1,4 @@
 import { chunk } from 'lodash';
-import { youtubeVideo } from './youtubeActions';
 
 const apiKeyParam = 'api_key=7f5e61b6cef8643d2442344b45842192';
 
@@ -46,7 +45,10 @@ export const tmdbTv = () => dispatch => dispatch({
 });
 
 export const tmdbDetails = (id, type) => (dispatch, getState) => {
-  const { tmdbReducer: { details } } = getState();
+  const { tmdbReducer: { details, fetching } } = getState();
+
+  if (fetching) return dispatch({});
+
   const cachedPayload = details.cache.find(it => it.id === id && it.type === type);
   if (cachedPayload) {
     return dispatch({
@@ -59,7 +61,6 @@ export const tmdbDetails = (id, type) => (dispatch, getState) => {
     });
   }
 
-  let payload = {};
   return dispatch({
     type: 'TMDB_DETAILS',
     meta: {
@@ -73,13 +74,11 @@ export const tmdbDetails = (id, type) => (dispatch, getState) => {
     payload: fetch(`http://api.themoviedb.org/3/${type}/${id}?append_to_response=similar,videos,credits&${apiKeyParam}`)
       .then(response => response.json())
       .then(json => {
-        payload = json;
-        payload.type = 'name' in payload ? 'tv' : 'movie';
-        payload.youtubeId = payload.videos.results.length ? payload.videos.results[0].key : 'nO_DIwuGBnA';
-        return dispatch(youtubeVideo(payload.youtubeId));
-      })
-      .then(() => payload.videoSource = getState().youtubeReducer.videoSource)
-      .then(() => payload),
+        json.type = 'name' in json ? 'tv' : 'movie';
+        json.youtubeId = json.videos.results.length ? json.videos.results[0].key : 'nO_DIwuGBnA';
+        json.similar.results = json.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString() }));
+        return json;
+      }),
   });
 };
 
