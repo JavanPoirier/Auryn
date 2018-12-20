@@ -19,11 +19,11 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
   },
   details: {
     data: {},
-    cache: [],
     fetching: false,
     fetched: false,
     error: null,
   },
+  detailsCache: [],
   search: {
     data: [],
     fetching: false,
@@ -111,25 +111,25 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
       };
 
     case 'TMDB_DETAILS_FULFILLED':
-      const cache = [...state.details.cache];
+      const detailsCache = [...state.detailsCache];
       if (action.meta.cachehit) {
-        const i = cache.findIndex(it => it.id === action.payload.id && it.type === action.payload.type);
-        cache.splice(i, 1);
-        cache.unshift(action.payload);
+        const i = detailsCache.findIndex(it => it.id === action.payload.id && it.type === action.payload.type);
+        detailsCache.splice(i, 1);
+        detailsCache.unshift(action.payload);
       } else
-        cache.push(action.payload);
+        detailsCache.push(action.payload);
 
-      if (cache.length > 20) cache.pop();
+      if (detailsCache.length > 20) detailsCache.pop();
 
       const data = action.meta.cacheOnly ? state.details.data : action.payload;
       return {
         ...state,
         details: {
           data,
-          cache,
           fetching: false,
           fetched: true,
         },
+        detailsCache,
       };
 
     case 'TMDB_DETAILS_REJECTED':
