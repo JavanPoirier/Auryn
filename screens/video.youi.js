@@ -5,7 +5,9 @@ import { withNavigationFocus } from 'react-navigation';
 import { connect } from 'react-redux';
 
 @connect(store => ({
-  videoSource: store.tmdbReducer.details.data.videoSource,
+  videoSource: store.youtubeReducer.videoSource,
+  asset: store.tmdbReducer.details.data,
+  fetched: store.youtubeReducer.fetched,
 }))
 class Video extends PureComponent {
   constructor(props) {
@@ -16,11 +18,12 @@ class Video extends PureComponent {
     };
 
     this.state = {
-      videoSource: this.props.videoSource,
       formattedTime: '00:00',
       focusable: true,
       paused: true,
+      error: false,
     };
+
     this.controlsVisible = false;
   }
 
@@ -50,10 +53,26 @@ class Video extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements
+    if (prevProps.videoSource !== this.props.videoSource)
+      this.setState({ videoSource: this.props.videoSource });
+
     if (this.state.percent !== prevState.percent) {
       console.log('SCRUB', this.state.percent);
       this.scrubberTimeline.play(this.state.percent);
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.videoSource !== this.props.videoSource)
+      return true;
+
+    if (nextState.videoSource !== this.state.videoSource)
+      return true;
+
+    if (this.state.percent !== nextState.percent)
+      return true;
+
+    return false;
   }
 
   inactivityDetected = () => {
@@ -101,10 +120,14 @@ class Video extends PureComponent {
 
   navigateBack = () => {
     this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
-    this.outTimeline.play().then(() => {
-      this.videoPlayer.pause();
+    if (this.outTimeline) {
+      this.outTimeline.play().then(() => {
+        this.videoPlayer.stop();
+        this.props.navigation.goBack(null);
+      });
+    } else
       this.props.navigation.goBack(null);
-    });
+
     return true;
   }
 
@@ -127,8 +150,8 @@ class Video extends PureComponent {
   }
 
   render() { // eslint-disable-line max-lines-per-function
-    const { asset, fetched } = this.props;
-    if (!fetched || !this.props.isFocused)
+    const { fetched, asset } = this.props;
+    if (!fetched)
       return <View />;
 
     return (
@@ -153,7 +176,7 @@ class Video extends PureComponent {
             }}
             source={this.state.videoSource}
             onErrorOccurred={() => {
-              this.setState({ videoSource: this.fallbackVideo });
+              this.setState({ error: true, videoSource: this.fallbackVideo });
             }}
             onCurrentTimeUpdated={this.onCurrentTimeUpdated}
             onDurationChanged={duration => {

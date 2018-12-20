@@ -14,27 +14,28 @@ import { connect } from 'react-redux';
 
 import { Timeline, List, BackButton } from '../components';
 import { tmdbDetails } from '../actions/tmdbActions';
+import { youtubeVideo } from '../actions/youtubeActions';
 
 @connect(store => ({
   asset: store.tmdbReducer.details.data,
-  fetched: store.tmdbReducer.details.fetched && store.youtubeReducer.fetched,
-  fetching: store.tmdbReducer.details.fetching,
+  fetched: store.tmdbReducer.details.fetched,
 }))
 class PDP extends PureComponent {
   constructor(props) {
     super(props);
-    this.allowVideoPlayback = false;
   }
 
   navigateBack = () => {
-    this.outTimeline.play().then(() => {
+    if (this.outTimeline) {
+      this.outTimeline.play().then(() => {
+        this.props.navigation.goBack(null);
+      });
+    } else
       this.props.navigation.goBack(null);
-    });
     return true;
   }
 
   onPressItem = (id, type) => {
-    this.allowVideoPlayback = false;
     this.props.dispatch(tmdbDetails(id, type));
     this.contentOutTimeline.play()
       .then(() => this.props.navigation.navigate({ routeName: 'PDP', params: { id, type } }))
@@ -58,8 +59,13 @@ class PDP extends PureComponent {
     this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
   }
 
+  shouldComponentUpdate(nextProps) {
+    // Only render if the asset.id matches the requested pdp asset id
+    return nextProps.asset.id === nextProps.navigation.getParam('id');
+  }
+
   playVideo = () => {
-    if (!this.allowVideoPlayback) return;
+    this.props.dispatch(youtubeVideo(this.props.asset.youtubeId));
     this.videoInTimeline.play().then(() =>
       this.props.navigation.dispatch(NavigationActions.navigate({
           routeName: 'Video',
@@ -77,13 +83,12 @@ class PDP extends PureComponent {
   }
 
   render() { // eslint-disable-line max-lines-per-function
-    const { fetched, asset } = this.props;
+    const { asset, fetched } = this.props;
     console.log('ASSET', asset);
 
-    if (!fetched || !asset)
+    if (!fetched)
       return <View />;
 
-      console.log('render');
     return (
       <Composition source="Auryn_PDP">
 
@@ -105,7 +110,7 @@ class PDP extends PureComponent {
           <List
             name="List-PDP"
             type="Shows"
-            data={asset.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString() }))}
+            data={asset.similar.results}
             focusable={this.props.isFocused}
             onPressItem={this.onPressItem}
             onFocusItem={this.onFocusItem}
@@ -114,7 +119,7 @@ class PDP extends PureComponent {
           <Timeline
             name="ContentIn"
             ref={timeline => this.contentInTimeline = timeline}
-            onLoad={ref => ref.play().then(() => this.allowVideoPlayback = true)} />
+            onLoad={ref => ref.play()} />
           <Timeline name="ContentOut" ref={timeline => this.contentOutTimeline = timeline} />
 
           <ButtonRef
