@@ -46,7 +46,7 @@ export const tmdbTv = () => dispatch => dispatch({
 });
 
 export const tmdbDetails = (id, type) => (dispatch, getState) => {
-  const { details } = getState().tmdbReducer.details;
+  const { tmdbReducer: { details } } = getState();
   const cachedPayload = details.cache.find(it => it.id === id && it.type === type);
   if (cachedPayload) {
     return dispatch({
