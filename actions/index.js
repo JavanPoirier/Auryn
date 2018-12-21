@@ -1,9 +1,9 @@
-import tmdbActions from './tmdbActions';
-import youtubeActions from './youtubeActions';
-import cacheActions from './cacheActions';
+import * as tmdbActions from './tmdbActions';
+import * as youtubeActions from './youtubeActions';
+import * as cacheActions from './cacheActions';
 
 export {
-  tmdbActions,
-  youtubeActions,
-  cacheActions,
+  tmdbActions as tmdb,
+  youtubeActions as youtube,
+  cacheActions as cache,
 };

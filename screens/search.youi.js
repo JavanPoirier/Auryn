@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Composition, BackHandler, TextInputRef, FocusManager } from '@youi/react-native-youi';
-import { tmdbSearch, tmdbDetails } from '../actions/tmdbActions';
+import { tmdb, cache } from '../actions';
 import { Timeline, List, BackButton } from '../components';
 import { NavigationActions, withNavigationFocus } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -37,7 +37,7 @@ class Search extends Component {
       },
       key: id,
     });
-    this.props.dispatch(tmdbDetails(id, type));
+    this.props.dispatch(tmdb.getDetailsByIdAndType(id, type));
     this.props.navigation.dispatch(navigateAction);
   }
 
@@ -50,7 +50,9 @@ class Search extends Component {
     return true;
   }
 
-  search = () => this.props.dispatch(tmdbSearch(this.state.query));
+  onFocusItem = (ref, id, type) => this.props.dispatch(cache.saveDetailsByIdAndType(id, type));
+
+  search = () => this.props.dispatch(tmdb.search(this.state.query));
 
   render() { // eslint-disable-line max-lines-per-function
     if (!this.props.isFocused)
@@ -66,7 +68,6 @@ class Search extends Component {
       <Composition source="Auryn_Search">
         <BackButton
           focusable={this.props.isFocused}
-          hasBackButton={this.props.screenProps.hasBackButton}
           onPress={this.navigateBack}
         />
         <TextInputRef
@@ -86,6 +87,7 @@ class Search extends Component {
           data={tv}
           focusable={this.props.isFocused}
           onPressItem={this.onPressItem}
+          onFocusItem={this.onFocusItem}
         />
         <List
           name="List-Movies"
@@ -93,6 +95,7 @@ class Search extends Component {
           data={movies}
           focusable={this.props.isFocused}
           onPressItem={this.onPressItem}
+          onFocusItem={this.onFocusItem}
         />
 
         <Timeline name="SearchOut" ref={timeline => this.outTimeline = timeline} />

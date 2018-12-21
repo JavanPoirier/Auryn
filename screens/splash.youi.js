@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Composition, ViewRef, View, StyleSheet } from '@youi/react-native-youi';
 import { Timeline } from '../components';
-import { tmdbDiscover, tmdbMovies, tmdbTv } from '../actions/tmdbActions';
+import { tmdb } from '../actions';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -17,9 +17,9 @@ class Splash extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(tmdbDiscover());
-    this.props.dispatch(tmdbMovies());
-    this.props.dispatch(tmdbTv());
+    this.props.dispatch(tmdb.getDiscover());
+    this.props.dispatch(tmdb.getMovies());
+    this.props.dispatch(tmdb.getTv());
   }
 
   render() {

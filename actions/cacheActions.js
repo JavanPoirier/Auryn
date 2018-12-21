@@ -1,6 +1,6 @@
 const apiKeyParam = 'api_key=7f5e61b6cef8643d2442344b45842192';
 
-export const cacheDetails = (id, type) => (dispatch, getState) => {
+export const saveDetailsByIdAndType = (id, type) => (dispatch, getState) => {
   const { cacheReducer: { details: { cache, fetching } } } = getState();
   if (fetching) return dispatch({ type: 'NOOP' });
 

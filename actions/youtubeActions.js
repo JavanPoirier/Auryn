@@ -1,6 +1,6 @@
 import Youtube from 'youtube-stream-url';
 
-export const youtubeVideo = key => dispatch => dispatch({
+export const getVideoSourceByYoutubeId = key => dispatch => dispatch({
   type: 'YOUTUBE_VIDEO',
   meta: {
     debounce: {

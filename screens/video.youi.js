@@ -3,6 +3,7 @@ import { View, Composition, ViewRef, VideoRef, ButtonRef, TextRef, Input, FocusM
 import { Timeline, ToggleButton, BackButton } from '../components';
 import { withNavigationFocus } from 'react-navigation';
 import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
 
 @connect(store => ({
   videoSource: store.youtubeReducer.videoSource,
@@ -20,17 +21,20 @@ class Video extends PureComponent {
     this.state = {
       controlsVisible: false,
       formattedTime: '00:00',
-      focusable: true,
       paused: true,
       error: false,
+      ready: false,
     };
   }
 
-  keys = [
+  mediaKeys = [
     'YI_KEY_SPACE',
     'YI_KEY_PLAY',
     'YI_KEY_MEDIA_PLAY',
     'YI_KEY_MEDIA_PLAY_PAUSE',
+  ];
+
+  keys = [
     'YI_KEY_ENTER',
     'YI_KEY_SELECT',
     'YI_KEY_PAGEDOWN',
@@ -48,11 +52,11 @@ class Video extends PureComponent {
     this.props.navigation.addListener('didFocus', () =>
       this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack));
     this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
-    this.keys.forEach(key => Input.addEventListener(key, this.registerUserActivity));
+    this.keys.concat(this.mediaKeys).forEach(key => Input.addEventListener(key, this.registerUserActivity));
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements
-    if (prevProps.videoSource !== this.props.videoSource)
+    if (!isEqual(this.props.videoSource, prevProps.videoSource))
       this.setState({ videoSource: this.props.videoSource });
 
     if (this.state.percent !== prevState.percent) {
@@ -62,13 +66,10 @@ class Video extends PureComponent {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.videoSource !== this.props.videoSource)
+    if (nextProps.fetched !== this.props.fetched)
       return true;
 
-    if (nextState.videoSource !== this.state.videoSource)
-      return true;
-
-    if (this.state.percent !== nextState.percent)
+    if (!isEqual(this.props.videoSource, nextProps.videoSource))
       return true;
 
     if (nextState.controlsVisible) return true;
@@ -77,7 +78,7 @@ class Video extends PureComponent {
   }
 
   inactivityDetected = () => {
-    if (this.controlsHideTimeline) this.controlsHideTimeline.play();
+    this.controlsHideTimeline.play();
     this.setState({ controlsVisible: false });
   }
 
@@ -87,13 +88,10 @@ class Video extends PureComponent {
     this.controlsShowTimeline.play();
   }
 
-  hideControls = () => {
-    this.setState({ controlsVisible: false });
-    FocusManager.focus(this.videoPlayer);
-    if (this.controlsHideTimeline) this.controlsHideTimeline.play();
-  }
+  registerUserActivity = keyEvent => {
+    if (this.mediaKeys.includes(keyEvent.keyCode))
+      this.playPause();
 
-  registerUserActivity = () => {
     if (!this.state.controlsVisible) this.showControls();
 
     if (this.activityTimeout)
@@ -101,18 +99,6 @@ class Video extends PureComponent {
 
     // Set our new activity timeout
     this.activityTimeout = setTimeout(() => this.inactivityDetected(), 3000);
-  }
-
-  reset = () => {
-    if (!this.videoPlayer) return;
-
-    this.videoPlayer.stop();
-    this.scrubberTimeline.play(0);
-    this.setState({
-      formattedTime: '00:00',
-      duration: 0,
-      paused: true,
-    });
   }
 
   playPause = () => {
@@ -150,39 +136,37 @@ class Video extends PureComponent {
     });
   }
 
+  onPlayerReady = () => {
+    this.setState({ ready: true });
+    this.videoPlayer.play();
+    this.inTimeline.play();
+  };
+
+  onPlayerError = () => this.setState({ error: true, videoSource: this.fallbackVideo });
+
+  onDurationChanged = duration => this.setState({ duration: duration.nativeEvent });
+
   render() { // eslint-disable-line max-lines-per-function
-    const { fetched, asset } = this.props;
+    const { fetched, asset, isFocused } = this.props;
     if (!fetched)
       return <View />;
 
     return (
       <Composition source="Auryn_VideoContainer">
-        <Timeline
-          name="In"
-          ref={timeline => this.inTimeline = timeline}
-         />
+        <Timeline name="In" ref={timeline => this.inTimeline = timeline} />
         <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
 
-        <ButtonRef name="Video" onPress={this.registerUserActivity}>
+        <ButtonRef name="Video" onPress={this.registerUserActivity} visible={isFocused && fetched}>
           <VideoRef
             name="VideoSurface"
-            ref={ref => {
-              this.videoPlayer = ref;
-            }}
+            ref={ref => this.videoPlayer = ref}
             onPaused={() => this.setState({ paused: true })}
             onPlaying={() => this.setState({ paused: false })}
-            onReady={() => {
-             this.videoPlayer.play();
-             this.inTimeline.play();
-            }}
+            onReady={this.onPlayerReady}
             source={this.state.videoSource}
-            onErrorOccurred={() => {
-              this.setState({ error: true, videoSource: this.fallbackVideo });
-            }}
+            onErrorOccurred={this.onPlayerError}
             onCurrentTimeUpdated={this.onCurrentTimeUpdated}
-            onDurationChanged={duration => {
-              this.setState({ duration: duration.nativeEvent });
-            }}
+            onDurationChanged={this.onDurationChanged}
           />
           <ViewRef name="ActivityIndicator">
             <Timeline name="Show" ref={ref => this.activityShowTimeline = ref} />
@@ -190,9 +174,8 @@ class Video extends PureComponent {
           </ViewRef>
           <ViewRef name="Player-Controls">
             <BackButton
-              focusable={this.props.isFocused}
-              hasBackButton={this.props.screenProps.hasBackButton}
-              onPress={this.props.onPressBackButton}
+              focusable={isFocused}
+              onPress={this.navigateBack}
             />
             <Timeline name="Show"
               ref={ref => this.controlsShowTimeline = ref}
@@ -204,7 +187,7 @@ class Video extends PureComponent {
               onPress={this.playPause}
               toggled={!this.state.paused}
               toggle={true}
-              focusable={this.props.isFocused}
+              focusable={isFocused}
               ref={ref => this.playButton = ref}
             />
             <TextRef name="Duration" text={this.state.formattedTime} />

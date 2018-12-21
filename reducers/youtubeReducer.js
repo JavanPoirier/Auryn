@@ -4,16 +4,25 @@ const defaultVideoSource = {
 };
 
 export default function youtubeReducer(state = { // eslint-disable-line max-lines-per-function
-  videoSource: defaultVideoSource,
+  videoSource: {},
   fetching: false,
   fetched: false,
   error: null,
 }, action) {
   switch (action.type) {
+    case 'YOUTUBE_CLEAR':
+      return {
+        videoSource: {},
+        fetching: false,
+        fetched: false,
+        error: null,
+      };
     case 'YOUTUBE_VIDEO':
       return {
         ...state,
+        videoSource: {},
         fetching: true,
+        fetched: false,
       };
     case 'YOUTUBE_VIDEO_FULFILLED': {
       const format = action.payload.formats ?

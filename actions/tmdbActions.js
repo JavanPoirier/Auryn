@@ -13,16 +13,16 @@ const normalize = (array, imagePath = 'backdrop_path') =>
     .slice(0, 15)
     .map(it => ({ ...it, key: it.id.toString() }));
 
-export const tmdbDiscover = () => dispatch => {
+export const getDiscover = () => dispatch => {
   let movies = [];
 
   dispatch({
     type: 'TMDB_DISCOVER',
-    payload: fetch(`http://api.themoviedb.org/3/discover/movie?${apiKeyParam}`)
+    payload: fetch(`http://api.themoviedb.org/3/discover/movie?${apiKeyParam}&with_original_language=en`)
       .then(response => response.json())
       .then(json => {
         movies = json.results.slice(0, 12);
-        return fetch(`http://api.themoviedb.org/3/discover/tv?${apiKeyParam}`);
+        return fetch(`http://api.themoviedb.org/3/discover/tv?${apiKeyParam}&with_original_language=en`);
       })
       .then(response => response.json())
       .then(tv => movies.concat(tv.results.slice(0, 12)).sort(() => 0.5 - Math.random()))
@@ -30,21 +30,21 @@ export const tmdbDiscover = () => dispatch => {
   });
 };
 
-export const tmdbMovies = () => dispatch => dispatch({
+export const getMovies = () => dispatch => dispatch({
   type: 'TMDB_MOVIES',
-  payload: fetch(`http://api.themoviedb.org/3/movie/popular?${apiKeyParam}`)
+  payload: fetch(`http://api.themoviedb.org/3/movie/popular?${apiKeyParam}&with_original_language=en`)
     .then(response => response.json())
     .then(json => normalize(json.results, 'poster_path')),
 });
 
-export const tmdbTv = () => dispatch => dispatch({
+export const getTv = () => dispatch => dispatch({
   type: 'TMDB_TV',
-  payload: fetch(`http://api.themoviedb.org/3/tv/popular?${apiKeyParam}`)
+  payload: fetch(`http://api.themoviedb.org/3/tv/popular?${apiKeyParam}&with_original_language=en`)
     .then(response => response.json())
     .then(json => normalize(json.results)),
 });
 
-export const tmdbDetails = (id, type) => (dispatch, getState) => {
+export const getDetailsByIdAndType = (id, type) => (dispatch, getState) => {
   const { cacheReducer: { details: { cache } } } = getState();
   const cachedPayload = cache.find(it => it.id === id && it.type === type);
   if (cachedPayload) {
@@ -67,14 +67,7 @@ export const tmdbDetails = (id, type) => (dispatch, getState) => {
   });
 };
 
-export const tmdbClearDetails = () => dispatch => {
-  dispatch({
-    type: 'TMDB_DETAILS_CLEAR',
-    payload: true,
-  });
-};
-
-export const tmdbSearch = query => dispatch => dispatch({
+export const search = query => dispatch => dispatch({
   type: 'TMDB_SEARCH',
   meta: {
     debounce: {

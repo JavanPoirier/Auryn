@@ -6,16 +6,14 @@ import {
   Composition,
   ImageRef,
   TextRef,
-  View,
   ViewRef,
   FocusManager,
 } from '@youi/react-native-youi';
 import { connect } from 'react-redux';
 
 import { Timeline, List, BackButton } from '../components';
-import { tmdbDetails } from '../actions/tmdbActions';
-import { youtubeVideo } from '../actions/youtubeActions';
-import { cacheDetails } from '../actions/cacheActions';
+import { youtube, cache, tmdb } from '../actions';
+
 
 @connect(store => ({
   asset: store.tmdbReducer.details.data,
@@ -37,7 +35,7 @@ class PDP extends PureComponent {
   }
 
   onPressItem = (id, type) => {
-    this.props.dispatch(tmdbDetails(id, type));
+    this.props.dispatch(tmdb.getDetailsByIdAndType(id, type));
     this.contentOutTimeline.play()
       .then(() => this.props.navigation.navigate({ routeName: 'PDP', params: { id, type } }))
       .then(() => {
@@ -46,7 +44,7 @@ class PDP extends PureComponent {
       });
   }
 
-  onFocusItem = (ref, id, type) => this.props.dispatch(cacheDetails(id, type));
+  onFocusItem = (ref, id, type) => this.props.dispatch(cache.saveDetailsByIdAndType(id, type));
 
   componentDidMount() {
     this.props.navigation.addListener('didFocus', () => {
@@ -70,7 +68,6 @@ class PDP extends PureComponent {
   }
 
   playVideo = () => {
-    this.props.dispatch(youtubeVideo(this.props.asset.youtubeId));
     this.videoInTimeline.play().then(() =>
       this.props.navigation.dispatch(NavigationActions.navigate({
           routeName: 'Video',
@@ -87,29 +84,27 @@ class PDP extends PureComponent {
     return `Starring: ${cast}`;
   }
 
+  onFocusPoster = () => {
+    this.props.dispatch(youtube.getVideoSourceByYoutubeId(this.props.asset.youtubeId));
+  }
+
   render() { // eslint-disable-line max-lines-per-function
     const { asset, fetched } = this.props;
-    console.log('ASSET', asset);
-
-    if (!fetched || !this.props.isFocused)
-      return <View />;
 
     return (
       <Composition source="Auryn_PDP">
 
         <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
         <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
-
         <Timeline name="PDPIn"
           ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
-
         <Timeline name="PDPOut" ref={timeline => this.outTimeline = timeline} />
-        <ViewRef name="PDP-Scroller" visible={this.props.isFocused}>
+
+        <ViewRef name="PDP-Scroller" visible={this.props.isFocused && fetched}>
           <BackButton
             focusable={this.props.isFocused}
-            hasBackButton={this.props.screenProps.hasBackButton}
             onPress={this.navigateBack}
           />
           <List
@@ -133,6 +128,7 @@ class PDP extends PureComponent {
             onPress={this.playVideo}
             ref={ref => this.posterButton = ref}
             onLoad={() => FocusManager.focus(this.posterButton)}
+            onFocus={this.onFocusPoster}
           >
             <ImageRef
               name="Image-Dynamic"

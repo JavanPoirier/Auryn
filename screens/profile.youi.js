@@ -41,7 +41,6 @@ class Profile extends Component {
       <Composition source="Auryn_Profile">
         <BackButton
           focusable={this.props.isFocused}
-          hasBackButton={this.props.screenProps.hasBackButton}
           onPress={this.navigateBack}
         />
         <Timeline name="ProfileIn" onLoad={timeline => timeline.play()} />
