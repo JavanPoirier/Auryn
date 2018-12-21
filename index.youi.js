@@ -12,7 +12,7 @@ export default class YiReactApp extends Component {
   constructor() {
     super();
     const systemName = DeviceInfo.getSystemName();
-    this.hasBackButton = !['iOS'].includes(systemName);
+    global.hasHardwareBackButton = !['iOS'].includes(systemName);
   }
 
   render = () =>
@@ -22,7 +22,7 @@ export default class YiReactApp extends Component {
           style={styles.background}
           source={{ 'uri': 'res://drawable/default/Background-Gradient.png' }}
         />
-        <Stack screenProps={{ hasBackButton: this.hasBackButton }}/>
+        <Stack />
       </View>
     </Provider>
 }
