@@ -24,7 +24,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
     error: null,
   },
   search: {
-    data: [],
+    data: {},
     fetching: false,
     fetched: false,
     error: null,
@@ -154,6 +154,7 @@ export default function tmdbReducer(state = { // eslint-disable-line max-lines-p
       return {
         ...state,
         search: {
+          data: {},
           fetching: false,
           error: action.payload,
         },

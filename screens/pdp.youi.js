@@ -7,6 +7,7 @@ import {
   ImageRef,
   TextRef,
   ViewRef,
+  View,
   FocusManager,
 } from '@youi/react-native-youi';
 import { connect } from 'react-redux';
@@ -91,6 +92,8 @@ class PDP extends PureComponent {
   render() { // eslint-disable-line max-lines-per-function
     const { asset, fetched } = this.props;
 
+    if (!fetched)
+      return <View/>;
     return (
       <Composition source="Auryn_PDP">
 

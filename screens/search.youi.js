@@ -4,31 +4,39 @@ import { tmdb, cache } from '../actions';
 import { Timeline, List, BackButton } from '../components';
 import { NavigationActions, withNavigationFocus } from 'react-navigation';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 @connect(store => ({
   data: store.tmdbReducer.search.data,
-  fetched: store.tmdbReducer.search.fetched,
 }))
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { query: '' };
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', () => {
-      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.backHandlerListner = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
     });
-    this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
+    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListner.remove());
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+    this.backHandlerListner.remove();
+    this.blurListener.remove();
   }
 
   navigateBack = () => {
-    this.outTimeline.play().then(() => this.props.navigation.goBack(null));
+    if (this.outTimeline)
+      this.outTimeline.play().then(() => this.props.navigation.goBack(null));
+    else
+      this.props.navigation.goBack(null);
     return true;
   }
 
   onPressItem = (id, type) => {
-    console.log(id);
+    this.props.dispatch(tmdb.getDetailsByIdAndType(id, type));
     const navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
       params: {
@@ -37,33 +45,19 @@ class Search extends Component {
       },
       key: id,
     });
-    this.props.dispatch(tmdb.getDetailsByIdAndType(id, type));
-    this.props.navigation.dispatch(navigateAction);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.query !== nextState.query) {
-      this.search();
-      return false;
-    }
-
-    return true;
+    this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));
   }
 
   onFocusItem = (ref, id, type) => this.props.dispatch(cache.saveDetailsByIdAndType(id, type));
 
-  search = () => this.props.dispatch(tmdb.search(this.state.query));
+  search = query => this.props.dispatch(tmdb.search(query));
 
   render() { // eslint-disable-line max-lines-per-function
-    if (!this.props.isFocused)
+    const { isFocused, data: { movies, tv } } = this.props;
+
+    if (!isFocused)
       return <View />;
-    const { data, fetched } = this.props;
-    let movies = [];
-    let tv = [];
-    if (fetched && this.state.query) {
-      movies = data.filter(it => it.media_type === 'movie').slice(0, 10);
-      tv = data.filter(it => it.media_type === 'tv').slice(0, 10);
-    }
+
     return (
       <Composition source="Auryn_Search">
         <BackButton
@@ -77,15 +71,14 @@ class Search extends Component {
           }}
           name="TextInput"
           secureTextEntry={false}
-          onChangeText={text => this.setState({ query: text })}
-          defaultValue={this.state.query}
+          onChangeText={this.search}
         />
 
         <List
           name="List-PDP"
           type="Shows"
           data={tv}
-          focusable={this.props.isFocused}
+          focusable={isFocused}
           onPressItem={this.onPressItem}
           onFocusItem={this.onFocusItem}
         />
@@ -93,7 +86,7 @@ class Search extends Component {
           name="List-Movies"
           type="Shows"
           data={movies}
-          focusable={this.props.isFocused}
+          focusable={isFocused}
           onPressItem={this.onPressItem}
           onFocusItem={this.onFocusItem}
         />
@@ -101,7 +94,7 @@ class Search extends Component {
         <Timeline name="SearchOut" ref={timeline => this.outTimeline = timeline} />
 
         <Timeline name="SearchIn"
-          ref={timeline => this.searchinTimeline = timeline}
+          ref={timeline => this.inTimeline = timeline}
           onLoad={timeline => timeline.play()}
         />
       </Composition>
@@ -110,3 +103,10 @@ class Search extends Component {
 }
 
 export default withNavigationFocus(Search);
+
+Search.propTypes = {
+  isFocused: PropTypes.bool,
+  data: PropTypes.object,
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+};

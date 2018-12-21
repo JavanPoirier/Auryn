@@ -8,9 +8,9 @@ const groupInto3 = array =>
     data,
   }));
 
-const normalize = (array, imagePath = 'backdrop_path') =>
+const normalize = (array, length = 15, imagePath = 'backdrop_path') =>
   array.filter(asset => asset.original_language === 'en' && asset[imagePath])
-    .slice(0, 15)
+    .slice(0, length)
     .map(it => ({ ...it, key: it.id.toString() }));
 
 export const getDiscover = () => dispatch => {
@@ -34,7 +34,7 @@ export const getMovies = () => dispatch => dispatch({
   type: 'TMDB_MOVIES',
   payload: fetch(`http://api.themoviedb.org/3/movie/popular?${apiKeyParam}&with_original_language=en`)
     .then(response => response.json())
-    .then(json => normalize(json.results, 'poster_path')),
+    .then(json => normalize(json.results, 15, 'poster_path')),
 });
 
 export const getTv = () => dispatch => dispatch({
@@ -76,5 +76,8 @@ export const search = query => dispatch => dispatch({
   },
   payload: fetch(`http://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}&${apiKeyParam}`)
     .then(response => response.json())
-    .then(json => normalize(json.results)),
+    .then(json => ({
+        movies: normalize(json.results.filter(it => it.media_type === 'movie'), 10),
+        tv: normalize(json.results.filter(it => it.media_type === 'tv'), 10),
+    })),
 });
