@@ -11,7 +11,7 @@ const groupInto3 = array =>
 const normalize = (array, length = 15, imagePath = 'backdrop_path') =>
   array.filter(asset => asset.original_language === 'en' && asset[imagePath])
     .slice(0, length)
-    .map(it => ({ ...it, key: it.id.toString() }));
+    .map(it => ({ ...it, key: it.id.toString(), type: 'name' in it ? 'tv' : 'movie' }));
 
 export const getDiscover = () => dispatch => {
   let movies = [];
@@ -45,7 +45,7 @@ export const getTv = () => dispatch => dispatch({
 });
 
 export const getDetailsByIdAndType = (id, type) => (dispatch, getState) => {
-  const { cacheReducer: { details: { cache } } } = getState();
+  const { cacheReducer: { cache } } = getState();
   const cachedPayload = cache.find(it => it.id === id && it.type === type);
   if (cachedPayload) {
     return dispatch({
@@ -59,9 +59,9 @@ export const getDetailsByIdAndType = (id, type) => (dispatch, getState) => {
     payload: fetch(`http://api.themoviedb.org/3/${type}/${id}?append_to_response=similar,videos,credits&${apiKeyParam}`)
       .then(response => response.json())
       .then(json => {
-        json.type = 'name' in json ? 'tv' : 'movie';
+        json.type = type;
         json.youtubeId = json.videos.results.length ? json.videos.results[0].key : 'nO_DIwuGBnA';
-        json.similar.results = json.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString() }));
+        json.similar.results = json.similar.results.slice(0, 5).map(it => ({ ...it, key: it.id.toString(), type }));
         return json;
       }),
   });
