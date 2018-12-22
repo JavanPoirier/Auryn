@@ -7,12 +7,17 @@ export default class Timeline extends PureComponent {
     onLoad: () => {},
     onCompleted: () => {},
     direction: 'forward',
+    ref: () => {},
   }
 
   render() {
     return (
       <TimelineRef
         {...this.props}
+        ref={ref => {
+          this.ref = ref;
+          this.props.ref(this);
+        }}
         onLoad={timeline => {
           this.ref = timeline;
           this.props.onLoad(this);
@@ -48,4 +53,5 @@ Timeline.propTypes = {
   name: PropTypes.string,
   onLoad: PropTypes.func,
   onCompleted: PropTypes.func,
+  ref: PropTypes.func,
 };
