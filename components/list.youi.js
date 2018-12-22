@@ -77,6 +77,7 @@ List.propTypes = {
   name: PropTypes.string,
   focusable: PropTypes.bool,
   onPressItem: PropTypes.func,
+  onFocusItem: PropTypes.func,
   data: PropTypes.array.isRequired,
   ref: PropTypes.func,
 };
