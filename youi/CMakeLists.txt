@@ -30,13 +30,11 @@ endif()
 include(${YouiEngine_DIR}/cmake/Hunter/YiInitializeHunter.cmake OPTIONAL)
 project(${YI_PROJECT_NAME} LANGUAGES C CXX)
 
-# The ordering of the paths within the CMAKE_MODULE_PATH variable is imporant, since having the project's 'cmake'
-# path first will tell CMake to first look under that folder when the short form 'include(Modules/<module>)' command is used
-# instead of the long form 'include(<path>/Modules/<filename>.cmake)'.
-#
-# If CMake finds a module under the project directory structure, it will load that file and stop looking in the CMAKE_MODULE_PATH.
-# This allows projects to customize modules as they need to, without requiring changes at the engine level.
-list(INSERT CMAKE_MODULE_PATH 0 ${YouiEngine_DIR}/cmake)
+list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${YouiEngine_DIR}/cmake)
+include(Modules/YiUtility)
+
+yi_print_app_names(YI_PROJECT_NAME YI_PACKAGE_NAME YI_DISPLAY_NAME)
+yi_print_vars(YI_TREAT_WARNINGS_AS_ERRORS  YI_VERSION_NUMBER YI_YOUI_ENGINE_VERSION)
 
 if(YI_BUILD_CLOUD_SERVER)
     find_path(YI_CLOUD_CMAKE_DIR
@@ -142,7 +140,7 @@ if(YI_BUILD_CLOUD_SERVER)
     find_path(APPCOMMON_INCLUDE_DIR
         AppFactory.h
         PATH_SUFFIXES
-            templates/mains/Resources/bluesky
+            templates/mains/Resources/roku
             cloud/AppCommon/src
         PATHS
             ${YouiEngine_DIR}

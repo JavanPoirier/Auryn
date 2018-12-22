@@ -498,10 +498,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@youi/react-native-youi@5.1.0-rc8":
-  version "5.1.0-rc8"
-  resolved "https://youi.jfrog.io/youi/api/npm/jspkg/@youi/react-native-youi/-/@youi/react-native-youi-5.1.0-rc8.tgz#b76a41e8b4616d44b2d2a42257bfb3cf8afd4ddf"
-  integrity sha1-t2pB6LRhbUSy0qQiV7+zz4r9Td8=
+"@youi/react-native-youi@5.1.0-alpha.20181221":
+  version "5.1.0-alpha.20181221"
+  resolved "https://youi.jfrog.io/youi/api/npm/jspkg/@youi/react-native-youi/-/@youi/react-native-youi-5.1.0-alpha.20181221.tgz#7f454c324a992a4339093d1ce7c23764e4895980"
+  integrity sha1-f0VMMkqZKkM5CT0c58I3ZOSJWYA=
   dependencies:
     create-react-class "^15.6.3"
     keymirror "0.1.1"

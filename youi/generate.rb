@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# © You i Labs Inc. 2000-2017. All rights reserved.
+# © You.i TV Inc. 2000-2018. All rights reserved.
 
 require 'fileutils'
 require 'optparse'
@@ -24,8 +24,8 @@ class GenerateOptions
         options.jsbundle_file = []
         options.jsbundle_working_directory = nil
 
-        platformList = ["Android", "Bluesky2", "Bluesky4", "Ios", "Linux", "Osx", "Ps4", "Tizen-Nacl", "Tvos", "Uwp", "Vs2017"]
-        configurationList = ["Debug","Release"]
+        platformList = ["Android", "Bluesky2", "Bluesky4", "Ios", "Linux", "Osx", "Ps4", "Tizen-Nacl", "Tvos", "Uwp", "Vs2017", "Webos3", "Webos4"]
+        configurationList = ["Debug", "Release"]
 
         unless File.exist?(File.join("#{__dir__}", "CMakeLists.txt"))
             puts "ERROR: The directory '#{__dir__}' does not contain a CMakeLists.txt file."
@@ -58,7 +58,7 @@ class GenerateOptions
                 "Supported generators by platform:",
                 "Android:",
                 "  - AndroidStudio (default)",
-                "iOS/tvOS:",
+                "OSX, iOS, and tvOS:",
                 "  - Xcode (default)",
                 "PS4:",
                 "  - Visual Studio 11 [2012]",
@@ -68,17 +68,12 @@ class GenerateOptions
                 "Tizen-NaCl:",
                 "  - Eclipse CDT4 - Ninja (default if installed)",
                 "  - Eclipse CDT4 - Unix Makefiles (default without ninja)",
-                "Bluesky2/Bluesky4:",
+                "VS2017 and UWP:",
+                "  - Visual Studio 15 Win64 [2017] (default)",
+                "Linux, Bluesky2, Bluesky4, WebOS3 and WebOS4:",
                 "  - Ninja (default if installed)",
                 "  - Unix Makefiles (default without ninja)",
-                "UWP:",
-                "  - Visual Studio 15 Win64 [2017] (default)",
-                "VS2017:",
-                "  - Visual Studio 15 Win64 [2017] (default)",
-                "Linux/OSX:",
-                "  - Any generator supported by CMake. See cmake --help for details.",
-                "  - OSX Default: Xcode",
-                "  - Linux Default: Unix Makefiles") do |generator|
+) do |generator|
                 options.generator = generator
             end
 
@@ -182,18 +177,12 @@ class GenerateOptions
                 case options.platform
                 when /android/i
                     options.generator = "AndroidStudio"
-                when /osx/i
+                when /osx|ios|tvos/i
                     options.generator = "Xcode"
-                when /ios|tvos/i
-                    options.generator = "Xcode"
-                when /UWP/i
-                    options.generator = "Visual Studio 15 Win64"
-                when /vs2017/i
+                when /vs2017|UWP/i
                     options.generator = "Visual Studio 15 Win64"
                 when /ps4/i
                     options.generator = "Visual Studio 14"
-                when /linux/i
-                    options.generator = "Unix Makefiles"
                 when /Tizen-NaCl/i
                     ninja = system('ninja', [:out, :err] => File::NULL)
                     make = system('make', [:out, :err] => File::NULL)
@@ -205,7 +194,7 @@ class GenerateOptions
                         puts "Could not find ninja or unix make. One of these generators must be installed to generate for Tizen-NaCl."
                         exit 1
                     end
-                when /bluesky2|bluesky4/i
+                when /linux|bluesky2|bluesky4|webos3|webos4/i
                     ninja = system('ninja', [:out, :err] => File::NULL)
                     make = system('make', [:out, :err] => File::NULL)
                     if ninja != nil
@@ -213,7 +202,7 @@ class GenerateOptions
                     elsif make != nil
                         options.generator = "Unix Makefiles"
                     else
-                        puts "Could not find ninja or unix make. One of these generators must be installed to generate for bluesky2 or bluesky4."
+                        puts "Could not find ninja or unix make. One of these generators must be installed to generate for Linux, Bluesky2, Bluesky4, WebOS3, or WebOS4."
                         exit 1
                     end
                 end
@@ -386,7 +375,7 @@ class GenerateOptions
         build_dir = File.absolute_path(build_dir)
         command = "cmake"
         command << " -DYI_OUTPUT_DIR=\"#{build_dir}\""
-        
+
         cmake_defines = ""
         options.defines.each do |key,value|
             cmake_defines << " -D#{key}=\"#{value}\""
