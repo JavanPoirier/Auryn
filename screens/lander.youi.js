@@ -4,6 +4,7 @@ import { Timeline, ToggleGroup, List } from '../components';
 import { withNavigationFocus, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { tmdb, cache } from '../actions';
+import PropTypes from 'prop-types';
 
 @connect(store => ({
   discover: store.tmdbReducer.discover.data,
@@ -22,9 +23,9 @@ class Lander extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', () => {
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
 
-      this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => true);
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', () => true);
 
       if (this.lastFocusItem) {
         FocusManager.enableFocus(this.lastFocusItem);
@@ -42,7 +43,12 @@ class Lander extends Component {
 
 
     });
-    this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
+    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+    this.blurListener.remove();
   }
 
   navigateToScreen = screen => {
@@ -209,3 +215,12 @@ class Lander extends Component {
 }
 
 export default withNavigationFocus(Lander);
+
+Lander.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  isFocused: PropTypes.bool,
+  discover: PropTypes.array.isRequired,
+  movies: PropTypes.array.isRequired,
+  tv: PropTypes.array.isRequired,
+};
