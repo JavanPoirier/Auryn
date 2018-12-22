@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Composition, BackHandler, ButtonRef, TextRef, FocusManager } from '@youi/react-native-youi';
 import { Timeline, BackButton } from '../components';
 import { withNavigationFocus } from 'react-navigation';
+import PropTypes from 'prop-types';
 
 class Profile extends Component {
   constructor(props) {
@@ -52,3 +53,9 @@ class Profile extends Component {
 }
 
 export default withNavigationFocus(Profile);
+
+Profile.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  isFocused: PropTypes.bool,
+};

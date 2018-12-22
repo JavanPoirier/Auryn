@@ -110,3 +110,10 @@ Search.propTypes = {
   navigation: PropTypes.object,
   dispatch: PropTypes.func,
 };
+
+Search.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  isFocused: PropTypes.bool,
+  data: PropTypes.object,
+};

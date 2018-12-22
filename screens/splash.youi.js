@@ -4,6 +4,7 @@ import { Timeline } from '../components';
 import { tmdb } from '../actions';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 @connect(store => ({
   fetched:
@@ -26,7 +27,6 @@ class Splash extends Component {
     const { fetched } = this.props;
     if (fetched) {
       this.outTimeline.play().then(() => {
-        console.log('SPLASH', 'Navigating to lander');
         const landerNavigationAction = NavigationActions.navigate({
           routeName: 'Lander',
         });
@@ -65,3 +65,9 @@ const styles = StyleSheet.create({
   },
 });
 export default Splash;
+
+Splash.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  fetched: PropTypes.bool,
+};
