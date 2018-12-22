@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { TimelineRef } from '@youi/react-native-youi';
+import { PropTypes } from 'prop-types';
 
 export default class Timeline extends PureComponent {
   static defaultProps = {
@@ -40,3 +41,11 @@ export default class Timeline extends PureComponent {
     this.ref.stop();
   });
 }
+
+Timeline.propTypes = {
+  direction: PropTypes.oneOf(['forward', 'reverse']),
+  loop: PropTypes.bool,
+  name: PropTypes.string,
+  onLoad: PropTypes.func,
+  onCompleted: PropTypes.func,
+};
