@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import { ButtonRef } from '@youi/react-native-youi';
 import { Timeline } from '.';
+import PropTypes from 'prop-types';
 
 export default class ToggleButton extends PureComponent {
   static defaultProps = {
-    buttonRef: () => {},
+    ref: () => {},
     onFocus: () => {},
     onToggle: () => {},
     onPress: () => {},
@@ -30,14 +31,14 @@ export default class ToggleButton extends PureComponent {
       focusable={this.props.focusable}
       name={this.props.name}
       ref={ref => {
-        this.props.buttonRef(ref);
+        this.props.ref(ref);
         this.ref = ref;
       }}
       onFocus={() => this.props.onFocus(this.ref)}
       onPress={() => {
         if (this.state.toggled && this.props.isRadio) return;
 
-        this.props.onPress();
+        this.props.onPress(this.props.index);
         this.props.onToggle(this.props.index);
 
         this.setState({
@@ -57,3 +58,15 @@ export default class ToggleButton extends PureComponent {
 
     </ButtonRef>
 }
+
+ToggleButton.propTypes = {
+  name: PropTypes.string.isRequired,
+  focusable: PropTypes.bool,
+  toggled: PropTypes.bool,
+  isRadio: PropTypes.bool,
+  onFocus: PropTypes.func,
+  onPress: PropTypes.func,
+  onToggle: PropTypes.func,
+  ref: PropTypes.func,
+  index: PropTypes.number,
+};

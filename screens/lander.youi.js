@@ -18,16 +18,7 @@ class Lander extends Component {
     };
     this.lists = [];
     this.lastFocusItem = null;
-    this.menuGroup = ['Discover', 'Movies', 'Shows', 'Live']
-      .map((it, i) => (
-        {
-          name: `Btn-Nav-${it}`,
-          onPress: () => {
-            this.scrollToScreen(i);
-            this.selectedMenuItemIndex = i;
-          },
-        }
-      ));
+    this.navButtonNames = ['Discover', 'Movies', 'Shows', 'Live'];
   }
 
   componentDidMount() {
@@ -63,17 +54,17 @@ class Lander extends Component {
     this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));
   }
 
-  scrollToScreen = (screenIndex, animated = true) => {
-    for (let index = 0; index < this.lists.length; index++)
-      FocusManager.setNextFocus(this.menuButtons.getButtonRef(index), this.lists[screenIndex], 'down');
-    FocusManager.setNextFocus(this.searchButton, this.lists[screenIndex], 'down');
-    FocusManager.setNextFocus(this.profileButton, this.lists[screenIndex], 'down');
-    FocusManager.setNextFocus(this.lists[screenIndex], this.menuButtons.getButtonRef(screenIndex), 'up');
+  scrollToViewByIndex = (index, animated = true) => {
+    for (let i = 0; i < this.lists.length; i++)
+      FocusManager.setNextFocus(this.menuButtons.getButtonRef(i), this.lists[index], 'down');
+    FocusManager.setNextFocus(this.searchButton, this.lists[index], 'down');
+    FocusManager.setNextFocus(this.profileButton, this.lists[index], 'down');
+    FocusManager.setNextFocus(this.lists[index], this.menuButtons.getButtonRef(index), 'up');
 
-    this.setState({ currentListIndex: screenIndex });
+    this.setState({ currentListIndex: index });
     this.scroller.scrollTo({
       x: 0,
-      y: screenIndex * 900,
+      y: index * 900,
       animated,
     });
   }
@@ -119,7 +110,9 @@ class Lander extends Component {
       <Composition source="Auryn_Lander">
         <ToggleGroup
           focusable={this.props.isFocused}
-          buttons={this.menuGroup}
+          prefix="Btn-Nav-"
+          names={this.navButtonNames}
+          onPressItem={this.scrollToViewByIndex}
           ref={ref => this.menuButtons = ref}
         />
         <ButtonRef
