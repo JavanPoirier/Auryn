@@ -3,7 +3,7 @@ import { View, Composition, ViewRef, VideoRef, ButtonRef, TextRef, Input, FocusM
 import { Timeline, ToggleButton, BackButton } from '../components';
 import { withNavigationFocus } from 'react-navigation';
 import { connect } from 'react-redux';
-import { isEqual } from 'lodash';
+
 
 @connect(store => ({
   videoSource: store.youtubeReducer.videoSource,
@@ -19,6 +19,7 @@ class Video extends PureComponent {
     };
 
     this.state = {
+      videoSource: this.props.fetched ? this.props.videoSource : {},
       controlsVisible: false,
       formattedTime: '00:00',
       paused: true,
@@ -56,8 +57,15 @@ class Video extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements
-    if (!isEqual(this.props.videoSource, prevProps.videoSource))
+    if (!prevProps.fetched && this.props.fetched)
       this.setState({ videoSource: this.props.videoSource });
+
+    if (this.state.error) {
+      this.setState({
+        videoSource: this.fallbackVideo,
+        error: false,
+      });
+    }
 
     if (this.state.percent !== prevState.percent) {
       console.log('SCRUB', this.state.percent);
@@ -69,7 +77,7 @@ class Video extends PureComponent {
     if (nextProps.fetched !== this.props.fetched)
       return true;
 
-    if (!isEqual(this.props.videoSource, nextProps.videoSource))
+    if (nextState.error)
       return true;
 
     if (nextState.controlsVisible) return true;
@@ -89,7 +97,7 @@ class Video extends PureComponent {
   }
 
   registerUserActivity = keyEvent => {
-    if (this.mediaKeys.includes(keyEvent.keyCode))
+    if (this.mediaKeys.includes(keyEvent.keyCode) && keyEvent.eventType === 'up')
       this.playPause();
 
     if (!this.state.controlsVisible) this.showControls();
