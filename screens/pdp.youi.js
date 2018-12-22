@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 
 import { Timeline, List, BackButton } from '../components';
 import { youtube, cache, tmdb } from '../actions';
+import PropTypes from 'prop-types';
 
 
 @connect(store => ({
@@ -158,3 +159,11 @@ class PDP extends PureComponent {
 }
 
 export default withNavigationFocus(PDP);
+
+PDP.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  isFocused: PropTypes.bool,
+  asset: PropTypes.object.isRequired,
+  fetched: PropTypes.bool,
+};
