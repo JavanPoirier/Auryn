@@ -3,6 +3,7 @@ import { View, Composition, ViewRef, VideoRef, ButtonRef, TextRef, Input, FocusM
 import { Timeline, ToggleButton, BackButton } from '../components';
 import { withNavigationFocus } from 'react-navigation';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 @connect(store => ({
@@ -19,7 +20,7 @@ class Video extends PureComponent {
     };
 
     this.state = {
-      videoSource: this.props.fetched ? this.props.videoSource : {},
+      videoSource: props.fetched ? props.videoSource : {},
       controlsVisible: false,
       formattedTime: '00:00',
       paused: true,
@@ -214,3 +215,11 @@ class Video extends PureComponent {
 }
 
 export default withNavigationFocus(Video);
+
+Video.propTypes = {
+  navigation: PropTypes.object,
+  isFocused: PropTypes.bool,
+  asset: PropTypes.object.isRequired,
+  fetched: PropTypes.bool,
+  videoSource: PropTypes.object,
+};
