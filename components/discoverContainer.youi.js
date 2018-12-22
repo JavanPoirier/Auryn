@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from '@youi/react-native-youi';
 import ListItem from './listitem.youi';
 import { AdListItem } from '../ces2018';
+import PropTypes from 'prop-types';
 
 export default class DiscoverContainer extends React.PureComponent {
   constructor(props) {
@@ -9,66 +10,67 @@ export default class DiscoverContainer extends React.PureComponent {
   }
 
   render() { // eslint-disable-line max-lines-per-function
-    if (this.props.data.length !== 3) return null;
+    const { data, onPress, onFocus, focusable, index } = this.props;
+    if (data.length !== 3) return null;
 
     // CES
-    if (this.props.index === 1) {
+    if (index === 1) {
       return (
         <View>
           <View style={{ flexDirection: 'row' }}>
             <ListItem
-              focusable={this.props.focusable}
-              onPress={this.props.onPress}
-              onFocus={this.props.onFocus}
+              focusable={focusable}
+              onPress={onPress}
+              onFocus={onFocus}
               imageType="Backdrop" size="Small"
-              data={this.props.data[0]}
+              data={data[0]}
             />
             <AdListItem
-              focusable={this.props.focusable}
-              onPress={this.props.onPress}
-              onFocus={this.props.onFocus}
+              focusable={focusable}
+              onPress={onPress}
+              onFocus={onFocus}
               imageType="Backdrop" size="Small"
-              data={this.props.data[1]}
+              data={data[1]}
             />
           </View>
           <ListItem
-            focusable={this.props.focusable}
-            onPress={this.props.onPress}
-            onFocus={this.props.onFocus}
+            focusable={focusable}
+            onPress={onPress}
+            onFocus={onFocus}
             shouldChangeFocus={false}
             imageType="Backdrop" size="Large"
-            data={this.props.data[2]}
+            data={data[2]}
           />
         </View>
       );
     }
     // END CES
-    if (this.props.index % 2) {
+    if (index % 2) {
       return (
         <View>
           <View style={{ flexDirection: 'row' }}>
             <ListItem
-              focusable={this.props.focusable}
-              onPress={this.props.onPress}
-              onFocus={this.props.onFocus}
+              focusable={focusable}
+              onPress={onPress}
+              onFocus={onFocus}
               imageType="Backdrop" size="Small"
-              data={this.props.data[0]}
+              data={data[0]}
             />
             <ListItem
-              focusable={this.props.focusable}
-              onPress={this.props.onPress}
-              onFocus={this.props.onFocus}
+              focusable={focusable}
+              onPress={onPress}
+              onFocus={onFocus}
               imageType="Backdrop" size="Small"
-              data={this.props.data[1]}
+              data={data[1]}
             />
           </View>
           <ListItem
-            focusable={this.props.focusable}
-            onPress={this.props.onPress}
-            onFocus={this.props.onFocus}
+            focusable={focusable}
+            onPress={onPress}
+            onFocus={onFocus}
             shouldChangeFocus={false}
             imageType="Backdrop" size="Large"
-            data={this.props.data[2]}
+            data={data[2]}
           />
         </View>
       );
@@ -77,31 +79,39 @@ export default class DiscoverContainer extends React.PureComponent {
     return (
       <View>
         <ListItem
-          focusable={this.props.focusable}
-          onPress={this.props.onPress}
+          focusable={focusable}
+          onPress={onPress}
           imageType="Backdrop" size="Large"
-          onFocus={this.props.onFocus}
-          data={this.props.data[0]}
+          onFocus={onFocus}
+          data={data[0]}
         />
         <View style={{ flexDirection: 'row' }}>
           <ListItem
-            focusable={this.props.focusable}
-            onPress={this.props.onPress}
-            onFocus={this.props.onFocus}
+            focusable={focusable}
+            onPress={onPress}
+            onFocus={onFocus}
             shouldChangeFocus={false}
             imageType="Backdrop" size="Small"
-            data={this.props.data[1]}
+            data={data[1]}
           />
           <ListItem
-            focusable={this.props.focusable}
-            onPress={this.props.onPress}
-            onFocus={this.props.onFocus}
+            focusable={focusable}
+            onPress={onPress}
+            onFocus={onFocus}
             shouldChangeFocus={false}
             imageType="Backdrop" size="Small"
-            data={this.props.data[2]}
+            data={data[2]}
           />
         </View>
       </View>
     );
   }
 }
+
+DiscoverContainer.propTypes = {
+  data: PropTypes.object.isRequired,
+  onPress: PropTypes.func,
+  onFocus: PropTypes.func,
+  index: PropTypes.number,
+  focusable: PropTypes.bool,
+};
