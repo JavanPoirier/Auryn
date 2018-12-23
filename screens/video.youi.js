@@ -76,10 +76,8 @@ class Video extends PureComponent {
       });
     }
 
-    if (this.state.percent !== prevState.percent) {
-      console.log('SCRUB', this.state.percent);
+    if (this.state.percent !== prevState.percent)
       this.scrubberTimeline.play(this.state.percent);
-    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {

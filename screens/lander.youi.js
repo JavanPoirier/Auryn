@@ -53,7 +53,6 @@ class Lander extends Component {
   }
 
   navigateToScreen = screen => {
-    console.log('NAVIGATE', `From Lander to ${screen}`);
     const navigateAction = NavigationActions.navigate({
       routeName: screen,
     });
@@ -100,7 +99,6 @@ class Lander extends Component {
     }
     // END CES
     this.lastFocusItem = ref;
-    console.log(id);
     const navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
       params: {
