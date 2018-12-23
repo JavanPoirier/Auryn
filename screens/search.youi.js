@@ -16,15 +16,15 @@ class Search extends Component {
 
   componentDidMount() {
     this.focusListener = this.props.navigation.addListener('didFocus', () => {
-      this.backHandlerListner = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
     });
-    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListner.remove());
+    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
   }
 
   componentWillUnmount() {
     this.focusListener.remove();
-    this.backHandlerListner.remove();
     this.blurListener.remove();
+    this.backHandlerListener.remove();
   }
 
   navigateBack = () => {

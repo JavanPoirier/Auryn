@@ -51,10 +51,18 @@ class Video extends PureComponent {
   ];
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', () =>
-      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack));
-    this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+    });
+    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
     this.keys.concat(this.mediaKeys).forEach(key => Input.addEventListener(key, this.registerUserActivity));
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+    this.blurListener.remove();
+    this.backHandlerListener.remove();
+    this.keys.concat(this.mediaKeys).forEach(key => Input.removeEventListener(key, this.registerUserActivity));
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements

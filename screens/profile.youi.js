@@ -11,10 +11,16 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', () => {
-      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
     });
-    this.props.navigation.addListener('didBlur', () => this.backHandler.remove());
+    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+    this.blurListener.remove();
+    this.backHandlerListener.remove();
   }
 
   navigateBack = () => {

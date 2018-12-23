@@ -49,6 +49,7 @@ class Lander extends Component {
   componentWillUnmount() {
     this.focusListener.remove();
     this.blurListener.remove();
+    this.backHandlerListener.remove();
   }
 
   navigateToScreen = screen => {
