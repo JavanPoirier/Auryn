@@ -121,6 +121,8 @@ class Video extends PureComponent {
   }
 
   navigateBack = () => {
+    if (this.activityTimeout)
+      clearTimeout(this.activityTimeout);
     this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
     if (this.outTimeline) {
       this.outTimeline.play().then(() => {
@@ -177,6 +179,7 @@ class Video extends PureComponent {
             ref={ref => this.videoPlayer = ref}
             onPaused={() => this.setState({ paused: true })}
             onPlaying={() => this.setState({ paused: false })}
+            onPlaybackComplete={() => this.navigateBack()}
             onReady={this.onPlayerReady}
             source={this.state.videoSource}
             onErrorOccurred={this.onPlayerError}
