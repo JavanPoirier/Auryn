@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Composition, ButtonRef } from '@youi/react-native-youi';
 import { NavigationActions } from 'react-navigation';
+import PropTypes from 'prop-types';
 
 export default class AdListItem extends PureComponent {
   static defaultProps = {
@@ -36,3 +37,9 @@ export default class AdListItem extends PureComponent {
 
   }
 }
+
+AdListItem.propTypes = {
+  onFocus: PropTypes.func,
+  onPress: PropTypes.func,
+  focusable: PropTypes.bool,
+};

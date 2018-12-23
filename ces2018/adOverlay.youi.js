@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Composition, BackHandler, ButtonRef, ViewRef, FocusManager, View } from '@youi/react-native-youi';
 import { Timeline } from '../components';
 import { withNavigationFocus } from 'react-navigation';
+import PropTypes from 'prop-types';
 
 class AdOverlay extends PureComponent {
   constructor(props) {
@@ -10,7 +11,7 @@ class AdOverlay extends PureComponent {
 
   componentDidMount() {
     this.focusListener = this.props.navigation.addListener('didFocus', () => {
-      this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
     });
     this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
   }
@@ -53,3 +54,8 @@ class AdOverlay extends PureComponent {
 }
 
 export default withNavigationFocus(AdOverlay);
+
+AdOverlay.propTypes = {
+  isFocused: PropTypes.bool,
+  navigation: PropTypes.object,
+};
