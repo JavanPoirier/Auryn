@@ -23,6 +23,10 @@ export default class List extends PureComponent {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.focusable;
+  }
+
   getItemLayout = (data, index) => ({
     index,
     length: this.imageSettings.length,
@@ -38,6 +42,7 @@ export default class List extends PureComponent {
           onFocus={this.props.onFocusItem}
           data={item.data}
           index={index}
+          name={this.props.name}
         />
       );
     }
@@ -51,6 +56,7 @@ export default class List extends PureComponent {
         onPress={this.props.onPressItem}
         data={item}
         index={index}
+        name={this.props.name}
       />
      );
   }
@@ -65,6 +71,7 @@ export default class List extends PureComponent {
             this.ref(ref);
         }}
         horizontal={true}
+        initialNumToRender={2}
         getItemLayout={this.getItemLayout}
         renderItem={this.renderItem}
       />

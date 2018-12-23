@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { Composition, TextRef, ButtonRef, ImageRef } from '@youi/react-native-youi';
 import PropTypes from 'prop-types';
 
@@ -18,14 +18,9 @@ export default class ListItem extends PureComponent {
     this.imageUri += this.props.imageType === 'Poster' ? this.props.data.poster_path : this.props.data.backdrop_path;
   }
 
-  metadata = () =>
-    <Fragment>
-      <ImageRef
-        name="Image-Dynamic"
-        source={ { uri: this.imageUri } } />
-      <TextRef name="Text-Details" text={this.props.data.overview} />
-      <TextRef name="Text-Title" text={this.props.data.name || this.props.data.title} />
-    </Fragment>
+  shouldComponentUpdate(nextProps) {
+    return nextProps.focusable;
+  }
 
   render() {
     return (
@@ -36,10 +31,14 @@ export default class ListItem extends PureComponent {
           onFocus={() => this.props.onFocus(this.ref, this.props.data.id, this.props.data.type)}
           onPress={() => this.props.onPress(this.props.data.id, this.props.data.type, this.ref)}
           name={this.buttonName}
-          visible={this.props.focusable}
           shouldChangeFocus={this.props.shouldChangeFocus}
         >
-        {this.props.focusable ? this.metadata() : null }
+          <ImageRef
+            name="Image-Dynamic"
+            source={ { uri: this.imageUri } } />
+        <TextRef name="Text-Details" text={this.props.data.overview} />
+        <TextRef name="Text-Title" text={this.props.data.name || this.props.data.title} />
+
         </ButtonRef>
       </Composition>
     );
