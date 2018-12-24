@@ -5,7 +5,6 @@ import { withNavigationFocus } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-
 @connect(store => ({
   videoSource: store.youtubeReducer.videoSource,
   asset: store.tmdbReducer.details.data,
@@ -121,6 +120,7 @@ class Video extends PureComponent {
   }
 
   navigateBack = () => {
+    if (this.state.mediaState === 'preparing') return true;
     if (this.activityTimeout)
       clearTimeout(this.activityTimeout);
     this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
@@ -180,6 +180,7 @@ class Video extends PureComponent {
             onPaused={() => this.setState({ paused: true })}
             onPlaying={() => this.setState({ paused: false })}
             onPlaybackComplete={() => this.navigateBack()}
+            onStateChanged={state => this.setState({ playerState: state.nativeEvent.mediaState })}
             onReady={this.onPlayerReady}
             source={this.state.videoSource}
             onErrorOccurred={this.onPlayerError}
