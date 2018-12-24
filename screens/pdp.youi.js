@@ -71,6 +71,9 @@ class PDP extends PureComponent {
     if (nextProps.isFocused !== this.props.isFocused)
       return true;
 
+    if (nextProps.fetched && !this.props.fetched)
+      return true;
+
     // Only render if the asset.id matches the requested pdp asset id
     return nextProps.asset.id === nextProps.navigation.getParam('id');
   }
@@ -97,13 +100,13 @@ class PDP extends PureComponent {
   }
 
   render() { // eslint-disable-line max-lines-per-function
-    const { asset, fetched } = this.props;
+    const { asset, fetched, isFocused } = this.props;
 
-    if (!fetched)
+    if (!fetched || !isFocused)
       return <View/>;
+
     return (
       <Composition source="Auryn_PDP">
-
         <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
         <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
         <Timeline name="PDPIn"
@@ -112,16 +115,16 @@ class PDP extends PureComponent {
         />
         <Timeline name="PDPOut" ref={timeline => this.outTimeline = timeline} />
 
-        <ViewRef name="PDP-Scroller" visible={this.props.isFocused && fetched}>
+        <ViewRef name="PDP-Scroller" visible={isFocused && fetched}>
           <BackButton
-            focusable={this.props.isFocused}
+            focusable={isFocused}
             onPress={this.navigateBack}
           />
           <List
             name="List-PDP"
             type="Shows"
             data={asset.similar.results}
-            focusable={this.props.isFocused}
+            focusable={isFocused}
             onPressItem={this.onPressItem}
             onFocusItem={this.onFocusItem}
           />
@@ -134,7 +137,7 @@ class PDP extends PureComponent {
 
           <ButtonRef
             name="Btn-Poster-Large"
-            focusable={this.props.isFocused}
+            focusable={isFocused}
             onPress={this.playVideo}
             ref={ref => this.posterButton = ref}
             onLoad={() => FocusManager.focus(this.posterButton)}
