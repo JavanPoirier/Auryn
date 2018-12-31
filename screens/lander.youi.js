@@ -66,6 +66,7 @@ class Lander extends Component {
   }
 
   scrollToViewByIndex = (index, animated = true) => {
+    console.log('SCOLL', index);
     for (let i = 0; i < this.lists.length; i++)
       FocusManager.setNextFocus(this.menuButtons.getButtonRef(i), this.lists[index], 'down');
     FocusManager.setNextFocus(this.searchButton, this.lists[index], 'down');
@@ -116,10 +117,12 @@ class Lander extends Component {
   }
 
   render() { // eslint-disable-line max-lines-per-function, max-statements
+    const { isFocused, tv, movies, discover } = this.props;
+    const { currentListIndex } = this.state;
     return (
       <Composition source="Auryn_Lander">
         <ToggleGroup
-          focusable={this.props.isFocused}
+          focusable={isFocused}
           prefix="Btn-Nav-"
           names={this.navButtonNames}
           onPressItem={this.scrollToViewByIndex}
@@ -127,13 +130,13 @@ class Lander extends Component {
         />
         <ButtonRef
           name="Btn-Nav-Search"
-          focusable={this.props.isFocused}
+          focusable={isFocused}
           ref={ref => this.searchButton = ref}
           onPress={() => this.navigateToScreen('Search')}
         />
         <ButtonRef
           name="Btn-Nav-Profile"
-          focusable={this.props.isFocused}
+          focusable={isFocused}
           ref={ref => this.profileButton = ref}
           onPress={() => this.navigateToScreen('Profile')}
         />
@@ -156,9 +159,9 @@ class Lander extends Component {
               <List
                 name="Discover"
                 type="Discover"
-                data={this.props.discover}
+                data={discover}
                 ref={ref => this.lists[0] = ref}
-                focusable={this.props.isFocused && this.state.currentListIndex === 0}
+                focusable={isFocused && currentListIndex === 0}
                 onFocusItem={this.onFocusItem}
                 onPressItem={this.onPressItem}
               />
@@ -167,9 +170,9 @@ class Lander extends Component {
               <List
                 name="Movies"
                 type="Movies"
-                data={this.props.movies}
+                data={movies}
                 ref={ref => this.lists[1] = ref}
-                focusable={this.props.isFocused && this.state.currentListIndex === 1}
+                focusable={isFocused && currentListIndex === 1}
                 onFocusItem={this.onFocusItem}
                 onPressItem={this.onPressItem}
               />
@@ -178,9 +181,9 @@ class Lander extends Component {
               <List
                 name="Shows"
                 type="Shows"
-                data={this.props.tv}
+                data={tv}
                 ref={ref => this.lists[2] = ref}
-                focusable={this.props.isFocused && this.state.currentListIndex === 2}
+                focusable={isFocused && currentListIndex === 2}
                 onFocusItem={this.onFocusItem}
                 onPressItem={this.onPressItem}
               />
@@ -189,9 +192,9 @@ class Lander extends Component {
               <List
                 name="Live"
                 type="Live"
-                data={this.props.tv.slice(0, 2)}
+                data={tv.slice(0, 2)}
                 ref={ref => this.lists[3] = ref}
-                focusable={this.props.isFocused && this.state.currentListIndex === 3}
+                focusable={isFocused && currentListIndex === 3}
                 onFocusItem={this.onFocusItem}
                 onPressItem={this.onPressItem}
               />
