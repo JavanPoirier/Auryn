@@ -19,7 +19,7 @@ export default class ListItem extends PureComponent {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.focusable;
+    return nextProps.focusable !== this.props.focusable;
   }
 
   render() {

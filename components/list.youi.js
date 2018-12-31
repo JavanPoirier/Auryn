@@ -24,7 +24,7 @@ export default class List extends PureComponent {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.focusable;
+    return nextProps.focusable !== this.props.focusable;
   }
 
   getItemLayout = (data, index) => ({
