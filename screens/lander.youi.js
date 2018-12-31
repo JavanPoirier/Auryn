@@ -25,7 +25,7 @@ class Lander extends Component {
   componentDidMount() {
     this.focusListener = this.props.navigation.addListener('didFocus', () => {
 
-      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', () => true);
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
 
       if (this.lastFocusItem) {
         FocusManager.enableFocus(this.lastFocusItem);
@@ -44,6 +44,11 @@ class Lander extends Component {
 
     });
     this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
+  }
+
+  navigateBack = () => {
+    FocusManager.focus(this.menuButtons.getButtonRef(this.state.currentListIndex));
+    return true;
   }
 
   componentWillUnmount() {
