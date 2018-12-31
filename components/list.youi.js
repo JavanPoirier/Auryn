@@ -2,8 +2,13 @@ import React, { PureComponent } from 'react';
 import { ListRef } from '@youi/react-native-youi';
 import { DiscoverContainer, ListItem } from '.';
 import PropTypes from 'prop-types';
+import { isEqual } from 'lodash';
 
 export default class List extends PureComponent {
+  static defaultProps = {
+    extraData: [],
+  }
+
   constructor(props) {
     super(props);
     this.imageSettings = this.getImageSettings();
@@ -24,6 +29,9 @@ export default class List extends PureComponent {
   }
 
   shouldComponentUpdate(nextProps) {
+    if (!isEqual(nextProps.extraData, this.props.extraData))
+      return true;
+
     return nextProps.focusable !== this.props.focusable;
   }
 
@@ -87,4 +95,5 @@ List.propTypes = {
   onFocusItem: PropTypes.func,
   data: PropTypes.array.isRequired,
   ref: PropTypes.func,
+  extraData: PropTypes.any,
 };

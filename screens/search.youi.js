@@ -81,6 +81,7 @@ class Search extends Component {
           focusable={isFocused}
           onPressItem={this.onPressItem}
           onFocusItem={this.onFocusItem}
+          extraData={tv}
         />
         <List
           name="List-Movies"
@@ -89,6 +90,7 @@ class Search extends Component {
           focusable={isFocused}
           onPressItem={this.onPressItem}
           onFocusItem={this.onFocusItem}
+          extraData={movies}
         />
 
         <Timeline name="SearchOut" ref={timeline => this.outTimeline = timeline} />
@@ -109,11 +111,4 @@ Search.propTypes = {
   data: PropTypes.object,
   navigation: PropTypes.object,
   dispatch: PropTypes.func,
-};
-
-Search.propTypes = {
-  navigation: PropTypes.object,
-  dispatch: PropTypes.func,
-  isFocused: PropTypes.bool,
-  data: PropTypes.object,
 };

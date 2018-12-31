@@ -66,7 +66,6 @@ class Lander extends Component {
   }
 
   scrollToViewByIndex = (index, animated = true) => {
-    console.log('SCOLL', index);
     for (let i = 0; i < this.lists.length; i++)
       FocusManager.setNextFocus(this.menuButtons.getButtonRef(i), this.lists[index], 'down');
     FocusManager.setNextFocus(this.searchButton, this.lists[index], 'down');
