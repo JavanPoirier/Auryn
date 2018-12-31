@@ -27,7 +27,10 @@ class Lander extends Component {
 
       this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
 
-      if (this.lastFocusItem) {
+      if (this.lastFocusNavItem) {
+        FocusManager.enableFocus(this.lastFocusNavItem);
+        FocusManager.focus(this.lastFocusNavItem);
+      } else if (this.lastFocusItem) {
         FocusManager.enableFocus(this.lastFocusItem);
         FocusManager.focus(this.lastFocusItem);
       }
@@ -40,8 +43,6 @@ class Lander extends Component {
         this.landerInTimeline.play();
         this.navInTimeline.play(1);
       }
-
-
     });
     this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
   }
@@ -61,6 +62,13 @@ class Lander extends Component {
     const navigateAction = NavigationActions.navigate({
       routeName: screen,
     });
+
+    if (screen === 'Search')
+      this.lastFocusNavItem = this.searchButton;
+    else if (screen === 'Profile')
+      this.lastFocusNavItem = this.profileButton;
+    else
+      this.lastFocusNavItem = null;
 
     this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));
   }
@@ -104,6 +112,7 @@ class Lander extends Component {
     }
     // END CES
     this.lastFocusItem = ref;
+    this.lastFocusNavItem = null;
     const navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
       params: {
