@@ -257,7 +257,7 @@ activecomp {
       text: ""
       multiline: true
       ellipsis: true
-      isAllCaps: true
+      isAllCaps: false
     }
     properties {
       key: "text-placeholder"
@@ -310,7 +310,7 @@ activecomp {
         green: 1
         blue: 1
       }
-      fontName: "Raleway-Black"
+      fontName: "Raleway-Bold"
       isPointText: false
       boundsWidth: 393
       boundsHeight: 54
@@ -430,8 +430,8 @@ sources {
 sources {
   uid: 8
   srctype: AE_FONT_SRC
-  name: "Raleway-Black"
+  name: "Raleway-Bold"
   copy_source: true
-  file_name: "yi_Raleway-Black.ttf"
-  style_name: "Black"
+  file_name: "yi_Raleway-Bold.ttf"
+  style_name: "Bold"
 }
