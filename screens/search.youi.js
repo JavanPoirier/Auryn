@@ -32,6 +32,7 @@ class Search extends Component {
       this.outTimeline.play().then(() => this.props.navigation.goBack(null));
     else
       this.props.navigation.goBack(null);
+    this.search('');
     return true;
   }
 
