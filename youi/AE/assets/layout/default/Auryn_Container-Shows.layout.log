@@ -44,8 +44,12 @@ activecomp {
     blue: 0.14509803921568629
   }
   properties {
-    key: "gravity"
-    value: "center"
+    key: "layout"
+    value: "CYIColumnLayout"
+  }
+  properties {
+    key: "padding-top"
+    value: "150"
   }
   childtemplates: "Auryn_Shows"
 }
