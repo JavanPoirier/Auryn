@@ -35,7 +35,7 @@ export default class List extends PureComponent {
     return nextProps.focusable !== this.props.focusable;
   }
 
-  getItemLayout = (data, index) => ({
+  getItemLayout = (_, index) => ({
     index,
     length: this.imageSettings.length,
     offset: this.imageSettings.length * index,
