@@ -49,7 +49,7 @@ activecomp {
   }
   properties {
     key: "padding-top"
-    value: "150"
+    value: "50"
   }
   childtemplates: "Auryn_Shows"
 }

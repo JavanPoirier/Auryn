@@ -44,7 +44,7 @@ activecomp {
     transform {
       anchorPoint {
         x: 200
-        y: 300
+        y: 600
         z: 0
       }
       scale {
@@ -54,7 +54,7 @@ activecomp {
       }
       position {
         x: 200
-        y: 300
+        y: 600
         z: 0
       }
       orientation {
@@ -343,6 +343,10 @@ activecomp {
   properties {
     key: "componentType"
     value: "button"
+  }
+  properties {
+    key: "clip"
+    value: "true"
   }
   childtemplates: "Auryn_Image-Dynamic-2x3"
 }

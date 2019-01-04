@@ -1,7 +1,7 @@
 activecomp {
   name: "Auryn_Btn-Poster-Large"
   width: 400
-  height: 700
+  height: 600
   defaultcameradistance: 555.55554
   layer {
     name: "Background"
@@ -20,7 +20,7 @@ activecomp {
       }
       position {
         x: 200
-        y: 400
+        y: 300
         z: 0
       }
       orientation {
@@ -54,7 +54,7 @@ activecomp {
       }
       position {
         x: 200
-        y: 400
+        y: 300
         z: 0
       }
       orientation {
@@ -88,7 +88,7 @@ activecomp {
       }
       position {
         x: 200
-        y: 102
+        y: 2
         z: 0
       }
       orientation {
@@ -122,7 +122,7 @@ activecomp {
       }
       position {
         x: 200
-        y: 698
+        y: 598
         z: 0
       }
       orientation {
@@ -156,7 +156,7 @@ activecomp {
       }
       position {
         x: 398
-        y: 400
+        y: 300
         z: 0
       }
       orientation {
@@ -190,7 +190,7 @@ activecomp {
       }
       position {
         x: 2
-        y: 400
+        y: 300
         z: 0
       }
       orientation {
@@ -224,7 +224,7 @@ activecomp {
       }
       position {
         x: 200
-        y: 403
+        y: 303
         z: 0
       }
       orientation {
@@ -258,7 +258,7 @@ activecomp {
       }
       position {
         x: 201
-        y: 403
+        y: 303
         z: 0
       }
       orientation {
@@ -289,6 +289,10 @@ activecomp {
   properties {
     key: "componentType"
     value: "button"
+  }
+  properties {
+    key: "clip"
+    value: "true"
   }
   childtemplates: "Auryn_Image-Dynamic-2x3"
 }

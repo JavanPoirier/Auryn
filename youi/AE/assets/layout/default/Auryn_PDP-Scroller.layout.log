@@ -158,9 +158,9 @@ activecomp {
     castsshadows: false
   }
   layer {
-    name: "Btn-Poster-Large"
+    name: "Btn-Poster-Large-Comp"
     id: 393
-    sourceid: 266
+    sourceid: 690012113
     transform {
       anchorPoint {
         x: 200
@@ -174,7 +174,7 @@ activecomp {
       }
       position {
         x: 334
-        y: -140
+        y: -144
         z: 0
       }
       orientation {
@@ -317,7 +317,7 @@ activecomp {
   childtemplates: "Auryn_Image-Dynamic-Background"
   childtemplates: "Auryn_List-PDP"
   childtemplates: "Auryn_Layout-PDP-Meta"
-  childtemplates: "Auryn_Btn-Poster-Large"
+  childtemplates: "Auryn_Btn-Poster-Large-Comp"
   childtemplates: "Auryn_Btn-Back"
 }
 sources {
@@ -353,9 +353,9 @@ sources {
   copy_source: true
 }
 sources {
-  uid: 266
+  uid: 690012113
   srctype: AE_COMP_SRC
-  name: "Auryn_Btn-Poster-Large.layout"
+  name: "Auryn_Btn-Poster-Large-Comp.layout"
   width: 400
   height: 700
   copy_source: true
