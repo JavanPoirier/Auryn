@@ -40,7 +40,6 @@ class Splash extends Component {
         <Composition source="Auryn_Splash">
           <Timeline
             name="SplashIn"
-            ref={timeline => this.inTimeline = timeline}
             onLoad={timeline => timeline.play()}
           />
           <Timeline
