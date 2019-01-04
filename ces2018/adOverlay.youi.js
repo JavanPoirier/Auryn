@@ -46,7 +46,9 @@ class AdOverlay extends PureComponent {
         />
 
         <ViewRef name="Looper">
-          <Timeline name="Loop" onLoad={ref => ref.play()}/>
+          <Timeline name="Loop" onLoad={ref => {
+            if (!global.isRoku) ref.play();
+          }}/>
         </ViewRef>
       </Composition>
     );
