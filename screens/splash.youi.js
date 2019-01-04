@@ -26,12 +26,13 @@ class Splash extends Component {
   render() {
     const { fetched } = this.props;
     if (fetched) {
-      this.outTimeline.play().then(() => {
+      const navigate = () => {
         const landerNavigationAction = NavigationActions.navigate({
           routeName: 'Lander',
         });
         this.props.navigation.dispatch(landerNavigationAction);
-      });
+      };
+      this.outTimeline ? this.outTimeline.play().then(navigate) : navigate();
     }
 
     return (
@@ -44,11 +45,15 @@ class Splash extends Component {
           />
           <Timeline
             name="SplashOut"
-            ref={timeline => this.outTimeline = timeline}
+            ref={timeline => {
+              if (!global.isRoku) this.outTimeline = timeline;
+            }}
           />
           <ViewRef name="Loader">
             <Timeline name="Loop"
-              onLoad={timeline => timeline.play()}
+              onLoad={timeline => {
+                if (!global.isRoku) timeline.play();
+              }}
             />
           </ViewRef>
         </Composition>
