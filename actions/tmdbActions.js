@@ -2,8 +2,8 @@ import { chunk } from 'lodash';
 
 const apiKeyParam = 'api_key=7f5e61b6cef8643d2442344b45842192';
 
-const groupInto3 = array =>
-  chunk(array, 3).map((data, index) => ({
+const groupItems = (array, numPerGroup = 3) =>
+  chunk(array, numPerGroup).map((data, index) => ({
     key: index.toString(),
     data,
   }));
@@ -26,7 +26,7 @@ export const getDiscover = () => dispatch => {
       })
       .then(response => response.json())
       .then(tv => movies.concat(tv.results.slice(0, 12)).sort(() => 0.5 - Math.random()))
-      .then(json => groupInto3(normalize(json, 12))),
+      .then(json => groupItems(normalize(json, 12), 3)),
   });
 };
 
@@ -41,7 +41,7 @@ export const getTv = () => dispatch => dispatch({
   type: 'TMDB_TV',
   payload: fetch(`http://api.themoviedb.org/3/tv/popular?${apiKeyParam}&with_original_language=en`)
     .then(response => response.json())
-    .then(json => normalize(json.results)),
+    .then(json => groupItems(normalize(json.results), 2)),
 });
 
 export const getDetailsByIdAndType = (id, type) => (dispatch, getState) => {

@@ -77,7 +77,6 @@ class Search extends Component {
 
         <List
           name="List-PDP"
-          type="Shows"
           data={tv}
           focusable={isFocused}
           onPressItem={this.onPressItem}
@@ -86,7 +85,6 @@ class Search extends Component {
         />
         <List
           name="List-Movies"
-          type="Shows"
           data={movies}
           focusable={isFocused}
           onPressItem={this.onPressItem}

@@ -122,7 +122,6 @@ class PDP extends PureComponent {
           />
           <List
             name="List-PDP"
-            type="Shows"
             data={asset.similar.results}
             focusable={isFocused}
             onPressItem={this.onPressItem}

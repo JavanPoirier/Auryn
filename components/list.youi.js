@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { ListRef } from '@youi/react-native-youi';
-import { DiscoverContainer, ListItem } from '.';
+import { DiscoverContainer, ListItem, TvContainer } from '.';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 
@@ -50,6 +50,18 @@ export default class List extends PureComponent {
           onFocus={this.props.onFocusItem}
           data={item.data}
           index={index}
+          name={this.props.name}
+        />
+      );
+    }
+
+    if (this.props.type === 'Shows') {
+      return (
+        <TvContainer
+          focusable={this.props.focusable}
+          onPress={this.props.onPressItem}
+          onFocus={this.props.onFocusItem}
+          data={item.data}
           name={this.props.name}
         />
       );

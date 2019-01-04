@@ -83,7 +83,7 @@ class Lander extends Component {
     this.setState({ currentListIndex: index });
     this.scroller.scrollTo({
       x: 0,
-      y: index * 900,
+      y: (index * 900) + 1, // eslint-disable-line no-extra-parens
       animated,
     });
   }
@@ -200,7 +200,7 @@ class Lander extends Component {
               <List
                 name="Live"
                 type="Live"
-                data={tv.slice(0, 2)}
+                data={movies.slice(0, 2)}
                 ref={ref => this.lists[3] = ref}
                 focusable={isFocused && currentListIndex === 3}
                 onFocusItem={this.onFocusItem}
