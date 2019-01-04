@@ -33,7 +33,7 @@ export default class Timeline extends PureComponent {
     );
   }
 
-  play = (seek = 1) => new Promise(resolve => {
+  play = (seek = 0) => new Promise(resolve => {
     this.resolve = resolve;
     if (seek)
       this.ref.seek(this.props.direction === 'forward' ? seek : 1 - seek);
