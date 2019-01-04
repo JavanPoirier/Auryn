@@ -13,6 +13,7 @@ export default class YiReactApp extends Component {
     super();
     const systemName = DeviceInfo.getSystemName();
     global.hasHardwareBackButton = !['iOS'].includes(systemName);
+    global.isRoku = systemName === 'RokuOS';
   }
 
   render = () =>
