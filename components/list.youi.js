@@ -78,7 +78,7 @@ export default class List extends PureComponent {
         index={index}
         name={this.props.name}
       />
-     );
+    );
   }
 
   render() {
@@ -91,7 +91,7 @@ export default class List extends PureComponent {
             this.ref(ref);
         }}
         horizontal={true}
-        initialNumToRender={2}
+        initialNumToRender={global.isRoku ? 100 : 2}
         getItemLayout={this.getItemLayout}
         renderItem={this.renderItem}
       />
