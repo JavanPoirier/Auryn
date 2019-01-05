@@ -129,6 +129,79 @@ class Lander extends Component {
   render() { // eslint-disable-line max-lines-per-function, max-statements
     const { isFocused, tv, movies, discover } = this.props;
     const { currentListIndex } = this.state;
+
+    const nullList = global.isRoku ? <Composition source="Auryn_Container-NullList">
+      <List
+        name="NullList"
+        type="Movies"
+        focusable={false}
+      />
+    </Composition> : null;
+
+    const discoverComp = <View>
+      <Composition source="Auryn_Container-Discover">
+        <List
+          name="Discover"
+          type="Discover"
+          data={discover}
+          ref={ref => this.lists[0] = ref}
+          focusable={isFocused && currentListIndex === 0}
+          onFocusItem={this.onFocusItem}
+          onPressItem={this.onPressItem}
+        />
+      </Composition>
+      {nullList}
+    </View>;
+    const moviesComp = <Composition source="Auryn_Container-Movies">
+      <List
+        name="Movies"
+        type="Movies"
+        data={movies}
+        ref={ref => this.lists[1] = ref}
+        focusable={isFocused && currentListIndex === 1}
+        onFocusItem={this.onFocusItem}
+        onPressItem={this.onPressItem}
+      />
+    </Composition>;
+    const showsComp = <View>
+      <Composition source="Auryn_Container-Shows">
+        <List
+          name="Shows"
+          type="Shows"
+          data={tv}
+          ref={ref => this.lists[2] = ref}
+          focusable={isFocused && currentListIndex === 2}
+          onFocusItem={this.onFocusItem}
+          onPressItem={this.onPressItem}
+        />
+      </Composition>
+      {nullList}
+    </View>;
+    const liveComp = <Composition source="Auryn_Container-Live">
+      <List
+        name="Live"
+        type="Live"
+        data={movies.slice(0, 2)}
+        ref={ref => this.lists[3] = ref}
+        focusable={isFocused && currentListIndex === 3}
+        onFocusItem={this.onFocusItem}
+        onPressItem={this.onPressItem}
+      />
+    </Composition>;
+
+    let list = null;
+    if (global.isRoku) {
+      if (currentListIndex === 0)
+        list = discoverComp;
+      else if (currentListIndex === 1)
+        list = moviesComp;
+      else if (currentListIndex === 2)
+        list = showsComp;
+      else if (currentListIndex === 3)
+        list = liveComp;
+    } else
+      list = [discoverComp, moviesComp, showsComp, liveComp];
+
     return (
       <Composition source="Auryn_Lander">
         <ToggleGroup
@@ -165,50 +238,7 @@ class Lander extends Component {
           focusable={false}
         >
           <View>
-            <Composition source="Auryn_Container-Discover">
-              <List
-                name="Discover"
-                type="Discover"
-                data={discover}
-                ref={ref => this.lists[0] = ref}
-                focusable={isFocused && currentListIndex === 0}
-                onFocusItem={this.onFocusItem}
-                onPressItem={this.onPressItem}
-              />
-            </Composition>
-            <Composition source="Auryn_Container-Movies">
-              <List
-                name="Movies"
-                type="Movies"
-                data={movies}
-                ref={ref => this.lists[1] = ref}
-                focusable={isFocused && currentListIndex === 1}
-                onFocusItem={this.onFocusItem}
-                onPressItem={this.onPressItem}
-              />
-            </Composition>
-            <Composition source="Auryn_Container-Shows">
-              <List
-                name="Shows"
-                type="Shows"
-                data={tv}
-                ref={ref => this.lists[2] = ref}
-                focusable={isFocused && currentListIndex === 2}
-                onFocusItem={this.onFocusItem}
-                onPressItem={this.onPressItem}
-              />
-            </Composition>
-            <Composition source="Auryn_Container-Live">
-              <List
-                name="Live"
-                type="Live"
-                data={movies.slice(0, 2)}
-                ref={ref => this.lists[3] = ref}
-                focusable={isFocused && currentListIndex === 3}
-                onFocusItem={this.onFocusItem}
-                onPressItem={this.onPressItem}
-              />
-            </Composition>
+            {list}
           </View>
         </ScrollRef>
 
