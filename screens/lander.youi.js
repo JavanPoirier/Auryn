@@ -74,11 +74,13 @@ class Lander extends Component {
   }
 
   scrollToViewByIndex = (index, animated = true) => {
-    for (let i = 0; i < this.lists.length; i++)
-      FocusManager.setNextFocus(this.menuButtons.getButtonRef(i), this.lists[index], 'down');
-    FocusManager.setNextFocus(this.searchButton, this.lists[index], 'down');
-    FocusManager.setNextFocus(this.profileButton, this.lists[index], 'down');
-    FocusManager.setNextFocus(this.lists[index], this.menuButtons.getButtonRef(index), 'up');
+    if (!global.isRoku) {
+      for (let i = 0; i < this.lists.length; i++)
+        FocusManager.setNextFocus(this.menuButtons.getButtonRef(i), this.lists[index], 'down');
+      FocusManager.setNextFocus(this.searchButton, this.lists[index], 'down');
+      FocusManager.setNextFocus(this.profileButton, this.lists[index], 'down');
+      FocusManager.setNextFocus(this.lists[index], this.menuButtons.getButtonRef(index), 'up');
+    }
 
     this.setState({ currentListIndex: index });
     this.scroller.scrollTo({
