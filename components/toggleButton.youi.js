@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 
 export default class ToggleButton extends PureComponent {
   static defaultProps = {
-    ref: () => {},
-    onFocus: () => {},
-    onToggle: () => {},
-    onPress: () => {},
+    ref: () => { },
+    onFocus: () => { },
+    onToggle: () => { },
+    onPress: () => { },
   }
 
   constructor(props) {
@@ -22,12 +22,20 @@ export default class ToggleButton extends PureComponent {
     if (this.props.toggled !== prevProps.toggled) {
       this.setState({
         toggled: this.props.toggled,
-      }, this.toggleOnTimeline.play);
+      }, () => {
+        this.state.toggled || !global.isRoku ? this.toggleOnTimeline.play() : this.toggleOffTimeline.play();
+      });
     }
   }
 
-  render = () =>
-    <ButtonRef
+  render = () => {
+    const off = global.isRoku ? <Timeline
+      name="Toggle-Off"
+      direction={'forward'}
+      ref={ref => this.toggleOffTimeline = ref}
+    /> : null;
+
+    return <ButtonRef
       focusable={this.props.focusable}
       name={this.props.name}
       ref={ref => {
@@ -48,15 +56,16 @@ export default class ToggleButton extends PureComponent {
     >
       <Timeline
         name="Toggle-On"
-        direction={this.state.toggled ? 'forward' : 'reverse'}
+        direction={this.state.toggled || global.isRoku ? 'forward' : 'reverse'}
         ref={ref => this.toggleOnTimeline = ref}
         onLoad={() => {
           if (this.state.toggled)
             this.toggleOnTimeline.play();
         }}
       />
-
-    </ButtonRef>
+      {off}
+    </ButtonRef>;
+  }
 }
 
 ToggleButton.propTypes = {
