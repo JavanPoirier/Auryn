@@ -29,6 +29,8 @@ export default class List extends PureComponent {
   }
 
   shouldComponentUpdate(nextProps) {
+    if (global.isRoku) return true;
+
     if (!isEqual(nextProps.extraData, this.props.extraData))
       return true;
 
