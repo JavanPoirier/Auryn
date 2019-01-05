@@ -59,6 +59,23 @@ class Search extends Component {
     if (!isFocused)
       return <View />;
 
+    const tvList = tv || !global.isRoku ? <List
+      name="List-PDP"
+      data={tv}
+      focusable={isFocused}
+      onPressItem={this.onPressItem}
+      onFocusItem={this.onFocusItem}
+      extraData={tv}
+    /> : null;
+    const moviesList = movies || !global.isRoku ? <List
+      name="List-Movies"
+      data={movies}
+      focusable={isFocused}
+      onPressItem={this.onPressItem}
+      onFocusItem={this.onFocusItem}
+      extraData={movies}
+    /> : null;
+
     return (
       <Composition source="Auryn_Search">
         <BackButton
@@ -75,22 +92,8 @@ class Search extends Component {
           onChangeText={this.search}
         />
 
-        <List
-          name="List-PDP"
-          data={tv}
-          focusable={isFocused}
-          onPressItem={this.onPressItem}
-          onFocusItem={this.onFocusItem}
-          extraData={tv}
-        />
-        <List
-          name="List-Movies"
-          data={movies}
-          focusable={isFocused}
-          onPressItem={this.onPressItem}
-          onFocusItem={this.onFocusItem}
-          extraData={movies}
-        />
+        {tvList}
+        {moviesList}
 
         <Timeline name="SearchOut" ref={timeline => this.outTimeline = timeline} />
 
