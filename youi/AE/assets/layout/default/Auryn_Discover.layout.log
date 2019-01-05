@@ -18,4 +18,8 @@ activecomp {
     key: "componentType"
     value: "list"
   }
+  properties {
+    key: "useComponentScrollingView"
+    value: "true"
+  }
 }

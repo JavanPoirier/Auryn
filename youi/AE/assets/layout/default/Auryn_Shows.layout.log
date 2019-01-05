@@ -30,4 +30,8 @@ activecomp {
     key: "rows"
     value: "2"
   }
+  properties {
+    key: "useComponentScrollingView"
+    value: "true"
+  }
 }
