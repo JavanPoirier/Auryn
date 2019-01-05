@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Composition, BackHandler, ButtonRef, ViewRef, FocusManager, View } from '@youi/react-native-youi';
+import { BackHandler, ButtonRef, Composition, FocusManager, TextRef, View, ViewRef } from '@youi/react-native-youi';
 import { Timeline } from '../components';
 import { withNavigationFocus } from 'react-navigation';
 import PropTypes from 'prop-types';
@@ -50,6 +50,10 @@ class AdOverlay extends PureComponent {
             if (!global.isRoku) ref.play();
           }}/>
         </ViewRef>
+        <TextRef
+          name="TM"
+          visible={!global.isRoku}
+        />
       </Composition>
     );
   }
