@@ -42,7 +42,7 @@ bool App::UserInit()
     }
 #endif
 
-    
+
 #if defined(YI_LOCAL_JS_APP)
     #if defined(YI_INLINE_JS_APP)
         std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderInlineString(INLINE_JS_BUNDLE_STRING));
@@ -50,9 +50,9 @@ bool App::UserInit()
         std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderLocalAsset());
     #endif
 #else
-    std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderRemote(CYIUrl("http://localhost:8081/index.youi.bundle?platform=ios&dev=false&hot=false&minify=false")));
+    std::unique_ptr<JsBundleLoader> pBundleLoader(new JsBundleLoaderRemote(CYIUrl("http://10.252.72.226:8081/index.youi.bundle?platform=ios&dev=false&hot=false&minify=false")));
 #endif
-    
+
     PlatformApp::SetJsBundleLoader(std::move(pBundleLoader));
     return PlatformApp::UserInit();
 }
