@@ -124,13 +124,14 @@ class Video extends PureComponent {
     if (this.activityTimeout)
       clearTimeout(this.activityTimeout);
     this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
-    if (this.outTimeline) {
-      this.outTimeline.play().then(() => {
-        this.videoPlayer.stop();
+    this.outPromise = this.outTimeline ? this.outTimeline.play : Promise.resolve;
+    this.outPromise().then(() => {
+      this.videoPlayer.stop();
+      if (global.isRoku)
+        this.props.navigation.navigate({ routeName: 'PDP' });
+      else
         this.props.navigation.goBack(null);
-      });
-    } else
-      this.props.navigation.goBack(null);
+    });
 
     return true;
   }

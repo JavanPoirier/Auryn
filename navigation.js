@@ -1,6 +1,6 @@
 import * as Screens from './screens';
 // CES
-import { AdOverlay } from './ces2018';
+import { AdOverlay } from './ces2019';
 // END CES
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 
@@ -21,8 +21,9 @@ const stackOptions = {
   }),
 };
 
-const AppStack = createStackNavigator(
-{
+const createNavigator = global.isRoku ? createSwitchNavigator : createStackNavigator;
+const AppStack = createNavigator(
+  {
     Lander: { screen: Screens.Lander },
     PDP: { screen: Screens.PDP },
     Search: { screen: Screens.Search },

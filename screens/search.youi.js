@@ -28,10 +28,14 @@ class Search extends Component {
   }
 
   navigateBack = () => {
-    if (this.outTimeline)
-      this.outTimeline.play().then(() => this.props.navigation.goBack(null));
-    else
-      this.props.navigation.goBack(null);
+    this.outPromise = this.outTimeline ? this.outTimeline.play : Promise.resolve;
+    this.outPromise().then(() => {
+      if (global.isRoku)
+        this.props.navigation.navigate({ routeName: 'Lander' });
+      else
+        this.props.navigation.goBack(null);
+    });
+
     this.search('');
     return true;
   }

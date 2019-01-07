@@ -24,7 +24,13 @@ class AdOverlay extends PureComponent {
 
   navigateBack = () => {
     this.inTimeline.play(1);
-    this.outTimeline.play().then(() => this.props.navigation.goBack(null));
+    this.outPromise = this.outTimeline ? this.outTimeline.play : Promise.resolve;
+    this.outPromise().then(() => {
+      if (global.isRoku)
+        this.props.navigation.navigate({ routeName: 'Lander' });
+      else
+        this.props.navigation.goBack(null);
+    });
     return true;
   }
 
