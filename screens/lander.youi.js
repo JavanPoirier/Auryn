@@ -92,7 +92,7 @@ class Lander extends Component {
     this.props.dispatch(cache.saveDetailsByIdAndType(id, type));
     this.lastFocusItem = ref;
 
-    if (ref.props.shouldChangeFocus === false) return;
+    if (ref.props.shouldChangeFocus === false || global.isRoku) return;
 
     FocusManager.setNextFocus(ref, this.menuButtons.getButtonRef(this.props.lander.currentListIndex), 'up');
     for (let index = 0; index < this.lists.length; index++)
