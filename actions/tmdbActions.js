@@ -1,6 +1,8 @@
 import { chunk } from 'lodash';
 
 const apiKeyParam = 'api_key=7f5e61b6cef8643d2442344b45842192';
+const familyFilter = false;
+const familyGenre = 10751;
 
 const groupItems = (array, numPerGroup = 3) =>
   chunk(array, numPerGroup).map((data, index) => ({
@@ -18,11 +20,11 @@ export const getDiscover = () => dispatch => {
 
   dispatch({
     type: 'TMDB_DISCOVER',
-    payload: fetch(`http://api.themoviedb.org/3/discover/movie?${apiKeyParam}&with_original_language=en`)
+    payload: fetch(`http://api.themoviedb.org/3/discover/movie?${apiKeyParam}&with_original_language=en&with_genres=${familyFilter ? familyGenre : ''}`)
       .then(response => response.json())
       .then(json => {
         movies = json.results.slice(0, 12);
-        return fetch(`http://api.themoviedb.org/3/discover/tv?${apiKeyParam}&with_original_language=en`);
+        return fetch(`http://api.themoviedb.org/3/discover/tv?${apiKeyParam}&with_original_language=en&with_genres=${familyFilter ? familyGenre : ''}`);
       })
       .then(response => response.json())
       .then(tv => movies.concat(tv.results.slice(0, 12)).sort(() => 0.5 - Math.random()))
