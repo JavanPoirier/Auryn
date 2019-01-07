@@ -268,4 +268,5 @@ Lander.propTypes = {
   discover: PropTypes.array.isRequired,
   movies: PropTypes.array.isRequired,
   tv: PropTypes.array.isRequired,
+  lander: PropTypes.object,
 };
