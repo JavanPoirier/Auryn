@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from '@youi/react-native-youi';
 import ListItem from './listitem.youi';
-import { AdListItem } from '../ces2018';
+import { AdListItem } from '../ces2019';
 import PropTypes from 'prop-types';
 
 export default class DiscoverContainer extends React.PureComponent {
