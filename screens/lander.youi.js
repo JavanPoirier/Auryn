@@ -150,17 +150,20 @@ class Lander extends Component {
       </Composition>
       {nullList}
     </View>;
-    const moviesComp = <Composition source="Auryn_Container-Movies">
-      <List
-        name="Movies"
-        type="Movies"
-        data={movies}
-        ref={ref => this.lists[1] = ref}
-        focusable={isFocused && currentListIndex === 1}
-        onFocusItem={this.onFocusItem}
-        onPressItem={this.onPressItem}
-      />
-    </Composition>;
+    const moviesComp = <View>
+      <Composition source="Auryn_Container-Movies">
+        <List
+          name="Movies"
+          type="Movies"
+          data={movies}
+          ref={ref => this.lists[1] = ref}
+          focusable={isFocused && currentListIndex === 1}
+          onFocusItem={this.onFocusItem}
+          onPressItem={this.onPressItem}
+        />
+      </Composition>
+      {nullList}
+    </View>;
     const showsComp = <View>
       <Composition source="Auryn_Container-Shows">
         <List
@@ -175,17 +178,20 @@ class Lander extends Component {
       </Composition>
       {nullList}
     </View>;
-    const liveComp = <Composition source="Auryn_Container-Live">
-      <List
-        name="Live"
-        type="Live"
-        data={movies.slice(0, 2)}
-        ref={ref => this.lists[3] = ref}
-        focusable={isFocused && currentListIndex === 3}
-        onFocusItem={this.onFocusItem}
-        onPressItem={this.onPressItem}
-      />
-    </Composition>;
+    const liveComp = <View>
+      <Composition source="Auryn_Container-Live">
+        <List
+          name="Live"
+          type="Live"
+          data={movies.slice(0, 2)}
+          ref={ref => this.lists[3] = ref}
+          focusable={isFocused && currentListIndex === 3}
+          onFocusItem={this.onFocusItem}
+          onPressItem={this.onPressItem}
+        />
+      </Composition>
+      {nullList}
+    </View>;
 
     let list = null;
     if (global.isRoku) {
