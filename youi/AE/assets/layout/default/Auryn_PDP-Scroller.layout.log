@@ -54,7 +54,7 @@ activecomp {
       }
       position {
         x: 960
-        y: 1110
+        y: 990
         z: 0
       }
       orientation {
@@ -88,7 +88,7 @@ activecomp {
       }
       position {
         x: 379.26
-        y: 876.5
+        y: 756.5
         z: 0
       }
       orientation {
