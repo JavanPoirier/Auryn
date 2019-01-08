@@ -696,60 +696,8 @@ activecomp {
     }
   }
   layer {
-    name: "0"
-    id: 690010642
-    sourceid: -1
-    transform {
-      anchorPoint {
-        x: 82
-        y: 82
-        z: 0
-      }
-      scale {
-        x: 1
-        y: 1
-        z: 1
-      }
-      position {
-        x: 1600
-        y: 764
-        z: 0
-      }
-      orientation {
-        x: 0
-        y: 0
-        z: 0
-      }
-      rotationX: 0
-      rotationY: 0
-      rotationZ: 0
-      opacity: 0
-    }
-    acceptsshadows: true
-    acceptslights: true
-    castsshadows: false
-    textinfo {
-      justification: AE_TEXT_LEFT
-      fontSize: 152
-      fontColor {
-        alpha: 1
-        red: 0.84706008434295654
-        green: 0.082349993288517
-        blue: 0.08626999706029892
-      }
-      fontName: "Arial-BoldMT"
-      isPointText: false
-      boundsWidth: 126
-      boundsHeight: 164
-      isLabel: true
-      text: "0"
-      multiline: true
-      isAllCaps: false
-    }
-  }
-  layer {
     name: "0C"
-    id: 690010643
+    id: 690010642
     sourceid: -1
     transform {
       anchorPoint {
@@ -785,6 +733,58 @@ activecomp {
       fontSize: 152
       fontColor {
         alpha: 1
+        red: 0.84705883264541626
+        green: 0.08235294371843338
+        blue: 0.086274512112140656
+      }
+      fontName: "Arial-BoldMT"
+      isPointText: false
+      boundsWidth: 126
+      boundsHeight: 164
+      isLabel: true
+      text: "0C"
+      multiline: true
+      isAllCaps: false
+    }
+  }
+  layer {
+    name: "0"
+    id: 690010643
+    sourceid: -1
+    transform {
+      anchorPoint {
+        x: 82
+        y: 82
+        z: 0
+      }
+      scale {
+        x: 1
+        y: 1
+        z: 1
+      }
+      position {
+        x: 1600
+        y: 764
+        z: 0
+      }
+      orientation {
+        x: 0
+        y: 0
+        z: 0
+      }
+      rotationX: 0
+      rotationY: 0
+      rotationZ: 0
+      opacity: 0
+    }
+    acceptsshadows: true
+    acceptslights: true
+    castsshadows: false
+    textinfo {
+      justification: AE_TEXT_LEFT
+      fontSize: 152
+      fontColor {
+        alpha: 1
         red: 1
         green: 1
         blue: 1
@@ -794,7 +794,7 @@ activecomp {
       boundsWidth: 126
       boundsHeight: 164
       isLabel: true
-      text: "0C"
+      text: "0"
       multiline: true
       isAllCaps: false
     }
