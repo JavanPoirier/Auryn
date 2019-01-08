@@ -40,7 +40,7 @@ class PDP extends PureComponent {
   onPressItem = (id, type) => {
     this.props.dispatch(tmdb.getDetailsByIdAndType(id, type));
     this.contentOutTimeline.play()
-      .then(() => this.props.navigation.navigate({ routeName: 'PDP', params: { id, type } }))
+      .then(() => this.props.navigation.navigate({ routeName: 'PDP', params: { id, type }, key: id }))
       .then(() => {
         FocusManager.focus(this.posterButton);
         this.contentInTimeline.play();
