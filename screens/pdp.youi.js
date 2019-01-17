@@ -1,141 +1,178 @@
-import React, { Component, Fragment } from 'react';
-import { ButtonRef, Composition, ImageRef, TextRef, BackHandler, FocusManager } from '@youi/react-native-youi';
-import Youtube from 'youtube-stream-url'
-import { ListItem, Timeline, Button } from '../components'
-import { NavigationActions } from 'react-navigation';
+import React, { PureComponent } from 'react';
+import { withNavigationFocus, NavigationActions } from 'react-navigation';
+import {
+  BackHandler,
+  ButtonRef,
+  Composition,
+  ImageRef,
+  TextRef,
+  ViewRef,
+  View,
+  FocusManager,
+} from '@youi/react-native-youi';
+import { connect } from 'react-redux';
 
-export default class PDP extends Component {
+import { Timeline, List, BackButton } from '../components';
+import { youtube, cache, tmdb } from '../actions';
+import PropTypes from 'prop-types';
 
+
+@connect(store => ({
+  asset: store.tmdbReducer.details.data,
+  fetched: store.tmdbReducer.details.fetched,
+}))
+class PDP extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      focusable: true
-    };
   }
 
   navigateBack = () => {
-    this.outTimeline.play().then(() => {
-      this.props.navigation.goBack(null);
+    this.outPromise = this.outTimeline ? this.outTimeline.play : Promise.resolve;
+    this.outPromise().then(() => {
+      if (global.isRoku)
+        this.props.navigation.navigate({ routeName: 'Lander' });
+      else
+        this.props.navigation.goBack(null);
     });
+    return true;
   }
+
+  onPressItem = (id, type) => {
+    this.props.dispatch(tmdb.getDetailsByIdAndType(id, type));
+    this.contentOutTimeline.play()
+      .then(() => this.props.navigation.navigate({ routeName: 'PDP', params: { id, type }, key: id }))
+      .then(() => {
+        FocusManager.focus(this.posterButton);
+        this.contentInTimeline.play();
+      });
+  }
+
+  onFocusItem = (ref, id, type) => this.props.dispatch(cache.saveDetailsByIdAndType(id, type));
 
   componentDidMount() {
-    this.props.navigation.addListener('willBlur', () => {
-      BackHandler.removeEventListener('onBackButtonPressed', this.navigateBack);
-      this.setState({focusable: false})
-    })
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+      if (this.posterButton)
+        setTimeout(() => FocusManager.focus(this.posterButton), 1);
 
-    this.props.navigation.addListener('willFocus', () => {
-      BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
-      this.setState({focusable: true});
-      this.inTimeline.play()
-    })
-    this.requestMovieDetailsAsync()
-      .then(asset => {
-        this.setState({
-          details: asset,
-        });
+      if (this.videoOutTimeline) this.videoOutTimeline.play();
+    });
 
-        if (asset.videos.results.length > 0) {
-          Youtube.getInfo({ url: 'http://www.youtube.com/watch?v=' + asset.videos.results[0].key })
-            .then(video => this.video = video);
-        }
-      })
-      .then(this.inTimeline.play);
+    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
   }
 
-  requestMovieDetailsAsync = () => {
-    return fetch("http://api.themoviedb.org/3/movie/" + this.props.navigation.getParam('id') + "?api_key=7f5e61b6cef8643d2442344b45842192&append_to_response=releases,credits,recommendations,videos&language=en")
-      .then(response => response.json())
-      .catch(error => console.error(error));
+  componentWillUnmount() {
+    this.focusListener.remove();
+    this.blurListener.remove();
+    this.backHandlerListener.remove();
   }
 
-  render() {
-    let recommendations = this.state.details ?
-      Array(4).fill().map((_, i) =>
-        this.state.details.recommendations.results.length > i ?
-          <ListItem
-            key={this.state.details.recommendations.results[i].id}
-            name={'Poster' + (i + 1)}
-            image='Image-2x3'
-            focusable={this.state.focusable}
-            asset={this.state.details.recommendations.results[i]}
-            onClick={() => {
-              this.outTimeline.play().then(() => {
-                let navigateAction = NavigationActions.navigate({
-                  routeName: 'PDP',
-                  params: { id: this.state.details.recommendations.results[i].id},
-                  key: this.state.details.recommendations.results[i].id
-                })
-                this.props.navigation.dispatch(navigateAction)
-              });
-            }}
-          /> : null
-      ) : null;
+  shouldComponentUpdate(nextProps) {
+    // Re-render if lost/gained focus
+    if (nextProps.isFocused !== this.props.isFocused)
+      return true;
+
+    if (nextProps.fetched && !this.props.fetched)
+      return true;
+
+    // Only render if the asset.id matches the requested pdp asset id
+    return nextProps.asset.id === nextProps.navigation.getParam('id');
+  }
+
+  playVideo = () => {
+    this.videoInTimeline.play().then(() =>
+      this.props.navigation.dispatch(NavigationActions.navigate({
+          routeName: 'Video',
+          params: { videoSource: this.props.asset.videoSource },
+        })));
+  }
+
+  getFeaturedText = credits => {
+    const director = credits.crew.find(it => it.job === 'Director');
+    const cast = credits.cast.slice(0, 3).map(it => it.name).join(', ');
+    if (director)
+      return `Director: ${director.name} | Starring: ${cast}`;
+
+    return `Starring: ${cast}`;
+  }
+
+  onFocusPoster = () => {
+    this.props.dispatch(youtube.getVideoSourceByYoutubeId(this.props.asset.youtubeId));
+  }
+
+  render() { // eslint-disable-line max-lines-per-function
+    const { asset, fetched, isFocused } = this.props;
+
+    if (!fetched || !isFocused)
+      return <View/>;
 
     return (
-      <Composition source="PDP_Main">
-
-        <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
-        <Timeline name="In" ref={timeline => this.inTimeline = timeline} />
-
-        <ButtonRef
-          focusable={this.state.focusable}
-          ref={ref => this.mainButton = ref}
-          onLoad={() => FocusManager.focus(this.mainButton)}
-          name="Btn-Play"
-          onClick={() => {
-            this.outTimeline.play().then(() => {
-              let navigateAction = NavigationActions.navigate({
-                routeName: 'Player',
-                params: { video: this.video, onBack: () => this.inTimeline.play()},
-              })
-              this.props.navigation.dispatch(navigateAction)
-            });
-          }}
+      <Composition source="Auryn_PDP">
+        <Timeline name="VideoIn" ref={timeline => this.videoInTimeline = timeline} />
+        <Timeline name="VideoOut" ref={timeline => this.videoOutTimeline = timeline} />
+        <Timeline name="PDPIn"
+          ref={timeline => this.inTimeline = timeline}
+          onLoad={timeline => timeline.play()}
         />
+        <Timeline name="PDPOut" ref={timeline => this.outTimeline = timeline} />
 
-        <Button
-          name='Btn-Back'
-          focusable={this.state.focusable}
-          onClick={() => {
-            this.navigateBack();
-          }} />
+        <ViewRef name="PDP-Scroller" visible={isFocused && fetched}>
+          <BackButton
+            focusable={isFocused}
+            onPress={this.navigateBack}
+          />
+          <List
+            name="List-PDP"
+            data={asset.similar.results}
+            focusable={isFocused}
+            onPressItem={this.onPressItem}
+            onFocusItem={this.onFocusItem}
+          />
 
-        <Metadata asset={this.state.details} />
+          <Timeline
+            name="ContentIn"
+            ref={timeline => this.contentInTimeline = timeline}
+            onLoad={ref => ref.play()} />
+          <Timeline name="ContentOut" ref={timeline => this.contentOutTimeline = timeline} />
 
-        {recommendations}
+          <ButtonRef
+            name="Btn-Poster-Large"
+            focusable={isFocused}
+            onPress={this.playVideo}
+            ref={ref => this.posterButton = ref}
+            onLoad={() => FocusManager.focus(this.posterButton)}
+            onFocus={this.onFocusPoster}
+          >
+            <ImageRef
+              name="Image-Dynamic"
+              source={{ uri: `http://image.tmdb.org/t/p/w500${asset.poster_path}` }}
+            />
+          </ButtonRef>
+
+          <ImageRef
+            name="Image-Dynamic-Background"
+            source={{ uri: `http://image.tmdb.org/t/p/w1280${asset.backdrop_path}` }}
+          />
+
+          <ViewRef name="Layout-PDP-Meta">
+            <TextRef name="Text-Title" text={asset.title || asset.name} />
+            <TextRef name="Text-Overview" text={asset.overview} />
+            <TextRef name="Text-Featured" text={this.getFeaturedText(asset.credits)} />
+            <Timeline name="In2" ref={timeline => this.pdpMetaInTimeline = timeline} onLoad={ref => ref.play()} />
+          </ViewRef>
+
+        </ViewRef>
       </Composition>
     );
   }
 }
 
-function Metadata(props) {
-  if (!props.asset)
-    return null
+export default withNavigationFocus(PDP);
 
-  let releaseDate = props.asset.release_date.split("-")[0];
-  let rating = props.asset.releases.countries.find((release) => release["iso_3166_1"] === "US");
-  rating = rating && rating.certification ? "Rated " + rating.certification : null;
-  let runtime = props.asset.runtime ? props.asset.runtime + " mins" : null;
-  let details = [releaseDate, rating, runtime].filter((item) => item !== null).join(" | ");
-
-  let director = props.asset.credits.crew.find((member) => member["job"] === "Director");
-  director = director ? director.name : "";
-  let stars = props.asset.credits.cast.slice(0, 3).map((member) => member["name"]).join(", ");
-
-  let posterSource = "http://image.tmdb.org/t/p/w500" + props.asset.poster_path;
-  let backdropSource = "http://image.tmdb.org/t/p/w1280" + props.asset.backdrop_path;
-
-  return (
-    <Fragment>
-      <TextRef name="Title-Text" text={props.asset.title} />
-      <TextRef name="Details-Text" text={details} />
-      <TextRef name="Director" text={director} />
-      <TextRef name="Stars" text={stars} />
-      <TextRef name="Body-Text" text={props.asset.overview} />
-      <ImageRef name="Image-2x3" source={{ uri: posterSource }} />
-      <ImageRef name="Image-16x9" source={{ uri: backdropSource }} />
-    </Fragment>
-  );
-}
+PDP.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  isFocused: PropTypes.bool,
+  asset: PropTypes.object.isRequired,
+  fetched: PropTypes.bool,
+};

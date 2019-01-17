@@ -119,29 +119,9 @@ class BuildOptions
         return command
     end
 
-    def self.find_engine_dir_in_list(dirs)
-        if dirs == nil || dirs.length == 0
-            puts "ERROR: A non-empty list of directories must be passed to 'find_engine_dir_in_list'."
-            abort
-        end
-
-        dirs.each { |d|
-            config_filepath = File.absolute_path(File.join(d, "YouiEngineConfig.cmake"))
-            if File.exist?(config_filepath)
-                return d
-            end
-
-            # When in the engine repository, the YouiEngineConfig.cmake file doesn't exist at the root folder.
-            # It's necessary to check for an alternative file.
-            if File.exist?(File.absolute_path(File.join(d, "core", "CMakeLists.txt")))
-                return d
-            end
-        }
-
-        return nil
-    end
-
     def self.create_cmake_command(options)
+
+
         # Parse the CMakeCache.txt file and inspect the 'YI_PLATFORM' variable.
         # If the line matches the regex '^(YI_PLATFORM:)[A-Z]+(=ps4)', then
         # we need to use the custom build of CMake, since it's the only CMake that understands
@@ -155,18 +135,11 @@ class BuildOptions
         end
 
         if cache_contents.match(/^(YI_PLATFORM:)[A-Z]+(=ps4)/i)
-            # PS4 uses the built-in version of CMake, so we need to reference that
-            # version instead of the standard one installed on the host machine.
-
-            engine_dir = find_engine_dir_in_list([
-                File.expand_path(__dir__),
-                File.join(__dir__, ".."),
-                File.join(__dir__, "..", ".."),
-                File.join(__dir__, "..", "..", ".."),
-                File.join(__dir__, "..", "..", "..", "..")
-            ])
-
-            command = "\"#{File.absolute_path(File.join(engine_dir, "tools", "build", "cmake", "bin", "cmake.exe"))}\""
+            # Regex match for CMAKE_ROOT, which was the cmake path used to generate. The CMAKE_ROOT variable
+            # includes share/cmake or share/cmake-3.8 (current PS4 cmake), so this regex should match both versions.
+            # The MatchData object returns the capture (.+) from it's [] method, to which we append bin/cmake.exe
+            cmake_root = /^CMAKE_ROOT:INTERNAL=(.+)share.cmake.{0,6}$/.match(cache_contents)
+            command = File.join(cmake_root[1], 'bin', 'cmake.exe')
         else
             command = "cmake"
         end

@@ -1,78 +1,278 @@
 import React, { Component } from 'react';
-import { Composition, ViewRef, FocusManager } from '@youi/react-native-youi';
-import { ListItem, Timeline } from '../components'
-import { NavigationActions } from 'react-navigation';
+import { Composition, ViewRef, ScrollRef, ButtonRef, View, FocusManager, BackHandler } from '@youi/react-native-youi';
+import { Timeline, ToggleGroup, List } from '../components';
+import { withNavigationFocus, NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
+import { tmdb, cache, lander } from '../actions';
+import PropTypes from 'prop-types';
 
-export default class Lander extends Component {
+@connect(store => ({
+  discover: store.tmdbReducer.discover.data,
+  movies: store.tmdbReducer.movies.data,
+  tv: store.tmdbReducer.tv.data,
+  lander: store.landerReducer,
+}))
+class Lander extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      assets: [],
-      focusable: true,
-    };
-  }
-
-  requestPopularMoviesAsync = () => {
-    return fetch("http://api.themoviedb.org/3/discover/movie?api_key=7f5e61b6cef8643d2442344b45842192&language=en")
-      .then(response => response.json())
-      .then(responseJson => responseJson.results)
-      .catch(error => console.error(error));
+    this.lists = [];
+    this.lastFocusItem = null;
+    this.navButtonNames = ['Discover', 'Movies', 'Shows', 'Live'];
   }
 
   componentDidMount() {
-    this.props.navigation.addListener('didFocus', () => {
-      this.setState({focusable: true});
-      this.inTimeline.play();
-    })
-    this.props.navigation.addListener('didBlur', () => {
-      this.setState({focusable: false})
-    })
-    this.requestPopularMoviesAsync()
-      .then(results => {
-        this.setState({
-          assets: results,
-        });
-      });
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+
+      if (this.lastFocusNavItem) {
+        FocusManager.enableFocus(this.lastFocusNavItem);
+        FocusManager.focus(this.lastFocusNavItem);
+      } else if (this.lastFocusItem) {
+        FocusManager.enableFocus(this.lastFocusItem);
+        FocusManager.focus(this.lastFocusItem);
+      }
+
+      // CES
+      if (this.adPressed) return;
+      // END CES
+
+      if (this.landerInTimeline && this.navInTimeline) {
+        this.landerInTimeline.play();
+        this.navInTimeline.play(1);
+      }
+    });
+    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
   }
 
-  render() {
-    let movies = this.state.assets.length > 0 ?
-      Array(10).fill().map((_, i) =>
-        <ListItem
-          key={this.state.assets[i].id}
-          asset={this.state.assets[i]}
-          onLoad={ref => { if (i == 0) FocusManager.focus(ref)}}
-          name={'Poster' + (i + 1)}
-          focusable={this.state.focusable}
-          image='Container-Image'
-          onClick={() => {
-            this.outTimeline.play()
-              .then(() => {
-                let navigateAction = NavigationActions.navigate({
-                  routeName: 'PDP',
-                  params: { id: this.state.assets[i].id },
-                  key: this.state.assets[i].id
-                })
-                this.props.navigation.dispatch(navigateAction)
-              });
-          }}
+  navigateBack = () => {
+    FocusManager.focus(this.menuButtons.getButtonRef(this.props.lander.currentListIndex));
+    return true;
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+    this.blurListener.remove();
+    this.backHandlerListener.remove();
+  }
+
+  navigateToScreen = screen => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: screen,
+    });
+
+    if (screen === 'Search')
+      this.lastFocusNavItem = this.searchButton;
+    else if (screen === 'Profile')
+      this.lastFocusNavItem = this.profileButton;
+    else
+      this.lastFocusNavItem = null;
+
+    this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));
+  }
+
+  scrollToViewByIndex = (index, animated = true) => {
+    if (!global.isRoku) {
+      for (let i = 0; i < this.lists.length; i++)
+        FocusManager.setNextFocus(this.menuButtons.getButtonRef(i), this.lists[index], 'down');
+      FocusManager.setNextFocus(this.searchButton, this.lists[index], 'down');
+      FocusManager.setNextFocus(this.profileButton, this.lists[index], 'down');
+      FocusManager.setNextFocus(this.lists[index], this.menuButtons.getButtonRef(index), 'up');
+    }
+
+    this.props.dispatch(lander.setListIndex(index));
+    this.scroller.scrollTo({
+      x: 0,
+      y: (index * 900) + 1, // eslint-disable-line no-extra-parens
+      animated,
+    });
+  }
+
+  onFocusItem = (ref, id, type) => {
+    this.props.dispatch(cache.saveDetailsByIdAndType(id, type));
+    this.lastFocusItem = ref;
+
+    if (ref.props.shouldChangeFocus === false || global.isRoku) return;
+
+    FocusManager.setNextFocus(ref, this.menuButtons.getButtonRef(this.props.lander.currentListIndex), 'up');
+    for (let index = 0; index < this.lists.length; index++)
+      FocusManager.setNextFocus(this.menuButtons.getButtonRef(index), ref, 'down');
+
+    FocusManager.setNextFocus(this.searchButton, ref, 'down');
+    FocusManager.setNextFocus(this.profileButton, ref, 'down');
+  }
+
+  onPressItem = (id, type, ref) => {
+    // CES
+    this.adPressed = false;
+    if (type === 'Ad') {
+      this.adPressed = true;
+      this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'AdOverlay' }));
+      return;
+    }
+    // END CES
+    this.lastFocusItem = ref;
+    this.lastFocusNavItem = null;
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'PDP',
+      params: {
+        id,
+        type,
+      },
+    });
+    this.props.dispatch(tmdb.getDetailsByIdAndType(id, type));
+    this.outTimeline.play().then(() => this.props.navigation.dispatch(navigateAction));
+  }
+
+  render() { // eslint-disable-line max-lines-per-function, max-statements
+    const { isFocused, tv, movies, discover } = this.props;
+    const { currentListIndex } = this.props.lander;
+
+    const nullList = global.isRoku ? <Composition source="Auryn_Container-NullList">
+      <List
+        name="NullList"
+        type="Movies"
+        focusable={false}
+      />
+    </Composition> : null;
+
+    const discoverComp = <View>
+      <Composition source="Auryn_Container-Discover">
+        <List
+          name="Discover"
+          type="Discover"
+          data={discover}
+          ref={ref => this.lists[0] = ref}
+          focusable={isFocused && currentListIndex === 0}
+          onFocusItem={this.onFocusItem}
+          onPressItem={this.onPressItem}
         />
-      ) : null;
+      </Composition>
+      {nullList}
+    </View>;
+    const moviesComp = <View>
+      <Composition source="Auryn_Container-Movies">
+        <List
+          name="Movies"
+          type="Movies"
+          data={movies}
+          ref={ref => this.lists[1] = ref}
+          focusable={isFocused && currentListIndex === 1}
+          onFocusItem={this.onFocusItem}
+          onPressItem={this.onPressItem}
+        />
+      </Composition>
+      {nullList}
+    </View>;
+    const showsComp = <View>
+      <Composition source="Auryn_Container-Shows">
+        <List
+          name="Shows"
+          type="Shows"
+          data={tv}
+          ref={ref => this.lists[2] = ref}
+          focusable={isFocused && currentListIndex === 2}
+          onFocusItem={this.onFocusItem}
+          onPressItem={this.onPressItem}
+        />
+      </Composition>
+      {nullList}
+    </View>;
+    const liveComp = <View>
+      <Composition source="Auryn_Container-Live">
+        <List
+          name="Live"
+          type="Live"
+          data={movies.slice(0, 2)}
+          ref={ref => this.lists[3] = ref}
+          focusable={isFocused && currentListIndex === 3}
+          onFocusItem={this.onFocusItem}
+          onPressItem={this.onPressItem}
+        />
+      </Composition>
+      {nullList}
+    </View>;
+
+    let list = null;
+    if (global.isRoku) {
+      if (currentListIndex === 0)
+        list = discoverComp;
+      else if (currentListIndex === 1)
+        list = moviesComp;
+      else if (currentListIndex === 2)
+        list = showsComp;
+      else if (currentListIndex === 3)
+        list = liveComp;
+    } else
+      list = [discoverComp, moviesComp, showsComp, liveComp];
 
     return (
-      <Composition source="Lander_Main">
+      <Composition source="Auryn_Lander">
+        <ToggleGroup
+          focusable={isFocused}
+          prefix="Btn-Nav-"
+          names={this.navButtonNames}
+          onPressItem={this.scrollToViewByIndex}
+          ref={ref => this.menuButtons = ref}
+        />
+        <ButtonRef
+          name="Btn-Nav-Search"
+          focusable={isFocused}
+          ref={ref => this.searchButton = ref}
+          onPress={() => this.navigateToScreen('Search')}
+        />
+        <ButtonRef
+          name="Btn-Nav-Profile"
+          focusable={isFocused}
+          ref={ref => this.profileButton = ref}
+          onPress={() => this.navigateToScreen('Profile')}
+        />
+        <Timeline name="LanderIn"
+          onLoad={timeline => {
+            this.landerInTimeline = timeline;
+            this.landerInTimeline.play();
+          }}
+        />
+        <Timeline name="LanderOut" ref={timeline => this.outTimeline = timeline} />
+        <ScrollRef
+          name="Stack"
+          ref={scroller => this.scroller = scroller}
+          scrollEnabled={false}
+          horizontal={false}
+          focusable={false}
+        >
+          <View>
+            {list}
+          </View>
+        </ScrollRef>
 
-        <ViewRef name="Scroller">
-          <Timeline name="In"
-            ref={timeline => this.inTimeline = timeline}
-            onLoad={timeline => timeline.play()}
+        <ViewRef name="Nav">
+          <Timeline name="In" onLoad={timeline => {
+            this.navInTimeline = timeline;
+            this.navInTimeline.play();
+            FocusManager.focus(this.menuButtons.getButtonRef(0));
+          }}
           />
-          <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
+          <Timeline name="Out" ref={timeline => this.navOutTimeline = timeline} />
         </ViewRef>
 
-        {movies}
+        <ViewRef name="Nav-Logo">
+          <Timeline name="Loop" loop={true} />
+        </ViewRef>
 
       </Composition>
     );
   }
 }
+
+export default withNavigationFocus(Lander);
+
+Lander.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  isFocused: PropTypes.bool,
+  discover: PropTypes.array.isRequired,
+  movies: PropTypes.array.isRequired,
+  tv: PropTypes.array.isRequired,
+  lander: PropTypes.object,
+};

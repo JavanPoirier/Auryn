@@ -1,136 +1,236 @@
-import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Composition, TextRef, ViewRef, VideoRef, BackHandler, FocusManager } from '@youi/react-native-youi';
+import React, { PureComponent } from 'react';
+import { View, Composition, ViewRef, VideoRef, ButtonRef, TextRef, Input, FocusManager, BackHandler } from '@youi/react-native-youi';
+import { Timeline, ToggleButton, BackButton } from '../components';
+import { withNavigationFocus } from 'react-navigation';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { Scrubber, Timeline, Button } from '../components'
-
-
-export default class VideoPlayer extends Component {
-
+@connect(store => ({
+  videoSource: store.youtubeReducer.videoSource,
+  asset: store.tmdbReducer.details.data,
+  fetched: store.youtubeReducer.fetched,
+}))
+class Video extends PureComponent {
   constructor(props) {
     super(props);
-    var videoSource = {
-      uri: "http://www.streambox.fr/playlists/x31jrg1/x31jrg1.m3u8",
-      type: "HLS"
-    }
-    let video = this.props.navigation.getParam('video')
-    if (video && video.formats) {
-      let format = video.formats
-        .find(format => format.type.indexOf('mp4') > 0 && format.quality === 'hd720');
-      if (format) {
-        videoSource = {
-          uri: format.url,
-          type: 'MP4'
-        }
-      }
-    }
-
-    this.state = {
-      videoSource: videoSource,
-      formattedTime: "00:00",
-      focusable: true,
-      paused: true
+    this.fallbackVideo = {
+      uri: 'http://www.streambox.fr/playlists/x31jrg1/x31jrg1.m3u8',
+      type: 'HLS',
     };
 
-    BackHandler.addEventListener("onBackButtonPressed", this.navigateBack);
+    this.state = {
+      videoSource: props.fetched ? props.videoSource : {},
+      controlsVisible: false,
+      formattedTime: '00:00',
+      paused: true,
+      error: false,
+      ready: false,
+    };
+  }
+
+  mediaKeys = [
+    'YI_KEY_SPACE',
+    'YI_KEY_PLAY',
+    'YI_KEY_MEDIA_PLAY',
+    'YI_KEY_MEDIA_PLAY_PAUSE',
+  ];
+
+  keys = [
+    'YI_KEY_ENTER',
+    'YI_KEY_SELECT',
+    'YI_KEY_PAGEDOWN',
+    'YI_KEY_ARROW_DOWN',
+    'YI_KEY_ARROW_UP',
+    'YI_KEY_ARROW_LEFT',
+    'YI_KEY_ARROW_RIGHT',
+    'YI_KEY_ARROW_UP_LEFT',
+    'YI_KEY_ARROW_UP_RIGHT',
+    'YI_KEY_ARROW_DOWN_LEFT',
+    'YI_KEY_ARROW_DOWN_RIGHT',
+  ];
+
+  componentDidMount() {
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.backHandlerListener = BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
+    });
+    this.blurListener = this.props.navigation.addListener('didBlur', () => this.backHandlerListener.remove());
+    this.keys.concat(this.mediaKeys).forEach(key => Input.addEventListener(key, this.registerUserActivity));
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+    this.blurListener.remove();
+    this.backHandlerListener.remove();
+    this.keys.concat(this.mediaKeys).forEach(key => Input.removeEventListener(key, this.registerUserActivity));
+  }
+
+  componentDidUpdate(prevProps, prevState) { // eslint-disable-line max-statements
+    if (!prevProps.fetched && this.props.fetched)
+      this.setState({ videoSource: this.props.videoSource });
+
+    if (this.state.error) {
+      this.setState({
+        videoSource: this.fallbackVideo,
+        error: false,
+      });
+    }
+
+    if (this.state.percent !== prevState.percent)
+      this.scrubberTimeline.play(this.state.percent);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.fetched !== this.props.fetched)
+      return true;
+
+    if (nextState.error)
+      return true;
+
+    if (nextState.controlsVisible) return true;
+
+    return false;
+  }
+
+  inactivityDetected = () => {
+    this.controlsHideTimeline.play();
+    this.setState({ controlsVisible: false });
+  }
+
+  showControls = () => {
+    this.setState({ controlsVisible: true });
+    FocusManager.focus(this.playButton);
+    this.controlsShowTimeline.play();
+  }
+
+  registerUserActivity = keyEvent => {
+    if (this.mediaKeys.includes(keyEvent.keyCode) && keyEvent.eventType === 'up')
+      this.playPause();
+
+    if (!this.state.controlsVisible) this.showControls();
+
+    if (this.activityTimeout)
+      clearTimeout(this.activityTimeout);
+
+    // Set our new activity timeout
+    this.activityTimeout = setTimeout(() => this.inactivityDetected(), 3000);
+  }
+
+  playPause = () => {
+    this.state.paused ? this.videoPlayer.play() : this.videoPlayer.pause();
   }
 
   navigateBack = () => {
-    this.scrubber.setState({ thumbOpacity: 0, focusable: false });
-    this.video.pause();
-    this.outTimeline.play()
-    .then(() => {
-      this.props.navigation.goBack(null);
+    if (this.state.mediaState === 'preparing') return true;
+    if (this.activityTimeout)
+      clearTimeout(this.activityTimeout);
+    this.keys.forEach(key => Input.removeEventListener(key, this.registerUserActivity));
+    this.outPromise = this.outTimeline ? this.outTimeline.play : Promise.resolve;
+    this.outPromise().then(() => {
+      this.videoPlayer.stop();
+      if (global.isRoku)
+        this.props.navigation.navigate({ routeName: 'PDP' });
+      else
+        this.props.navigation.goBack(null);
+    });
+
+    return true;
+  }
+
+  onCurrentTimeUpdated = currentTime => { // eslint-disable-line max-statements
+    if (isNaN(currentTime.nativeEvent)) return;
+    let sec = Math.floor(currentTime.nativeEvent / 1000);
+    let min = Math.floor(sec / 60);
+    let hour = Math.floor(sec / 3600);
+    sec %= 60;
+    min %= 60;
+    hour = hour < 1 ? '' : `${hour}:`;
+    min = min < 10 ? `0${min}` : min;
+    sec = sec < 10 ? `0${sec}` : sec;
+    const time = `${hour}${min}:${sec}`;
+    this.setState({
+      currentTime: currentTime.nativeEvent,
+      formattedTime: time,
+      percent: currentTime.nativeEvent / this.state.duration,
     });
   }
 
-  render() {
+  onPlayerReady = () => {
+    this.setState({ ready: true });
+    this.videoPlayer.play();
+    this.inTimeline.play();
+  };
+
+  onPlayerError = () => this.setState({ error: true, videoSource: this.fallbackVideo });
+
+  onDurationChanged = duration => this.setState({ duration: duration.nativeEvent });
+
+  render() { // eslint-disable-line max-lines-per-function
+    const { fetched, asset, isFocused } = this.props;
+    if (!fetched)
+      return <View />;
+
     return (
-      <View>
-        <Composition source="Player_Main">
+      <Composition source="Auryn_VideoContainer">
+        <Timeline name="In" ref={timeline => this.inTimeline = timeline} />
+        <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
+
+        <ButtonRef name="Video" onPress={this.registerUserActivity} visible={isFocused && fetched}>
           <VideoRef
-            name="Video-Surface-View"
-            ref={(ref) => {
-              this.video = ref;
-            }}
-            paused={this.state.paused}
+            name="VideoSurface"
+            ref={ref => this.videoPlayer = ref}
+            onPaused={() => this.setState({ paused: true })}
+            onPlaying={() => this.setState({ paused: false })}
+            onPlaybackComplete={() => this.navigateBack()}
+            onStateChanged={state => this.setState({ playerState: state.nativeEvent.mediaState })}
+            onReady={this.onPlayerReady}
             source={this.state.videoSource}
-            onReady={() => this.video.play()}
-            onPlaybackComplete={() => this.navigateBack}
-            onCurrentTimeUpdated={currentTime => {
-              var s = Math.floor(currentTime.nativeEvent / 1000);
-              var m = Math.floor(s / 60);
-              var h = Math.floor(s / 3600);
-              s = s % 60;
-              m = m % 60;
-              h = h < 1 ? '' : h + ':';
-              m = m < 10 ? '0' + m : m;
-              s = s < 10 ? '0' + s : s;
-              var time = h + m + ':' + s;
-              this.setState({ currentTime: currentTime.nativeEvent, formattedTime: time });
-            }}
-            onDurationChanged={duration => {
-              this.setState({ duration: duration.nativeEvent });
-            }}
+            onErrorOccurred={this.onPlayerError}
+            onCurrentTimeUpdated={this.onCurrentTimeUpdated}
+            onDurationChanged={this.onDurationChanged}
           />
-          <ViewRef name="Playback-Controls">
-
-            <Timeline
-              name="In"
-              ref={timeline => this.inTimeline = timeline}
-              onLoad={() =>
-                this.inTimeline.play()
-                  .then(() => this.scrubber.setState({ thumbOpacity: 1 }))
-              }
-            />
-            <Timeline name="Out" ref={timeline => this.outTimeline = timeline} />
-
-            <TextRef name="Placeholder-Time" text={this.state.formattedTime} />
-
-            <Button
-              name="Btn-PlayPause"
-              toggle={true}
-              onLoad={ref => { FocusManager.focus(ref)}}
-              onClick={() => {
-                this.setState({
-                  paused: !this.state.paused
-                })
-                if (this.state.paused)
-                  this.video.pause();
-                else
-                  this.video.play();
-              }}
-            />
-
-            <Button
-              name="Btn-Back"
-              toggle={false}
-              onClick={this.navigateBack}
-            />
+          <ViewRef name="ActivityIndicator">
+            <Timeline name="Show" ref={ref => this.activityShowTimeline = ref} />
+            <Timeline name="Hide" ref={ref => this.activityHideTimeline = ref} />
           </ViewRef>
-        </Composition>
-
-        <Scrubber
-          ref={ref => this.scrubber = ref}
-          style={styles.scrubber}
-          duration={this.state.duration}
-          currentTime={this.state.currentTime}
-        />
-
-      </View>
+          <ViewRef name="Player-Controls">
+            <BackButton
+              focusable={isFocused}
+              onPress={this.navigateBack}
+            />
+            <Timeline name="Show"
+              ref={ref => this.controlsShowTimeline = ref}
+            />
+            <Timeline name="Hide"
+              ref={ref => this.controlsHideTimeline = ref}
+            />
+            <ToggleButton name="Btn-PlayPause"
+              onPress={this.playPause}
+              toggled={!this.state.paused}
+              toggle={true}
+              focusable={isFocused}
+              ref={ref => this.playButton = ref}
+            />
+            <TextRef name="Duration" text={this.state.formattedTime} />
+            <ViewRef name="Bar">
+              <Timeline name="ScrollStart" ref={ref => this.scrubberTimeline = ref} />
+            </ViewRef>
+            <ViewRef name="Video-TextDetails">
+              <TextRef name="Title" text={asset.title || asset.name} />
+              <TextRef name="Details" text={asset.overview} />
+            </ViewRef>
+          </ViewRef>
+        </ButtonRef>
+      </Composition>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: 'black',
-    flex: 1,
-  },
-  scrubber: {
-    position: 'absolute',
-    width: 1920,
-    height: 1080
-  }
-});
+export default withNavigationFocus(Video);
+
+Video.propTypes = {
+  navigation: PropTypes.object,
+  isFocused: PropTypes.bool,
+  asset: PropTypes.object.isRequired,
+  fetched: PropTypes.bool,
+  videoSource: PropTypes.object,
+};

@@ -1,11 +1,19 @@
-import Button         from './button.youi'
-import ListItem       from './listitem.youi'
-import Scrubber       from './scrubber.youi'
-import Timeline       from './timeline.youi'
+import BackButton from './backButton.youi';
+import ListItem from './listitem.youi';
+import List from './list.youi';
+import Timeline from './timeline.youi';
+import DiscoverContainer from './discoverContainer.youi';
+import ToggleButton from './toggleButton.youi';
+import ToggleGroup from './toggleGroup.youi';
+import TvContainer from './tvContainer.youi';
 
 export {
-  Button,
+  BackButton,
   ListItem,
-  Scrubber,
+  List,
   Timeline,
-}
+  DiscoverContainer,
+  ToggleButton,
+  ToggleGroup,
+  TvContainer,
+};
