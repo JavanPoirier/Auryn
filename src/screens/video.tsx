@@ -9,7 +9,6 @@ import { Asset } from './../adapters/asset';
 import { AurynAppState } from './../reducers/index';
 import { RotationMode, OrientationLock } from './../components/withOrientation';
 import { VideoPlayer, VideoContextProvider, VideoContext } from './../components/videoPlayer';
-import { VideoContextType } from '../components/videoPlayer/context';
 import AdManager from './../components/adManager';
 import { AdContextProvider } from './../components/adManager/context';
 import { AurynHelper } from '../aurynHelper';
@@ -23,8 +22,6 @@ interface VideoProps extends NavigationFocusInjectedProps, OrientationLock, Disp
 }
 
 class VideoScreenComponent extends React.Component<VideoProps> {
-  declare context: VideoContextType;
-
   static contextType = VideoContext;
 
   private focusListener!: NavigationEventSubscription;
