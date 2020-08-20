@@ -331,11 +331,7 @@ declare module '@youi/react-native-youi' {
      * @param toRefOrTag The ref or a node handle of the component at which the focus path terminates.
      * @param focusDirection The direction of the focus path. Valid directions are: "up", "down", "right", "left", "forward" and "reverse".
      */
-    setNextFocus(
-      fromRefOrTag: Ref,
-      toRefOrTag: Ref,
-      focusDirection: FocusDirection,
-    ): void;
+    setNextFocus(fromRefOrTag: Ref, toRefOrTag: Ref, focusDirection: FocusDirection): void;
   }
 
   export const FocusManager: FocusManagerInterface;
@@ -564,9 +560,7 @@ declare module '@youi/react-native-youi' {
     stop: () => void;
   }
 
-  export class SliderRef extends React.Component<RefProps & SliderProps> {
-
-  }
+  export class SliderRef extends React.Component<RefProps & SliderProps> {}
 
   export interface ViewRefProps {
     name: string;

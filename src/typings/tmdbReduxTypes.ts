@@ -7,10 +7,7 @@ interface TmdbApiActions {
 }
 
 interface TmdbApiActionsFulfilled {
-  type: 'TMDB_DISCOVER_FULFILLED'
-  | 'TMDB_MOVIES_FULFILLED'
-  | 'TMDB_TV_FULFILLED'
-  | 'TMDB_SEARCH_FULFILLED';
+  type: 'TMDB_DISCOVER_FULFILLED' | 'TMDB_MOVIES_FULFILLED' | 'TMDB_TV_FULFILLED' | 'TMDB_SEARCH_FULFILLED';
   payload: TmdbResults<TmdbApi>;
 }
 
@@ -25,21 +22,22 @@ interface TmdbApiDetailActionsFulfilled {
 }
 
 interface TmdbApiActionsRejected {
-  type: 'TMDB_DISCOVER_REJECTED'
-  | 'TMDB_MOVIES_REJECTED'
-  | 'TMDB_TV_REJECTED'
-  | 'TMDB_SEARCH_REJECTED'
-  | 'TMDB_DETAILS_REJECTED'
-  | 'TMDB_CACHE_REJECTED';
+  type:
+    | 'TMDB_DISCOVER_REJECTED'
+    | 'TMDB_MOVIES_REJECTED'
+    | 'TMDB_TV_REJECTED'
+    | 'TMDB_SEARCH_REJECTED'
+    | 'TMDB_DETAILS_REJECTED'
+    | 'TMDB_CACHE_REJECTED';
   payload: Error;
 }
 
 export type TmdbActionTypes =
-    TmdbApiActions
-    | TmdbApiActionsFulfilled
-    | TmdbApiDetailActions
-    | TmdbApiDetailActionsFulfilled
-    | TmdbApiActionsRejected
+  | TmdbApiActions
+  | TmdbApiActionsFulfilled
+  | TmdbApiDetailActions
+  | TmdbApiDetailActionsFulfilled
+  | TmdbApiActionsRejected;
 
 export interface TmdbStore {
   tmdbReducer: TmdbReducerState;

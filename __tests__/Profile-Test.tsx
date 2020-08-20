@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Profile } from '../src/screens';
 import { navigationProp } from '../__mocks__/navigation';

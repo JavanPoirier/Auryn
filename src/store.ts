@@ -7,5 +7,5 @@ import { configureStore, ConfigureStoreOptions, AnyAction } from '@reduxjs/toolk
 
 export default configureStore({
   reducer: rootReducer,
-  middleware: [createDebounce(), thunk, promise]
+  middleware: [createDebounce(), thunk, promise],
 } as ConfigureStoreOptions<StoreState, AnyAction>);

@@ -1,4 +1,4 @@
-import {  YoutubeApiActions } from '../actions/youtubeActions';
+import { YoutubeApiActions } from '../actions/youtubeActions';
 import { VideoUriSource } from '@youi/react-native-youi';
 
 export interface YoutubeReducerState {
@@ -10,7 +10,10 @@ export interface YoutubeReducerState {
 }
 
 const initalState: YoutubeReducerState = {
-  videoSource: { uri: 'https://playertest.longtailvideo.com/adaptive/oceans_aes/oceans_aes-audio=65000-video=2042000.m3u8', type: 'HLS' },
+  videoSource: {
+    uri: 'https://playertest.longtailvideo.com/adaptive/oceans_aes/oceans_aes-audio=65000-video=2042000.m3u8',
+    type: 'HLS',
+  },
   videoId: Date.now().toString(),
   fetching: false,
   fetched: false,
@@ -20,7 +23,7 @@ const initalState: YoutubeReducerState = {
 export const youtubeReducer = (state = initalState, action: YoutubeApiActions): YoutubeReducerState => {
   switch (action.type) {
     case 'YOUTUBE_VIDEO_FULFILLED': {
-      const format = action.payload.formats?.find(fmt => {
+      const format = action.payload.formats?.find((fmt) => {
         const type = fmt.type || fmt.mimeType;
         return type && type.indexOf('mp4') > 0 && fmt.quality === 'hd720';
       });

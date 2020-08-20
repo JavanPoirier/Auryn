@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Splash } from '../src/screens';
 import { Provider } from 'react-redux';
@@ -8,9 +7,11 @@ import renderer from 'react-test-renderer';
 
 test('renders correctly with error', () => {
   const tree = renderer
-    .create(<Provider store={store}>
-      <Splash {...navigationProp} error="Splash Screen with Error"/>
-    </Provider>)
+    .create(
+      <Provider store={store}>
+        <Splash {...navigationProp} error="Splash Screen with Error" />
+      </Provider>,
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -18,12 +19,12 @@ test('renders correctly with error', () => {
 
 test('renders correctly', () => {
   const tree = renderer
-    .create(<Provider store={store}>
-      <Splash {...navigationProp} />
-    </Provider>)
+    .create(
+      <Provider store={store}>
+        <Splash {...navigationProp} />
+      </Provider>,
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
 });
-
-

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   errorText: {
     fontSize: 40,
     color: 'red',
-    padding: 15
+    padding: 15,
   },
   messageText: {
     fontSize: 36,

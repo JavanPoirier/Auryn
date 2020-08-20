@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { List } from '../src/components';
 import { fromApi } from '../src/adapters/dummyAdapter';

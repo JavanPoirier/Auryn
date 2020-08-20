@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TvContainer } from '../src/components';
 import { fromApi } from '../src/adapters/dummyAdapter';

@@ -35,14 +35,16 @@ class AdManager extends Component<AdManagerProps> {
 
   renderLowerThirdAd = () => {
     return <LowerThirdAd />;
-  }
+  };
 
   render() {
-    return <View style={styles.container}>
-      {this.renderPauseAd()}
-      {this.props.children}
-      {this.renderLowerThirdAd()}
-    </View>;
+    return (
+      <View style={styles.container}>
+        {this.renderPauseAd()}
+        {this.props.children}
+        {this.renderLowerThirdAd()}
+      </View>
+    );
   }
 }
 

@@ -35,10 +35,8 @@ export class NavigationBar extends React.PureComponent<NavigationBarProps, { act
 
             this.setState({ activeButtonIndex: index });
 
-            if (this.props.onPressItem)
-              this.props.onPressItem(index);
-            else if (typedChild.props.onPress)
-              typedChild.props.onPress(index);
+            if (this.props.onPressItem) this.props.onPressItem(index);
+            else if (typedChild.props.onPress) typedChild.props.onPress(index);
           },
           toggled: this.initialToggleIndex === index || this.state.activeButtonIndex === index,
           focusOnMount: this.initialToggleIndex === index,
@@ -49,11 +47,11 @@ export class NavigationBar extends React.PureComponent<NavigationBarProps, { act
       }
     });
 
-    return <ScrollRef {...this.props} ref={this.scrollRef}>
-      <View style={styles.buttonContainer}>
-        {data}
-      </View>
-    </ScrollRef>;
+    return (
+      <ScrollRef {...this.props} ref={this.scrollRef}>
+        <View style={styles.buttonContainer}>{data}</View>
+      </ScrollRef>
+    );
   }
 }
 

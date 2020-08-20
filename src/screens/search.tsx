@@ -1,8 +1,13 @@
 import React from 'react';
 import { View, BackHandler } from 'react-native';
-import { Composition, TextInputRef, FocusManager, TextRef,FormFactor } from '@youi/react-native-youi';
+import { Composition, TextInputRef, FocusManager, TextRef, FormFactor } from '@youi/react-native-youi';
 import { Timeline, List, BackButton } from '../components';
-import { NavigationActions, withNavigationFocus, NavigationEventSubscription, NavigationFocusInjectedProps } from 'react-navigation';
+import {
+  NavigationActions,
+  withNavigationFocus,
+  NavigationEventSubscription,
+  NavigationFocusInjectedProps,
+} from 'react-navigation';
 import { connect } from 'react-redux';
 import { Asset } from '../adapters/asset';
 import { AurynHelper } from '../aurynHelper';
@@ -30,10 +35,11 @@ class SearchScreen extends React.Component<SearchProps> {
     this.focusListener = this.props.navigation.addListener('didFocus', () => {
       BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
     });
-    this.blurListener = this.props.navigation.addListener('didBlur', () => BackHandler.removeEventListener('hardwareBackPress', this.navigateBack));
+    this.blurListener = this.props.navigation.addListener('didBlur', () =>
+      BackHandler.removeEventListener('hardwareBackPress', this.navigateBack),
+    );
 
-    if (this.searchTextInput.current)
-      FocusManager.focus(this.searchTextInput.current);
+    if (this.searchTextInput.current) FocusManager.focus(this.searchTextInput.current);
   }
 
   componentWillUnmount() {
@@ -45,16 +51,14 @@ class SearchScreen extends React.Component<SearchProps> {
   navigateBack = async () => {
     await this.outTimeline.current?.play();
 
-    if (AurynHelper.isRoku)
-      this.props.navigation.navigate({ routeName: 'Lander' });
-    else
-      this.props.navigation.goBack(null);
+    if (AurynHelper.isRoku) this.props.navigation.navigate({ routeName: 'Lander' });
+    else this.props.navigation.goBack(null);
 
     this.search('');
     return true;
-  }
+  };
 
-  onPressItem: ListItemPressEvent = async asset => {
+  onPressItem: ListItemPressEvent = async (asset) => {
     this.props.getDetailsByIdAndType(asset.id, asset.type);
     const navigateAction = NavigationActions.navigate({
       routeName: 'PDP',
@@ -63,51 +67,43 @@ class SearchScreen extends React.Component<SearchProps> {
     });
     await this.outTimeline.current?.play();
     this.props.navigation.dispatch(navigateAction);
-  }
+  };
 
-  onFocusItem: ListItemFocusEvent = asset => {
+  onFocusItem: ListItemFocusEvent = (asset) => {
     this.props.prefetchDetails(asset.id, asset.type);
   };
 
   search = (query: string) => this.props.search(query);
 
-  render() { // eslint-disable-line max-lines-per-function
+  render() {
+    // eslint-disable-line max-lines-per-function
     const { isFocused, data } = this.props;
 
-    if (!isFocused)
-      return <View />;
+    if (!isFocused) return <View />;
 
     return (
       <Composition source="Auryn_Search">
-        <BackButton
-          focusable={this.props.isFocused}
-          onPress={this.navigateBack}
-        />
-        <TextInputRef
-          ref={this.searchTextInput}
-          name="TextInput"
-          secureTextEntry={false}
-          onChangeText={this.search}
-        />
+        <BackButton focusable={this.props.isFocused} onPress={this.navigateBack} />
+        <TextInputRef ref={this.searchTextInput} name="TextInput" secureTextEntry={false} onChangeText={this.search} />
 
         <TextRef name="Popular Shows 2" text={`${data.length} Results Found`} />
 
-        {data || !AurynHelper.isRoku ? <List
-          name="List-PDP"
-          data={data}
-          type={ListType.Search}
-          horizontal={false}
-          focusable={isFocused}
-          onPressItem={this.onPressItem}
-          onFocusItem={this.onFocusItem}
-          extraData={data}
-          numColumns={FormFactor.isHandset?3:6}
-        />
-          : null
-        }
+        {data || !AurynHelper.isRoku ? (
+          <List
+            name="List-PDP"
+            data={data}
+            type={ListType.Search}
+            horizontal={false}
+            focusable={isFocused}
+            onPressItem={this.onPressItem}
+            onFocusItem={this.onFocusItem}
+            extraData={data}
+            numColumns={FormFactor.isHandset ? 3 : 6}
+          />
+        ) : null}
 
         <Timeline name="SearchOut" ref={this.outTimeline} />
-        <Timeline name="SearchIn" autoplay/>
+        <Timeline name="SearchIn" autoplay />
       </Composition>
     );
   }

@@ -125,7 +125,7 @@ export class VideoPlayer extends Component<Props, State> {
             onCurrentTimeUpdated={this.onCurrentTimeUpdated}
             onStateChanged={this.onStateChanged}
             muted
-            metadata={{mute: true}}
+            metadata={{ mute: true }}
           />
         </VideoControls>
       </Composition>

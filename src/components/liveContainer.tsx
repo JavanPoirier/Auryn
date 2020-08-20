@@ -13,11 +13,19 @@ interface LiveContainerProps {
 }
 
 export class LiveContainer extends React.PureComponent<LiveContainerProps> {
-  render() { // eslint-disable-line max-lines-per-function
+  render() {
+    // eslint-disable-line max-lines-per-function
     const { data, onPress, onFocus, focusable } = this.props;
     if (data.length !== 2) return null;
     return (
-      <View style={{ flexDirection: FormFactor.isHandset ? 'column' : 'row', marginBottom: FormFactor.isHandset ? 33 : 20, alignItems:'center', justifyContent: 'center' }}>
+      <View
+        style={{
+          flexDirection: FormFactor.isHandset ? 'column' : 'row',
+          marginBottom: FormFactor.isHandset ? 33 : 20,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <LiveListItem
           onPress={onPress}
           onFocus={onFocus}
@@ -25,7 +33,7 @@ export class LiveContainer extends React.PureComponent<LiveContainerProps> {
           data={data[0]}
           shouldChangeFocus={false}
         />
-        <View style={{ height: 1, width: 20, marginTop: FormFactor.isHandset ? 20 : 0 }}/>
+        <View style={{ height: 1, width: 20, marginTop: FormFactor.isHandset ? 20 : 0 }} />
         <LiveListItem
           onPress={onPress}
           focusable={focusable}

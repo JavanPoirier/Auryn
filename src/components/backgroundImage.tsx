@@ -5,11 +5,12 @@ type BackgroundImageProps = {
   source: string;
 };
 
-export const BackgroundImage: React.FunctionComponent<BackgroundImageProps> = ({source, children}) =>
+export const BackgroundImage: React.FunctionComponent<BackgroundImageProps> = ({ source, children }) => (
   <View style={styles.container}>
     <Image style={styles.background} source={{ uri: source }} />
     {children}
   </View>
+);
 
 const styles = StyleSheet.create({
   container: {

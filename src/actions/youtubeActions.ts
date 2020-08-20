@@ -23,12 +23,13 @@ interface YoutubeApiActionFulfilled {
 
 export type YoutubeApiActions = YoutubeApiAction | YoutubeApiActionFulfilled | YoutubeApiActionRejected;
 
-export const getVideoSourceByYoutubeId = (key: string) => (dispatch: Dispatch<YoutubeApiAction>) => dispatch({
-  type: 'YOUTUBE_VIDEO',
-  meta: {
-    debounce: {
-      time: 500,
+export const getVideoSourceByYoutubeId = (key: string) => (dispatch: Dispatch<YoutubeApiAction>) =>
+  dispatch({
+    type: 'YOUTUBE_VIDEO',
+    meta: {
+      debounce: {
+        time: 500,
+      },
     },
-  },
-  payload: Youtube.getInfo({ url: `http://www.youtube.com/watch?v=${key}` }),
-});
+    payload: Youtube.getInfo({ url: `http://www.youtube.com/watch?v=${key}` }),
+  });

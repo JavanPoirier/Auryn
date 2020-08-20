@@ -8,10 +8,18 @@ import { AurynHelper } from '../aurynHelper';
 import { View } from 'react-native';
 
 export enum ListType {
-  Featured, Poster, Grid, LargeBackdrop, WideBackdrop, SmallBackdrop, Live, Search, None
+  Featured,
+  Poster,
+  Grid,
+  LargeBackdrop,
+  WideBackdrop,
+  SmallBackdrop,
+  Live,
+  Search,
+  None,
 }
 
-interface ListProps<T>  {
+interface ListProps<T> {
   type: ListType;
   focusable?: boolean;
   onPressItem?: ListItemPressEvent;
@@ -19,12 +27,14 @@ interface ListProps<T>  {
   name: string;
   horizontal: boolean;
   data: T[];
-  snapToAlignment?: "start" | "center" | "end";
+  snapToAlignment?: 'start' | 'center' | 'end';
   numColumns?: number;
   extraData?: any;
 }
 
-interface ImageSettings extends ImageType { length: number }
+interface ImageSettings extends ImageType {
+  length: number;
+}
 
 export class List extends React.Component<ListProps<Asset>> {
   static defaultProps = {
@@ -48,16 +58,16 @@ export class List extends React.Component<ListProps<Asset>> {
       case ListType.Search:
         return { type: 'Poster', size: 'Basic', length: 366 };
       case ListType.WideBackdrop:
-        return { type: 'Backdrop', size: 'Wide', length: 606};
+        return { type: 'Backdrop', size: 'Wide', length: 606 };
       default:
         return { type: 'Backdrop', size: 'Small', length: 534 };
     }
   };
 
   scrollToIndex = (index: number) => {
-    this.listRef.current?.scrollToIndex({index, animated: !AurynHelper.isRoku});
-    this.chunkedListRef.current?.scrollToIndex({index, animated: !AurynHelper.isRoku});
-  }
+    this.listRef.current?.scrollToIndex({ index, animated: !AurynHelper.isRoku });
+    this.chunkedListRef.current?.scrollToIndex({ index, animated: !AurynHelper.isRoku });
+  };
 
   imageSettings: ImageSettings = this.getImageSettings();
 
@@ -97,23 +107,23 @@ export class List extends React.Component<ListProps<Asset>> {
   );
 
   renderHeaderItem = () => {
-    if(FormFactor.isHandset) {
+    if (FormFactor.isHandset) {
       switch (this.props.type) {
         case ListType.Grid:
         case ListType.Live:
-          return (<View style={{height:232}}></View>);
+          return <View style={{ height: 232 }}></View>;
         default:
           return null;
       }
-    } else {return null;}
-  }
+    } else {
+      return null;
+    }
+  };
 
   isHorizontal = () => {
-    if (this.props.numColumns)
-      return false;
-    else
-      return !FormFactor.isHandset || this.props.type === ListType.SmallBackdrop
-  }
+    if (this.props.numColumns) return false;
+    else return !FormFactor.isHandset || this.props.type === ListType.SmallBackdrop;
+  };
 
   renderMultipleItems = ({ item, index }: ListItemType<Asset[]>) => {
     if (this.props.type === ListType.Featured) {
@@ -155,7 +165,7 @@ export class List extends React.Component<ListProps<Asset>> {
 
   render() {
     const { type, name } = this.props;
-    const data = this.props.data.filter(it => it.details !== "" || it.images.Backdrop.indexOf('null') === -1);
+    const data = this.props.data.filter((it) => it.details !== '' || it.images.Backdrop.indexOf('null') === -1);
 
     if ([ListType.Featured, ListType.Grid, ListType.Live].includes(type)) {
       return (

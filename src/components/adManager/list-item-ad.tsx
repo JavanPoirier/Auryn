@@ -94,9 +94,11 @@ class AdOverlayScreen extends PureComponent<AdOverlayScreenProps> {
     this.focusListener = this.props.navigation.addListener('didFocus', () => {
       BackHandler.addEventListener('hardwareBackPress', this.navigateBack);
     });
-    this.blurListener = this.props.navigation.addListener('didBlur', () => BackHandler.removeEventListener('hardwareBackPress', this.navigateBack));
+    this.blurListener = this.props.navigation.addListener('didBlur', () =>
+      BackHandler.removeEventListener('hardwareBackPress', this.navigateBack),
+    );
 
-    FocusManager.focus(this.closeButton.current)
+    FocusManager.focus(this.closeButton.current);
   }
 
   componentWillUnmount() {
@@ -114,14 +116,13 @@ class AdOverlayScreen extends PureComponent<AdOverlayScreenProps> {
 
     AurynHelper.isRoku ? this.props.navigation.navigate({ routeName: 'Lander' }) : this.props.navigation.goBack(null);
 
-    if (FormFactor.isHandset)
-      this.props.setRotationMode(RotationMode.Portrait);
+    if (FormFactor.isHandset) this.props.setRotationMode(RotationMode.Portrait);
 
     return true;
   };
 
   onVideoReady = () => {
-    this.video.current?.play()
+    this.video.current?.play();
     // setTimeout(this.imageToVideoTimeline.current?.play, 3000);
   };
 
@@ -135,12 +136,10 @@ class AdOverlayScreen extends PureComponent<AdOverlayScreenProps> {
         <Timeline name="In" ref={this.inTimeline} autoplay />
         <Timeline name="Out" ref={this.outTimeline} />
         <ViewRef name="Video-Surface-Container">
-          <Timeline name="ImageToVideo" ref={this.imageToVideoTimeline}/>
+          <Timeline name="ImageToVideo" ref={this.imageToVideoTimeline} />
         </ViewRef>
-        <ViewRef name="Image-Video-Placeholder" visible={false}>
-
-        </ViewRef>
-        <ViewRef name="White Solid 25" visible={AurynHelper.isRoku}/>
+        <ViewRef name="Image-Video-Placeholder" visible={false}></ViewRef>
+        <ViewRef name="White Solid 25" visible={AurynHelper.isRoku} />
         <ButtonRef
           name="Btn-Close"
           onPress={this.navigateBack}
@@ -152,12 +151,12 @@ class AdOverlayScreen extends PureComponent<AdOverlayScreenProps> {
           ref={this.video}
           onReady={this.onVideoReady}
           source={{
-            type: "HLS",
-            uri: "https://stream.mux.com/pnujyskTQ02jB9TqZ4RAw1zkcuDAPJa6t.m3u8",
+            type: 'HLS',
+            uri: 'https://stream.mux.com/pnujyskTQ02jB9TqZ4RAw1zkcuDAPJa6t.m3u8',
             startTimeMs: 9000,
           }}
           muted
-          metadata={{mute: true}}
+          metadata={{ mute: true }}
         />
       </Composition>
     );

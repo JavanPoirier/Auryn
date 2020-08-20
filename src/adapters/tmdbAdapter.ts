@@ -52,7 +52,8 @@ const getFeaturedText = (credits: TmdbCredits): string => {
     .slice(0, 2)
     .map((it: TmdbCrew) => it.name)
     .join('\nStarring\n\n');
-  if (director && screenplay) return `${director.name}\nDirector\n\n${screenplay.name}\nScreenplay\n\n${cast}\nStarring`;
+  if (director && screenplay)
+    return `${director.name}\nDirector\n\n${screenplay.name}\nScreenplay\n\n${cast}\nStarring`;
   else if (director) return `${director.name}\nDirector\n\n${cast}\nStarring`;
   else if (screenplay) return `${screenplay.name}\nScreenplay\n\n${cast}\nStarring`;
 
@@ -61,8 +62,8 @@ const getFeaturedText = (credits: TmdbCredits): string => {
 
 const fromApi = (item: TmdbApi): Asset => {
   const type = 'name' in item ? AssetType.TV : AssetType.MOVIE;
-  const itemGenres = item.genres || item.genre_ids.map(id => genres[type].find(it => it.id === id));
-  return ({
+  const itemGenres = item.genres || item.genre_ids.map((id) => genres[type].find((it) => it.id === id));
+  return {
     images: {
       Poster: `http://image.tmdb.org/t/p/w1280/${item.poster_path}`,
       Backdrop: `http://image.tmdb.org/t/p/w1280/${item.backdrop_path}`,
@@ -83,7 +84,7 @@ const fromApi = (item: TmdbApi): Asset => {
     runtime: item.runtime,
     seasons: item.number_of_seasons,
     episodes: item.number_of_episodes,
-    releaseDate: item.release_date || item.first_air_date || ''
-  });
-}
+    releaseDate: item.release_date || item.first_air_date || '',
+  };
+};
 export { fromApi };

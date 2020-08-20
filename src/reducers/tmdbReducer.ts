@@ -46,7 +46,8 @@ const getLiveData = (movies: TmdbApi[]): Asset[] => {
   });
 };
 
-const initialState: TmdbReducerState = { // eslint-disable-line max-lines-per-function
+const initialState: TmdbReducerState = {
+  // eslint-disable-line max-lines-per-function
   discover: {
     data: [],
     fetching: false,

@@ -14,12 +14,12 @@ export enum RotationMode {
   LandscapeRight = 3,
   LandscapeLeft = 4,
   PortraitUpright = 5,
-  AutoUpright = 6
+  AutoUpright = 6,
 }
 
 export const withOrientation = (WrappedComponent: any, InitialRotationMode: RotationMode) =>
   class extends React.Component {
-    displayName = "withOrientation";
+    displayName = 'withOrientation';
 
     componentWillMount() {
       if (InitialRotationMode !== undefined) {
@@ -31,7 +31,7 @@ export const withOrientation = (WrappedComponent: any, InitialRotationMode: Rota
 
     setRotationMode = (rotationMode: RotationMode) => {
       OrientationLock.setRotationMode(rotationMode);
-    }
+    };
 
     render() {
       return <WrappedComponent setRotationMode={this.setRotationMode} {...this.props} />;
