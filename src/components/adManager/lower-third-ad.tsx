@@ -31,10 +31,8 @@ const ads = [
 ];
 
 class LowerThirdAd extends Component<Props> {
-  declare context: VideoContextType;
-
   static contextType = VideoContext;
-
+  context!: VideoContextType;
   adContext!: AdContextType;
 
   static defaultProps = {

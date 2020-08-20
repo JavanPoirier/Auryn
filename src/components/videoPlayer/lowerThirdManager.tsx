@@ -16,9 +16,8 @@ interface LowerThirdManagerProps extends NavigationInjectedProps {
 }
 
 class LowerThirdManager extends Component<LowerThirdManagerProps> {
-  declare context: VideoContextType;
-
   static contextType = VideoContext;
+  context!: VideoContextType;
 
   private lowerThirdInTimeline = React.createRef<Timeline>();
 

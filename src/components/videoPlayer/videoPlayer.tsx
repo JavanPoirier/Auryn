@@ -23,9 +23,9 @@ interface State {
 }
 
 export class VideoPlayer extends Component<Props, State> {
-  declare context: VideoContextType;
-
   static contextType = VideoContext;
+  context!: VideoContextType;
+
   static defaultProps: Pick<Props, 'onBackButton'> = {
     onBackButton: () => {},
   };

@@ -54,9 +54,8 @@ const keys = [
 const MIN_DURATION = 3000;
 
 class VideoControlsComponent extends React.Component<PlayerControlProps, PlayerControlState> {
-  declare context: VideoContextType;
-
   static contextType = VideoContext;
+  context!: VideoContextType;
 
   state = {
     controlsActive: false,

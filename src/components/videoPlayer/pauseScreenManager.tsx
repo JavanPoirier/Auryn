@@ -18,10 +18,8 @@ interface PauseScreenManagerProps extends NavigationInjectedProps {
 }
 
 class PauseScreenManager extends Component<PauseScreenManagerProps> {
-  declare context: VideoContextType;
-
   static contextType = VideoContext;
-
+  context!: VideoContextType;
   adContext!: AdContextType;
 
   private END_SQUEEZE_MS = 15 * 1000;

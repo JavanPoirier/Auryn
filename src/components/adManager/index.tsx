@@ -11,10 +11,9 @@ interface AdManagerProps {
 }
 
 class AdManager extends Component<AdManagerProps> {
-  declare context: AdContextType;
-
   static contextType = AdContext;
-
+  context!: AdContextType;
+  
   static defaultProps = {
     pauseAdClosed: () => {},
   };

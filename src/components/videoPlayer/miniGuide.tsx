@@ -29,9 +29,8 @@ const initialState = {
 };
 
 class MiniGuideComponent extends React.Component<MiniGuideProps> {
-  declare context: VideoContextType;
-
   static contextType = VideoContext;
+  context!: VideoContextType;
 
   miniGuideCloseButtonRef = React.createRef<ButtonRef>();
 
